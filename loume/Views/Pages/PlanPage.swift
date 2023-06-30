@@ -19,22 +19,26 @@ struct PlanPage: View {
         VStack(spacing: 24) {
             VStack(alignment: .leading, spacing: 0) {
                 Text(userData.getGoalWithIndex(index: goalIndex).getName())
+                    .font(.largeTitle.bold())
                 
                 HStack {
                     Text(userData.getGoalWithIndex(index: goalIndex).getDueDate())
                         .foregroundColor(.secondary)
+                    
                     Spacer()
+                    
                     CircularButton(type: "plan", goalIndex: goalIndex, inputTextValues: $inputTextValues)
                 }
             }
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 15) {
+                VStack(spacing: 16) {
                     ForEach(0..<userData.getGoalWithIndex(index: goalIndex).getPlans().count, id: \.self) { groupIndex in
                         VStack {
                             VStack(spacing: 4) {
                                 Text(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getName())
                                     .font(.title2.bold())
+                                
                                 Text(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getDueDate())
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)

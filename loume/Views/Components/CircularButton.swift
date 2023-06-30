@@ -27,22 +27,20 @@ struct CircularButton: View {
                 .clipShape(Circle())
         }
         .sheet(isPresented: $isSheetPresented) {
-            NavigationView {
+            NavigationStack {
                 ModalView(name: $name, dueDate: $dueDate, type: $type)
                     .navigationBarItems(leading: Button("Cancel") {
                         dueDate = Date()
                         name = ""
                         isSheetPresented = false
                     }
-                        .foregroundColor(Color("Axolotl")),
+                        .foregroundColor(.blue),
                                         trailing: Button("Done") {
                         if type == "goal" {
-                            
                             if userData.getGoals().count > 0 {
                                 inputTextValues.append([[""]])
                             }
                             userData.addGoal(name: name, plans: [], dueDate: dueDate)
-                            
                         } else if type == "plan" {
                             if userData.getGoalWithIndex(index: goalIndex).getPlans().count > 0 {
                                 inputTextValues[goalIndex].append([""])
@@ -54,7 +52,7 @@ struct CircularButton: View {
                         name = ""
                         isSheetPresented = false
                     }
-                        .foregroundColor(self.name.isEmpty ? .gray : Color("Axolotl"))
+                        .foregroundColor(self.name.isEmpty ? .secondary : Color("Axolotl"))
                         .disabled(self.name.isEmpty)
                     )
                     .navigationBarTitle(type == "goal" ? "Add Goal" : "Add Plan")
@@ -73,6 +71,7 @@ struct ModalView: View {
         VStack(spacing: 16) {
             VStack(alignment: .leading) {
                 Text(type == "goal" ? "Goal Name" : "Plan Name")
+                
                 TextField(type == "goal" ? "Goal Name" : "Plan Name", text: $name)
                     .textFieldStyle(.roundedBorder)
                     .tint(Color("Axolotl"))
@@ -81,8 +80,10 @@ struct ModalView: View {
                             .stroke(.tertiary ,lineWidth: 2)
                     )
             }
+            
             DatePicker("Due Date", selection: $dueDate, in: Date.now..., displayedComponents: .date)
                 .tint(Color("Axolotl"))
+            
             Spacer()
         }
         .padding()

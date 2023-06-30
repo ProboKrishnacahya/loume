@@ -14,12 +14,13 @@ struct GoalPage: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                LazyVStack(spacing: 24) {
+                VStack(spacing: 24) {
                     HStack {
                         Text("Your Goals")
                             .font(.largeTitle.bold())
-                            .font(.largeTitle.bold())
+                        
                         Spacer()
+                        
                         CircularButton(type: "goal", goalIndex: 0, inputTextValues: $inputTextValues)
                     }
                     
@@ -50,24 +51,27 @@ struct GoalResult: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Text(userData.getGoalWithIndex(index: goalIndex).getName())
                         .font(.title2.bold())
+                    
                     Spacer()
                 }
                 
-                Text("Deadline: \(userData.getGoalWithIndex(index: goalIndex).getTimeLeft()) ")
+                Text("Deadline: \(userData.getGoalWithIndex(index: goalIndex).getTimeLeft())")
                 
                 Text("Due: \(userData.getGoalWithIndex(index: goalIndex).getDueDate())")
                     .font(.subheadline)
                     .foregroundColor(Color("Light Moss Green"))
                 
-                Text("sumsubplan: \(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex))")
+                Text("Subplan: \(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex))")
                 
-                Text("sumisdone: \(userData.getGoalWithIndex(index: goalIndex).sumisdone(userData: userData, goalIndex: goalIndex))")
+                Text("Done: \(userData.getGoalWithIndex(index: goalIndex).sumisdone(userData: userData, goalIndex: goalIndex))")
             }
+            
             Spacer()
+            
             HStack {
                 ProgressView(value: Double(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex)))
                     .progressViewStyle(.linear)

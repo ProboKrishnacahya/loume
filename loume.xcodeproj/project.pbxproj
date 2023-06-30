@@ -108,16 +108,16 @@
 		826814C12A4EF3EC00B9F57A /* loume */ = {
 			isa = PBXGroup;
 			children = (
-				826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */,
-				826814C42A4EF3EC00B9F57A /* ViewModels */,
+				826814DE2A4EF3EC00B9F57A /* ContentView.swift */,
+				826814D02A4EF3EC00B9F57A /* loumeApp.swift */,
 				826814C62A4EF3EC00B9F57A /* Persistence.swift */,
 				826814C72A4EF3EC00B9F57A /* Assets.xcassets */,
+				826814DF2A4EF3EC00B9F57A /* Helpers */,
+				826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */,
 				826814C82A4EF3EC00B9F57A /* Models */,
 				826814CE2A4EF3EC00B9F57A /* Preview Content */,
-				826814D02A4EF3EC00B9F57A /* loumeApp.swift */,
+				826814C42A4EF3EC00B9F57A /* ViewModels */,
 				826814D12A4EF3EC00B9F57A /* Views */,
-				826814DE2A4EF3EC00B9F57A /* ContentView.swift */,
-				826814DF2A4EF3EC00B9F57A /* Helpers */,
 			);
 			path = loume;
 			sourceTree = "<group>";
