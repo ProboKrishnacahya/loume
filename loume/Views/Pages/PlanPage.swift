@@ -33,73 +33,84 @@ struct PlanPage: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 VStack(spacing: 16) {
-                    ForEach(0..<userData.getGoalWithIndex(index: goalIndex).getPlans().count, id: \.self) { groupIndex in
-                        VStack {
-                            VStack(spacing: 4) {
-                                Text(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getName())
-                                    .font(.title2.bold())
-                                
-                                Text(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getDueDate())
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                            }
+                    if userData.getGoalWithIndex(index: goalIndex).getPlans().isEmpty {
+                        VStack(spacing: 16) {
+                            Image(systemName: "folder.badge.questionmark")
+                                .font(.system(size: 64))
                             
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 16)
-                                    .fill(.white)
-                                GeometryReader { geometry in
-                                    List {
-                                        ForEach(0..<userData.getCountOfSubPlans(goalIndex: goalIndex, planIndex: groupIndex), id: \.self) { index in
-                                            HStack {
-                                                Button(action: {
-                                                    userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).changeStatus(subPlan:   userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index))
-                                                    isClicked.toggle()
-                                                }) {
-                                                    Circle()
-                                                        .fill(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).is_done ? Color("Axolotl") : .clear)
-                                                        .frame(width: 16)
-                                                        .overlay(
-                                                            Circle()
-                                                                .stroke(Color("Axolotl"), lineWidth: 2)
-                                                        )
+                            Text("Your plans are still empty.\n**Let's make your plans!**")
+                                .multilineTextAlignment(.center)
+                        }
+                        .foregroundColor(.gray)
+                    } else {
+                        ForEach(0..<userData.getGoalWithIndex(index: goalIndex).getPlans().count, id: \.self) { groupIndex in
+                            VStack {
+                                VStack(spacing: 4) {
+                                    Text(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getName())
+                                        .font(.title2.bold())
+                                    
+                                    Text(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getDueDate())
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 16)
+                                        .fill(.white)
+                                    GeometryReader { geometry in
+                                        List {
+                                            ForEach(0..<userData.getCountOfSubPlans(goalIndex: goalIndex, planIndex: groupIndex), id: \.self) { index in
+                                                HStack {
+                                                    Button(action: {
+                                                        userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).changeStatus(subPlan:   userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index))
+                                                        isClicked.toggle()
+                                                    }) {
+                                                        Circle()
+                                                            .fill(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).is_done ? Color("Axolotl") : .clear)
+                                                            .frame(width: 16)
+                                                            .overlay(
+                                                                Circle()
+                                                                    .stroke(Color("Axolotl"), lineWidth: 2)
+                                                            )
+                                                    }
+                                                    .padding(.leading, 28)
+                                                    
+                                                    TextField(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).getName().isEmpty ? "New Subplan" : userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).getName(),
+                                                              text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
+                                                              onCommit: {
+                                                        userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).saveSubPlan(index: index, newSubPlan: inputTextValues[goalIndex][groupIndex][index], plan: userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex))
+                                                    })
+                                                    .listRowBackground(Color.clear)
+                                                    .frame(width: geometry.size.width)
                                                 }
-                                                .padding(.leading, 28)
-                                                
-                                                TextField(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).getName().isEmpty ? "New Subplan" : userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlanWithIndex(index: index).getName(),
-                                                          text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
-                                                          onCommit: {
-                                                    userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).saveSubPlan(index: index, newSubPlan: inputTextValues[goalIndex][groupIndex][index], plan: userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex))
-                                                })
-                                                .listRowBackground(Color.clear)
-                                                .frame(width: geometry.size.width)
                                             }
                                         }
                                     }
+                                    .listStyle(.plain)
+                                    .padding()
                                 }
-                                .listStyle(.plain)
-                                .padding()
-                            }
-                            
-                            Button(action: {
-                                userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).addSubPlan(name: "", is_done: false, plan: userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex))
                                 
-                                inputTextValues[goalIndex][groupIndex].append("")
-                            }, label: {
-                                HStack {
-                                    Image(systemName: "plus.circle")
-                                        .bold()
-                                    Text("\(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlans().count)")
-                                        .bold()
-                                }
-                                .padding(.vertical, 4)
-                            })
-                            .foregroundColor(Color("Axolotl"))
+                                Button(action: {
+                                    userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).addSubPlan(name: "", is_done: false, plan: userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex))
+                                    
+                                    inputTextValues[goalIndex][groupIndex].append("")
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: "plus.circle")
+                                            .bold()
+                                        Text("\(userData.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: groupIndex).getSubPlans().count)")
+                                            .bold()
+                                    }
+                                    .padding(.vertical, 4)
+                                })
+                                .foregroundColor(Color("Axolotl"))
+                            }
+                            .padding()
+                            .background(Color("Light Moss Green"))
+                            .cornerRadius(16)
+                            
+                            //                        Text("**\(groupIndex)** of **\(userData.getGoalWithIndex(index: goalIndex).getPlans().count)**")
                         }
-                        .padding()
-                        .background(Color("Light Moss Green"))
-                        .cornerRadius(16)
-                        
-//                        Text("**\(groupIndex)** of **\(userData.getGoalWithIndex(index: goalIndex).getPlans().count)**")
                     }
                 }
                 .padding()

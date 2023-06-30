@@ -25,7 +25,16 @@ struct GoalPage: View {
                     }
                     
                     VStack {
-                        if userData.getGoals().count > 0 {
+                        if userData.getGoals().isEmpty {
+                            VStack(spacing: 16) {
+                                Image(systemName: "folder.badge.questionmark")
+                                    .font(.system(size: 64))
+                                
+                                Text("Your goals are still empty.\n**Let's make your goals!**")
+                                    .multilineTextAlignment(.center)
+                            }
+                            .foregroundColor(.gray)
+                        } else {
                             ForEach(0..<userData.getGoals().count, id: \.self) { index in
                                 NavigationLink(destination: PlanPage(goalIndex: index, inputTextValues: $inputTextValues)) {
                                     GoalResult(goalIndex: index)
