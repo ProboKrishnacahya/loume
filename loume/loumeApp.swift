@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct comeeApp: App {
+struct loumeApp: App {
     @StateObject private var userData = User(name: "", goals: [])
 
     var body: some Scene {
