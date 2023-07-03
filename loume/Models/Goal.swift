@@ -64,7 +64,7 @@ class Goal: Identifiable, ObservableObject {
         self.plans.append(Plan(name: name, subPlans: subPlans, dueDate: dueDate))
     }
     
-    func getPercentageProgress(userData: User, goalIndex: Int) -> Int {
+    func getPercentageProgress(userData: User, goalIndex: Int) -> Double {
         var sumIsdone: Int = 0
         var sumSubPlan: Int = 0
         
@@ -77,10 +77,10 @@ class Goal: Identifiable, ObservableObject {
             }
         }
         
-        return sumSubPlan
+        return sumSubPlan == 0 ? 0 : Double((Double(sumIsdone)/Double(sumSubPlan))*100)
     }
     
-    func sumisdone(userData: User, goalIndex: Int) -> Int {
+    func sumIsDone(userData: User, goalIndex: Int) -> Int {
         var sumIsdone: Int = 0
         var sumSubPlan: Int = 0
         
@@ -94,5 +94,15 @@ class Goal: Identifiable, ObservableObject {
         }
         
         return sumIsdone
+    }
+    
+    func sumSubPlan(userData: User, goalIndex: Int) -> Int {
+        var sumSubPlan: Int = 0
+
+        for plan in userData.goals[goalIndex].getPlans() {
+            sumSubPlan += plan.subPlans.count
+        }
+
+        return sumSubPlan
     }
 }

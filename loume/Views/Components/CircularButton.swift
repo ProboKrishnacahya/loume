@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CircularButton: View {
     @EnvironmentObject var userData: User
-    @State var isSheetPresented = false
+    @Binding var isSheetPresented: Bool
     @State var name = ""
     @State var dueDate = Date()
     @State var type: String
@@ -92,6 +92,6 @@ struct ModalView: View {
 
 struct CircularButton_Previews: PreviewProvider {
     static var previews: some View {
-        CircularButton(type: "goal", goalIndex: 0, inputTextValues: .constant([])).environmentObject(User(name: "", goals: []))
+        CircularButton(isSheetPresented: .constant(false), type: "goal", goalIndex: 0, inputTextValues: .constant([])).environmentObject(User(name: "", goals: []))
     }
 }
