@@ -14,11 +14,11 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            AppHeader(instanceSoundManager: instanceSoundManager)
+//            AppHeader(instanceSoundManager: instanceSoundManager)
             
             if userData.name.isEmpty {
                 TabView(selection: $selectedTab) {
-                    GoalPage()
+                    GoalPage(backgroundColor: Color("Lotion"))
                         .tabItem {
                             Image(systemName: selectedTab == 0 ? "chart.bar.doc.horizontal.fill" : "chart.bar.doc.horizontal")
                                 .environment(\.symbolVariants, .none)
@@ -27,7 +27,7 @@ struct ContentView: View {
                         }
                         .tag(0)
                     
-                    SummaryView()
+                    SummaryView(backgroundColor: Color("Lotion"))
                         .tabItem {
                             Image(systemName: selectedTab == 1 ? "heart.circle.fill" : "heart.circle")
                                 .environment(\.symbolVariants, .none)
@@ -37,7 +37,6 @@ struct ContentView: View {
                         .tag(1)
                 }
                 .tint(Color("Axolotl"))
-                
             } else {
                 IntroductionView(name: "")
             }

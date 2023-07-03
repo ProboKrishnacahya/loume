@@ -31,6 +31,7 @@
 		827CD7012A40327300672B92 /* loumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD7002A40327300672B92 /* loumeTests.swift */; };
 		827CD70B2A40327300672B92 /* loumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70A2A40327300672B92 /* loumeUITests.swift */; };
 		827CD70D2A40327300672B92 /* loumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */; };
+		82E457142A518EB400760AE6 /* AboutMeDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E457132A518EB300760AE6 /* AboutMeDetailPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		827CD7062A40327300672B92 /* loumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = loumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		827CD70A2A40327300672B92 /* loumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITests.swift; sourceTree = "<group>"; };
 		827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		82E457132A518EB300760AE6 /* AboutMeDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeDetailPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 		826814D62A4EF3EC00B9F57A /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				82E457132A518EB300760AE6 /* AboutMeDetailPage.swift */,
 				826814D72A4EF3EC00B9F57A /* SummaryView.swift */,
 				826814D82A4EF3EC00B9F57A /* GoalPage.swift */,
 				826814D92A4EF3EC00B9F57A /* PlanPage.swift */,
@@ -375,6 +378,7 @@
 			files = (
 				826814EF2A4EF3EC00B9F57A /* SummaryView.swift in Sources */,
 				826814E92A4EF3EC00B9F57A /* Plan.swift in Sources */,
+				82E457142A518EB400760AE6 /* AboutMeDetailPage.swift in Sources */,
 				826814F32A4EF3EC00B9F57A /* RolePromptView.swift in Sources */,
 				826814ED2A4EF3EC00B9F57A /* PrimaryButton.swift in Sources */,
 				826814EB2A4EF3EC00B9F57A /* loumeApp.swift in Sources */,
