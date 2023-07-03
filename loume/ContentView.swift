@@ -27,7 +27,7 @@ struct ContentView: View {
                         }
                         .tag(0)
                     
-                    SummaryView(backgroundColor: Color("Lotion"))
+                    SummaryPage(backgroundColor: Color("Lotion"))
                         .tabItem {
                             Image(systemName: selectedTab == 1 ? "heart.circle.fill" : "heart.circle")
                                 .environment(\.symbolVariants, .none)
@@ -38,7 +38,7 @@ struct ContentView: View {
                 }
                 .tint(Color("Axolotl"))
             } else {
-                IntroductionView(name: "")
+                IntroductionPage(name: "")
             }
         }
         .onAppear {

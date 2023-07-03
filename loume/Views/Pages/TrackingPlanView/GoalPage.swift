@@ -12,51 +12,59 @@ struct GoalPage: View {
     @State var inputTextValues: [[[String]]] = [[[""]]]
     @State var isSheetPresented = false
     
+    let backgroundColor: Color
+    
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    HStack {
-                        Text("Your Goals")
-                            .font(.largeTitle.bold())
+            ZStack {
+                backgroundColor
+                    .edgesIgnoringSafeArea(.all)
+                
+                ScrollView {
+                    VStack(spacing: 24) {
+                        HStack {
+                            Text("Your Goals")
+                                .font(.largeTitle.bold())
+                            
+                            Spacer()
+                            
+                            CircularButton(isSheetPresented: $isSheetPresented, type: "goal", goalIndex: 0, inputTextValues: $inputTextValues)
+                        }
                         
-                        Spacer()
-                        
-                        CircularButton(isSheetPresented: $isSheetPresented, type: "goal", goalIndex: 0, inputTextValues: $inputTextValues)
-                    }
-                    
-                    VStack {
-                        if userData.getGoals().isEmpty {
-                            VStack(spacing: 16) {
-                                Image(systemName: "folder.badge.questionmark")
-                                    .font(.system(size: 64))
-                                
-                                Text("Your goals are still empty.\n**Let's make your goals!**")
-                                    .multilineTextAlignment(.center)
-                            }
-                            .foregroundColor(.gray)
-                        } else {
-                            ForEach(0..<userData.getGoals().count, id: \.self) { index in
-                                NavigationLink(destination: PlanPage(goalIndex: index, inputTextValues: $inputTextValues)) {
-                                    GoalResult(goalIndex: index)
+                        VStack {
+                            if userData.getGoals().isEmpty {
+                                VStack(spacing: 16) {
+                                    Image(systemName: "folder.badge.questionmark")
+                                        .font(.system(size: 64))
+                                    
+                                    Text("Your goals are still empty.\n**Let's make your goals!**")
+                                        .multilineTextAlignment(.center)
+                                }
+                                .foregroundColor(.gray)
+                            } else {
+                                ForEach(0..<userData.getGoals().count, id: \.self) { index in
+                                    NavigationLink(destination: PlanPage(inputTextValues: $inputTextValues, goalIndex: index)) {
+                                            GoalResult(goalIndex: index)
+                                        }
+                                    }
                                 }
                             }
                         }
-                    }
+                    .padding()
                 }
-                .padding()
+                .navigationBarTitle("Goals")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarHidden(true)
             }
-            .navigationBarTitle("Goals")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(true)
+            .tint(Color("Axolotl"))
         }
-        .tint(Color("Axolotl"))
     }
 }
 
 // Card for Goal Data
 struct GoalResult: View {
     @EnvironmentObject var userData: User
+    
     var goalIndex: Int
     
     var body: some View {
@@ -69,14 +77,14 @@ struct GoalResult: View {
                     Spacer()
                 }
                 
-                Text("Deadline: \(userData.getGoalWithIndex(index: goalIndex).getTimeLeft())")
-                
                 Text("Due: \(userData.getGoalWithIndex(index: goalIndex).getDueDate())")
                     .font(.subheadline)
                     .foregroundColor(Color("Light Moss Green"))
                 
+                Text("Deadline: \(userData.getGoalWithIndex(index: goalIndex).getTimeLeft())")
+
                 Text("Subplan: \(userData.getGoalWithIndex(index: goalIndex).sumSubPlan(userData: userData, goalIndex: goalIndex))")
-                
+
                 Text("Done: \(userData.getGoalWithIndex(index: goalIndex).sumIsDone(userData: userData, goalIndex: goalIndex))")
             }
             
@@ -109,6 +117,6 @@ struct GoalResult: View {
 
 struct GoalPage_Previews: PreviewProvider {
     static var previews: some View {
-        GoalPage().environmentObject(User(name: "", goals: []))
+        GoalPage(backgroundColor: Color("Lotion")).environmentObject(User(name: "", goals: []))
     }
 }

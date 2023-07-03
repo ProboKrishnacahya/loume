@@ -1,13 +1,13 @@
 //
-//  RolePromptView.swift
-//  comee
+//  RolePromptPage.swift
+//  loume
 //
-//  Created by Nur Azizah on 27/06/23.
+//  Created by Probo Krishnacahya on 03/07/23.
 //
 
 import SwiftUI
 
-struct RolePromptView: View {
+struct RolePromptPage: View {
     let instanceStoryBoardViewModel = StoryBoardViewModel()
     
     var body: some View {
@@ -24,8 +24,8 @@ struct RolePromptView: View {
     }
 }
 
-struct RolePromptView_Previews: PreviewProvider {
+struct RolePromptPage_Previews: PreviewProvider {
     static var previews: some View {
-        RolePromptView()
+        RolePromptPage()
     }
 }

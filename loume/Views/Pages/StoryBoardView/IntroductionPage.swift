@@ -1,13 +1,13 @@
 //
-//  IntroductionView.swift
-//  comee
+//  IntroductionPage.swift
+//  loume
 //
-//  Created by Nur Azizah on 27/06/23.
+//  Created by Probo Krishnacahya on 03/07/23.
 //
 
 import SwiftUI
 
-struct IntroductionView: View {
+struct IntroductionPage: View {
     @EnvironmentObject var userData: User
     @State var name:String
     @State private var offset = CGSize.zero
@@ -34,8 +34,8 @@ struct IntroductionView: View {
     }
 }
 
-struct IntroductionView_Previews: PreviewProvider {
+struct IntroductionPage_Previews: PreviewProvider {
     static var previews: some View {
-        IntroductionView(name: "").environmentObject(User(name: "", goals: []))
+        IntroductionPage(name: "").environmentObject(User(name: "", goals: []))
     }
 }

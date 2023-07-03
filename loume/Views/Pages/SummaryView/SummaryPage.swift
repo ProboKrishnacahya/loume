@@ -1,15 +1,13 @@
 //
-//  SummaryView.swift
-//  comee
+//  SummaryPage.swift
+//  loume
 //
-//  Created by Nur Azizah on 27/06/23.
+//  Created by Probo Krishnacahya on 03/07/23.
 //
 
 import SwiftUI
 
-import SwiftUI
-
-struct SummaryView: View {
+struct SummaryPage: View {
     let backgroundColor: Color
     let summariesData = [
         SummaryData(title: "My Interest", backgroundColor: Color("Artichoke"), foregroundColor: .white),
@@ -95,8 +93,9 @@ struct DetailView: View {
 }
 
 
-struct SummaryView_Previews: PreviewProvider {
+struct SummaryPage_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryView(backgroundColor: Color("Lotion"))
+        SummaryPage(backgroundColor: Color("Lotion"))
     }
 }
+
