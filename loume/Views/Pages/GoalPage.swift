@@ -10,6 +10,7 @@ import SwiftUI
 struct GoalPage: View {
     @EnvironmentObject var userData: User
     @State var inputTextValues: [[[String]]] = [[[""]]]
+    @State var isSheetPresented = false
     
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct GoalPage: View {
                         
                         Spacer()
                         
-                        CircularButton(type: "goal", goalIndex: 0, inputTextValues: $inputTextValues)
+                        CircularButton(isSheetPresented: $isSheetPresented, type: "goal", goalIndex: 0, inputTextValues: $inputTextValues)
                     }
                     
                     VStack {
@@ -74,15 +75,15 @@ struct GoalResult: View {
                     .font(.subheadline)
                     .foregroundColor(Color("Light Moss Green"))
                 
-                Text("Subplan: \(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex))")
+                Text("Subplan: \(userData.getGoalWithIndex(index: goalIndex).sumSubPlan(userData: userData, goalIndex: goalIndex))")
                 
-                Text("Done: \(userData.getGoalWithIndex(index: goalIndex).sumisdone(userData: userData, goalIndex: goalIndex))")
+                Text("Done: \(userData.getGoalWithIndex(index: goalIndex).sumIsDone(userData: userData, goalIndex: goalIndex))")
             }
             
             Spacer()
             
             HStack {
-                ProgressView(value: Double(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex)))
+                ProgressView(value: Double(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex)), total: 100)
                     .progressViewStyle(.linear)
                     .tint(Color("Light Moss Green"))
                     .background(

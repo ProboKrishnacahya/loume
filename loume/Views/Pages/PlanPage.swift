@@ -10,7 +10,7 @@ import SwiftUI
 struct PlanPage: View {
     @EnvironmentObject var userData: User
     @Environment(\.presentationMode) var presentationMode
-    
+    @State var isSheetPresented = false
     let goalIndex: Int
     @State var isClicked = false
     @Binding var inputTextValues: [[[String]]]
@@ -27,7 +27,7 @@ struct PlanPage: View {
                     
                     Spacer()
                     
-                    CircularButton(type: "plan", goalIndex: goalIndex, inputTextValues: $inputTextValues)
+                    CircularButton(isSheetPresented: $isSheetPresented, type: "plan", goalIndex: goalIndex, inputTextValues: $inputTextValues)
                 }
             }
             
