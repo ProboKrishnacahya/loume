@@ -43,6 +43,10 @@ class Goal: Identifiable, ObservableObject {
         return dateFormatter.string(from: self.dueDate)
     }
     
+    func getDueDateWithoutFormat() -> Date {
+        return self.dueDate
+    }
+    
     func getTimeLeft() -> String {
         let calendar = Calendar.current
         let currentDate = Date()

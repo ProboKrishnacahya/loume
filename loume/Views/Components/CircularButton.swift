@@ -14,7 +14,7 @@ struct CircularButton: View {
     @State var name = ""
     @State var dueDate = Date()
     @State var type: String
-    let goal: Goal
+    @State var goal: Goal
     @Binding var inputTextValues: [[[String]]]
     let goalIndex: Int
     
@@ -30,7 +30,7 @@ struct CircularButton: View {
         }
         .sheet(isPresented: $isSheetPresented) {
             NavigationStack {
-                ModalView(name: $name, dueDate: $dueDate, type: $type)
+                ModalView(name: $name, dueDate: $dueDate, type: $type, goal: $goal)
                     .navigationBarItems(leading: Button("Cancel") {
                         dueDate = Date()
                         name = ""
@@ -68,6 +68,10 @@ struct ModalView: View {
     @Binding var name: String
     @Binding var dueDate: Date
     @Binding var type: String
+    @Binding var goal: Goal
+    var maximumDateGoal: Date{
+        return max(Date(), goal.getDueDateWithoutFormat())
+    }
     
     var body: some View {
         VStack(spacing: 16) {
@@ -83,8 +87,14 @@ struct ModalView: View {
                     )
             }
             
-            DatePicker("Due Date", selection: $dueDate, in: Date.now..., displayedComponents: .date)
-                .tint(Color("Axolotl"))
+            if type == "plan" {
+                DatePicker("Due Date", selection: $dueDate, in: Date.now...maximumDateGoal, displayedComponents: .date)
+                    .tint(Color("Axolotl"))
+            } else if type == "goal" {
+                DatePicker("Due Date", selection: $dueDate, in: Date.now..., displayedComponents: .date)
+                    .tint(Color("Axolotl"))
+            }
+            
             
             Spacer()
         }
