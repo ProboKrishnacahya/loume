@@ -10,7 +10,7 @@ import Foundation
 class User: Identifiable, ObservableObject {
     let id = UUID()
     @Published private var name: String
-    @Published var goals: [Goal]
+    @Published private var goals: [Goal]
     
     init(name: String, goals: [Goal]) {
         self.name = name
@@ -19,7 +19,6 @@ class User: Identifiable, ObservableObject {
     
     func setName(name: String) {
         self.name = name
-        objectWillChange.send()
     }
     
     func getName() -> String {
@@ -36,7 +35,6 @@ class User: Identifiable, ObservableObject {
     
     func addGoal(name: String, plans: [Plan], dueDate: Date) {
         self.goals.append(Goal(name: name, plans: plans, dueDate: dueDate))
-        //        objectWillChange.send()
         print(goals.count)
     }
 }

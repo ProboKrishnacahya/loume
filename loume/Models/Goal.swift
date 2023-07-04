@@ -73,11 +73,11 @@ class Goal: Identifiable, ObservableObject {
         print("insert", plans.count)
     }
     
-    func getPercentageProgress(goal: Goal) -> Double {
+    func getPercentageProgress() -> Double {
         var sumIsdone: Int = 0
         var sumSubPlan: Int = 0
         
-        for plan in goal.getPlans() {
+        for plan in self.plans {
             sumSubPlan += plan.getSubPlans().count
             for subPlan in plan.getSubPlans() {
                 if subPlan.getIsDone() {
@@ -89,11 +89,11 @@ class Goal: Identifiable, ObservableObject {
         return sumSubPlan == 0 ? 0 : Double((Double(sumIsdone)/Double(sumSubPlan))*100)
     }
     
-    func sumIsDone(goal: Goal) -> Int {
+    func sumIsDone() -> Int {
         var sumIsdone: Int = 0
         var sumSubPlan: Int = 0
         
-        for plan in goal.getPlans() {
+        for plan in self.plans {
             sumSubPlan += plan.getSubPlans().count
             for subPlan in plan.getSubPlans() {
                 if subPlan.getIsDone() {
@@ -105,10 +105,10 @@ class Goal: Identifiable, ObservableObject {
         return sumIsdone
     }
     
-    func sumSubPlan(goal: Goal) -> Int {
+    func sumSubPlan() -> Int {
         var sumSubPlan: Int = 0
         
-        for plan in goal.getPlans() {
+        for plan in self.plans {
             sumSubPlan += plan.getSubPlans().count
         }
         

@@ -10,7 +10,7 @@ import Foundation
 class SubPlan: Identifiable, ObservableObject {
     let id = UUID()
     @Published private var name: String
-    @Published var is_done: Bool
+    @Published private var is_done: Bool
     
     init(name: String, is_done: Bool) {
         self.name = name
@@ -27,8 +27,6 @@ class SubPlan: Identifiable, ObservableObject {
     
     func setName(name: String) {
         self.name = name
-        objectWillChange.send()
-        
     }
     
     func setIsDone(subPlan: SubPlan) {

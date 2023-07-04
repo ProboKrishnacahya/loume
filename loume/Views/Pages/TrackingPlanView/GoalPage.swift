@@ -85,15 +85,15 @@ struct GoalResult: View {
                 
                 Text("Deadline: \(goal.getTimeLeft())")
                 
-                Text("Subplan: \(goal.sumSubPlan(goal: goal))")
+                Text("Subplan: \(goal.sumSubPlan())")
                 
-                Text("Done: \(goal.sumIsDone(goal: goal))")
+                Text("Done: \(goal.sumIsDone())")
             }
             
             Spacer()
             
             HStack {
-                ProgressView(value: Double(goal.getPercentageProgress(goal: goal)), total: 100)
+                ProgressView(value: Double(goal.getPercentageProgress()), total: 100)
                     .progressViewStyle(.linear)
                     .tint(Color("Light Moss Green"))
                     .background(
@@ -101,12 +101,12 @@ struct GoalResult: View {
                             Rectangle()
                                 .foregroundColor(.white)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
-                                .scaleEffect(x: CGFloat(goal.getPercentageProgress(goal: goal) == 0 ? 1 : goal.getPercentageProgress(goal: goal)), y: 1.0, anchor: .leading)
+                                .scaleEffect(x: CGFloat(goal.getPercentageProgress() == 0 ? 1 : goal.getPercentageProgress()), y: 1.0, anchor: .leading)
                         }
                     )
                     .cornerRadius(6)
                 
-                Text("\(String(format: "%.2f", goal.getPercentageProgress(goal: goal)))%")
+                Text("\(String(format: "%.2f", goal.getPercentageProgress()))%")
                     .font(.headline)
             }
         }
