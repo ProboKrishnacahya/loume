@@ -34,21 +34,9 @@ class User: Identifiable, ObservableObject {
         return self.getGoals()[index]
     }
     
-    func getGoalName(index: Int) -> String {
-        return self.getGoals()[index].getName()
-    }
-    
     func addGoal(name: String, plans: [Plan], dueDate: Date) {
         self.goals.append(Goal(name: name, plans: plans, dueDate: dueDate))
         //        objectWillChange.send()
         print(goals.count)
-    }
-    
-    func getSpesificPlanBasedGoal(goal: Goal, planIndex: Int) -> Plan {
-        return goal.getPlanWithIndex(planIndex: planIndex)
-    }
-    
-    func getCountOfSubPlans(goal: Goal, planIndex: Int) -> Int {
-        return goal.getPlanWithIndex(planIndex: planIndex).getSubPlans().count
     }
 }

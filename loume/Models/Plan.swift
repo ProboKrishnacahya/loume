@@ -42,7 +42,6 @@ class Plan: Identifiable, ObservableObject {
     func setName(name: String) {
         self.name = name
         objectWillChange.send()
-        
     }
     
     func addSubPlan(name: String, is_done: Bool, plan: Plan) {
