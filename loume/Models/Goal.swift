@@ -49,8 +49,7 @@ class Goal: Identifiable, ObservableObject {
     
     func getTimeLeft() -> String {
         let calendar = Calendar.current
-        let currentDate = Date()
-        var daysLeftKeep = 0
+        var timeLeft = ""
         
         var dateComponents = DateComponents()
         dateComponents.year = calendar.component(.year, from: self.dueDate)
@@ -58,14 +57,40 @@ class Goal: Identifiable, ObservableObject {
         dateComponents.day = calendar.component(.day, from: self.dueDate)
         
         if let targetDate = calendar.date(from: dateComponents) {
-            let components = calendar.dateComponents([.day], from: currentDate, to: targetDate)
+            let components = calendar.dateComponents([.day], from: Date(), to: targetDate)
             
             if let daysLeft = components.day {
-                daysLeftKeep = daysLeft
+                if daysLeft != 0 {
+                    let years = calendar.dateComponents([.year, .month, .day], from: Date(), to: self.dueDate).year ?? 0
+                    let months = calendar.dateComponents([.year, .month, .day], from: Date(), to: self.dueDate).month ?? 0
+                    let days = calendar.dateComponents([.year, .month, .day], from: Date(), to: self.dueDate).day ?? 0
+                    
+                    var formattedTimeLeft = ""
+                    
+                    if years > 0 {
+                        formattedTimeLeft += "\(years) \(years == 1 ? "year" : "years") "
+                    }
+                    if months > 0 {
+                        formattedTimeLeft += "\(months) \(months == 1 ? "month" : "months") "
+                    }
+                    if days > 0 {
+                        formattedTimeLeft += "\(days) \(days == 1 ? "day" : "days") "
+                    }
+                    
+                    return formattedTimeLeft.trimmingCharacters(in: .whitespaces)
+                    
+                } else {
+                    if dateComponents.day == calendar.component(.day, from: Date())+1 {
+                        timeLeft = "Tomorrow"
+                    } else if dateComponents.day == calendar.component(.day, from: Date()) {
+                        timeLeft = "This Day"
+                    } else {
+                        timeLeft = "Passed"
+                    }
+                }
             }
         }
-        
-        return daysLeftKeep == 0 ? "This Day" : "\(daysLeftKeep) Days Left"
+        return timeLeft
     }
     
     func addPlan(name: String, dueDate: Date, subPlans: [SubPlan]) {
