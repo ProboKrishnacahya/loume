@@ -72,7 +72,7 @@ struct PlanPage: View {
                                                                 
                                                                 HStack {
                                                                     Button(action: {
-                                                                        subPlan.is_done.toggle()
+                                                                        subPlan.setIsDone(subPlan: subPlan)
                                                                     }) {
                                                                         Circle()
                                                                             .fill(subPlan.getIsDone() ? Color("Axolotl") : .clear)
@@ -84,6 +84,7 @@ struct PlanPage: View {
                                                                     }
                                                                     .buttonStyle(PlainButtonStyle())
                                                                     .padding(.leading, 28)
+                                                                    
                                                                     
                                                                     TextField(subPlan.getName().isEmpty ? "New Subplan" : subPlan.getName(),
                                                                               text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),

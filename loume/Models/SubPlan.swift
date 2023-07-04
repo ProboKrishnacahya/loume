@@ -31,19 +31,7 @@ class SubPlan: Identifiable, ObservableObject {
         
     }
     
-    func setIsDone(is_done: Bool, subPlan: SubPlan) {
-        subPlan.is_done = is_done
-        objectWillChange.send()
-        
-    }
-    
-    func changeStatus(subPlan: SubPlan) {
-        if subPlan.getIsDone() {
-            subPlan.setIsDone(is_done: false, subPlan: subPlan)
-        } else {
-            subPlan.setIsDone(is_done: true, subPlan: subPlan)
-        }
-        //        objectWillChange.send()
-        print("status change", subPlan.is_done)
+    func setIsDone(subPlan: SubPlan) {
+        subPlan.is_done.toggle()
     }
 }
