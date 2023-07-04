@@ -43,10 +43,9 @@ struct GoalPage: View {
                                 }
                                 .foregroundColor(.gray)
                             } else {
-                                
-                                ForEach(0..<userData.getGoals().count, id: \.self) { index in
-                                    NavigationLink(destination: PlanPage(userData: userData, inputTextValues: $inputTextValues, goal: userData.getGoalWithIndex(index: index), goalIndex: index)) {
-                                        GoalResult(userData: userData, goal: userData.getGoalWithIndex(index: index))
+                                ForEach(Array(userData.getGoals().enumerated()), id: \.0) { index, goal in
+                                    NavigationLink(destination: PlanPage(userData: userData, inputTextValues: $inputTextValues, goal: goal, goalIndex: index)) {
+                                        GoalResult(userData: userData, goal: goal)
                                     }
                                 }
                             }

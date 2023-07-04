@@ -47,7 +47,7 @@ struct PlanPage: View {
                 } else {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack() {
-                            ForEach(goal.getPlans().indices, id: \.self) { groupIndex in
+                            ForEach(Array(goal.getPlans().enumerated()), id: \.0) { groupIndex, plan in
                                 var plan = goal.getPlanWithIndex(planIndex: groupIndex)
                                 
                                 GeometryReader { geometry in
@@ -66,8 +66,7 @@ struct PlanPage: View {
                                                         .fill(.white)
                                                     GeometryReader { geometry in
                                                         List {
-                                                            ForEach(plan.getSubPlans().indices, id: \.self) { index in
-                                                                
+                                                            ForEach(Array(plan.getSubPlans().enumerated()), id: \.0) { index, subPlan in
                                                                 var subPlan = plan.getSubPlanWithIndex(index: index)
                                                                 
                                                                 HStack {
