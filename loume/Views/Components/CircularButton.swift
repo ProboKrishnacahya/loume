@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct CircularButton: View {
-    @EnvironmentObject var userData: User
+    //    @EnvironmentObject var userData: User
+    @ObservedObject var userData: User
     @Binding var isSheetPresented: Bool
     @State var name = ""
     @State var dueDate = Date()
     @State var type: String
-    let goalIndex: Int
+    let goal: Goal
     @Binding var inputTextValues: [[[String]]]
+    let goalIndex: Int
     
     var body: some View {
         Button(action: {
@@ -42,11 +44,11 @@ struct CircularButton: View {
                             }
                             userData.addGoal(name: name, plans: [], dueDate: dueDate)
                         } else if type == "plan" {
-                            if userData.getGoalWithIndex(index: goalIndex).getPlans().count > 0 {
+                            if goal.getPlans().count > 0 {
                                 inputTextValues[goalIndex].append([""])
                             }
                             
-                            userData.getGoalWithIndex(index: goalIndex).addPlan(name: name, dueDate: dueDate, subPlans: [SubPlan(name: "", is_done: false)])
+                            goal.addPlan(name: name, dueDate: dueDate, subPlans: [SubPlan(name: "", is_done: false)])
                         }
                         dueDate = Date()
                         name = ""
@@ -92,6 +94,6 @@ struct ModalView: View {
 
 struct CircularButton_Previews: PreviewProvider {
     static var previews: some View {
-        CircularButton(isSheetPresented: .constant(false), type: "goal", goalIndex: 0, inputTextValues: .constant([])).environmentObject(User(name: "", goals: []))
+        CircularButton(userData: User(name: "", goals: []), isSheetPresented: .constant(false), type: "goal", goal: Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date()), inputTextValues: .constant([]), goalIndex: 0)
     }
 }

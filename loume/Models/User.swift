@@ -9,7 +9,7 @@ import Foundation
 
 class User: Identifiable, ObservableObject {
     let id = UUID()
-    @Published var name: String
+    @Published private var name: String
     @Published var goals: [Goal]
     
     init(name: String, goals: [Goal]) {
@@ -19,6 +19,11 @@ class User: Identifiable, ObservableObject {
     
     func setName(name: String) {
         self.name = name
+        objectWillChange.send()
+    }
+    
+    func getName() -> String {
+        return self.name
     }
     
     func getGoals() -> [Goal]{
@@ -35,13 +40,15 @@ class User: Identifiable, ObservableObject {
     
     func addGoal(name: String, plans: [Plan], dueDate: Date) {
         self.goals.append(Goal(name: name, plans: plans, dueDate: dueDate))
+        //        objectWillChange.send()
+        print(goals.count)
     }
     
-    func getSpesificPlanBasedGoalIndex(goalIndex: Int, planIndex: Int) -> Plan {
-        return self.goals[goalIndex].plans[planIndex]
+    func getSpesificPlanBasedGoal(goal: Goal, planIndex: Int) -> Plan {
+        return goal.getPlanWithIndex(planIndex: planIndex)
     }
     
-    func getCountOfSubPlans(goalIndex: Int, planIndex: Int) -> Int {
-        return self.getSpesificPlanBasedGoalIndex(goalIndex: goalIndex, planIndex: planIndex).subPlans.count
+    func getCountOfSubPlans(goal: Goal, planIndex: Int) -> Int {
+        return goal.getPlanWithIndex(planIndex: planIndex).getSubPlans().count
     }
 }

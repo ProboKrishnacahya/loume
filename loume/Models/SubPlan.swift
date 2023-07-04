@@ -27,10 +27,14 @@ class SubPlan: Identifiable, ObservableObject {
     
     func setName(name: String) {
         self.name = name
+        objectWillChange.send()
+        
     }
     
     func setIsDone(is_done: Bool, subPlan: SubPlan) {
         subPlan.is_done = is_done
+        objectWillChange.send()
+        
     }
     
     func changeStatus(subPlan: SubPlan) {
@@ -39,5 +43,7 @@ class SubPlan: Identifiable, ObservableObject {
         } else {
             subPlan.setIsDone(is_done: true, subPlan: subPlan)
         }
+        //        objectWillChange.send()
+        print("status change", subPlan.is_done)
     }
 }

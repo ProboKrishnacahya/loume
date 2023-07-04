@@ -10,8 +10,8 @@ import Foundation
 class Plan: Identifiable, ObservableObject {
     let id = UUID()
     @Published private var name: String
-    @Published var subPlans: [SubPlan]
-    @Published var dueDate: Date
+    @Published private var subPlans: [SubPlan]
+    @Published private var dueDate: Date
     
     init(name: String, subPlans: [SubPlan], dueDate: Date) {
         self.name = name
@@ -41,6 +41,8 @@ class Plan: Identifiable, ObservableObject {
     
     func setName(name: String) {
         self.name = name
+        objectWillChange.send()
+        
     }
     
     func addSubPlan(name: String, is_done: Bool, plan: Plan) {

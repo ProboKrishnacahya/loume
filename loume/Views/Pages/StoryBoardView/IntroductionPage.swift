@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct IntroductionPage: View {
-    @EnvironmentObject var userData: User
+//    @EnvironmentObject var userData: User
+    @ObservedObject var userData: User
     @State var name:String
     @State private var offset = CGSize.zero
     
@@ -36,6 +37,6 @@ struct IntroductionPage: View {
 
 struct IntroductionPage_Previews: PreviewProvider {
     static var previews: some View {
-        IntroductionPage(name: "").environmentObject(User(name: "", goals: []))
+        IntroductionPage(userData: User(name: "", goals: []), name: "").environmentObject(User(name: "", goals: []))
     }
 }

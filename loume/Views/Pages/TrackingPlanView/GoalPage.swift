@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct GoalPage: View {
-    @EnvironmentObject var userData: User
+    //    @EnvironmentObject var userData: User
     @State var inputTextValues: [[[String]]] = [[[""]]]
-    @State var isSheetPresented = false
+    @State var isSheetPresented: Bool = false
+    @ObservedObject var userData: User
     
     let backgroundColor: Color
     
@@ -28,7 +29,7 @@ struct GoalPage: View {
                             
                             Spacer()
                             
-                            CircularButton(isSheetPresented: $isSheetPresented, type: "goal", goalIndex: 0, inputTextValues: $inputTextValues)
+                            CircularButton(userData: userData, isSheetPresented: $isSheetPresented, dueDate: Date(), type: "goal", goal: Goal(name: "", plans: [], dueDate: Date()), inputTextValues: $inputTextValues, goalIndex: 0)
                         }
                         
                         VStack {
@@ -42,14 +43,15 @@ struct GoalPage: View {
                                 }
                                 .foregroundColor(.gray)
                             } else {
+                                
                                 ForEach(0..<userData.getGoals().count, id: \.self) { index in
-                                    NavigationLink(destination: PlanPage(inputTextValues: $inputTextValues, goalIndex: index)) {
-                                            GoalResult(goalIndex: index)
-                                        }
+                                    NavigationLink(destination: PlanPage(userData: userData, inputTextValues: $inputTextValues, goal: userData.getGoalWithIndex(index: index), goalIndex: index)) {
+                                        GoalResult(userData: userData, goal: userData.getGoalWithIndex(index: index))
                                     }
                                 }
                             }
                         }
+                    }
                     .padding()
                 }
                 .navigationBarTitle("Goals")
@@ -63,35 +65,36 @@ struct GoalPage: View {
 
 // Card for Goal Data
 struct GoalResult: View {
-    @EnvironmentObject var userData: User
+    //    @EnvironmentObject var userData: User
+    @ObservedObject var userData: User
     
-    var goalIndex: Int
+    var goal: Goal
     
     var body: some View {
         VStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
-                    Text(userData.getGoalWithIndex(index: goalIndex).getName())
+                    Text(goal.getName())
                         .font(.title2.bold())
                     
                     Spacer()
                 }
                 
-                Text("Due: \(userData.getGoalWithIndex(index: goalIndex).getDueDate())")
+                Text("Due: \(goal.getDueDate())")
                     .font(.subheadline)
                     .foregroundColor(Color("Light Moss Green"))
                 
-                Text("Deadline: \(userData.getGoalWithIndex(index: goalIndex).getTimeLeft())")
-
-                Text("Subplan: \(userData.getGoalWithIndex(index: goalIndex).sumSubPlan(userData: userData, goalIndex: goalIndex))")
-
-                Text("Done: \(userData.getGoalWithIndex(index: goalIndex).sumIsDone(userData: userData, goalIndex: goalIndex))")
+                Text("Deadline: \(goal.getTimeLeft())")
+                
+                Text("Subplan: \(goal.sumSubPlan(goal: goal))")
+                
+                Text("Done: \(goal.sumIsDone(goal: goal))")
             }
             
             Spacer()
             
             HStack {
-                ProgressView(value: Double(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex)), total: 100)
+                ProgressView(value: Double(goal.getPercentageProgress(goal: goal)), total: 100)
                     .progressViewStyle(.linear)
                     .tint(Color("Light Moss Green"))
                     .background(
@@ -99,12 +102,12 @@ struct GoalResult: View {
                             Rectangle()
                                 .foregroundColor(.white)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
-                                .scaleEffect(x: CGFloat(userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex) == 0 ? 1 : userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex)), y: 1.0, anchor: .leading)
+                                .scaleEffect(x: CGFloat(goal.getPercentageProgress(goal: goal) == 0 ? 1 : goal.getPercentageProgress(goal: goal)), y: 1.0, anchor: .leading)
                         }
                     )
                     .cornerRadius(6)
                 
-                Text("\(String(format: "%.2f", userData.getGoalWithIndex(index: goalIndex).getPercentageProgress(userData: userData, goalIndex: goalIndex)))%")
+                Text("\(String(format: "%.2f", goal.getPercentageProgress(goal: goal)))%")
                     .font(.headline)
             }
         }
@@ -117,6 +120,6 @@ struct GoalResult: View {
 
 struct GoalPage_Previews: PreviewProvider {
     static var previews: some View {
-        GoalPage(backgroundColor: Color("Lotion")).environmentObject(User(name: "", goals: []))
+        GoalPage(userData: User(name: "", goals: []), backgroundColor: Color("Lotion"))
     }
 }

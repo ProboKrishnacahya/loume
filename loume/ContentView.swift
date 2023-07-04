@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var userData: User
+    //    @EnvironmentObject var userData: User
+    @ObservedObject var userData: User
     @State var selectedTab = 0
     let instanceSoundManager = SoundManager()
     
     var body: some View {
         VStack {
-//            AppHeader(instanceSoundManager: instanceSoundManager)
+            //            AppHeader(instanceSoundManager: instanceSoundManager)
             
-            if userData.name.isEmpty {
+            if userData.getName().isEmpty {
                 TabView(selection: $selectedTab) {
-                    GoalPage(backgroundColor: Color("Lotion"))
+                    GoalPage(userData: userData, backgroundColor: Color("Lotion"))
                         .tabItem {
                             Image(systemName: selectedTab == 0 ? "chart.bar.doc.horizontal.fill" : "chart.bar.doc.horizontal")
                                 .environment(\.symbolVariants, .none)
@@ -38,7 +39,7 @@ struct ContentView: View {
                 }
                 .tint(Color("Axolotl"))
             } else {
-                IntroductionPage(name: "")
+                IntroductionPage(userData: userData, name: "")
             }
         }
         .onAppear {
@@ -52,6 +53,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(User(name: "", goals: []))
+        ContentView(userData: User(name: "", goals: []))
     }
 }

@@ -9,11 +9,12 @@ import SwiftUI
 
 @main
 struct loumeApp: App {
-    @StateObject private var userData = User(name: "", goals: [])
-
+//    private var userData = User(name: "", goals: [])
+    @StateObject var userData = User(name: "", goals: [])
+    
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(userData)
+            ContentView(userData: userData)
         }
     }
 }
