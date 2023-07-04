@@ -106,7 +106,7 @@ struct GoalResult: View {
                     )
                     .cornerRadius(6)
                 
-                Text("\(String(format: "%.2f", goal.getPercentageProgress()))%")
+                Text("\(String(format: "%.0f", goal.getPercentageProgress()))%")
                     .font(.headline)
             }
         }

@@ -85,8 +85,7 @@ class Goal: Identifiable, ObservableObject {
                 }
             }
         }
-        
-        return sumSubPlan == 0 ? 0 : Double((Double(sumIsdone)/Double(sumSubPlan))*100)
+        return sumSubPlan == 0 ? 0 : (Double(sumIsdone)/Double(sumSubPlan))*100
     }
     
     func sumIsDone() -> Int {
