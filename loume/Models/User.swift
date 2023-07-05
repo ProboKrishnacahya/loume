@@ -36,5 +36,6 @@ class User: Identifiable, ObservableObject {
     func addGoal(name: String, plans: [Plan], dueDate: Date) {
         self.goals.append(Goal(name: name, plans: plans, dueDate: dueDate))
         print(goals.count)
+        self.objectWillChange.send()
     }
 }

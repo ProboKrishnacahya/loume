@@ -95,7 +95,7 @@ class Goal: Identifiable, ObservableObject {
     
     func addPlan(name: String, dueDate: Date, subPlans: [SubPlan]) {
         self.plans.append(Plan(name: name, subPlans: subPlans, dueDate: dueDate))
-        print("insert", plans.count)
+        self.objectWillChange.send()
     }
     
     func getPercentageProgress() -> Double {
