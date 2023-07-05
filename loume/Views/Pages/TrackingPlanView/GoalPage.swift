@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GoalPage: View {
-    //    @EnvironmentObject var userData: User
     @State var inputTextValues: [[[String]]] = [[[""]]]
     @State var isSheetPresented: Bool = false
     @ObservedObject var userData: User
@@ -64,14 +63,13 @@ struct GoalPage: View {
 
 // Card for Goal Data
 struct GoalResult: View {
-    //    @EnvironmentObject var userData: User
     @ObservedObject var userData: User
     
     var goal: Goal
     
     var body: some View {
         VStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Text(goal.getName())
                         .font(.title2.bold())
@@ -79,15 +77,17 @@ struct GoalResult: View {
                     Spacer()
                 }
                 
-                Text("Due: \(goal.getDueDate())")
-                    .font(.subheadline)
-                    .foregroundColor(Color("Light Moss Green"))
+                HStack {
+                    Image(systemName: "calendar")
+                    
+                    Text(goal.getDueDate() + " - " + goal.getTimeLeft())
+                }
                 
-                Text("Deadline: \(goal.getTimeLeft())")
-                
-                Text("Subplan: \(goal.sumSubPlan())")
-                
-                Text("Done: \(goal.sumIsDone())")
+                HStack {
+                    Image(systemName: "list.number")
+                    
+                    Text("\(goal.sumSubPlan())")
+                }
             }
             
             Spacer()

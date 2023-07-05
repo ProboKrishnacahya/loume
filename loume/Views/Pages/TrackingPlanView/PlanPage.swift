@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PlanPage: View {
-    //    @EnvironmentObject var userData: User
     @ObservedObject var userData: User
     @Environment(\.presentationMode) var presentationMode
-    @State var isSheetPresented = false
     @Binding var inputTextValues: [[[String]]]
+    @State var isSheetPresented = false
+    @State var pageIndex = 0
     
     let goal: Goal
     let goalIndex: Int
@@ -45,8 +45,7 @@ struct PlanPage: View {
                     }
                     .foregroundColor(.gray)
                 } else {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack() {
+                    TabView(selection: $pageIndex) {
                             ForEach(Array(goal.getPlans().enumerated()), id: \.0) { groupIndex, plan in
                                 var plan = goal.getPlanWithIndex(planIndex: groupIndex)
                                 
@@ -58,47 +57,39 @@ struct PlanPage: View {
                                                 VStack(spacing: 4) {
                                                     Text(plan.getName())
                                                         .font(.title2.bold())
+                                                    
                                                     Text(plan.getDueDate()).font(.subheadline).foregroundColor(.secondary)
                                                 }
                                                 
-                                                ZStack {
-                                                    RoundedRectangle(cornerRadius: 16)
-                                                        .fill(.white)
-                                                    GeometryReader { geometry in
-                                                        List {
-                                                            ForEach(Array(plan.getSubPlans().enumerated()), id: \.0) { index, subPlan in
-                                                                var subPlan = plan.getSubPlanWithIndex(index: index)
-                                                                
-                                                                HStack {
-                                                                    Button(action: {
-                                                                        subPlan.setIsDone(subPlan: subPlan)
-                                                                    }) {
+                                                List {
+                                                    ForEach(Array(plan.getSubPlans().enumerated()), id: \.0) { index, subPlan in
+                                                        var subPlan = plan.getSubPlanWithIndex(index: index)
+                                                        
+                                                        HStack {
+                                                            Button(action: {
+                                                                subPlan.setIsDone(subPlan: subPlan)
+                                                            }) {
+                                                                Circle()
+                                                                    .fill(subPlan.getIsDone() ? Color("Axolotl") : .clear)
+                                                                    .frame(width: 16)
+                                                                    .overlay(
                                                                         Circle()
-                                                                            .fill(subPlan.getIsDone() ? Color("Axolotl") : .clear)
-                                                                            .frame(width: 16)
-                                                                            .overlay(
-                                                                                Circle()
-                                                                                    .stroke(Color("Axolotl"), lineWidth: 2)
-                                                                            )
-                                                                    }
-                                                                    .buttonStyle(PlainButtonStyle())
-                                                                    .padding(.leading, 28)
-                                                                    
-                                                                    
-                                                                    TextField(subPlan.getName().isEmpty ? "New Subplan" : subPlan.getName(),
-                                                                              text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
-                                                                              onCommit: {
-                                                                        plan.saveSubPlan(index: index, newSubPlan: inputTextValues[goalIndex][groupIndex][index], plan: plan)
-                                                                    })
-                                                                    .listRowBackground(Color.clear)
-                                                                    .frame(width: geometry.size.width)
-                                                                }
+                                                                            .stroke(Color("Axolotl"), lineWidth: 2)
+                                                                    )
                                                             }
+                                                            .buttonStyle(PlainButtonStyle())
+                                                            
+                                                            TextField(subPlan.getName().isEmpty ? "New Subplan" : subPlan.getName(),
+                                                                      text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
+                                                                      onCommit: {
+                                                                plan.saveSubPlan(index: index, newSubPlan: inputTextValues[goalIndex][groupIndex][index], plan: plan)
+                                                            })
+                                                            .listRowBackground(Color.clear)
                                                         }
                                                     }
-                                                    .listStyle(.plain)
-                                                    .padding()
                                                 }
+                                                .listStyle(.insetGrouped)
+                                                .scrollContentBackground(.hidden)
                                                 
                                                 Button(action: {
                                                     plan.addSubPlan(name: "", is_done: false, plan: plan)
@@ -108,14 +99,15 @@ struct PlanPage: View {
                                                     HStack {
                                                         Image(systemName: "plus.circle")
                                                             .bold()
-                                                        Text("\(plan.getSubPlans().count)")
+                                                        
+                                                        Text("New Subplan")
                                                             .bold()
                                                     }
                                                     .padding(.vertical, 4)
                                                 })
                                                 .foregroundColor(Color("Axolotl"))
                                             }
-                                                .padding()
+                                                .padding(.vertical)
                                         )
                                         .rotation3DEffect(
                                             Angle(
@@ -127,11 +119,16 @@ struct PlanPage: View {
                                             perspective: 1.0
                                         )
                                 }
-                                .frame(width: UIScreen.main.bounds.width - 48, height: 480)
                             }
                         }
-                        .padding()
+                    .padding()
+                    .frame(width: UIScreen.main.bounds.width, height: 480)
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    .onChange(of: pageIndex) { newValue in
+                         print("\(newValue)")
                     }
+                    
+                    Text("\(pageIndex + 1)")
                 }
                 
                 Button(action: {
