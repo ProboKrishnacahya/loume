@@ -180,7 +180,6 @@
 				82A754892A52C2F0004501A3 /* TrackingPlanView */,
 				82A754882A52C25A004501A3 /* SummaryView */,
 				826814DA2A4EF3EC00B9F57A /* StoryBoardView */,
-				826589FD2A56B42800B91F7B /* PlanCarousel.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -252,6 +251,7 @@
 			children = (
 				826814D82A4EF3EC00B9F57A /* GoalPage.swift */,
 				826814D92A4EF3EC00B9F57A /* PlanPage.swift */,
+				826589FD2A56B42800B91F7B /* PlanCarousel.swift */,
 			);
 			path = TrackingPlanView;
 			sourceTree = "<group>";

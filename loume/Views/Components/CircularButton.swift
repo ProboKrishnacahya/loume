@@ -79,7 +79,6 @@ struct ModalView: View {
             }
                 .foregroundColor(.blue),
                                 trailing: Button("Done") {
-                print("Type",type)
                 if type == "goal" {
                     if userData.getGoals().count > 0 {
                         inputTextValues.append([[""]])

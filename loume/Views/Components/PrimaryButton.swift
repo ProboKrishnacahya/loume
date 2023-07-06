@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PrimaryButton: View {
     var label: String
-    var action: (() -> Void)? = nil
     
     var body: some View {
         Text(label)

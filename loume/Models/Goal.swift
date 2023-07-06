@@ -74,6 +74,7 @@ class Goal: Identifiable, ObservableObject {
                 }
             }
         }
+        
         return timeLeft
     }
     
@@ -84,26 +85,42 @@ class Goal: Identifiable, ObservableObject {
     
     func getPercentageProgress() -> Double {
         var sumIsdone: Int = 0
-        var sumSubPlan: Int = 0
         
         for plan in self.plans {
-            sumSubPlan += plan.getSubPlans().count
             for subPlan in plan.getSubPlans() {
                 if subPlan.getIsDone() {
                     sumIsdone += 1
                 }
             }
         }
-        return sumSubPlan == 0 ? 0 : (Double(sumIsdone)/Double(sumSubPlan))*100
+        
+        return self.sumSubPlan() == 0 ? 0 : (Double(sumIsdone)/Double(self.sumSubPlan()))*100
     }
     
     func sumSubPlan() -> Int {
         var sumSubPlan: Int = 0
         
         for plan in self.plans {
-            sumSubPlan += plan.getSubPlans().count
+            for subPlan in plan.getSubPlans() {
+                if !subPlan.getName().isEmpty {
+                    sumSubPlan += 1
+                }
+            }
         }
         
         return sumSubPlan
+    }
+    
+    func updateSubPlanArray(inputTextValues: [[[String]]], goalIndex: Int) {
+        for planIndex in self.plans.indices {
+            let plan = plans[planIndex]
+            
+            for subPlanIndex in plan.getSubPlans().indices {
+                if !inputTextValues[goalIndex][planIndex][subPlanIndex].isEmpty && inputTextValues[goalIndex][planIndex][subPlanIndex] != plan.getSubPlans()[subPlanIndex].getName() {
+                    plan.getSubPlans()[subPlanIndex].setName(newSubPlan: inputTextValues[goalIndex][planIndex][subPlanIndex])
+                    self.objectWillChange.send()
+                }
+            }
+        }
     }
 }
