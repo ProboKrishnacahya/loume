@@ -27,27 +27,17 @@ class Plan: Identifiable, ObservableObject {
         return self.subPlans
     }
     
-    func getSubPlanWithIndex(index: Int) -> SubPlan {
-        return self.getSubPlans()[index]
-    }
-    
-    func getDueDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyy"
-        dateFormatter.dateStyle = .medium
-        
-        return dateFormatter.string(from: self.dueDate)
+    func getDueDateWithoutFormat() -> Date {
+        return self.dueDate
     }
     
     func setName(name: String) {
         self.name = name
+        self.objectWillChange.send()
     }
     
-    func addSubPlan(name: String, is_done: Bool, plan: Plan) {
-        plan.subPlans.append(SubPlan(name: name, is_done: is_done))
-    }
-    
-    func saveSubPlan(index: Int, newSubPlan: String, plan: Plan) {
-        plan.subPlans[index].setName(name: newSubPlan)
+    func addSubPlan(name: String, is_done: Bool) {
+        self.subPlans.append(SubPlan(name: name, is_done: is_done))
+        self.objectWillChange.send()
     }
 }

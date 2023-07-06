@@ -19,6 +19,7 @@ class User: Identifiable, ObservableObject {
     
     func setName(name: String) {
         self.name = name
+        self.objectWillChange.send()
     }
     
     func getName() -> String {
@@ -29,13 +30,16 @@ class User: Identifiable, ObservableObject {
         return self.goals
     }
     
-    func getGoalWithIndex(index: Int) -> Goal {
-        return self.getGoals()[index]
-    }
-    
     func addGoal(name: String, plans: [Plan], dueDate: Date) {
         self.goals.append(Goal(name: name, plans: plans, dueDate: dueDate))
-        print(goals.count)
         self.objectWillChange.send()
+    }
+    
+    func getDueDateFormat(dueDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyy"
+        dateFormatter.dateStyle = .medium
+        
+        return dateFormatter.string(from: dueDate)
     }
 }

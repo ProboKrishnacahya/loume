@@ -19,28 +19,12 @@ class Goal: Identifiable, ObservableObject {
         self.dueDate = dueDate
     }
     
-    func setName(name: String) {
-        self.name = name
-    }
-    
     func getName() -> String {
         return self.name
     }
     
     func getPlans() -> [Plan] {
         return self.plans
-    }
-    
-    func getPlanWithIndex(planIndex: Int) -> Plan {
-        return self.plans[planIndex]
-    }
-    
-    func getDueDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM yyy"
-        dateFormatter.dateStyle = .medium
-        
-        return dateFormatter.string(from: self.dueDate)
     }
     
     func getDueDateWithoutFormat() -> Date {
@@ -111,22 +95,6 @@ class Goal: Identifiable, ObservableObject {
             }
         }
         return sumSubPlan == 0 ? 0 : (Double(sumIsdone)/Double(sumSubPlan))*100
-    }
-    
-    func sumIsDone() -> Int {
-        var sumIsdone: Int = 0
-        var sumSubPlan: Int = 0
-        
-        for plan in self.plans {
-            sumSubPlan += plan.getSubPlans().count
-            for subPlan in plan.getSubPlans() {
-                if subPlan.getIsDone() {
-                    sumIsdone += 1
-                }
-            }
-        }
-        
-        return sumIsdone
     }
     
     func sumSubPlan() -> Int {
