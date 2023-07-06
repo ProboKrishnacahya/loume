@@ -17,7 +17,7 @@ struct PlanCarousel: View {
         VStack {
             ZStack {
                 ForEach(0..<data.count, id: \.self) { index in
-                        RoundedRectangle(cornerRadius: 16)
+                    RoundedRectangle(cornerRadius: 16)
                         .fill(Color("Light Moss Green"))
                         .padding()
                         .frame(width: 310, height: 500)
