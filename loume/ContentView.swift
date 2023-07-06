@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    //    @EnvironmentObject var userData: User
     @ObservedObject var userData: User
     @State var selectedTab = 0
     let instanceSoundManager = SoundManager()
@@ -42,6 +41,7 @@ struct ContentView: View {
                 IntroductionPage(userData: userData, name: "")
             }
         }
+        .preferredColorScheme(.light)
         .onAppear {
             //instanceSoundManager.playBackgroundSound()
         }

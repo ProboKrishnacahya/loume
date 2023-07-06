@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppHeader: View {
     @State var isClicked = false
+    
     let instanceSoundManager: SoundManager
     
     var body: some View {
@@ -21,7 +22,9 @@ struct AppHeader: View {
                 }
                 isClicked.toggle()
             }, label: {
-                Image(systemName: isClicked ? "speaker.slash.fill" : "speaker.wave.2.fill")
+                Image(systemName: isClicked ? "speaker.slash" : "speaker.wave.2")
+                    .font(.system(size: 48))
+                    .foregroundColor(Color("Axolotl"))
             })
         }
     }
