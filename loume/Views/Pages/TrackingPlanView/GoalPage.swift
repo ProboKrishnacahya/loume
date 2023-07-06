@@ -32,7 +32,7 @@ struct GoalPage: View {
                         
                         VStack {
                             if userData.getGoals().isEmpty {
-                                EmptyView(systemNameImage: "folder.badge.questionmark", type: "Goal")
+                                EmptyState(systemNameImage: "folder.badge.questionmark", type: "Goal")
                             } else {
                                 ForEach(Array(userData.getGoals().enumerated()), id: \.0) { index, goal in
                                     NavigationLink(destination: PlanPage(userData: userData, inputTextValues: $inputTextValues, goal: goal, goalIndex: index)) {

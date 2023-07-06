@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmptyView: View {
+struct EmptyState: View {
     let systemNameImage: String
     let type: String
     
@@ -23,8 +23,8 @@ struct EmptyView: View {
     }
 }
 
-struct EmptyView_Previews: PreviewProvider {
+struct EmptyState_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView(systemNameImage: "folder.badge.questionmark", type: "goal")
+        EmptyState(systemNameImage: "folder.badge.questionmark", type: "goal")
     }
 }
