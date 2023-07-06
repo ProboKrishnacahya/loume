@@ -11,7 +11,6 @@ struct GoalPage: View {
     @State var inputTextValues: [[[String]]] = [[[""]]]
     @State var isSheetPresented: Bool = false
     @ObservedObject var userData: User
-    
     let backgroundColor: Color
     
     var body: some View {
@@ -33,14 +32,7 @@ struct GoalPage: View {
                         
                         VStack {
                             if userData.getGoals().isEmpty {
-                                VStack(spacing: 16) {
-                                    Image(systemName: "folder.badge.questionmark")
-                                        .font(.system(size: 64))
-                                    
-                                    Text("Your goals are still empty.\n**Let's make your goals!**")
-                                        .multilineTextAlignment(.center)
-                                }
-                                .foregroundColor(.gray)
+                                EmptyView(systemNameImage: "folder.badge.questionmark", type: "Goal")
                             } else {
                                 ForEach(Array(userData.getGoals().enumerated()), id: \.0) { index, goal in
                                     NavigationLink(destination: PlanPage(userData: userData, inputTextValues: $inputTextValues, goal: goal, goalIndex: index)) {
@@ -64,7 +56,6 @@ struct GoalPage: View {
 // Card for Goal Data
 struct GoalResult: View {
     @ObservedObject var userData: User
-    
     var goal: Goal
     
     var body: some View {
@@ -80,7 +71,7 @@ struct GoalResult: View {
                 HStack {
                     Image(systemName: "calendar")
                     
-                    Text(goal.getDueDate() + " - " + goal.getTimeLeft())
+                    Text(userData.getDueDateFormat(dueDate: goal.getDueDateWithoutFormat()) + " - " + goal.getTimeLeft())
                 }
                 
                 HStack {
@@ -119,6 +110,6 @@ struct GoalResult: View {
 
 struct GoalPage_Previews: PreviewProvider {
     static var previews: some View {
-        GoalPage(userData: User(name: "", goals: []), backgroundColor: Color("Lotion"))
+        GoalPage(userData: User(name: "", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]), backgroundColor: Color("Lotion"))
     }
 }

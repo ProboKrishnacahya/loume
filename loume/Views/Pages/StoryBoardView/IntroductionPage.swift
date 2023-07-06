@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct IntroductionPage: View {
-//    @EnvironmentObject var userData: User
     @ObservedObject var userData: User
     @State var name:String
     @State private var offset = CGSize.zero
@@ -27,6 +26,7 @@ struct IntroductionPage: View {
             //simpan data nama jika button di klik
             Button(action: {
                 userData.setName(name: self.name)
+                userData.objectWillChange.send()
             }, label: {
                 Text("Swipe to save data")
             })
@@ -37,6 +37,6 @@ struct IntroductionPage: View {
 
 struct IntroductionPage_Previews: PreviewProvider {
     static var previews: some View {
-        IntroductionPage(userData: User(name: "", goals: []), name: "").environmentObject(User(name: "", goals: []))
+        IntroductionPage(userData: User(name: "", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]), name: "").environmentObject(User(name: "", goals: []))
     }
 }
