@@ -12,7 +12,6 @@ struct PlanPage: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var inputTextValues: [[[String]]]
     @State var isSheetPresented = false
-    @State var selectedTabIndex = 0
     @State private var currentIndex: Int = 0
     @GestureState private var dragOffset: CGFloat = 0
     
@@ -134,7 +133,7 @@ struct PlanPage: View {
                         })
                     )
                     
-                    Text("\(selectedTabIndex + 1) of \(goal.getPlans().count)")
+                    Text("\(currentIndex + 1) of \(goal.getPlans().count)")
                         .padding(.top, 36)
                 }
             }
