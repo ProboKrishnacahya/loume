@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0B43EC362A56A63100B84D7E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43EC352A56A63100B84D7E /* EmptyState.swift */; };
-		826589FE2A56B42800B91F7B /* PlanCarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826589FD2A56B42800B91F7B /* PlanCarousel.swift */; };
 		826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */; };
 		826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */; };
 		826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C62A4EF3EC00B9F57A /* Persistence.swift */; };
@@ -54,7 +53,6 @@
 
 /* Begin PBXFileReference section */
 		0B43EC352A56A63100B84D7E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
-		826589FD2A56B42800B91F7B /* PlanCarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCarousel.swift; sourceTree = "<group>"; };
 		826814C32A4EF3EC00B9F57A /* comee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = comee.xcdatamodel; sourceTree = "<group>"; };
 		826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardViewModel.swift; sourceTree = "<group>"; };
 		826814C62A4EF3EC00B9F57A /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -251,7 +249,6 @@
 			children = (
 				826814D82A4EF3EC00B9F57A /* GoalPage.swift */,
 				826814D92A4EF3EC00B9F57A /* PlanPage.swift */,
-				826589FD2A56B42800B91F7B /* PlanCarousel.swift */,
 			);
 			path = TrackingPlanView;
 			sourceTree = "<group>";
@@ -390,7 +387,6 @@
 				826814E92A4EF3EC00B9F57A /* Plan.swift in Sources */,
 				826814ED2A4EF3EC00B9F57A /* PrimaryButton.swift in Sources */,
 				826814EB2A4EF3EC00B9F57A /* loumeApp.swift in Sources */,
-				826589FE2A56B42800B91F7B /* PlanCarousel.swift in Sources */,
 				826814EC2A4EF3EC00B9F57A /* AppHeader.swift in Sources */,
 				826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */,
 				0B43EC362A56A63100B84D7E /* EmptyState.swift in Sources */,

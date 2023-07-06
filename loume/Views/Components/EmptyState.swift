@@ -19,7 +19,7 @@ struct EmptyState: View {
             Text("Your \(type)s are still empty.\n**Let's make your \(type)s**")
                 .multilineTextAlignment(.center)
         }
-        .foregroundColor(.gray)
+        .foregroundColor(.secondary)
     }
 }
 

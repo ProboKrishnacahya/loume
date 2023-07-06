@@ -16,7 +16,7 @@ struct PlanPage: View {
     @State private var currentIndex: Int = 0
     @GestureState private var dragOffset: CGFloat = 0
     
-    let goal: Goal
+    var goal: Goal
     let goalIndex: Int
     
     var body: some View {
@@ -40,96 +40,102 @@ struct PlanPage: View {
                 if goal.getPlans().isEmpty {
                     EmptyState(systemNameImage: "folder.badge.questionmark", type: "Plan")
                 } else {
-                    VStack {
-                        ZStack {
-                            ForEach(Array(goal.getPlans().enumerated()), id: \.0) { groupIndex, plan in
-                                let plan = goal.getPlans()[groupIndex]
-                                
+                    ZStack {
+                        ForEach(Array(goal.getPlans().enumerated()), id: \.0) { groupIndex, plan in
+                            let plan = goal.getPlans()[groupIndex]
+                            
+                            ZStack {
                                 RoundedRectangle(cornerRadius: 16)
                                     .fill(Color("Light Moss Green"))
+                                    .frame(maxWidth: UIScreen.main.bounds.width - 136, maxHeight: .infinity)
                                     .padding()
-                                    .frame(width: 310, height: 500)
-                                    .overlay(
-                                        VStack {
-                                            VStack(spacing: 4) {
-                                                Text(plan.getName())
-                                                    .font(.title2.bold())
-                                                
-                                                Text(userData.getDueDateFormat(dueDate: plan.getDueDateWithoutFormat())).font(.subheadline).foregroundColor(.secondary)
-                                            }
+                                
+                                VStack(spacing: 0) {
+                                    VStack(spacing: 4) {
+                                        Text(plan.getName())
+                                            .font(.title2.bold())
+                                        
+                                        Text(userData.getDueDateFormat(dueDate: plan.getDueDateWithoutFormat()))
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                    .padding()
+                                    
+                                    List {
+                                        ForEach(Array(plan.getSubPlans().enumerated()), id: \.0) { index, subPlan in
+                                            let subPlan = plan.getSubPlans()[index]
                                             
-                                            List {
-                                                ForEach(Array(plan.getSubPlans().enumerated()), id: \.0) { index, subPlan in
-                                                    let subPlan = plan.getSubPlans()[index]
-                                                    
-                                                    HStack {
-                                                        Button(action: {
-                                                            subPlan.setIsDone(subPlan: subPlan)
-                                                            userData.objectWillChange.send()
-                                                        }) {
+                                            HStack {
+                                                Button(action: {
+                                                    subPlan.setIsDone(subPlan: subPlan)
+                                                    userData.objectWillChange.send()
+                                                }) {
+                                                    Circle()
+                                                        .fill(subPlan.getIsDone() ? Color("Axolotl") : .clear)
+                                                        .frame(width: 16)
+                                                        .overlay(
                                                             Circle()
-                                                                .fill(subPlan.getIsDone() ? Color("Axolotl") : .clear)
-                                                                .frame(width: 16)
-                                                                .overlay(
-                                                                    Circle()
-                                                                        .stroke(subPlan.getName().isEmpty ? .gray : Color("Axolotl"), lineWidth: 2)
-                                                                )
-                                                        }
-                                                        .buttonStyle(PlainButtonStyle())
-                                                        .disabled(subPlan.getName().isEmpty)
-                                                        
-                                                        TextField("New Subplan",
-                                                                  text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
-                                                                  onCommit: {
-                                                            subPlan.setName(newSubPlan: inputTextValues[goalIndex][groupIndex][index])
-                                                            userData.objectWillChange.send()
-                                                        })
-                                                        .listRowBackground(Color.clear)
-                                                    }
+                                                                .stroke(subPlan.getName().isEmpty ? .secondary : Color("Axolotl"), lineWidth: 2)
+                                                        )
                                                 }
+                                                .buttonStyle(PlainButtonStyle())
+                                                .disabled(subPlan.getName().isEmpty)
+                                                
+                                                TextField("New Subplan",
+                                                          text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
+                                                          onCommit: {
+                                                    subPlan.setName(newSubPlan: inputTextValues[goalIndex][groupIndex][index])
+                                                    userData.objectWillChange.send()
+                                                })
                                             }
-                                            .listStyle(.insetGrouped)
-                                            .scrollContentBackground(.hidden)
-                                            
-                                            Button(action: {
-                                                plan.addSubPlan(name: "", is_done: false)
-                                                inputTextValues[goalIndex][groupIndex].append("")
-                                                userData.objectWillChange.send()
-                                            }, label: {
-                                                HStack {
-                                                    Image(systemName: "plus.circle")
-                                                        .bold()
-                                                    
-                                                    Text("New Subplan")
-                                                        .bold()
-                                                }
-                                                .padding(.vertical, 4)
-                                            })
-                                            .foregroundColor(plan.checkingForAddSubPlan(inputTextValues: inputTextValues) ? .gray : Color("Axolotl"))
-                                            .disabled(plan.checkingForAddSubPlan(inputTextValues: inputTextValues))
                                         }
-                                            .padding(.vertical)
-                                    )
-                                    .scaleEffect(currentIndex == groupIndex ? 1.2 : 0.8)
-                                    .offset(x: CGFloat(groupIndex - currentIndex) * 310 + dragOffset, y: 0)
-                            }
-                        }
-                        .gesture(DragGesture()
-                            .onEnded({ value in
-                                let threshold: CGFloat = 0
-                                if value.translation.width > threshold {
-                                    withAnimation {
-                                        currentIndex = max(0, currentIndex - 1)
                                     }
-                                } else if value.translation.width < -threshold {
-                                    withAnimation {
-                                        currentIndex = min(goal.getPlans().count - 1, currentIndex + 1)
-                                    }
+                                    .listStyle(.insetGrouped)
+                                    .scrollContentBackground(.hidden)
+                                    .frame(width: UIScreen.main.bounds.width - 144)
+                                    
+                                    Button(action: {
+                                        plan.addSubPlan(name: "", is_done: false)
+                                        inputTextValues[goalIndex][groupIndex].append("")
+                                        userData.objectWillChange.send()
+                                    }, label: {
+                                        HStack {
+                                            Image(systemName: "plus.circle")
+                                                .bold()
+                                            
+                                            Text("New Subplan")
+                                                .font(.subheadline.bold())
+                                        }
+                                    })
+                                    .foregroundColor(plan.checkingForAddSubPlan(inputTextValues: inputTextValues) ? .secondary : Color("Axolotl"))
+                                    .disabled(plan.checkingForAddSubPlan(inputTextValues: inputTextValues))
+                                    .padding()
                                 }
-                            })
-                        )
-                        Text("\(selectedTabIndex + 1) of \(goal.getPlans().count)")
+                                .padding()
+                            }
+                            .frame(width: UIScreen.main.bounds.width, height: 500)
+                            .scaleEffect(currentIndex == groupIndex ? 1.2 : 0.8)
+                            .offset(x: CGFloat(groupIndex - currentIndex) * 320 + dragOffset, y: 0)
+                        }
                     }
+                    .padding(.top)
+                    .gesture(DragGesture()
+                        .onEnded({ value in
+                            let threshold: CGFloat = 0
+                            if value.translation.width > threshold {
+                                withAnimation {
+                                    currentIndex = max(0, currentIndex - 1)
+                                }
+                            } else if value.translation.width < -threshold {
+                                withAnimation {
+                                    currentIndex = min(goal.getPlans().count - 1, currentIndex + 1)
+                                }
+                            }
+                        })
+                    )
+                    
+                    Text("\(selectedTabIndex + 1) of \(goal.getPlans().count)")
+                        .padding(.top, 36)
                 }
             }
             
@@ -158,6 +164,55 @@ struct PlanPage: View {
 
 struct PlanPage_Previews: PreviewProvider {
     static var previews: some View {
-        PlanPage(userData: User(name: "", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]), inputTextValues: .constant([[[""]]]), goal: Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date()), goalIndex: 0)
+        PlanPage(
+            userData: User(name: "", goals: [
+                Goal(
+                    name: "Goal 1",
+                    plans: [
+                        Plan(
+                            name: "Plan 1",
+                            subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)],
+                            dueDate: Date()
+                        ),
+                        Plan(
+                            name: "Plan 2",
+                            subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)],
+                            dueDate: Date()
+                        ),
+                        Plan(
+                            name: "Plan 3",
+                            subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)],
+                            dueDate: Date()
+                        )
+                    ],
+                    dueDate: Date()
+                )
+            ]),
+            inputTextValues: .constant([
+                [
+                    [""], [""]
+                ],
+                
+            ]),
+            goal: Goal(
+                name: "Goal 2",
+                plans: [
+                    Plan(name: "Plan 1",
+                         subPlans: [
+                            SubPlan(name: "Sub Plan 1", is_done: false)
+                         ],
+                         dueDate: Date()
+                        ),
+                    Plan(name: "Plan 2",
+                         subPlans: [
+                            SubPlan(name: "Sub Plan 1", is_done: false)
+                         ],
+                         dueDate: Date()
+                        )
+                ],
+                dueDate: Date()
+            ),
+            goalIndex: 0
+        )
     }
 }

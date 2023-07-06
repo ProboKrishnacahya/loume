@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct loumeApp: App {
-//    private var userData = User(name: "", goals: [])
     @StateObject var userData = User(name: "", goals: [])
     
     var body: some Scene {

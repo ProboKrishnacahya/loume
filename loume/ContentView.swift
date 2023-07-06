@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var userData: User
     @State var selectedTab = 0
+    
     let instanceSoundManager = SoundManager()
     
     var body: some View {

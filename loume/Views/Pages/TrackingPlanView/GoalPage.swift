@@ -11,6 +11,7 @@ struct GoalPage: View {
     @State var inputTextValues: [[[String]]] = [[[""]]]
     @State var isSheetPresented: Bool = false
     @ObservedObject var userData: User
+    
     let backgroundColor: Color
     
     var body: some View {
