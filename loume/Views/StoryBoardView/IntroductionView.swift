@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IntroductionPage: View {
+struct IntroductionView: View {
     @ObservedObject var userData: User
     @State var name:String
     @State private var offset = CGSize.zero
@@ -35,8 +35,8 @@ struct IntroductionPage: View {
     }
 }
 
-struct IntroductionPage_Previews: PreviewProvider {
+struct IntroductionView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroductionPage(userData: User(name: "", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]), name: "").environmentObject(User(name: "", goals: []))
+        IntroductionView(userData: User(name: "", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]), name: "").environmentObject(User(name: "", goals: []))
     }
 }

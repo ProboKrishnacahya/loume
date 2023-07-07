@@ -9,6 +9,7 @@ import Foundation
 import SafariServices
 
 class StoryBoardViewModel {
+    
     func openSafari() {
         let urlString = "https://www.google.com/search?q="
         //let query = textField.text ?? ""

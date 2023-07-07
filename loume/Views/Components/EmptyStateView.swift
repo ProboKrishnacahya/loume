@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-struct EmptyState: View {
-    let systemNameImage: String
+struct EmptyStateView: View {
     let type: String
     
     var body: some View {
         VStack(spacing: 16) {
-            Image(systemName: systemNameImage)
+            Image(systemName: "folder.badge.questionmark")
                 .font(.system(size: 64))
             
             Text("Your \(type)s are still empty.\n**Let's make your \(type)s**")
@@ -23,8 +22,8 @@ struct EmptyState: View {
     }
 }
 
-struct EmptyState_Previews: PreviewProvider {
+struct EmptyStateView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyState(systemNameImage: "folder.badge.questionmark", type: "goal")
+        EmptyStateView(type: "goal")
     }
 }

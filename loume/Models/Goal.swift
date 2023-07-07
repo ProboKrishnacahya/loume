@@ -112,11 +112,13 @@ class Goal: Identifiable, ObservableObject {
     }
     
     func updateSubPlanArray(inputTextValues: [[[String]]], goalIndex: Int) {
+        
         for planIndex in self.plans.indices {
             let plan = plans[planIndex]
             
             for subPlanIndex in plan.getSubPlans().indices {
-                if !inputTextValues[goalIndex][planIndex][subPlanIndex].isEmpty && inputTextValues[goalIndex][planIndex][subPlanIndex] != plan.getSubPlans()[subPlanIndex].getName() {
+                if !inputTextValues[goalIndex][planIndex][subPlanIndex].isEmpty &&
+                    inputTextValues[goalIndex][planIndex][subPlanIndex] != plan.getSubPlans()[subPlanIndex].getName() {
                     plan.getSubPlans()[subPlanIndex].setName(newSubPlan: inputTextValues[goalIndex][planIndex][subPlanIndex])
                     self.objectWillChange.send()
                 }

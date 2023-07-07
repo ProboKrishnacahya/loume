@@ -7,39 +7,36 @@
 
 import SwiftUI
 
+extension View {
+    
+    func showTabItemStyle(selectedTab: Int, type: String, tag: Int,
+                          instanceContentViewModel: ContentViewModel) -> some View {
+        self
+            .tabItem {
+                Image(systemName: instanceContentViewModel.getImage(selectedTab: selectedTab, tag: tag, type: type))
+                    .environment(\.symbolVariants, .none)
+                Text(type)
+            }
+            .tag(tag)
+    }
+}
+
 struct ContentView: View {
     @ObservedObject var userData: User
     @State var selectedTab = 0
-    
-    let instanceSoundManager = SoundManager()
+    @Binding var instanceSoundManager: SoundManager
+    @Binding var instanceAppHeaderViewModel: AppHeaderViewModel
+    @Binding var instanceContentViewModel: ContentViewModel
     
     var body: some View {
         VStack {
-            //            AppHeader(instanceSoundManager: instanceSoundManager)
+            //          AppHeader(instanceSoundManager: $instanceSoundManager, instanceAppHeaderViewModel: $instanceAppHeaderViewModel)
             
             if userData.getName().isEmpty {
-                TabView(selection: $selectedTab) {
-                    GoalPage(userData: userData, backgroundColor: Color("Lotion"))
-                        .tabItem {
-                            Image(systemName: selectedTab == 0 ? "chart.bar.doc.horizontal.fill" : "chart.bar.doc.horizontal")
-                                .environment(\.symbolVariants, .none)
-                            
-                            Text("Goals")
-                        }
-                        .tag(0)
-                    
-                    SummaryPage(backgroundColor: Color("Lotion"))
-                        .tabItem {
-                            Image(systemName: selectedTab == 1 ? "heart.circle.fill" : "heart.circle")
-                                .environment(\.symbolVariants, .none)
-                            
-                            Text("About Me")
-                        }
-                        .tag(1)
-                }
-                .tint(Color("Axolotl"))
+                tabView
             } else {
-                IntroductionPage(userData: userData, name: "")
+                IntroductionView(userData: userData,
+                                 name: "")
             }
         }
         .preferredColorScheme(.light)
@@ -50,10 +47,26 @@ struct ContentView: View {
             instanceSoundManager.resumeBackgroundSound()
         }
     }
+    
+    var tabView: some View {
+        TabView(selection: $selectedTab) {
+            GoalView(userData: userData, backgroundColor: Color("Lotion"))
+                .showTabItemStyle(selectedTab: selectedTab, type: "Goals", tag: 0,
+                                  instanceContentViewModel: instanceContentViewModel)
+            
+            SummaryView(backgroundColor: Color("Lotion"))
+                .showTabItemStyle(selectedTab: selectedTab, type: "About Me", tag: 1,
+                                  instanceContentViewModel: instanceContentViewModel)
+        }
+        .tint(Color("Axolotl"))
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(userData: User(name: "", goals: []))
+        ContentView(userData: User(name: "", goals: []),
+                    instanceSoundManager: .constant(SoundManager()),
+                    instanceAppHeaderViewModel: .constant(AppHeaderViewModel()),
+                    instanceContentViewModel: .constant(ContentViewModel()))
     }
 }

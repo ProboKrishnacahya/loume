@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SummaryPage: View {
+struct SummaryView: View {
     let backgroundColor: Color
     let summariesData = [
         SummaryData(title: "My Interest", backgroundColor: Color("Artichoke"), foregroundColor: .white),
@@ -16,7 +16,7 @@ struct SummaryPage: View {
         SummaryData(title: "My Weakness", backgroundColor: Color("Axolotl"), foregroundColor: .white),
         SummaryData(title: "My Goal", backgroundColor: Color("Light Moss Green"), foregroundColor: Color("Axolotl")),
         SummaryData(title: "Obstacles to My Goal", backgroundColor: Color("Artichoke"), foregroundColor: Color.white)
-        ]
+    ]
     
     var body: some View {
         NavigationStack {
@@ -93,9 +93,9 @@ struct DetailView: View {
 }
 
 
-struct SummaryPage_Previews: PreviewProvider {
+struct SummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        SummaryPage(backgroundColor: Color("Lotion"))
+        SummaryView(backgroundColor: Color("Lotion"))
     }
 }
 

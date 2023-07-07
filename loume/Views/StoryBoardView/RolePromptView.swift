@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RolePromptPage: View {
+struct RolePromptView: View {
     let instanceStoryBoardViewModel = StoryBoardViewModel()
     
     var body: some View {
@@ -24,8 +24,8 @@ struct RolePromptPage: View {
     }
 }
 
-struct RolePromptPage_Previews: PreviewProvider {
+struct RolePromptView_Previews: PreviewProvider {
     static var previews: some View {
-        RolePromptPage()
+        RolePromptView()
     }
 }

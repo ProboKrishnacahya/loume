@@ -17,14 +17,6 @@ class SubPlan: Identifiable, ObservableObject {
         self.is_done = is_done
     }
     
-    func getName() -> String {
-        return self.name
-    }
-    
-    func getIsDone() -> Bool {
-        return self.is_done
-    }
-    
     func setName(newSubPlan: String) {
         self.name = newSubPlan
         self.objectWillChange.send()
@@ -33,5 +25,13 @@ class SubPlan: Identifiable, ObservableObject {
     func setIsDone(subPlan: SubPlan) {
         subPlan.is_done.toggle()
         self.objectWillChange.send()
+    }
+    
+    func getName() -> String {
+        return self.name
+    }
+    
+    func getIsDone() -> Bool {
+        return self.is_done
     }
 }

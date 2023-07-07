@@ -19,6 +19,11 @@ class Plan: Identifiable, ObservableObject {
         self.dueDate = dueDate
     }
     
+    func setName(name: String) {
+        self.name = name
+        self.objectWillChange.send()
+    }
+    
     func getName() -> String {
         return self.name
     }
@@ -29,11 +34,6 @@ class Plan: Identifiable, ObservableObject {
     
     func getDueDateWithoutFormat() -> Date {
         return self.dueDate
-    }
-    
-    func setName(name: String) {
-        self.name = name
-        self.objectWillChange.send()
     }
     
     func addSubPlan(name: String, is_done: Bool) {

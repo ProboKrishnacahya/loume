@@ -10,10 +10,15 @@ import SwiftUI
 @main
 struct loumeApp: App {
     @StateObject var userData = User(name: "", goals: [])
+    @State var instanceSoundManager: SoundManager = SoundManager()
+    @State var instanceAppHeaderViewModel: AppHeaderViewModel = AppHeaderViewModel()
+    @State var instanceContentViewModel: ContentViewModel = ContentViewModel()
     
     var body: some Scene {
         WindowGroup {
-            ContentView(userData: userData)
+            ContentView(userData: userData, instanceSoundManager: $instanceSoundManager,
+                        instanceAppHeaderViewModel: $instanceAppHeaderViewModel,
+                        instanceContentViewModel: $instanceContentViewModel)
         }
     }
 }

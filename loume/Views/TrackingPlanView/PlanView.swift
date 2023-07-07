@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlanPage: View {
+struct PlanView: View {
     @ObservedObject var userData: User
     @Environment(\.presentationMode) var presentationMode
     @Binding var inputTextValues: [[[String]]]
@@ -21,23 +21,9 @@ struct PlanPage: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(goal.getName())
-                        .font(.largeTitle.bold())
-                    
-                    HStack {
-                        Text(userData.getDueDateFormat(dueDate: goal.getDueDateWithoutFormat()))
-                            .foregroundColor(.secondary)
-                        
-                        Spacer()
-                        
-                        CircularButton(userData: userData, isSheetPresented: $isSheetPresented, type: "plan", goal: goal, inputTextValues: $inputTextValues, goalIndex: goalIndex)
-                    }
-                }
-                .padding()
-                
+                planViewHeader
                 if goal.getPlans().isEmpty {
-                    EmptyState(systemNameImage: "folder.badge.questionmark", type: "Plan")
+                    EmptyStateView(type: "Plan")
                 } else {
                     ZStack {
                         ForEach(Array(goal.getPlans().enumerated()), id: \.0) { groupIndex, plan in
@@ -137,15 +123,6 @@ struct PlanPage: View {
                         .padding(.top, 36)
                 }
             }
-            
-            Button(action: {
-                goal.updateSubPlanArray(inputTextValues: inputTextValues, goalIndex: goalIndex)
-                userData.objectWillChange.send()
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                PrimaryButton(label: "Done")
-            }
-            .padding()
         }
     }
     
@@ -159,11 +136,30 @@ struct PlanPage: View {
             }
         )
     }
+    
+    var planViewHeader: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(goal.getName())
+                .font(.largeTitle.bold())
+            
+            HStack {
+                Text(userData.getDueDateFormat(dueDate: goal.getDueDateWithoutFormat()))
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                CircularButton(userData: userData, isSheetPresented: $isSheetPresented,
+                               type: "plan", goal: goal, inputTextValues: $inputTextValues,
+                               goalIndex: goalIndex)
+            }
+        }
+        .padding()
+    }
 }
 
-struct PlanPage_Previews: PreviewProvider {
+struct PlanView_Previews: PreviewProvider {
     static var previews: some View {
-        PlanPage(
+        PlanView(
             userData: User(name: "", goals: [
                 Goal(
                     name: "Goal 1",

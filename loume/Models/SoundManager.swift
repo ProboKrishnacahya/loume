@@ -24,6 +24,7 @@ class SoundManager {
             player?.numberOfLoops = -1
             player?.prepareToPlay()
             player?.play()
+            
         } catch let error {
             print("Error playing soung. \(error.localizedDescription)")
         }
