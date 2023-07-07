@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  comee
+//  loume
 //
 //  Created by Probo Krishnacahya on 19/06/23.
 //
@@ -14,6 +14,7 @@ extension View {
             .tabItem {
                 Image(systemName: instanceContentViewModel.getImage(selectedTab: selectedTab, tag: tag, type: type))
                     .environment(\.symbolVariants, .none)
+                
                 Text(type)
             }
             .tag(tag)

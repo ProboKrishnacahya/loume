@@ -1,12 +1,12 @@
 //
-//  comeeTests.swift
-//  comeeTests
+//  loumeTests.swift
+//  loumeTests
 //
 //  Created by Probo Krishnacahya on 19/06/23.
 //
 
 import XCTest
-@testable import comee
+@testable import loume
 
 final class loumeTests: XCTestCase {
 

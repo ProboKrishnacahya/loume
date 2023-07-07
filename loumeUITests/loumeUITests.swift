@@ -1,6 +1,6 @@
 //
-//  comeeUITests.swift
-//  comeeUITests
+//  loumeUITests.swift
+//  loumeUITests
 //
 //  Created by Probo Krishnacahya on 19/06/23.
 //

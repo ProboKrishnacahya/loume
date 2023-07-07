@@ -19,7 +19,7 @@ struct RolePromptView: View {
                     Text("How to be ....")
                 })
             }
-            .navigationTitle("comee")
+            .navigationTitle("loume")
         }
     }
 }
