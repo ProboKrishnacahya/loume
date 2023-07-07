@@ -15,6 +15,24 @@
 		0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825172A57E68C00B87CC0 /* GoalRowView.swift */; };
 		0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825192A57FAA500B87CC0 /* PlanRowView.swift */; };
 		0B43EC362A56A63100B84D7E /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43EC352A56A63100B84D7E /* EmptyStateView.swift */; };
+		82441EE42A582B4E007EFD6E /* SimilarStrengthNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED12A582B4D007EFD6E /* SimilarStrengthNo.swift */; };
+		82441EE52A582B4E007EFD6E /* SimilarStrengthYes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED22A582B4D007EFD6E /* SimilarStrengthYes.swift */; };
+		82441EE62A582B4E007EFD6E /* StrengthOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED32A582B4D007EFD6E /* StrengthOut.swift */; };
+		82441EE72A582B4E007EFD6E /* ConfidentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED42A582B4D007EFD6E /* ConfidentView.swift */; };
+		82441EE82A582B4E007EFD6E /* ObstaclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED52A582B4D007EFD6E /* ObstaclesView.swift */; };
+		82441EE92A582B4E007EFD6E /* AfterObstacleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED62A582B4D007EFD6E /* AfterObstacleView.swift */; };
+		82441EEA2A582B4E007EFD6E /* InterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED72A582B4D007EFD6E /* InterestView.swift */; };
+		82441EEB2A582B4E007EFD6E /* QuestionView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED82A582B4D007EFD6E /* QuestionView2.swift */; };
+		82441EEC2A582B4E007EFD6E /* AfterObstacle2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED92A582B4E007EFD6E /* AfterObstacle2View.swift */; };
+		82441EED2A582B4E007EFD6E /* QuestionView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EDA2A582B4E007EFD6E /* QuestionView1.swift */; };
+		82441EEE2A582B4E007EFD6E /* RoleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EDB2A582B4E007EFD6E /* RoleModelView.swift */; };
+		82441EEF2A582B4E007EFD6E /* AfterQuestion1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EDC2A582B4E007EFD6E /* AfterQuestion1View.swift */; };
+		82441EF02A582B4E007EFD6E /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EDD2A582B4E007EFD6E /* IntroView.swift */; };
+		82441EF12A582B4E007EFD6E /* MyStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EDE2A582B4E007EFD6E /* MyStrengthView.swift */; };
+		82441EF32A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE02A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift */; };
+		82441EF42A582B4E007EFD6E /* InterestPromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */; };
+		82441EF52A582B4E007EFD6E /* SetupProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE22A582B4E007EFD6E /* SetupProject.swift */; };
+		82441EF62A582B4E007EFD6E /* InterestSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */; };
 		826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */; };
 		826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */; };
 		826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C62A4EF3EC00B9F57A /* Persistence.swift */; };
@@ -67,6 +85,24 @@
 		0B0825172A57E68C00B87CC0 /* GoalRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRowView.swift; sourceTree = "<group>"; };
 		0B0825192A57FAA500B87CC0 /* PlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanRowView.swift; sourceTree = "<group>"; };
 		0B43EC352A56A63100B84D7E /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		82441ED12A582B4D007EFD6E /* SimilarStrengthNo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarStrengthNo.swift; sourceTree = "<group>"; };
+		82441ED22A582B4D007EFD6E /* SimilarStrengthYes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarStrengthYes.swift; sourceTree = "<group>"; };
+		82441ED32A582B4D007EFD6E /* StrengthOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrengthOut.swift; sourceTree = "<group>"; };
+		82441ED42A582B4D007EFD6E /* ConfidentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfidentView.swift; sourceTree = "<group>"; };
+		82441ED52A582B4D007EFD6E /* ObstaclesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstaclesView.swift; sourceTree = "<group>"; };
+		82441ED62A582B4D007EFD6E /* AfterObstacleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterObstacleView.swift; sourceTree = "<group>"; };
+		82441ED72A582B4D007EFD6E /* InterestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestView.swift; sourceTree = "<group>"; };
+		82441ED82A582B4D007EFD6E /* QuestionView2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView2.swift; sourceTree = "<group>"; };
+		82441ED92A582B4E007EFD6E /* AfterObstacle2View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterObstacle2View.swift; sourceTree = "<group>"; };
+		82441EDA2A582B4E007EFD6E /* QuestionView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionView1.swift; sourceTree = "<group>"; };
+		82441EDB2A582B4E007EFD6E /* RoleModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleModelView.swift; sourceTree = "<group>"; };
+		82441EDC2A582B4E007EFD6E /* AfterQuestion1View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AfterQuestion1View.swift; sourceTree = "<group>"; };
+		82441EDD2A582B4E007EFD6E /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		82441EDE2A582B4E007EFD6E /* MyStrengthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyStrengthView.swift; sourceTree = "<group>"; };
+		82441EE02A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleModelSimilarStrengthView.swift; sourceTree = "<group>"; };
+		82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestPromiseView.swift; sourceTree = "<group>"; };
+		82441EE22A582B4E007EFD6E /* SetupProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProject.swift; sourceTree = "<group>"; };
+		82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestSelectedView.swift; sourceTree = "<group>"; };
 		826814C32A4EF3EC00B9F57A /* comee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = comee.xcdatamodel; sourceTree = "<group>"; };
 		826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardViewModel.swift; sourceTree = "<group>"; };
 		826814C62A4EF3EC00B9F57A /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -198,6 +234,24 @@
 		826814DA2A4EF3EC00B9F57A /* StoryBoardView */ = {
 			isa = PBXGroup;
 			children = (
+				82441ED92A582B4E007EFD6E /* AfterObstacle2View.swift */,
+				82441ED62A582B4D007EFD6E /* AfterObstacleView.swift */,
+				82441EDC2A582B4E007EFD6E /* AfterQuestion1View.swift */,
+				82441ED42A582B4D007EFD6E /* ConfidentView.swift */,
+				82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */,
+				82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */,
+				82441ED72A582B4D007EFD6E /* InterestView.swift */,
+				82441EDD2A582B4E007EFD6E /* IntroView.swift */,
+				82441EDE2A582B4E007EFD6E /* MyStrengthView.swift */,
+				82441ED52A582B4D007EFD6E /* ObstaclesView.swift */,
+				82441EDA2A582B4E007EFD6E /* QuestionView1.swift */,
+				82441ED82A582B4D007EFD6E /* QuestionView2.swift */,
+				82441EE02A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift */,
+				82441EDB2A582B4E007EFD6E /* RoleModelView.swift */,
+				82441EE22A582B4E007EFD6E /* SetupProject.swift */,
+				82441ED12A582B4D007EFD6E /* SimilarStrengthNo.swift */,
+				82441ED22A582B4D007EFD6E /* SimilarStrengthYes.swift */,
+				82441ED32A582B4D007EFD6E /* StrengthOut.swift */,
 				82A7548C2A52C3E0004501A3 /* IntroductionView.swift */,
 				82A7548E2A52C419004501A3 /* RolePromptView.swift */,
 			);
@@ -398,26 +452,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B0825122A57D7B500B87CC0 /* ModalView.swift in Sources */,
+				82441EF32A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift in Sources */,
+				82441EEF2A582B4E007EFD6E /* AfterQuestion1View.swift in Sources */,
 				826814E92A4EF3EC00B9F57A /* Plan.swift in Sources */,
+				82441EEA2A582B4E007EFD6E /* InterestView.swift in Sources */,
 				826814ED2A4EF3EC00B9F57A /* PrimaryButton.swift in Sources */,
 				826814EB2A4EF3EC00B9F57A /* loumeApp.swift in Sources */,
 				826814EC2A4EF3EC00B9F57A /* AppHeader.swift in Sources */,
+				82441EF12A582B4E007EFD6E /* MyStrengthView.swift in Sources */,
 				826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */,
 				0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */,
 				0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */,
 				0B43EC362A56A63100B84D7E /* EmptyStateView.swift in Sources */,
+				82441EE82A582B4E007EFD6E /* ObstaclesView.swift in Sources */,
+				82441EE62A582B4E007EFD6E /* StrengthOut.swift in Sources */,
+				82441EEC2A582B4E007EFD6E /* AfterObstacle2View.swift in Sources */,
 				826814F12A4EF3EC00B9F57A /* PlanView.swift in Sources */,
+				82441EE92A582B4E007EFD6E /* AfterObstacleView.swift in Sources */,
 				82A7548F2A52C419004501A3 /* RolePromptView.swift in Sources */,
+				82441EF02A582B4E007EFD6E /* IntroView.swift in Sources */,
+				82441EF42A582B4E007EFD6E /* InterestPromiseView.swift in Sources */,
 				826814E52A4EF3EC00B9F57A /* SubPlan.swift in Sources */,
+				82441EF62A582B4E007EFD6E /* InterestSelectedView.swift in Sources */,
+				82441EE52A582B4E007EFD6E /* SimilarStrengthYes.swift in Sources */,
 				826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */,
 				826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */,
 				826814F02A4EF3EC00B9F57A /* GoalView.swift in Sources */,
 				0B0825142A57DC5400B87CC0 /* CircularButtonViewModel.swift in Sources */,
+				82441EE42A582B4E007EFD6E /* SimilarStrengthNo.swift in Sources */,
+				82441EF52A582B4E007EFD6E /* SetupProject.swift in Sources */,
 				826814EE2A4EF3EC00B9F57A /* CircularButton.swift in Sources */,
+				82441EEB2A582B4E007EFD6E /* QuestionView2.swift in Sources */,
 				0B08250E2A57C05400B87CC0 /* AppHeaderViewModel.swift in Sources */,
+				82441EE72A582B4E007EFD6E /* ConfidentView.swift in Sources */,
 				82A7548D2A52C3E0004501A3 /* IntroductionView.swift in Sources */,
 				826814E72A4EF3EC00B9F57A /* Goal.swift in Sources */,
+				82441EEE2A582B4E007EFD6E /* RoleModelView.swift in Sources */,
 				826814F42A4EF3EC00B9F57A /* ContentView.swift in Sources */,
+				82441EED2A582B4E007EFD6E /* QuestionView1.swift in Sources */,
 				0B0825102A57CEE400B87CC0 /* ContentViewModel.swift in Sources */,
 				0B0825162A57E26000B87CC0 /* ModalViewModal.swift in Sources */,
 				826814E62A4EF3EC00B9F57A /* SoundManager.swift in Sources */,

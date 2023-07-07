@@ -13,7 +13,7 @@ struct PlanView: View {
     @Binding var inputTextValues: [[[String]]]
     @State var isSheetPresented = false
     @State private var currentIndex: Int = 0
-    @GestureState private var dragOffset: CGFloat = 0
+    @GestureState private var dragoffset: CGFloat = 0
     
     var goal: Goal
     let goalIndex: Int
@@ -102,7 +102,7 @@ struct PlanView: View {
                             }
                             .frame(width: UIScreen.main.bounds.width, height: 500)
                             .scaleEffect(currentIndex == groupIndex ? 1.2 : 1.1)
-                            .offset(x: CGFloat(groupIndex - currentIndex) * 320 + dragOffset, y: 0)
+                            .offset(x: CGFloat(groupIndex - currentIndex) * 320 + dragoffset, y: 0)
                         }
                     }
                     .padding(.top)

@@ -16,6 +16,7 @@ struct loumeApp: App {
     
     var body: some Scene {
         WindowGroup {
+//            SetupProject()
             ContentView(userData: userData, instanceSoundManager: $instanceSoundManager,
                         instanceAppHeaderViewModel: $instanceAppHeaderViewModel,
                         instanceContentViewModel: $instanceContentViewModel)
