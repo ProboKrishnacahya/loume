@@ -73,6 +73,7 @@ struct PlanView: View {
                                                     subPlan.setName(newSubPlan: inputTextValues[goalIndex][groupIndex][index])
                                                     userData.objectWillChange.send()
                                                 })
+                                                .font(.subheadline)
                                             }
                                         }
                                     }
@@ -149,8 +150,11 @@ struct PlanView: View {
                 
                 Spacer()
                 
-                CircularButton(userData: userData, isSheetPresented: $isSheetPresented,
-                               inputTextValues: $inputTextValues, type: "plan", goal: goal,
+                CircularButton(userData: userData,
+                               isSheetPresented: $isSheetPresented,
+                               inputTextValues: $inputTextValues,
+                               type: "plan",
+                               goal: goal,
                                goalIndex: goalIndex)
             }
         }

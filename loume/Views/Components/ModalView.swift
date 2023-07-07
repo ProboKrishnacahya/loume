@@ -33,7 +33,7 @@ struct ModalView: View {
     }
     
     var formContent: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 24) {
             nameContentForm
             
             if type == "plan" {

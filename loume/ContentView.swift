@@ -8,7 +8,6 @@
 import SwiftUI
 
 extension View {
-    
     func showTabItemStyle(selectedTab: Int, type: String, tag: Int,
                           instanceContentViewModel: ContentViewModel) -> some View {
         self
