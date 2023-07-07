@@ -9,12 +9,15 @@ import SwiftUI
 
 struct GoalRowView: View {
     @ObservedObject var userData: User
+    
     var goal: Goal
     
     var body: some View {
         VStack(spacing: 16) {
             goalDescriptionContent
+            
             Spacer()
+            
             goalProgress
         }
         .padding()
@@ -26,6 +29,7 @@ struct GoalRowView: View {
     var goalProgress: some View {
         HStack {
             goalProgressBar
+            
             Text("\(String(format: "%.0f", goal.getPercentageProgress()))%")
                 .font(.headline)
         }
@@ -51,16 +55,19 @@ struct GoalRowView: View {
             HStack {
                 Text(goal.getName())
                     .font(.title2.bold())
+                
                 Spacer()
             }
             
             HStack {
                 Image(systemName: "calendar")
+                
                 Text(userData.getDueDateFormat(dueDate: goal.getDueDateWithoutFormat()) + " - " + goal.getTimeLeft())
             }
             
             HStack {
                 Image(systemName: "list.number")
+                
                 Text("\(goal.getPlans().count)")
             }
         }

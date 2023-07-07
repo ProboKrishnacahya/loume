@@ -42,7 +42,6 @@ class Plan: Identifiable, ObservableObject {
     }
     
     func checkingForAddSubPlan(inputTextValues: [[[String]]]) -> Bool {
-        
         for subPlanIndex in self.getSubPlans().indices {
             if self.getSubPlans()[subPlanIndex].getName().isEmpty {
                 return true

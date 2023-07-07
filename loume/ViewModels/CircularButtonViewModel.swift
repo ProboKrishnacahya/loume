@@ -8,7 +8,6 @@
 import Foundation
 
 struct CircularButtonViewModel {
-    
     func showModal(isSheetPresented: inout Bool) {
         isSheetPresented.toggle()
     }

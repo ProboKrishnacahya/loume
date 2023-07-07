@@ -26,7 +26,7 @@ class User: Identifiable, ObservableObject {
         return self.name
     }
     
-    func getGoals() -> [Goal]{
+    func getGoals() -> [Goal] {
         return self.goals
     }
     

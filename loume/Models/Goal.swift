@@ -112,7 +112,6 @@ class Goal: Identifiable, ObservableObject {
     }
     
     func updateSubPlanArray(inputTextValues: [[[String]]], goalIndex: Int) {
-        
         for planIndex in self.plans.indices {
             let plan = plans[planIndex]
             

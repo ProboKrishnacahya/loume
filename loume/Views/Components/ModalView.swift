@@ -12,9 +12,10 @@ struct ModalView: View {
     @Binding var dueDate: Date
     @Binding var type: String
     @Binding var goal: Goal
-    @Binding var isSheetPresented:Bool
-    @ObservedObject var userData:User
+    @Binding var isSheetPresented: Bool
     @Binding var inputTextValues: [[[String]]]
+    @ObservedObject var userData: User
+    
     let goalIndex: Int
     
     var body: some View {
@@ -51,7 +52,6 @@ struct ModalView: View {
         Button("Cancel") {
             resetForm()
         }
-        .foregroundColor(.blue)
     }
     
     var trailingNavigationContent: some View {
@@ -63,7 +63,6 @@ struct ModalView: View {
                 
                 userData.addGoal(name: name, plans: [], dueDate: dueDate)
                 userData.objectWillChange.send()
-                
             } else {
                 if userData.getGoals()[goalIndex].getPlans().count > 0 {
                     inputTextValues[goalIndex].append([""])
@@ -87,7 +86,7 @@ struct ModalView: View {
                 .tint(Color("Axolotl"))
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(.tertiary, lineWidth: 2)
+                        .stroke(Color("Axolotl"), lineWidth: 2)
                 )
         }
     }
@@ -106,8 +105,7 @@ struct ModalView_Previews: PreviewProvider {
                   type: .constant("goal"),
                   goal: .constant(Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())),
                   isSheetPresented: .constant(true),
-                  userData: User(name: "name 1", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]),
-                  inputTextValues: .constant([[[""]]]),
+                  inputTextValues: .constant([[[""]]]), userData: User(name: "name 1", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]),
                   goalIndex: 0)
     }
 }

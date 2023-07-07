@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct ModalViewModel {
-    
     func getNavigationBarTitle(type: String) -> String {
         if type == "goal" {
             return "Add Goal"

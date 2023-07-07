@@ -43,8 +43,7 @@ struct GoalView: View {
             Spacer()
             
             CircularButton(userData: userData, isSheetPresented: $isSheetPresented,
-                           dueDate: Date(), type: "goal", goal: Goal(name: "", plans: [], dueDate: Date()),
-                           inputTextValues: $inputTextValues, goalIndex: 0)
+                           inputTextValues: $inputTextValues, dueDate: Date(), type: "goal", goal: Goal(name: "", plans: [], dueDate: Date()), goalIndex: 0)
         }
     }
     

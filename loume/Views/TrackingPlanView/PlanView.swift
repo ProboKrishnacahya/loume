@@ -22,6 +22,7 @@ struct PlanView: View {
         ScrollView {
             VStack(spacing: 24) {
                 planViewHeader
+                
                 if goal.getPlans().isEmpty {
                     EmptyStateView(type: "Plan")
                 } else {
@@ -149,7 +150,7 @@ struct PlanView: View {
                 Spacer()
                 
                 CircularButton(userData: userData, isSheetPresented: $isSheetPresented,
-                               type: "plan", goal: goal, inputTextValues: $inputTextValues,
+                               inputTextValues: $inputTextValues, type: "plan", goal: goal,
                                goalIndex: goalIndex)
             }
         }

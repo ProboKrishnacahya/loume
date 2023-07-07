@@ -8,7 +8,6 @@
 import Foundation
 
 struct ContentViewModel {
-    
     func getImage(selectedTab:Int, tag: Int, type: String) -> String {
         if type == "Goals" {
             if selectedTab == tag {
