@@ -79,7 +79,7 @@ struct PlanView: View {
                                     }
                                     .listStyle(.insetGrouped)
                                     .scrollContentBackground(.hidden)
-                                    .frame(width: UIScreen.main.bounds.width - 144)
+                                    .frame(width: UIScreen.main.bounds.width - 136)
                                     
                                     Button(action: {
                                         plan.addSubPlan(name: "", is_done: false)
@@ -101,7 +101,7 @@ struct PlanView: View {
                                 .padding()
                             }
                             .frame(width: UIScreen.main.bounds.width, height: 500)
-                            .scaleEffect(currentIndex == groupIndex ? 1.2 : 0.8)
+                            .scaleEffect(currentIndex == groupIndex ? 1.2 : 1.1)
                             .offset(x: CGFloat(groupIndex - currentIndex) * 320 + dragOffset, y: 0)
                         }
                     }
