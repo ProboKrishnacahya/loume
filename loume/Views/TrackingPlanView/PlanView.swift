@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct PlanView: View {
-    @ObservedObject var userData: User
     @Environment(\.presentationMode) var presentationMode
     @Binding var inputTextValues: [[[String]]]
     @State var isSheetPresented = false
     @State private var currentIndex: Int = 0
     @GestureState private var dragOffset: CGFloat = 0
     
-    var goal: Goal
+    @State var goal: GoalCoreDataModel
     let goalIndex: Int
+    
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     
     var body: some View {
         ScrollView {
             VStack(spacing: 24) {
                 planViewHeader
                 
-                if goal.getPlans().isEmpty {
+                if planListCoreDataViewModel.planEntities.isEmpty {
                     EmptyStateView(type: "Plan")
                 } else {
                     ZStack {
-                        ForEach(Array(goal.getPlans().enumerated()), id: \.0) { groupIndex, plan in
-                            let plan = goal.getPlans()[groupIndex]
+                        ForEach(Array(planListCoreDataViewModel.planEntities.enumerated()), id: \.0) { groupIndex, planObject in
+                            let plan = planListCoreDataViewModel.planEntities[groupIndex]
                             
                             ZStack {
                                 RoundedRectangle(cornerRadius: 16)
@@ -38,40 +41,40 @@ struct PlanView: View {
                                 
                                 VStack(spacing: 0) {
                                     VStack(spacing: 4) {
-                                        Text(plan.getName())
+                                        Text("\(plan.name)")
                                             .font(.title2.bold())
                                         
-                                        Text(userData.getDueDateFormat(dueDate: plan.getDueDateWithoutFormat()))
+                                        Text(getDueDateFormat(dueDate: plan.dueDate))
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
                                     }
                                     .padding()
                                     
                                     List {
-                                        ForEach(Array(plan.getSubPlans().enumerated()), id: \.0) { index, subPlan in
-                                            let subPlan = plan.getSubPlans()[index]
+                                        ForEach(Array(subPlanListCoreDataViewModel.getSubPlanEntitiesArray(planCoreDataModel: plan).enumerated()), id: \.0) { index, subPlanObject in
+                                            let subPlan = subPlanListCoreDataViewModel.getSubPlanEntityById(subPlanCoreDataModel: subPlanObject)
                                             
                                             HStack {
+                                                
                                                 Button(action: {
-                                                    subPlan.setIsDone(subPlan: subPlan)
-                                                    userData.objectWillChange.send()
+                                                    subPlanListCoreDataViewModel.setIsDoneSubPlanEntity(subPlanCoreDataModel: subPlan, planCoreDataModel: plan)
+                                                    
                                                 }) {
                                                     Circle()
-                                                        .fill(subPlan.getIsDone() ? Color("Axolotl") : .clear)
+                                                        .fill(subPlan.isDone ? Color("Axolotl") : .clear)
                                                         .frame(width: 16)
                                                         .overlay(
                                                             Circle()
-                                                                .stroke(subPlan.getName().isEmpty ? .secondary : Color("Axolotl"), lineWidth: 2)
+                                                                .stroke(subPlan.name.isEmpty ? .secondary : Color("Axolotl"), lineWidth: 2)
                                                         )
                                                 }
                                                 .buttonStyle(PlainButtonStyle())
-                                                .disabled(subPlan.getName().isEmpty)
+                                                .disabled(subPlan.name.isEmpty)
                                                 
                                                 TextField("New Subplan",
                                                           text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
                                                           onCommit: {
-                                                    subPlan.setName(newSubPlan: inputTextValues[goalIndex][groupIndex][index])
-                                                    userData.objectWillChange.send()
+                                                    subPlanListCoreDataViewModel.setNameSubPlanEntity(subPlanCoreDataModel: subPlan, name: inputTextValues[goalIndex][groupIndex][index], planCoreDataModel: plan)
                                                 })
                                                 .font(.subheadline)
                                             }
@@ -82,9 +85,9 @@ struct PlanView: View {
                                     .frame(width: UIScreen.main.bounds.width - 136)
                                     
                                     Button(action: {
-                                        plan.addSubPlan(name: "", is_done: false)
+                                        subPlanListCoreDataViewModel.addSubPlanEntity(name: "", planCoreDataModel: plan)
                                         inputTextValues[goalIndex][groupIndex].append("")
-                                        userData.objectWillChange.send()
+                                        
                                     }, label: {
                                         HStack {
                                             Image(systemName: "plus.circle")
@@ -94,8 +97,8 @@ struct PlanView: View {
                                                 .font(.subheadline.bold())
                                         }
                                     })
-                                    .foregroundColor(plan.checkingForAddSubPlan(inputTextValues: inputTextValues) ? .secondary : Color("Axolotl"))
-                                    .disabled(plan.checkingForAddSubPlan(inputTextValues: inputTextValues))
+                                    .foregroundColor(ViewModel.instance.checkingForAddSubPlan(planCoreDataModel: plan, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel) ? .secondary : Color("Axolotl"))
+                                    .disabled(ViewModel.instance.checkingForAddSubPlan(planCoreDataModel: plan, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel))
                                     .padding()
                                 }
                                 .padding()
@@ -115,22 +118,32 @@ struct PlanView: View {
                                 }
                             } else if value.translation.width < -threshold {
                                 withAnimation {
-                                    currentIndex = min(goal.getPlans().count - 1, currentIndex + 1)
+                                    currentIndex = min(planListCoreDataViewModel.planEntities.count - 1, currentIndex + 1)
                                 }
                             }
                         })
                     )
                     
-                    Text("\(currentIndex + 1) of \(goal.getPlans().count)")
+                    Text("\(currentIndex + 1) of \(planListCoreDataViewModel.planEntities.count)")
                         .padding(.top, 36)
                 }
             }
+        }
+        .onAppear(perform: {
+            planListCoreDataViewModel.getPlanEntities(goalCoreDataModel: goal)
+            print("planniii", planListCoreDataViewModel.planEntities.count)
+            
+        })
+        .onDisappear {
+            print("halooo hilang")
         }
     }
     
     func bindingForTextField(groupIndex: Int, textFieldIndex: Int) -> Binding<String> {
         return Binding<String>(
             get: {
+                print("ini",inputTextValues)
+                print("ini",groupIndex)
                 return inputTextValues[goalIndex][groupIndex][textFieldIndex]
             },
             set: {
@@ -141,78 +154,50 @@ struct PlanView: View {
     
     var planViewHeader: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(goal.getName())
+            Text(goalListCoreDataViewModel.goalEntities[goalIndex].name)
                 .font(.largeTitle.bold())
             
             HStack {
-                Text(userData.getDueDateFormat(dueDate: goal.getDueDateWithoutFormat()))
+                Text(getDueDateFormat(dueDate: goalListCoreDataViewModel.goalEntities[goalIndex].dueDate))
                     .foregroundColor(.secondary)
                 
                 Spacer()
                 
-                CircularButton(userData: userData,
-                               isSheetPresented: $isSheetPresented,
+                CircularButton(isSheetPresented: $isSheetPresented,
                                inputTextValues: $inputTextValues,
                                type: "plan",
-                               goal: goal,
+                               goal: $goal,
+                               goalListCoreDataViewModel: goalListCoreDataViewModel,
+                               planListCoreDataViewModel: planListCoreDataViewModel,
+                               subPlanListCoreDataViewModel: subPlanListCoreDataViewModel,
                                goalIndex: goalIndex)
             }
         }
         .padding()
     }
+    
+    func getDueDateFormat(dueDate: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyy"
+        dateFormatter.dateStyle = .medium
+        
+        return dateFormatter.string(from: dueDate)
+    }
 }
 
 struct PlanView_Previews: PreviewProvider {
     static var previews: some View {
-        PlanView(
-            userData: User(name: "", goals: [
-                Goal(
-                    name: "Goal 1",
-                    plans: [
-                        Plan(
-                            name: "Plan 1",
-                            subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)],
-                            dueDate: Date()
-                        ),
-                        Plan(
-                            name: "Plan 2",
-                            subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)],
-                            dueDate: Date()
-                        ),
-                        Plan(
-                            name: "Plan 3",
-                            subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)],
-                            dueDate: Date()
-                        )
-                    ],
-                    dueDate: Date()
-                )
-            ]),
-            inputTextValues: .constant([
-                [
-                    [""], [""]
-                ],
-                
-            ]),
-            goal: Goal(
-                name: "Goal 2",
-                plans: [
-                    Plan(name: "Plan 1",
-                         subPlans: [
-                            SubPlan(name: "Sub Plan 1", is_done: false)
-                         ],
-                         dueDate: Date()
-                        ),
-                    Plan(name: "Plan 2",
-                         subPlans: [
-                            SubPlan(name: "Sub Plan 1", is_done: false)
-                         ],
-                         dueDate: Date()
-                        )
-                ],
-                dueDate: Date()
-            ),
-            goalIndex: 0
+        PlanView(inputTextValues: .constant([
+            [
+                [""], [""]
+            ],
+        ]),
+                 goal: GoalCoreDataModel(goalEntity: GoalEntity()),
+                 goalIndex: 0,
+                 goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                 planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                 subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel()
         )
     }
 }
+

@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="GoalEntity" representedClassName="GoalEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="due_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="plans" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PlanEntity" inverseName="goal" inverseEntity="PlanEntity"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="goals" inverseEntity="UserEntity"/>
     </entity>
-    <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-    </elements>
+    <entity name="LoveEntity" representedClassName="LoveEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="loves" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="PlanEntity" representedClassName="PlanEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="due_date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="goal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GoalEntity" inverseName="plans" inverseEntity="GoalEntity"/>
+        <relationship name="sub_plans" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SubPlanEntity" inverseName="plan" inverseEntity="SubPlanEntity"/>
+    </entity>
+    <entity name="RoleModelStrengthEntity" representedClassName="RoleModelStrengthEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="role_model_strengths" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="SubPlanEntity" representedClassName="SubPlanEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="is_done" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="plan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlanEntity" inverseName="sub_plans" inverseEntity="PlanEntity"/>
+    </entity>
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="role_model" optional="YES" attributeType="String"/>
+        <attribute name="strength_similar" optional="YES" attributeType="String"/>
+        <attribute name="strength1" optional="YES" attributeType="String"/>
+        <attribute name="strength2" optional="YES" attributeType="String"/>
+        <attribute name="strength3" optional="YES" attributeType="String"/>
+        <attribute name="weakness1" optional="YES" attributeType="String"/>
+        <attribute name="weakness2" optional="YES" attributeType="String"/>
+        <attribute name="weakness3" optional="YES" attributeType="String"/>
+        <relationship name="goals" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GoalEntity" inverseName="user" inverseEntity="GoalEntity"/>
+        <relationship name="loves" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LoveEntity" inverseName="user" inverseEntity="LoveEntity"/>
+        <relationship name="role_model_strengths" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RoleModelStrengthEntity" inverseName="user" inverseEntity="RoleModelStrengthEntity"/>
+    </entity>
 </model>

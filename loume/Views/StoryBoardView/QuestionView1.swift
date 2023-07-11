@@ -380,6 +380,8 @@ struct QuestionView1: View {
                 .opacity(hideButton)
             }
             
+            //jika tombol oren diklik: tujuannya untuk memasukkan value strength ke dalam data disetiap page yang muncul 1 kali. action dibawah untuk menyimpan 1 strength SAJA. function di bawah normalnya dijalankan 3 kali (sesuai dengan jumlah strengthnya yaitu ada 3)
+//                    userListCoreDataViewModel.setStrength(userCoreDataModel: userListCoreDataViewModel.userEntities[0], strength: {{isikan disini strengthnya berupa String}})
         }
     }
 }

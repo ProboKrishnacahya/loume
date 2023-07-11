@@ -42,8 +42,11 @@ struct RoleModelView: View {
                         Text("Now let’s get a little bit")
                         HStack{
                             Text("Deeper about")
+                            
                             Text("dance.")
                                 .fontWeight(.bold)
+                            //ganti "dance" pada Text baris di atas dengan
+                            //loveListCoreDataViewModel.getMostInterest()
                         }
                         Button {
                             movePage1 = 0
@@ -109,6 +112,10 @@ struct RoleModelView: View {
                                 Text("specifically in the")
                                 Text("dance") // Di isi data
                                     .fontWeight(.bold)
+                                
+                                //ganti "dance" pada Text baris di atas dengan
+                                //loveListCoreDataViewModel.getMostInterest()
+                                
                                 Text("field")
                             }
                             Text("that you adore so much ?")
@@ -119,6 +126,9 @@ struct RoleModelView: View {
                                 Text("know who is expert in")
                                 Text("dance") // Di isi data
                                     .fontWeight(.bold)
+                                
+                                //ganti "dance" pada Text baris di atas dengan
+                                //loveListCoreDataViewModel.getMostInterest()
                             }
                         }
                         TextField("Enter username...", text: $roleModel)
@@ -126,6 +136,9 @@ struct RoleModelView: View {
                             .frame(width:  250)
                             .animation(Animation.easeInOut(duration: 1.5))
                             .padding(.top, 10.0)
+                        
+                        //jika tombol oren diklik: tujuannya untuk memasukkan nama role model ke dalam data
+    //                    userListCoreDataViewModel.setRoleModel(userCoreDataModel: userListCoreDataViewModel.userEntities[0], roleModel: {{isikan disini nama role modelnya}})
                     }
                     .opacity(fadeText1 ? 1 : 0)
                     .animation(.easeIn(duration: 1))
@@ -141,6 +154,8 @@ struct RoleModelView: View {
                         HStack{
                             Text("Mark Lee")
                                 .fontWeight(.bold)
+                            //ganti "Mark Lee" pada Text baris di atas dengan
+                            //userListCoreDataViewModel.userEntities[0].roleModel
                             Text("huh? Seems like a very")
                         }
                         Text("cool person!")
@@ -148,6 +163,8 @@ struct RoleModelView: View {
                             Text("Why are you inspired by")
                             Text("Mark Lee?")
                                 .fontWeight(.bold)
+                            //ganti "Mark Lee" pada Text baris di atas dengan
+                            //userListCoreDataViewModel.userEntities[0].roleModel
                         }
                     }
                     VStack{
@@ -198,6 +215,9 @@ struct RoleModelView: View {
                                     .animation(Animation.easeInOut(duration: 1.5))
                             }
                             .padding(.top, 5)
+                            
+                            //jika tombol oren diklik: tujuannya untuk memasukkan 3 daftar strength or expertise ke dalam data. (intro Copy 13)
+        //                    roleModelStrengthListCoreDataViewModel.addRoleModelStrengthEntities(value1: {{value1}}, value2: {{value2}}, value3: {{value3}})
                             
                         }
                         

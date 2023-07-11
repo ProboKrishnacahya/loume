@@ -8,26 +8,44 @@
 import SwiftUI
 
 struct IntroView: View {
-    @State private var fadeText1 = false
-    @State private var fadeText2 = false
-    @State private var isView2Active = false
-    @State var stopRepeat = true
-    @State private var fadeTextSecond1 = false
-    @State private var fadeTextSecond2 = false
-    @State private var fadeTextThird1 = false
-    @State private var fadeTextThird2 = false
-    @State private var disable1 = false
-    @State private var disable2 = false
-    @State private var disable3 = false
-    @State private var scale:Double = 0.8
-    @State private var scaleCircleSmall:Double = 1
-    @State private var scale2:Double = 1
-    @State private var durationHold: Double = 1
+//    @State private var fadeText1 = false
+//    @State private var fadeText2 = false
+//    @State private var isView2Active = false
+//    @State var stopRepeat = true
+//    @State private var fadeTextSecond1 = false
+//    @State private var fadeTextSecond2 = false
+//    @State private var fadeTextThird1 = false
+//    @State private var fadeTextThird2 = false
+//    @State private var disable1 = false
+//    @State private var disable2 = false
+//    @State private var disable3 = false
+//    @State private var scale:Double = 0.8
+//    @State private var scaleCircleSmall:Double = 1
+//    @State private var scale2:Double = 1
+//    @State private var durationHold: Double = 1
     
-    init(){
-        UINavigationBar.setAnimationsEnabled(false)
-    }
+    @State var fadeText1: Bool
+    @State var fadeText2: Bool
+    @State var isView2Active: Bool
+    @State var stopRepeat: Bool
+    @State var fadeTextSecond1: Bool
+    @State var fadeTextSecond2: Bool
+    @State var fadeTextThird1: Bool
+    @State var fadeTextThird2: Bool
+    @State var disable1: Bool
+    @State var disable2: Bool
+    @State var disable3: Bool
+    @State var scale:Double
+    @State var scaleCircleSmall:Double
+    @State var scale2:Double
+    @State var durationHold: Double
     
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+ 
     var body: some View {
         NavigationView{
             ZStack{
@@ -140,7 +158,7 @@ struct IntroView: View {
                                 
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView(visible: 1, visibleText2: 0, visibleText3: 0, visibleText4: 0, visibleText5: 0, hideButton: 1, fadeText1: false, disable1: false, disable2: false, isView2Active: false, isVisible: false, angle: 0.0, scalefade: 1.0, scale: 1.0, rotation: 0.0, rotationIntro: false, flip: false, selectedCircles: [], rotate1: [], userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -159,13 +177,14 @@ struct IntroView: View {
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                     isView2Active = true
+                                    isView2Active = true
                                     
                                 }
                                 scale2 = 0
                                 
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView(visible: 1, visibleText2: 0, visibleText3: 0, visibleText4: 0, visibleText5: 0, hideButton: 1, fadeText1: false, disable1: false, disable2: false, isView2Active: false, isVisible: false, angle: 0.0, scalefade: 1.0, scale: 1.0, rotation: 0.0, rotationIntro: false, flip: false, selectedCircles: [], rotate1: [], userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -190,7 +209,7 @@ struct IntroView: View {
                                 
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView(visible: 1, visibleText2: 0, visibleText3: 0, visibleText4: 0, visibleText5: 0, hideButton: 1, fadeText1: false, disable1: false, disable2: false, isView2Active: false, isVisible: false, angle: 0.0, scalefade: 1.0, scale: 1.0, rotation: 0.0, rotationIntro: false, flip: false, selectedCircles: [], rotate1: [], userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -206,11 +225,33 @@ struct IntroView: View {
             }
         }
         .animation(nil)
+        .onAppear(perform: {
+            UINavigationBar.setAnimationsEnabled(false)
+        })
     }
 }
 
 struct IntroView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroView()
+        IntroView(fadeText1: false,
+                  fadeText2: false,
+                  isView2Active: false,
+                  stopRepeat: true,
+                  fadeTextSecond1: false,
+                  fadeTextSecond2: false,
+                  fadeTextThird1: false,
+                  fadeTextThird2: false,
+                  disable1: false,
+                  disable2: false,
+                  disable3: false,
+                  scale: 0.8,
+                  scaleCircleSmall: 1,
+                  scale2: 1,
+                  durationHold: 1,
+                  userListCoreDataViewModel: UserListCoreDataViewModel(),
+                  goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                  planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                  subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                  loveListCoreDataViewModel: LoveListCoreDataViewModel())
     }
 }

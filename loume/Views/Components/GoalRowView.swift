@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct GoalRowView: View {
-    @ObservedObject var userData: User
+    var goal: GoalCoreDataModel
     
-    var goal: Goal
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    let viewModel = ViewModel()
     
     var body: some View {
         VStack(spacing: 16) {
@@ -30,13 +32,13 @@ struct GoalRowView: View {
         HStack {
             goalProgressBar
             
-            Text("\(String(format: "%.0f", goal.getPercentageProgress()))%")
+            Text("\(String(format: "%.0f", viewModel.getPercentageProgress(planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, goal: goal)))%")
                 .font(.headline)
         }
     }
     
     var goalProgressBar: some View {
-        ProgressView(value: Double(goal.getPercentageProgress()), total: 100)
+        ProgressView(value: Double(viewModel.getPercentageProgress(planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, goal: goal)), total: 100)
             .progressViewStyle(.linear)
             .tint(Color("Light Moss Green"))
             .background(
@@ -44,7 +46,7 @@ struct GoalRowView: View {
                     Rectangle()
                         .foregroundColor(.white)
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .scaleEffect(x: CGFloat(checkingGoalProgressBarValue()), y: 1.0, anchor: .leading)
+                        .scaleEffect(x: CGFloat(viewModel.checkingGoalProgressBarValue(planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, goal: goal)), y: 1.0, anchor: .leading)
                 }
             )
             .cornerRadius(6)
@@ -53,7 +55,7 @@ struct GoalRowView: View {
     var goalDescriptionContent: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(goal.getName())
+                Text(goal.name)
                     .font(.title2.bold())
                 
                 Spacer()
@@ -62,29 +64,22 @@ struct GoalRowView: View {
             HStack {
                 Image(systemName: "calendar")
                 
-                Text(userData.getDueDateFormat(dueDate: goal.getDueDateWithoutFormat()) + " - " + goal.getTimeLeft())
+                Text(viewModel.getDueDateFormat(dueDate: goal.dueDate) + " - " + viewModel.getTimeLeft(dueDate: goal.dueDate))
             }
             
             HStack {
                 Image(systemName: "list.number")
                 
-                Text("\(goal.getPlans().count)")
+                Text("\(goal.plans.count)")
             }
-        }
-    }
-    
-    func checkingGoalProgressBarValue() -> Double {
-        if goal.getPercentageProgress() == 0 {
-            return 1
-        } else {
-            return goal.getPercentageProgress()
         }
     }
 }
 
 struct GoalRowView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalRowView(userData: User(name: "name 1", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]),
-                    goal: Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date()))
+        GoalRowView(goal: GoalCoreDataModel.init(goalEntity: GoalEntity()),
+                    planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                    subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel())
     }
 }

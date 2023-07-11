@@ -10,9 +10,12 @@ import SwiftUI
 struct GoalView: View {
     @State var inputTextValues: [[[String]]] = [[[""]]]
     @State var isSheetPresented: Bool = false
-    @ObservedObject var userData: User
     
     let backgroundColor: Color
+    @State var goalCoreDataModel = GoalCoreDataModel(goalEntity: GoalEntity())
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     
     var body: some View {
         NavigationStack {
@@ -33,6 +36,9 @@ struct GoalView: View {
             }
             .tint(Color("Axolotl"))
         }
+        .onAppear(perform: {
+            goalListCoreDataViewModel.getGoalEntities()
+        })
     }
     
     var goalViewHeader: some View {
@@ -42,21 +48,25 @@ struct GoalView: View {
             
             Spacer()
             
-            CircularButton(userData: userData, isSheetPresented: $isSheetPresented,
-                           inputTextValues: $inputTextValues, dueDate: Date(), type: "goal", goal: Goal(name: "", plans: [], dueDate: Date()), goalIndex: 0)
+            CircularButton(isSheetPresented: $isSheetPresented,
+                           inputTextValues: $inputTextValues, type: "goal", goal: $goalCoreDataModel, goalListCoreDataViewModel: goalListCoreDataViewModel,
+                           planListCoreDataViewModel: planListCoreDataViewModel,
+                           subPlanListCoreDataViewModel: subPlanListCoreDataViewModel,
+                           goalIndex: 0)
         }
     }
     
     var goalList: some View {
         VStack {
-            if userData.getGoals().isEmpty {
+            if goalListCoreDataViewModel.goalEntities.isEmpty {
                 EmptyStateView(type: "Goal")
             } else {
-                ForEach(Array(userData.getGoals().enumerated()), id: \.0) { index, goal in
-                    NavigationLink(destination: PlanView(userData: userData,
-                                                         inputTextValues: $inputTextValues,
-                                                         goal: goal, goalIndex: index)) {
-                        GoalRowView(userData: userData, goal: goal)
+                ForEach(Array(goalListCoreDataViewModel.goalEntities.enumerated()), id: \.0) { index, goal in
+                    NavigationLink(destination: PlanView(inputTextValues: $inputTextValues,
+                                                         goal: goal, goalIndex: index, goalListCoreDataViewModel: goalListCoreDataViewModel,
+                                                         planListCoreDataViewModel: planListCoreDataViewModel,
+                                                         subPlanListCoreDataViewModel: subPlanListCoreDataViewModel)) {
+                        GoalRowView(goal: goal, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel)
                     }
                 }
             }
@@ -66,7 +76,8 @@ struct GoalView: View {
 
 struct GoalView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalView(userData: User(name: "name 1", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]),
-                 backgroundColor: Color("Lotion"))
+        GoalView(backgroundColor: Color("Lotion"), goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                 planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                 subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel())
     }
 }

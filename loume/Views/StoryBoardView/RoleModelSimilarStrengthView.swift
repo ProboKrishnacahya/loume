@@ -17,6 +17,8 @@ struct RoleModelSimilarStrengthView: View {
                     Text("strength with")
                     Text("Mark Lee?")
                         .fontWeight(.bold)
+                    //ganti "Mark Lee" pada Text baris di atas dengan
+                    //userListCoreDataViewModel.userEntities[0].roleModel
                     
                 }
                 Rectangle()

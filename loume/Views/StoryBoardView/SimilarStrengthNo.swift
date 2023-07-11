@@ -15,6 +15,9 @@ struct SimilarStrengthNo: View {
                 Text("attain some of")
                 Text("Mark Lee")
                     .fontWeight(.bold)
+                
+                //ganti "Mark Lee" pada Text baris di atas dengan
+                //userListCoreDataViewModel.userEntities[0].roleModel
             }
             Text("positive traits one day soon!")
             Text("For now, let’s try discovering")

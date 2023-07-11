@@ -377,7 +377,8 @@ struct QuestionView2: View {
                         .opacity(hideButton)
                         
                     }
-                
+                    //jika tombol oren diklik: tujuannya untuk memasukkan value weakness ke dalam data disetiap page yang muncul 1 kali. action dibawah untuk menyimpan 1 weakness SAJA. function di bawah normalnya dijalankan 3 kali (sesuai dengan jumlah weaknessnya yaitu ada 3)
+        //                    userListCoreDataViewModel.setWeakness(userCoreDataModel: userListCoreDataViewModel.userEntities[0], weakness: {{isikan disini weaknessnya berupa String}})
             }
         }
     }

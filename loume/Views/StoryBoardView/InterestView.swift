@@ -8,29 +8,54 @@
 import SwiftUI
 
 struct InterestView: View {
-    @State var visible: Double = 1
-    @State var visibleText2: Double = 0
-    @State var visibleText3: Double = 0
-    @State var visibleText4: Double = 0
-    @State var visibleText5: Double = 0
-    @State var hideButton: Double = 1
-    @State private var fadeText1 = false
-    @State private var disable1 = false
-    @State private var disable2 = false
-    @State private var isView2Active = false
+//    @State var visible: Double = 1
+//    @State var visibleText2: Double = 0
+//    @State var visibleText3: Double = 0
+//    @State var visibleText4: Double = 0
+//    @State var visibleText5: Double = 0
+//    @State var hideButton: Double = 1
+//    @State private var fadeText1 = false
+//    @State private var disable1 = false
+//    @State private var disable2 = false
+//    @State private var isView2Active = false
+//    private static let size: CGFloat = 120
+//    private static let spacingBetweenColumns: CGFloat = 18
+//    private static let spacingBetweenRows: CGFloat = 1
+//    private static let totalcolumns: Int = 10
+//    @State private var isVisible = false
+//    @State private var angle = 0.0
+//    @State private var scalefade = 1.0
+//    @State private var scale = 1.0
+//    @State var rotation = 0.0
+//    @State private var rotationIntro = false
+//    @State private var flip = false
+//    @State private var selectedCircles: Set<Int> = []
+//    @State private var rotate1: Set<Int> = []
+    
+    @State var visible: Double
+    @State var visibleText2: Double
+    @State var visibleText3: Double
+    @State var visibleText4: Double
+    @State var visibleText5: Double
+    @State var hideButton: Double
+    @State var fadeText1: Bool
+    @State var disable1: Bool
+    @State var disable2: Bool
+    @State var isView2Active: Bool
     private static let size: CGFloat = 120
     private static let spacingBetweenColumns: CGFloat = 18
     private static let spacingBetweenRows: CGFloat = 1
     private static let totalcolumns: Int = 10
-    @State private var isVisible = false
-    @State private var angle = 0.0
-    @State private var scalefade = 1.0
-    @State private var scale = 1.0
-    @State var rotation = 0.0
-    @State private var rotationIntro = false
-    @State private var flip = false
-    @State private var selectedCircles: Set<Int> = []
-    @State private var rotate1: Set<Int> = []
+    @State var isVisible: Bool
+    @State var angle: Double
+    @State var scalefade: Double
+    @State var scale: Double
+    @State var rotation: Double
+    @State var rotationIntro: Bool
+    @State var flip: Bool
+    @State var selectedCircles: Set<Int>
+    @State var rotate1: Set<Int>
+    
     let interest: [String] = ["Animal", "Animation", "Art", "Acting", "Astronomy", "Automotive", "Business", "Beauty", "Baking", "Board Game", "Books", "Cooking", "Crafts", "Culture", "Cosplay", "Content Creating", "Design", "Dance", "Drawing", "Engineering", "Entrepreneurship", "Exercising", "Entertainment", "Education", "Fashion", "Fishing", "Film", "Gardening", "Game", "History", "Investing", "Outdoor Activities", "Sports", "Journaling", "Music", "Marketing", "Language", "Photography", "Videography", "Public Speaking", "Painting", "Reading", "Science", "Swimming", "Singing", "Technology", "Traveling", "Trading", "Writing", "Politics"]
     let grid =  Array(
         repeating: GridItem(
@@ -38,6 +63,13 @@ struct InterestView: View {
         ),
         count: totalcolumns
     )
+    
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    
     var body: some View {
         ZStack{
             NavigationView{
@@ -151,21 +183,11 @@ struct InterestView: View {
                                             .foregroundColor(Color.white)
                                             .padding(.trailing)
                                             .font(.system(size: 25))
-                                        
-                                        
                                     }
                                     .onTapGesture {
                                         isView2Active = true
-                                        
                                     }
-                                    .overlay(
-                                        NavigationLink(destination: SetupProject().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                            EmptyView()
-                                        }
-                                    )
                             }
-                            
-                            
                         }
                         .padding(.bottom, 30)
                         .opacity(0)
@@ -179,22 +201,23 @@ struct InterestView: View {
                     }
                     .animation(nil)
                 }
-                
             }
             .animation(nil)
+            
             VStack{
                 Spacer()
                 ZStack{ // button untuk next
                     HStack{ // 1
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.leading)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.left")
-                                    .padding(.leading)
-                                    .foregroundColor(Color.white)
-                            }
+                    
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.leading)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.left")
+                                        .padding(.leading)
+                                        .foregroundColor(Color.white)
+                                }
                         
                         Spacer()
                         HStack{
@@ -301,10 +324,14 @@ struct InterestView: View {
                                     .foregroundColor(Color.white)
                             }
                             .onTapGesture {
-                                
                                 visibleText3 = 0
                                 visibleText4 = 1
                             }
+//                            .overlay(
+//                                                                    NavigationLink(destination: SetupProject(moveUp: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1, userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+//                                                                        EmptyView()
+//                                                                    }
+//                                                                )
                     }
                     .opacity(visibleText3)
                     
@@ -322,6 +349,9 @@ struct InterestView: View {
             
         }
         
+        // ketika setelah pilih 3 bola hijau, maka klik button oren untuk nyimpan 3 interest yang sudah dipilih
+       // loveListCoreDataViewModel.addLoveEntity(interests: interest, selectedCircles: selectedCircles)
+        
     }
     func offsetX(_ value: String) -> CGFloat {
         let index = interest.firstIndex(of: value) ?? 0
@@ -336,8 +366,6 @@ struct InterestView: View {
     func choseColor(_ index: Int) {
         if selectedCircles.contains(index) {
             selectedCircles.remove(index)
-            
-            
         } else {
             selectedCircles.insert(index)
         }
@@ -347,6 +375,29 @@ struct InterestView: View {
 
 struct InterestView_Previews: PreviewProvider {
     static var previews: some View {
-        InterestView()
+        InterestView(visible: 1,
+                     visibleText2: 0,
+                     visibleText3: 0,
+                     visibleText4: 0,
+                     visibleText5: 0,
+                     hideButton: 1,
+                     fadeText1: false,
+                     disable1: false,
+                     disable2: false,
+                     isView2Active: false,
+                     isVisible: false,
+                     angle: 0.0,
+                     scalefade: 1.0,
+                     scale: 1.0,
+                     rotation: 0.0,
+                     rotationIntro: false,
+                     flip: false,
+                     selectedCircles: [],
+                     rotate1: [],
+                     userListCoreDataViewModel: UserListCoreDataViewModel(),
+                     goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                     planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                     subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                     loveListCoreDataViewModel: LoveListCoreDataViewModel())
     }
 }

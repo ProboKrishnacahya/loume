@@ -11,12 +11,16 @@ struct ModalView: View {
     @Binding var name: String
     @Binding var dueDate: Date
     @Binding var type: String
-    @Binding var goal: Goal
+    @Binding var goal: GoalCoreDataModel
     @Binding var isSheetPresented: Bool
     @Binding var inputTextValues: [[[String]]]
-    @ObservedObject var userData: User
     
     let goalIndex: Int
+    
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    
     
     var body: some View {
         NavigationStack {
@@ -26,10 +30,16 @@ struct ModalView: View {
                 .navigationBarTitle(ModalViewModel().getNavigationBarTitle(type: type))
                 .navigationBarTitleDisplayMode(.inline)
         }
+        .onDisappear(perform: {
+            if type != "goal" {
+                planListCoreDataViewModel.getPlanEntities(goalCoreDataModel: goal)
+                //subplanset
+            }
+        })
     }
     
     var maximumDateGoal: Date{
-        return max(Date(), goal.getDueDateWithoutFormat())
+        return max(Date(), goal.dueDate)
     }
     
     var formContent: some View {
@@ -57,19 +67,17 @@ struct ModalView: View {
     var trailingNavigationContent: some View {
         Button("Done") {
             if type == "goal" {
-                if userData.getGoals().count > 0 {
+                if goalListCoreDataViewModel.goalEntities.count > 0 {
                     inputTextValues.append([[""]])
                 }
                 
-                userData.addGoal(name: name, plans: [], dueDate: dueDate)
-                userData.objectWillChange.send()
+                goalListCoreDataViewModel.addGoalEntity(name: name, dueDate: dueDate)
+                
             } else {
-                if userData.getGoals()[goalIndex].getPlans().count > 0 {
+                if goal.plans.count > 0 {
                     inputTextValues[goalIndex].append([""])
                 }
-                
-                userData.getGoals()[goalIndex].addPlan(name: name, dueDate: dueDate, subPlans: [SubPlan(name: "", is_done: false)])
-                userData.objectWillChange.send()
+                planListCoreDataViewModel.addPlanEntity(name: name, dueDate: dueDate, goalCoreDataModel: goal)
             }
             resetForm()
         }
@@ -103,9 +111,12 @@ struct ModalView_Previews: PreviewProvider {
         ModalView(name: .constant("Name 1"),
                   dueDate: .constant(Date()),
                   type: .constant("goal"),
-                  goal: .constant(Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())),
+                  goal: .constant(GoalCoreDataModel(goalEntity: GoalEntity())),
                   isSheetPresented: .constant(true),
-                  inputTextValues: .constant([[[""]]]), userData: User(name: "name 1", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]),
-                  goalIndex: 0)
+                  inputTextValues: .constant([[[""]]]),
+                  goalIndex: 0,
+                  planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                  subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                  goalListCoreDataViewModel: GoalListCoreDataViewModel())
     }
 }

@@ -20,6 +20,9 @@ struct SimilarStrengthYes: View {
                 Text("MarkLee")
                     .fontWeight(.bold)
                     .font(.title2)
+                
+                //ganti "Mark Lee" pada Text baris di atas dengan
+                //userListCoreDataViewModel.userEntities[0].roleModel
             }
             TextField("Enter username...", text: $roleModel1)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -27,9 +30,8 @@ struct SimilarStrengthYes: View {
                 .animation(Animation.easeInOut(duration: 1.5))
                 .padding(.top, 20)
             
-            
-            
-            
+            //jika tombol oren diklik: tujuannya untuk memasukkan strength similarity dengan role model ke dalam data. (Intro Copy 16)
+//                    userListCoreDataViewModel.setStrengthSimilar(userCoreDataModel: userListCoreDataViewModel.userEntities[0], strengthSimilar: {{isikan disini strength similarnya}})
         }
     }
 }
