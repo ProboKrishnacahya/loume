@@ -20,6 +20,7 @@ class UserListCoreDataViewModel: ObservableObject {
     
     func deleteUserEntityAll() {
         getUserEntities()
+        
         for userEntity in userEntities {
             deleteUser(userCoreDataModel: userEntity)
         }

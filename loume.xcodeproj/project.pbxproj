@@ -43,7 +43,6 @@
 		82441EF62A582B4E007EFD6E /* InterestSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */; };
 		826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */; };
 		826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */; };
-		826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C62A4EF3EC00B9F57A /* Persistence.swift */; };
 		826814E42A4EF3EC00B9F57A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826814C72A4EF3EC00B9F57A /* Assets.xcassets */; };
 		826814E62A4EF3EC00B9F57A /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814CA2A4EF3EC00B9F57A /* SoundManager.swift */; };
 		826814EA2A4EF3EC00B9F57A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826814CF2A4EF3EC00B9F57A /* Preview Assets.xcassets */; };
@@ -117,7 +116,6 @@
 		82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestSelectedView.swift; sourceTree = "<group>"; };
 		826814C32A4EF3EC00B9F57A /* comee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = comee.xcdatamodel; sourceTree = "<group>"; };
 		826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardViewModel.swift; sourceTree = "<group>"; };
-		826814C62A4EF3EC00B9F57A /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		826814C72A4EF3EC00B9F57A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		826814CA2A4EF3EC00B9F57A /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		826814CF2A4EF3EC00B9F57A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 			children = (
 				826814DE2A4EF3EC00B9F57A /* ContentView.swift */,
 				826814D02A4EF3EC00B9F57A /* loumeApp.swift */,
-				826814C62A4EF3EC00B9F57A /* Persistence.swift */,
 				826814C72A4EF3EC00B9F57A /* Assets.xcassets */,
 				826814DF2A4EF3EC00B9F57A /* Helpers */,
 				826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */,
@@ -480,7 +477,6 @@
 				826814EC2A4EF3EC00B9F57A /* AppHeader.swift in Sources */,
 				0B474AEE2A5D7B8300113E27 /* RoleModelStrengthListCoreDataViewModel.swift in Sources */,
 				82441EF12A582B4E007EFD6E /* MyStrengthView.swift in Sources */,
-				826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */,
 				0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */,
 				0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */,
 				0B43EC362A56A63100B84D7E /* EmptyStateView.swift in Sources */,

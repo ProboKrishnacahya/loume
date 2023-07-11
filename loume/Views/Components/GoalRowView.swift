@@ -57,19 +57,16 @@ struct GoalRowView: View {
             HStack {
                 Text(goal.name)
                     .font(.title2.bold())
-                
                 Spacer()
             }
             
             HStack {
                 Image(systemName: "calendar")
-                
                 Text(viewModel.getDueDateFormat(dueDate: goal.dueDate) + " - " + viewModel.getTimeLeft(dueDate: goal.dueDate))
             }
             
             HStack {
                 Image(systemName: "list.number")
-                
                 Text("\(goal.plans.count)")
             }
         }

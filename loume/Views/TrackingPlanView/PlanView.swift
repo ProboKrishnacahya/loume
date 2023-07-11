@@ -26,7 +26,7 @@ struct PlanView: View {
             VStack(spacing: 24) {
                 planViewHeader
                 
-                if planListCoreDataViewModel.planEntities.isEmpty {
+                if planListCoreDataViewModel.planEntities.count == 0 {
                     EmptyStateView(type: "Plan")
                 } else {
                     ZStack {
@@ -130,24 +130,24 @@ struct PlanView: View {
             }
         }
         .onAppear(perform: {
-            planListCoreDataViewModel.getPlanEntities(goalCoreDataModel: goal)
-            print("planniii", planListCoreDataViewModel.planEntities.count)
-            
+            planListCoreDataViewModel.getPlanEntities(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex])
         })
-        .onDisappear {
-            print("halooo hilang")
-        }
     }
     
     func bindingForTextField(groupIndex: Int, textFieldIndex: Int) -> Binding<String> {
         return Binding<String>(
             get: {
-                print("ini",inputTextValues)
-                print("ini",groupIndex)
+                if groupIndex >= planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex]).count {
+                    return inputTextValues[goalIndex][0][0]
+                }
                 return inputTextValues[goalIndex][groupIndex][textFieldIndex]
             },
             set: {
-                inputTextValues[goalIndex][groupIndex][textFieldIndex] = $0
+                if groupIndex >= planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex]).count {
+                    inputTextValues[goalIndex][0][0] = $0
+                } else {
+                    inputTextValues[goalIndex][groupIndex][textFieldIndex] = $0
+                }
             }
         )
     }

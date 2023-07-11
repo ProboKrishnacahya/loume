@@ -21,7 +21,6 @@ struct ModalView: View {
     @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
     
-    
     var body: some View {
         NavigationStack {
             formContent
@@ -32,8 +31,7 @@ struct ModalView: View {
         }
         .onDisappear(perform: {
             if type != "goal" {
-                planListCoreDataViewModel.getPlanEntities(goalCoreDataModel: goal)
-                //subplanset
+                planListCoreDataViewModel.getPlanEntities(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex])
             }
         })
     }
@@ -44,6 +42,7 @@ struct ModalView: View {
     
     var formContent: some View {
         VStack(spacing: 24) {
+            
             nameContentForm
             
             if type == "plan" {
@@ -79,6 +78,7 @@ struct ModalView: View {
                 }
                 planListCoreDataViewModel.addPlanEntity(name: name, dueDate: dueDate, goalCoreDataModel: goal)
             }
+            
             resetForm()
         }
         .foregroundColor(self.name.isEmpty ? .secondary : Color("Axolotl"))

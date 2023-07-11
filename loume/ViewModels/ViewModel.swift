@@ -33,7 +33,6 @@ class ViewModel {
         var sumIsdone: Int = 0
         
         for plan in planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goal) {
-            
             for subPlan in subPlanListCoreDataViewModel.getSubPlanEntitiesArray(planCoreDataModel: plan) {
                 if subPlan.isDone {
                     sumIsdone += 1

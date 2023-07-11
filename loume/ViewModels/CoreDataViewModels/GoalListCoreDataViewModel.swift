@@ -13,8 +13,9 @@ class GoalListCoreDataViewModel: ObservableObject {
     
     init() {
         getGoalEntities()
-        for goalEntity in goalEntities {
-            deleteGoal(goalCoreDataModel: goalEntity)
+        
+        for goalCoreDataModel in goalEntities {
+            deleteGoal(goalCoreDataModel: goalCoreDataModel)
         }
     }
     
@@ -35,7 +36,6 @@ class GoalListCoreDataViewModel: ObservableObject {
             CoreDataManager.instance.deleteGoalEntity(goalEntity: existingGoalEntity)
         }
     }
-    
     
     func getGoalEntities() {
         goalEntities = CoreDataManager.instance.getGoalEntities().map(GoalCoreDataModel.init)

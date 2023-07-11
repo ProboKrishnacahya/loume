@@ -29,6 +29,7 @@ class LoveListCoreDataViewModel: ObservableObject {
     
     func deleteLoveEntityAll() {
         getLoveEntities()
+        
         for loveEntity in loveEntities {
             deleteLove(loveCoreDataModel: loveEntity)
         }
