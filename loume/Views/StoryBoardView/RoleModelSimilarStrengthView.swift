@@ -7,7 +7,13 @@
 
 import SwiftUI
 
+
 struct RoleModelSimilarStrengthView: View {
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
     @State var roleModel1: String = ""
     var body: some View {
         VStack{
@@ -48,6 +54,10 @@ struct RoleModelSimilarStrengthView: View {
 
 struct RoleModelSimilarStrengthView_Previews: PreviewProvider {
     static var previews: some View {
-        RoleModelSimilarStrengthView()
+        RoleModelSimilarStrengthView(userListCoreDataViewModel: UserListCoreDataViewModel(),
+                                     goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                                     planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                                     subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                                     loveListCoreDataViewModel: LoveListCoreDataViewModel())
     }
 }

@@ -117,7 +117,7 @@ struct SetupProject: View {
                             }
                             .opacity(fadeOutCircle)
                             .overlay(
-                                NavigationLink(destination: IntroView(fadeText1: false, fadeText2: false, isView2Active: false, stopRepeat: true, fadeTextSecond1: false, fadeTextSecond2: false, fadeTextThird1: false, fadeTextThird2: false, disable1: false, disable2: false, disable3: false, scale: 0.8, scaleCircleSmall: 1, scale2: 1, durationHold: 1, userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: IntroView(  userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
