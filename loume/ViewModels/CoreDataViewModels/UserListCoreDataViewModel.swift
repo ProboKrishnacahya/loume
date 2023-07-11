@@ -12,10 +12,11 @@ class UserListCoreDataViewModel: ObservableObject {
     @Published var userEntities: [UserCoreDataModel] = []
     
     init() {
-        //        addUserEntity(name: "aku 1")
+        deleteUserEntityAll()
+                addUserEntity(name: "aku 1")
         //        addUserEntity(name: "aku 2")
         //        addUserEntity(name: "aku 3")
-        deleteUserEntityAll()
+        
     }
     
     func deleteUserEntityAll() {
