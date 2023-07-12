@@ -12,6 +12,7 @@ struct GoalView: View {
     @State var isSheetPresented: Bool = false
     
     let backgroundColor: Color
+    
     @State var goalCoreDataModel = GoalCoreDataModel(goalEntity: GoalEntity())
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
@@ -26,6 +27,7 @@ struct GoalView: View {
                 ScrollView {
                     VStack(spacing: 24) {
                         goalViewHeader
+                        
                         goalList
                     }
                     .padding()
@@ -48,7 +50,7 @@ struct GoalView: View {
             
             Spacer()
             
-            CircularButton(isSheetPresented: $isSheetPresented,
+            CreateButton(isSheetPresented: $isSheetPresented,
                            inputTextValues: $inputTextValues, type: "goal", goal: $goalCoreDataModel, goalListCoreDataViewModel: goalListCoreDataViewModel,
                            planListCoreDataViewModel: planListCoreDataViewModel,
                            subPlanListCoreDataViewModel: subPlanListCoreDataViewModel,

@@ -15,6 +15,7 @@ struct PlanView: View {
     @GestureState private var dragOffset: CGFloat = 0
     
     @State var goal: GoalCoreDataModel
+    
     let goalIndex: Int
     
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
@@ -163,7 +164,7 @@ struct PlanView: View {
                 
                 Spacer()
                 
-                CircularButton(isSheetPresented: $isSheetPresented,
+                CreateButton(isSheetPresented: $isSheetPresented,
                                inputTextValues: $inputTextValues,
                                type: "plan",
                                goal: $goal,

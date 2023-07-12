@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CircularButton: View {
+struct CreateButton: View {
     @Binding var isSheetPresented: Bool
     @Binding var inputTextValues: [[[String]]]
     @State var name = ""
@@ -28,7 +28,7 @@ struct CircularButton: View {
             Image(systemName: "plus")
                 .padding()
                 .foregroundColor(.white)
-                .background(Color("Axolotl"))
+                .background(Color("Chinese Orange"))
                 .clipShape(Circle())
         }
         .sheet(isPresented: $isSheetPresented) {
@@ -43,7 +43,7 @@ struct CircularButton: View {
 
 struct CircularButton_Previews: PreviewProvider {
     static var previews: some View {
-        CircularButton(isSheetPresented: .constant(false),
+        CreateButton(isSheetPresented: .constant(false),
                        inputTextValues: .constant([[[""]]]), type: "goal",
                        goal: .constant(GoalCoreDataModel(goalEntity: GoalEntity())),
                        goalListCoreDataViewModel: GoalListCoreDataViewModel(),
