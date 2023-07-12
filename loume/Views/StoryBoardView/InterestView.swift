@@ -41,29 +41,29 @@ struct InterestView: View {
     @State private var selectedCircles: Set<Int> = []
     @State private var rotate1: Set<Int> = []
     
-    //    @State var visible: Double
-    //    @State var visibleText2: Double
-    //    @State var visibleText3: Double
-    //    @State var visibleText4: Double
-    //    @State var visibleText5: Double
-    //    @State var hideButton: Double
-    //    @State var fadeText1: Bool
-    //    @State var disable1: Bool
-    //    @State var disable2: Bool
-    //    @State var isView2Active: Bool
-    //    private static let size: CGFloat = 120
-    //    private static let spacingBetweenColumns: CGFloat = 18
-    //    private static let spacingBetweenRows: CGFloat = 1
-    //    private static let totalcolumns: Int = 10
-    //    @State var isVisible: Bool
-    //    @State var angle: Double
-    //    @State var scalefade: Double
-    //    @State var scale: Double
-    //    @State var rotation: Double
-    //    @State var rotationIntro: Bool
-    //    @State var flip: Bool
-    //    @State var selectedCircles: Set<Int>
-    //    @State var rotate1: Set<Int>
+//    @State var visible: Double
+//    @State var visibleText2: Double
+//    @State var visibleText3: Double
+//    @State var visibleText4: Double
+//    @State var visibleText5: Double
+//    @State var hideButton: Double
+//    @State var fadeText1: Bool
+//    @State var disable1: Bool
+//    @State var disable2: Bool
+//    @State var isView2Active: Bool
+//    private static let size: CGFloat = 120
+//    private static let spacingBetweenColumns: CGFloat = 18
+//    private static let spacingBetweenRows: CGFloat = 1
+//    private static let totalcolumns: Int = 10
+//    @State var isVisible: Bool
+//    @State var angle: Double
+//    @State var scalefade: Double
+//    @State var scale: Double
+//    @State var rotation: Double
+//    @State var rotationIntro: Bool
+//    @State var flip: Bool
+//    @State var selectedCircles: Set<Int>
+//    @State var rotate1: Set<Int>
     
     let interest: [String] = ["Animal", "Animation", "Art", "Acting", "Astronomy", "Automotive", "Business", "Beauty", "Baking", "Board Game", "Books", "Cooking", "Crafts", "Culture", "Cosplay", "Content Creating", "Design", "Dance", "Drawing", "Engineering", "Entrepreneurship", "Exercising", "Entertainment", "Education", "Fashion", "Fishing", "Film", "Gardening", "Game", "History", "Investing", "Outdoor Activities", "Sports", "Journaling", "Music", "Marketing", "Language", "Photography", "Videography", "Public Speaking", "Painting", "Reading", "Science", "Swimming", "Singing", "Technology", "Traveling", "Trading", "Writing", "Politics"]
     let grid =  Array(
@@ -74,18 +74,18 @@ struct InterestView: View {
     )
     
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+        @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+        @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+        @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+        @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+        @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         ZStack{
             NavigationView{
                 ZStack{
                     VStack{
-                        Text("Before going further, let’s help you pick **your top 3 interests** so that we know how to guide you better personally.")
+                        Text("Before going further, let’s help you pick *your top 3 interests* so that we know how to guide you better personally.")
                             .multilineTextAlignment(.center)
                             .frame(width: 250.0)
                             .opacity(fadeText1 ? 1 : 0)
@@ -97,7 +97,7 @@ struct InterestView: View {
                             }
                     }
                     .opacity(visibleTextNext)
-                    
+                   
                     ZStack{
                         ScrollView([.horizontal], showsIndicators: false) {
                             LazyVGrid(
@@ -246,8 +246,8 @@ struct InterestView: View {
                                         visibleTextNext1 = 1
                                         
                                     }
-                                
-                                
+                                    
+                                    
                                 
                                 Spacer()
                                 HStack{
@@ -276,11 +276,11 @@ struct InterestView: View {
                                         
                                     }
                                     .overlay(
-                                        NavigationLink(destination: InterestSelectedView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                            EmptyView()
-                                        }
-                                    )
-                                
+                                                                        NavigationLink(destination: InterestSelectedView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                                                            EmptyView()
+                                                                        }
+                                                                    )
+                                    
                                 
                                 
                                 
@@ -295,24 +295,24 @@ struct InterestView: View {
             }
             .animation(nil)
             
-            //            VStack{
-            //                Spacer()
-            //                ZStack{ // button untuk next
-            
-            
-            
-            //                }
-            //                .opacity(hideButton)
-            //            }
-            //            .opacity(isVisible ? 1 : 0)
-            //            .animation(.easeIn(duration: 0.5).delay(11))
-            //            .onAppear {
-            //                withAnimation {
-            //                    isVisible = true
-            //                }
-            //
-            //            }
-            
+//            VStack{
+//                Spacer()
+//                ZStack{ // button untuk next
+                    
+
+
+//                }
+//                .opacity(hideButton)
+//            }
+//            .opacity(isVisible ? 1 : 0)
+//            .animation(.easeIn(duration: 0.5).delay(11))
+//            .onAppear {
+//                withAnimation {
+//                    isVisible = true
+//                }
+//
+//            }
+           
             
             
         }

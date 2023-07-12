@@ -107,7 +107,8 @@ struct SetupProject: View {
                             }
                             .padding(.top, 10.0)
                         
-                        Circle()
+                        Image(systemName: "arrow.up")
+                            .font(.system(size: 48))
                             .foregroundColor(Color("Axolotl"))
                             .padding(.top, 160.0)
                             .frame(width: 70.0)
