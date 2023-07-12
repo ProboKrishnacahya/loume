@@ -128,13 +128,13 @@ struct InterestView: View {
                                                     x: offsetX(value),
                                                     y: 0
                                                 )
-                                            //                                                .opacity(isVisible ? 1 : 0)
-                                            //                                                .animation(.easeIn(duration: 0.5))
-                                            //                                                .onAppear {
-                                            //                                                    withAnimation {
-                                            //                                                        isVisible = true
-                                            //                                                    }
-                                            //                                                }
+//                                                .opacity(isVisible ? 1 : 0)
+//                                                .animation(.easeIn(duration: 0.5))
+//                                                .onAppear {
+//                                                    withAnimation {
+//                                                        isVisible = true
+//                                                    }
+//                                                }
                                         }
                                         .onTapGesture {
                                             choseColor(index)
@@ -143,10 +143,10 @@ struct InterestView: View {
                                         .animation(.easeIn, value: scalefade)
                                 }
                                 .opacity(visibleTextNext2)
-                                //                                .onAppear {
-                                
-                                //
-                                //                                }
+//                                .onAppear {
+                                    
+//
+//                                }
                                 
                             }.padding(.leading, 10)
                                 .padding(.trailing, 96)

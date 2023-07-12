@@ -110,8 +110,9 @@ struct QuestionView1: View {
                                         }
                                             
                                             
-                                        }.padding(.top,10)
-                                    }
+                                        }.padding(.top ,10)
+                                    }.padding(.top, 20)
+                                    
                                     
                                 }
                             } .opacity(Quest1)
@@ -218,7 +219,7 @@ struct QuestionView1: View {
                                                     .cornerRadius(7)
                                                     .foregroundColor(Color.white)
                                                 TextEditor(text: $roleModel1)
-                                                    .frame(width: 260.0, height: 345.0)
+                                                    .frame(width: 260.0, height: 350.0)
                                                 
                                             }
                                         }.padding(.top ,10)
