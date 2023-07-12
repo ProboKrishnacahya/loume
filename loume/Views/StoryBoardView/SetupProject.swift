@@ -38,6 +38,8 @@ struct SetupProject: View {
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
     @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     
 //    init() {
 //        UINavigationBar.setAnimationsEnabled(false)
@@ -117,7 +119,7 @@ struct SetupProject: View {
                             }
                             .opacity(fadeOutCircle)
                             .overlay(
-                                NavigationLink(destination: IntroView(  userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: IntroView(  userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -125,7 +127,7 @@ struct SetupProject: View {
                             .gesture(
                                 DragGesture()
                                     .onChanged { gesture in
-                                        userListCoreDataViewModel.addUserEntity(name: name)
+                                        userListCoreDataViewModel.saveUserEntity(name: name)
                                         if gesture.translation.height < 0 {
                                             self.offset = gesture.translation
                                         }
@@ -176,6 +178,7 @@ struct SetupProject_Previews: PreviewProvider {
                      goalListCoreDataViewModel: GoalListCoreDataViewModel(),
                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                     loveListCoreDataViewModel: LoveListCoreDataViewModel())
+                     loveListCoreDataViewModel: LoveListCoreDataViewModel(),
+        roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

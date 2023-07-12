@@ -13,10 +13,7 @@ class UserListCoreDataViewModel: ObservableObject {
     
     init() {
         deleteUserEntityAll()
-                addUserEntity(name: "aku 1")
-        //        addUserEntity(name: "aku 2")
-        //        addUserEntity(name: "aku 3")
-        
+        saveUserEntity(name: "aku 1")
     }
     
     func deleteUserEntityAll() {
@@ -31,74 +28,24 @@ class UserListCoreDataViewModel: ObservableObject {
         userEntities = CoreDataManager.instance.getUserEntities().map(UserCoreDataModel.init)
     }
     
-    func addUserEntity(name: String) {
-        let newUserEntity = UserEntity(context: CoreDataManager.instance.context)
-        newUserEntity.id = UUID()
-        newUserEntity.name = name
-        newUserEntity.created_at = Date()
-        CoreDataManager.instance.save()
+    func saveUserEntity(name: String) {
+        getUserEntities()
+        
+        if userEntities.isEmpty {
+            CoreDataManager.instance.addUserEntity(name: name)
+        } else {
+            let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userEntities[0].id)
+            
+            if let existingUserEntity = existingUserEntity {
+                CoreDataManager.instance.setNameUserEntity(userEntity: existingUserEntity, name: name)
+            }
+        }
+        
         getUserEntities()
     }
     
     func deleteUser(userCoreDataModel: UserCoreDataModel) {
-        //        offsets.forEach { index in
-        //            let userEntity = userEntities[index]
-        //            delete(userEntity)
-        //        }
-        
         delete(userCoreDataModel)
-        getUserEntities()
-    }
-    
-    func setRoleModel(userCoreDataModel: UserCoreDataModel, roleModel: String) {
-        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
-        
-        if let existingUserEntity = existingUserEntity {
-            CoreDataManager.instance.setRoleModelUserEntity(userEntity: existingUserEntity, roleModel: roleModel)
-        }
-        
-        getUserEntities()
-    }
-    
-    func setStrengthSimilar(userCoreDataModel: UserCoreDataModel, strengthSimilar: String) {
-        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
-        
-        if let existingUserEntity = existingUserEntity {
-            CoreDataManager.instance.setStrengthSimilarUserEntity(userEntity: existingUserEntity, strengthSimilar: strengthSimilar)
-        }
-        
-        getUserEntities()
-    }
-    
-    func setStrength(userCoreDataModel: UserCoreDataModel, strength: String) {
-        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
-        
-        if let existingUserEntity = existingUserEntity {
-            if userCoreDataModel.strength1.isEmpty {
-                CoreDataManager.instance.setStrengthUserEntity1(userEntity: existingUserEntity, strength: strength)
-            } else if userCoreDataModel.strength2.isEmpty {
-                CoreDataManager.instance.setStrengthUserEntity2(userEntity: existingUserEntity, strength: strength)
-            } else {
-                CoreDataManager.instance.setStrengthUserEntity3(userEntity: existingUserEntity, strength: strength)
-            }
-        }
-        
-        getUserEntities()
-    }
-    
-    func setWeakness(userCoreDataModel: UserCoreDataModel, weakness: String) {
-        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
-        
-        if let existingUserEntity = existingUserEntity {
-            if userCoreDataModel.weakness1.isEmpty {
-                CoreDataManager.instance.setWeaknessUserEntity1(userEntity: existingUserEntity, weakness: weakness)
-            } else if userCoreDataModel.weakness2.isEmpty {
-                CoreDataManager.instance.setWeaknessUserEntity2(userEntity: existingUserEntity, weakness: weakness)
-            } else {
-                CoreDataManager.instance.setWeaknessUserEntity3(userEntity: existingUserEntity, weakness: weakness)
-            }
-        }
-        
         getUserEntities()
     }
     
@@ -108,6 +55,108 @@ class UserListCoreDataViewModel: ObservableObject {
         if let existingUserEntity = existingUserEntity {
             CoreDataManager.instance.deleteUserEntity(userEntity: existingUserEntity)
         }
+    }
+    
+    func setRoleModel(roleModel: String) {
+        getUserEntities()
+        
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userEntities[0].id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setRoleModelUserEntity(userEntity: existingUserEntity, roleModel: roleModel)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setStrengthSimilar(strengthSimilar: String) {
+        getUserEntities()
+        
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userEntities[0].id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setStrengthSimilarUserEntity(userEntity: existingUserEntity, strengthSimilar: strengthSimilar)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setStrength1(strength: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setStrength1UserEntity(userEntity: existingUserEntity, strength: strength)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setStrength2(strength: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setStrength2UserEntity(userEntity: existingUserEntity, strength: strength)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setStrength3(strength: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setStrength3UserEntity(userEntity: existingUserEntity, strength: strength)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setWeakness1(weakness: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setWeakness1UserEntity(userEntity: existingUserEntity, weakness: weakness)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setWeakness2(weakness: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setWeakness2UserEntity(userEntity: existingUserEntity, weakness: weakness)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setWeakness3(weakness: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setWeakness3UserEntity(userEntity: existingUserEntity, weakness: weakness)
+        }
+        
+        getUserEntities()
     }
 }
 

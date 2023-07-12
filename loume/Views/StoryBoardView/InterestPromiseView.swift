@@ -41,6 +41,7 @@ struct InterestPromiseView: View {
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
     @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
 
     var body: some View {
         ZStack{
@@ -236,11 +237,8 @@ struct InterestPromiseView: View {
                     VStack{
                         HStack{
                             Text("Talking about")
-                            Text("Dance")
+                            Text(loveListCoreDataViewModel.getMostInterest())
                                 .fontWeight(.bold)
-                            
-                            //ganti "dance" pada Text baris di atas dengan
-                            //loveListCoreDataViewModel.getMostInterest()
                             Text("do you")
                         }
                         Text("have something that you want to achieve in this field?")
@@ -258,9 +256,7 @@ struct InterestPromiseView: View {
                         }.overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color("Axolotl"), lineWidth: 2)
-                            
-                            //jika tombol oren diklik: tujuannya untuk memasukkan goal ke dalam data
-        //                    userListCoreDataViewModel.setRoleModel(userCoreDataModel: userListCoreDataViewModel.userEntities[0], roleModel: {{isikan disini nama role modelnya}})
+                            //goal blm
                         )
                         
                     }
@@ -371,6 +367,6 @@ struct InterestPromiseView_Previews: PreviewProvider {
                             goalListCoreDataViewModel: GoalListCoreDataViewModel(),
                             planListCoreDataViewModel: PlanListCoreDataViewModel(),
                             subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                            loveListCoreDataViewModel: LoveListCoreDataViewModel())
+                            loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

@@ -47,7 +47,7 @@ struct IntroductionView: View {
                                 .clipShape(Circle())
                         }
                         Button(action: {
-                            userListCoreDataViewModel.addUserEntity(name: "zzh")
+                            userListCoreDataViewModel.saveUserEntity(name: "zzh")
                         }) {
                             Image(systemName: "plus")
                                 .padding()

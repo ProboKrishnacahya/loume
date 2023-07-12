@@ -12,9 +12,6 @@ class RoleModelStrengthListCoreDataViewModel: ObservableObject {
     @Published var roleModelStrengthEntities: [RoleModelStrengthCoreDataModel] = []
     
     init() {
-        //        addUserEntity(name: "aku 1")
-        //        addUserEntity(name: "aku 2")
-        //        addUserEntity(name: "aku 3")
         deleteRoleModelStrengthEntityAll()
     }
     
@@ -30,20 +27,43 @@ class RoleModelStrengthListCoreDataViewModel: ObservableObject {
         roleModelStrengthEntities = CoreDataManager.instance.getRoleModelStrengthEntities().map(RoleModelStrengthCoreDataModel.init)
     }
     
-    func addRoleModelStrengthEntity(value: String) {
-        let newRoleModelStrengthEntity = RoleModelStrengthEntity(context: CoreDataManager.instance.context)
-        newRoleModelStrengthEntity.id = UUID()
-        newRoleModelStrengthEntity.name = value
-        newRoleModelStrengthEntity.created_at = Date()
-        CoreDataManager.instance.save()
+    func saveRoleModelStrengthEntities(value1: String, value2: String, value3: String) {
         getRoleModelStrengthEntities()
-    }
-    
-    func addRoleModelStrengthEntities(value1: String, value2: String, value3: String) {
-        deleteRoleModelStrengthEntityAll()
-        addRoleModelStrengthEntity(value: value1)
-        addRoleModelStrengthEntity(value: value2)
-        addRoleModelStrengthEntity(value: value3)
+        
+        if roleModelStrengthEntities.isEmpty {
+            if !value1.isEmpty {
+                CoreDataManager.instance.addRoleModelStrengthEntity(value: value1)
+            }
+            
+            if !value2.isEmpty {
+                CoreDataManager.instance.addRoleModelStrengthEntity(value: value2)
+            }
+            
+            if !value3.isEmpty {
+                CoreDataManager.instance.addRoleModelStrengthEntity(value: value3)
+            }
+            
+        } else {
+            let existingRoleModelStrengthEntity = CoreDataManager.instance.getRoleModelStrengthEntityById(id: roleModelStrengthEntities[0].id)
+            
+            if let existingRoleModelStrengthEntity = existingRoleModelStrengthEntity {
+                if !value1.isEmpty {
+                    CoreDataManager.instance.updateRoleModelStrengthEntity(existingRoleModelStrengthEntity: existingRoleModelStrengthEntity, value: value1)
+                }
+                
+                if !value2.isEmpty {
+                    CoreDataManager.instance.updateRoleModelStrengthEntity(existingRoleModelStrengthEntity: existingRoleModelStrengthEntity, value: value2)
+                }
+                
+                if !value3.isEmpty {
+                    CoreDataManager.instance.updateRoleModelStrengthEntity(existingRoleModelStrengthEntity: existingRoleModelStrengthEntity, value: value3)
+                }
+            }
+        }
+        
+        getRoleModelStrengthEntities()
+        
+        print(roleModelStrengthEntities)
     }
     
     func deleteRoleModelStrength(roleModelStrengthCoreDataModel: RoleModelStrengthCoreDataModel) {

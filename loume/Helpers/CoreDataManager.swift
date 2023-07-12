@@ -24,6 +24,14 @@ class CoreDataManager {
     }
     
     //** USER **\\
+    func addUserEntity(name: String) {
+        let newUserEntity = UserEntity(context: context)
+        newUserEntity.id = UUID()
+        newUserEntity.name = name
+        newUserEntity.created_at = Date()
+        save()
+    }
+    
     func getUserEntityById(id: NSManagedObjectID) -> UserEntity? {
         do {
             return try context.existingObject(with: id) as? UserEntity
@@ -48,6 +56,11 @@ class CoreDataManager {
         save()
     }
     
+    func setNameUserEntity(userEntity: UserEntity, name: String) {
+        userEntity.name = name
+        save()
+    }
+    
     func setRoleModelUserEntity(userEntity: UserEntity, roleModel: String) {
         userEntity.role_model = roleModel
         save()
@@ -58,37 +71,47 @@ class CoreDataManager {
         save()
     }
     
-    func setStrengthUserEntity1(userEntity: UserEntity, strength: String) {
+    func setStrength1UserEntity(userEntity: UserEntity, strength: String) {
         userEntity.strength1 = strength
         save()
     }
     
-    func setStrengthUserEntity2(userEntity: UserEntity, strength: String) {
+    func setStrength2UserEntity(userEntity: UserEntity, strength: String) {
         userEntity.strength2 = strength
         save()
     }
     
-    func setStrengthUserEntity3(userEntity: UserEntity, strength: String) {
+    func setStrength3UserEntity(userEntity: UserEntity, strength: String) {
         userEntity.strength3 = strength
         save()
     }
     
-    func setWeaknessUserEntity1(userEntity: UserEntity, weakness: String) {
+    func setWeakness1UserEntity(userEntity: UserEntity, weakness: String) {
         userEntity.weakness1 = weakness
         save()
     }
     
-    func setWeaknessUserEntity2(userEntity: UserEntity, weakness: String) {
+    func setWeakness2UserEntity(userEntity: UserEntity, weakness: String) {
         userEntity.weakness2 = weakness
         save()
     }
     
-    func setWeaknessUserEntity3(userEntity: UserEntity, weakness: String) {
+    func setWeakness3UserEntity(userEntity: UserEntity, weakness: String) {
         userEntity.weakness3 = weakness
         save()
     }
     
     //** GOAL **\\
+    func addGoalEntity(name: String, dueDate: Date) {
+        let newGoalEntity = GoalEntity(context: context)
+        newGoalEntity.id = UUID()
+        newGoalEntity.name = name
+        newGoalEntity.due_date = dueDate
+        newGoalEntity.created_at = Date()
+        
+        save()
+    }
+    
     func getGoalEntityById(id: NSManagedObjectID) -> GoalEntity? {
         do {
             return try context.existingObject(with: id) as? GoalEntity
@@ -116,6 +139,19 @@ class CoreDataManager {
     }
     
     //** PLAN **\\
+    func addPlanEntity(name: String, dueDate: Date, existingGoalEntity: GoalEntity) {
+        let newPlanEntity = PlanEntity(context: context)
+        newPlanEntity.id = UUID()
+        newPlanEntity.name = name
+        newPlanEntity.due_date = dueDate
+        newPlanEntity.created_at = Date()
+        newPlanEntity.goal = existingGoalEntity
+        
+        save()
+        
+        addSubPlanEntity(name: "", existingPlanEntity: newPlanEntity)
+    }
+    
     func getPlanEntityById(id: NSManagedObjectID) -> PlanEntity? {
         do {
             return try context.existingObject(with: id) as? PlanEntity
@@ -141,6 +177,17 @@ class CoreDataManager {
     }
     
     //** SUB PLAN **\\
+    func addSubPlanEntity(name: String, existingPlanEntity: PlanEntity) {
+        let newSubPlanEntity = SubPlanEntity(context: context)
+        newSubPlanEntity.id = UUID()
+        newSubPlanEntity.name = name
+        newSubPlanEntity.is_done = false
+        newSubPlanEntity.created_at = Date()
+        newSubPlanEntity.plan = existingPlanEntity
+        
+        save()
+    }
+    
     func getSubPlanEntityById(id: NSManagedObjectID) -> SubPlanEntity? {
         do {
             return try context.existingObject(with: id) as? SubPlanEntity
@@ -173,6 +220,24 @@ class CoreDataManager {
     }
     
     //** LOVE **\\
+    func addLoveEntity(interests: [String], selectedCircles: Set<Int>) {
+        for selectedCircle in selectedCircles {
+            let newLoveEntity = LoveEntity(context: context)
+            newLoveEntity.id = UUID()
+            newLoveEntity.name = interests[selectedCircle]
+            newLoveEntity.created_at = Date()
+            
+            save()
+        }
+    }
+    
+    func updateLoveEntity(loveEntity: LoveEntity, interests: [String], selectedCircles: Set<Int>) {
+        for selectedCircle in selectedCircles {
+            loveEntity.name = interests[selectedCircle]
+            save()
+        }
+    }
+    
     func getLoveEntityById(id: NSManagedObjectID) -> LoveEntity? {
         do {
             return try context.existingObject(with: id) as? LoveEntity
@@ -203,6 +268,21 @@ class CoreDataManager {
     }
     
     //** ROLE MODEL STRENGTH **\\
+    func addRoleModelStrengthEntity(value: String) {
+        let newRoleModelStrengthEntity = RoleModelStrengthEntity(context: context)
+        newRoleModelStrengthEntity.id = UUID()
+        newRoleModelStrengthEntity.name = value
+        newRoleModelStrengthEntity.created_at = Date()
+        
+        save()
+    }
+    
+    func updateRoleModelStrengthEntity(existingRoleModelStrengthEntity: RoleModelStrengthEntity, value: String) {
+        existingRoleModelStrengthEntity.name = value
+        
+        save()
+    }
+    
     func getRoleModelStrengthEntityById(id: NSManagedObjectID) -> RoleModelStrengthEntity? {
         do {
             return try context.existingObject(with: id) as? RoleModelStrengthEntity

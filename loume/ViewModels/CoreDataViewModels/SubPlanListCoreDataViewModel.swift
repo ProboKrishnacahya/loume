@@ -40,14 +40,11 @@ class SubPlanListCoreDataViewModel: ObservableObject {
     func addSubPlanEntity(name: String, planCoreDataModel: PlanCoreDataModel) {
         
         if let existingPlanEntity = CoreDataManager.instance.getPlanEntityById(id: planCoreDataModel.id) {
-            let newSubPlanEntity = SubPlanEntity(context: CoreDataManager.instance.context)
-            newSubPlanEntity.id = UUID()
-            newSubPlanEntity.name = name
-            newSubPlanEntity.is_done = false
-            newSubPlanEntity.created_at = Date()
-            newSubPlanEntity.plan = existingPlanEntity
-            CoreDataManager.instance.save()
+            
+            CoreDataManager.instance.addSubPlanEntity(name: name, existingPlanEntity: existingPlanEntity)
+            
         }
+        
         getSubPlanEntities(planCoreDataModel: planCoreDataModel)
     }
     
@@ -59,8 +56,10 @@ class SubPlanListCoreDataViewModel: ObservableObject {
     
     func getSubPlanEntitiesArray(planCoreDataModel: PlanCoreDataModel) -> [SubPlanCoreDataModel] {
         if let existingPlanEntity = CoreDataManager.instance.getPlanEntityById(id: planCoreDataModel.id) {
+            
             return CoreDataManager.instance.getSubPlanEntities(planEntity: existingPlanEntity).map(SubPlanCoreDataModel.init)
         }
+        
         return []
     }
 }

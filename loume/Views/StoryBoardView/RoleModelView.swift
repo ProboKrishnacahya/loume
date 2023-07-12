@@ -31,6 +31,7 @@ struct RoleModelView: View {
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
     @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         NavigationView{
@@ -44,7 +45,7 @@ struct RoleModelView: View {
                             HStack{
                                 Text("much potential in")
                                     .multilineTextAlignment(.center)
-                                Text("dance")
+                                Text(loveListCoreDataViewModel.getMostInterest())
                             }
                             Text("Now let’s get a little bit")
                             HStack{
@@ -52,8 +53,6 @@ struct RoleModelView: View {
                                 
                                 Text(loveListCoreDataViewModel.getMostInterest())
                                     .fontWeight(.bold)
-                                //ganti "dance" pada Text baris di atas dengan
-                                //loveListCoreDataViewModel.getMostInterest()
                             }
                             Button {
                                 movePage1 = 0
@@ -117,11 +116,8 @@ struct RoleModelView: View {
                                 Text("Can you name someone ")
                                 HStack{
                                     Text("specifically in the")
-                                    Text(loveListCoreDataViewModel.getMostInterest()) // Di isi data
+                                    Text(loveListCoreDataViewModel.getMostInterest())
                                         .fontWeight(.bold)
-                                    
-                                    //ganti "dance" pada Text baris di atas dengan
-                                    //loveListCoreDataViewModel.getMostInterest()
                                     
                                     Text("field")
                                 }
@@ -131,11 +127,8 @@ struct RoleModelView: View {
                                 Text("professionals, or people you")
                                 HStack{
                                     Text("know who is expert in")
-                                    Text(loveListCoreDataViewModel.getMostInterest()) // Di isi data
+                                    Text(loveListCoreDataViewModel.getMostInterest())
                                         .fontWeight(.bold)
-                                    
-                                    //ganti "dance" pada Text baris di atas dengan
-                                    //loveListCoreDataViewModel.getMostInterest()
                                 }
                             }
                             TextField("Type Here ...", text: $roleModel)
@@ -143,9 +136,6 @@ struct RoleModelView: View {
                                 .frame(width:  250)
                                 .animation(Animation.easeInOut(duration: 1.5))
                                 .padding(.top, 10.0)
-                            
-                            //jika tombol oren diklik: tujuannya untuk memasukkan nama role model ke dalam data
-                            //                    userListCoreDataViewModel.setRoleModel(userCoreDataModel: userListCoreDataViewModel.userEntities[0], roleModel: {{isikan disini nama role modelnya}})
                         }
                         .opacity(fadeText1 ? 1 : 0)
                         .animation(.easeIn(duration: 1))
@@ -159,19 +149,15 @@ struct RoleModelView: View {
                     VStack{
                         VStack{
                             HStack{
-                                Text("Mark Lee")
+                                Text(userListCoreDataViewModel.userEntities[0].roleModel)
                                     .fontWeight(.bold)
-                                //ganti "Mark Lee" pada Text baris di atas dengan
-                                //userListCoreDataViewModel.userEntities[0].roleModel
                                 Text("huh? Seems like a very")
                             }
                             Text("cool person!")
                             HStack{
                                 Text("Why are you inspired by")
-                                Text("Mark Lee?")
+                                Text("\(userListCoreDataViewModel.userEntities[0].roleModel)?")
                                     .fontWeight(.bold)
-                                //ganti "Mark Lee" pada Text baris di atas dengan
-                                //userListCoreDataViewModel.userEntities[0].roleModel
                             }
                         }
                         VStack{
@@ -215,17 +201,13 @@ struct RoleModelView: View {
                                             Text("3")
                                                 .foregroundColor(Color.white)
                                         }
-                                    TextField("Type here...", text: $roleModel2)
+                                    TextField("Type here...", text: $roleModel3)
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                     
                                         .frame(width:  250)
                                         .animation(Animation.easeInOut(duration: 1.5))
                                 }
                                 .padding(.top, 5)
-                                
-                                //jika tombol oren diklik: tujuannya untuk memasukkan 3 daftar strength or expertise ke dalam data. (intro Copy 13)
-                                //                    roleModelStrengthListCoreDataViewModel.addRoleModelStrengthEntities(value1: {{value1}}, value2: {{value2}}, value3: {{value3}})
-                                
                             }
                             
                             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 20)
@@ -277,6 +259,7 @@ struct RoleModelView: View {
                                     movePage2 = 0
                                     movePage3 = 1
                                     
+                                    userListCoreDataViewModel.setRoleModel(roleModel: roleModel)
                                 }
                         }
                         .opacity(visible)
@@ -295,6 +278,8 @@ struct RoleModelView: View {
                                     visible = 1
                                     visibleText2 = 0
                                     visibleText3 = 0
+                                    
+                                    roleModelStrengthListCoreDataViewModel.saveRoleModelStrengthEntities(value1: roleModel1, value2: roleModel2, value3: roleModel3)
                                 }
                             
                             Spacer()
@@ -322,7 +307,7 @@ struct RoleModelView: View {
                                     
                                 }
                                 .overlay(
-                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                         EmptyView()
                                     }
                                 )
@@ -344,6 +329,6 @@ struct RoleModelView_Previews: PreviewProvider {
                       goalListCoreDataViewModel: GoalListCoreDataViewModel(),
                       planListCoreDataViewModel: PlanListCoreDataViewModel(),
                       subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                      loveListCoreDataViewModel: LoveListCoreDataViewModel())
+                      loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

@@ -72,6 +72,7 @@ struct InterestView: View {
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
     @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         ZStack{
@@ -250,11 +251,11 @@ struct InterestView: View {
                                 .onTapGesture {
                                    
                                     isView2Active = true
-                                    loveListCoreDataViewModel.addLoveEntity(interests: interest, selectedCircles: selectedCircles)
+                                    loveListCoreDataViewModel.saveLoveEntity(interests: interest, selectedCircles: selectedCircles)
                                     
                                 }
                                 .overlay(
-                                    NavigationLink(destination: InterestSelectedView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                    NavigationLink(destination: InterestSelectedView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                         EmptyView()
                                     }
                                 )
@@ -331,6 +332,6 @@ struct InterestView_Previews: PreviewProvider {
                      goalListCoreDataViewModel: GoalListCoreDataViewModel(),
                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                     loveListCoreDataViewModel: LoveListCoreDataViewModel())
+                     loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

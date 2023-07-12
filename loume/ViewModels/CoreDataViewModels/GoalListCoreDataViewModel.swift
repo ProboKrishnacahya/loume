@@ -42,13 +42,7 @@ class GoalListCoreDataViewModel: ObservableObject {
     }
     
     func addGoalEntity(name: String, dueDate: Date) {
-        let newGoalEntity = GoalEntity(context: CoreDataManager.instance.context)
-        newGoalEntity.id = UUID()
-        newGoalEntity.name = name
-        newGoalEntity.due_date = dueDate
-        newGoalEntity.created_at = Date()
-        
-        CoreDataManager.instance.save()
+        CoreDataManager.instance.addGoalEntity(name: name, dueDate: dueDate)
         getGoalEntities()
     }
     

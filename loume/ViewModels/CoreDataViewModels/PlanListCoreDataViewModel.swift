@@ -13,28 +13,14 @@ class PlanListCoreDataViewModel: ObservableObject {
     
     func addPlanEntity(name: String, dueDate: Date, goalCoreDataModel: GoalCoreDataModel) {
         if let existingGoalEntity = CoreDataManager.instance.getGoalEntityById(id: goalCoreDataModel.id) {
-            let newPlanEntity = PlanEntity(context: CoreDataManager.instance.context)
-            newPlanEntity.id = UUID()
-            newPlanEntity.name = name
-            newPlanEntity.due_date = dueDate
-            newPlanEntity.created_at = Date()
-            newPlanEntity.goal = existingGoalEntity
+            CoreDataManager.instance.addPlanEntity(name: name, dueDate: dueDate, existingGoalEntity: existingGoalEntity)
             
-            let newSubPlanEntity = SubPlanEntity(context: CoreDataManager.instance.context)
-            newSubPlanEntity.id = UUID()
-            newSubPlanEntity.name = ""
-            newSubPlanEntity.is_done = false
-            newSubPlanEntity.created_at = Date()
-            newSubPlanEntity.plan = newPlanEntity
-            
-            CoreDataManager.instance.save()
             getPlanEntities(goalCoreDataModel: goalCoreDataModel)
         }
     }
     
     func getPlanEntities(goalCoreDataModel: GoalCoreDataModel) {
         if let existingGoalEntity = CoreDataManager.instance.getGoalEntityById(id: goalCoreDataModel.id) {
-            
             planEntities = CoreDataManager.instance.getPlanEntities(goalEntity: existingGoalEntity).map(PlanCoreDataModel.init)
         }
     }

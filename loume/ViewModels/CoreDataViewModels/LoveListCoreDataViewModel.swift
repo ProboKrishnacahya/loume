@@ -12,19 +12,7 @@ class LoveListCoreDataViewModel: ObservableObject {
     @Published var loveEntities: [LoveCoreDataModel] = []
     
     init() {
-        //        addUserEntity(name: "aku 1")
-        //        addUserEntity(name: "aku 2")
-        //        addUserEntity(name: "aku 3")
         deleteLoveEntityAll()
-        
-        for i in 0...2 {
-            let newLoveEntity = LoveEntity(context: CoreDataManager.instance.context)
-            newLoveEntity.id = UUID()
-            newLoveEntity.name = "Nyanyi"
-            newLoveEntity.created_at = Date()
-            CoreDataManager.instance.save()
-        }
-        getLoveEntities()
     }
     
     func deleteLoveEntityAll() {
@@ -35,53 +23,7 @@ class LoveListCoreDataViewModel: ObservableObject {
         }
     }
     
-    func getLoveEntities() {
-        loveEntities = CoreDataManager.instance.getLoveEntities().map(LoveCoreDataModel.init)
-    }
-    
-    func addLoveEntity(interests: [String], selectedCircles: Set<Int>) {
-        deleteLoveEntityAll()
-        
-        for selectedCircle in selectedCircles {
-            let newLoveEntity = LoveEntity(context: CoreDataManager.instance.context)
-            newLoveEntity.id = UUID()
-            newLoveEntity.name = interests[selectedCircle]
-            newLoveEntity.created_at = Date()
-            CoreDataManager.instance.save()
-        }
-        getLoveEntities()
-    }
-    
-    func getMostInterest() -> String {
-        var highestRank = 0
-        var mostlyInterest = ""
-        
-        for loveEntity in loveEntities {
-            if loveEntity.rank > highestRank {
-                mostlyInterest = loveEntity.name
-                highestRank = loveEntity.rank
-            }
-        }
-        
-        return mostlyInterest
-    }
-    
-    func setRank(loveCoreDataModel: LoveCoreDataModel, rank: Int) {
-        let existingLoveEntity = CoreDataManager.instance.getLoveEntityById(id: loveCoreDataModel.id)
-        
-        if let existingLoveEntity = existingLoveEntity {
-            CoreDataManager.instance.setRankLoveEntity(loveEntity: existingLoveEntity, rank: rank)
-        }
-        
-        getLoveEntities()
-    }
-    
     func deleteLove(loveCoreDataModel: LoveCoreDataModel) {
-        //        offsets.forEach { index in
-        //            let userEntity = userEntities[index]
-        //            delete(userEntity)
-        //        }
-        
         delete(loveCoreDataModel)
         getLoveEntities()
     }
@@ -92,6 +34,44 @@ class LoveListCoreDataViewModel: ObservableObject {
         if let existingLoveEntity = existingLoveEntity {
             CoreDataManager.instance.deleteLoveEntity(loveEntity: existingLoveEntity)
         }
+    }
+    
+    func getLoveEntities() {
+        loveEntities = CoreDataManager.instance.getLoveEntities().map(LoveCoreDataModel.init)
+    }
+    
+    func saveLoveEntity(interests: [String], selectedCircles: Set<Int>) {
+        if loveEntities.isEmpty {
+            CoreDataManager.instance.addLoveEntity(interests: interests, selectedCircles: selectedCircles)
+        } else {
+            let existingLoveEntity = CoreDataManager.instance.getLoveEntityById(id: loveEntities[0].id)
+            
+            if let existingLoveEntity = existingLoveEntity {
+                CoreDataManager.instance.updateLoveEntity(loveEntity: existingLoveEntity, interests: interests, selectedCircles: selectedCircles)
+            }
+        }
+        
+        getLoveEntities()
+    }
+    
+    func getMostInterest() -> String {
+        for loveEntity in loveEntities {
+            if loveEntity.rank == 1 {
+                return loveEntity.name
+            }
+        }
+        
+        return ""
+    }
+    
+    func setRank(loveCoreDataModel: LoveCoreDataModel, rank: Int) {
+        let existingLoveEntity = CoreDataManager.instance.getLoveEntityById(id: loveCoreDataModel.id)
+        
+        if let existingLoveEntity = existingLoveEntity {
+            CoreDataManager.instance.setRankLoveEntity(loveEntity: existingLoveEntity, rank: rank)
+        }
+        
+        getLoveEntities()
     }
 }
 
