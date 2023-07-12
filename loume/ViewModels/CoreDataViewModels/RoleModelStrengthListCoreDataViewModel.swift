@@ -13,6 +13,12 @@ class RoleModelStrengthListCoreDataViewModel: ObservableObject {
     
     init() {
         deleteRoleModelStrengthEntityAll()
+        createDummyData()
+    }
+    
+    func createDummyData() {
+        saveRoleModelStrengthEntities(value1: "value1", value2: "value2", value3: "value3")
+        getRoleModelStrengthEntities()
     }
     
     func deleteRoleModelStrengthEntityAll() {
@@ -95,7 +101,7 @@ class RoleModelStrengthListCoreDataViewModel: ObservableObject {
     }
 }
 
-struct RoleModelStrengthCoreDataModel {
+struct RoleModelStrengthCoreDataModel: Identifiable {
     let roleModelStrengthEntity: RoleModelStrengthEntity
     
     var id: NSManagedObjectID {

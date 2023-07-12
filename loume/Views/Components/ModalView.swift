@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ModalView: View {
+    
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @EnvironmentObject private var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @EnvironmentObject private var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    
     @Binding var name: String
     @Binding var dueDate: Date
     @Binding var type: String
@@ -16,10 +21,6 @@ struct ModalView: View {
     @Binding var inputTextValues: [[[String]]]
     
     let goalIndex: Int
-    
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
     
     var body: some View {
         NavigationStack {
@@ -73,9 +74,11 @@ struct ModalView: View {
                 goalListCoreDataViewModel.addGoalEntity(name: name, dueDate: dueDate)
                 
             } else {
+                
                 if goal.plans.count > 0 {
                     inputTextValues[goalIndex].append([""])
                 }
+                
                 planListCoreDataViewModel.addPlanEntity(name: name, dueDate: dueDate, goalCoreDataModel: goal)
             }
             
@@ -114,9 +117,6 @@ struct ModalView_Previews: PreviewProvider {
                   goal: .constant(GoalCoreDataModel(goalEntity: GoalEntity())),
                   isSheetPresented: .constant(true),
                   inputTextValues: .constant([[[""]]]),
-                  goalIndex: 0,
-                  planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                  subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                  goalListCoreDataViewModel: GoalListCoreDataViewModel())
+                  goalIndex: 0)
     }
 }

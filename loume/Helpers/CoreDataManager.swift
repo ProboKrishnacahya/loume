@@ -101,6 +101,16 @@ class CoreDataManager {
         save()
     }
     
+    func setObstacle1UserEntity(userEntity: UserEntity, obstacle: String) {
+        userEntity.obstacle1 = obstacle
+        save()
+    }
+    
+    func setObstacle2UserEntity(userEntity: UserEntity, obstacle: String) {
+        userEntity.obstacle2 = obstacle
+        save()
+    }
+    
     //** GOAL **\\
     func addGoalEntity(name: String, dueDate: Date) {
         let newGoalEntity = GoalEntity(context: context)

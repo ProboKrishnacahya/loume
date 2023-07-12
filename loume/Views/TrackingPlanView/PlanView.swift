@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct PlanView: View {
+    
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @EnvironmentObject private var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @EnvironmentObject private var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    
     @Binding var inputTextValues: [[[String]]]
     @State var isSheetPresented = false
     @State private var currentIndex: Int = 0
@@ -17,10 +22,6 @@ struct PlanView: View {
     @State var goal: GoalCoreDataModel
     
     let goalIndex: Int
-    
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     
     var body: some View {
         ScrollView {
@@ -165,13 +166,10 @@ struct PlanView: View {
                 Spacer()
                 
                 CreateButton(isSheetPresented: $isSheetPresented,
-                               inputTextValues: $inputTextValues,
-                               type: "plan",
-                               goal: $goal,
-                               goalListCoreDataViewModel: goalListCoreDataViewModel,
-                               planListCoreDataViewModel: planListCoreDataViewModel,
-                               subPlanListCoreDataViewModel: subPlanListCoreDataViewModel,
-                               goalIndex: goalIndex)
+                             inputTextValues: $inputTextValues,
+                             type: "plan",
+                             goal: $goal,
+                             goalIndex: goalIndex)
             }
         }
         .padding()
@@ -194,10 +192,7 @@ struct PlanView_Previews: PreviewProvider {
             ],
         ]),
                  goal: GoalCoreDataModel(goalEntity: GoalEntity()),
-                 goalIndex: 0,
-                 goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                 planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                 subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel()
+                 goalIndex: 0
         )
     }
 }

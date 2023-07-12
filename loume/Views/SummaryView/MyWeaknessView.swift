@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MyWeaknessView: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -24,19 +27,19 @@ struct MyWeaknessView: View {
                     VStack(alignment: .leading) {
                         Text("One thing you can dismiss to save yourself is to not..")
                         
-                        SummaryResultCard(label: "Procrastinating")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].weakness1)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("Try avoid this, because it can make yourself stress when working")
                         
-                        SummaryResultCard(label: "Over work multitasking")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].weakness2)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("Another thing to keep in mind is also to focus on what you working by ignoring..")
                         
-                        SummaryResultCard(label: "Notification from social media that not related to work")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].weakness3)
                     }
                 }
                 .padding()

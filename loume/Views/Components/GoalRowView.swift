@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct GoalRowView: View {
+    
+    @EnvironmentObject private var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @EnvironmentObject private var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    
     var goal: GoalCoreDataModel
     
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     let viewModel = ViewModel()
     
     var body: some View {
@@ -75,8 +77,6 @@ struct GoalRowView: View {
 
 struct GoalRowView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalRowView(goal: GoalCoreDataModel.init(goalEntity: GoalEntity()),
-                    planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                    subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel())
+        GoalRowView(goal: GoalCoreDataModel.init(goalEntity: GoalEntity()))
     }
 }

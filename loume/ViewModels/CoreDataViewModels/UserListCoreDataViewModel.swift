@@ -13,7 +13,23 @@ class UserListCoreDataViewModel: ObservableObject {
     
     init() {
         deleteUserEntityAll()
+        createDummyData()
+    }
+    
+    func createDummyData() {
         saveUserEntity(name: "aku 1")
+        setStrengthSimilar(strengthSimilar: "strength similar new value")
+        setRoleModel(roleModel: "role model new value")
+        setWeakness1(weakness: "weakness new value 1")
+        setWeakness2(weakness: "weakness new value 2")
+        setWeakness3(weakness: "weakness new value 3")
+        setObstacle1(obstacle: "obstacle new value 1")
+        setObstacle2(obstacle: "obstacle new value 2")
+        setStrength1(strength: "strength new value 1")
+        setStrength2(strength: "strength new value 2")
+        setStrength3(strength: "strength new value 3")
+        
+        getUserEntities()
     }
     
     func deleteUserEntityAll() {
@@ -158,6 +174,32 @@ class UserListCoreDataViewModel: ObservableObject {
         
         getUserEntities()
     }
+    
+    func setObstacle1(obstacle: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setObstacle1UserEntity(userEntity: existingUserEntity, obstacle: obstacle)
+        }
+        
+        getUserEntities()
+    }
+    
+    func setObstacle2(obstacle: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setObstacle2UserEntity(userEntity: existingUserEntity, obstacle: obstacle)
+        }
+        
+        getUserEntities()
+    }
 }
 
 struct UserCoreDataModel {
@@ -201,5 +243,13 @@ struct UserCoreDataModel {
     
     var weakness3: String {
         return userEntity.weakness3 ?? ""
+    }
+    
+    var obstacle1: String {
+        return userEntity.obstacle1 ?? ""
+    }
+    
+    var obstacle2: String {
+        return userEntity.obstacle2 ?? ""
     }
 }

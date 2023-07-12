@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct GoalView: View {
+    
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @EnvironmentObject private var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @EnvironmentObject private var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    
     @State var inputTextValues: [[[String]]] = [[[""]]]
     @State var isSheetPresented: Bool = false
     
     let backgroundColor: Color
     
     @State var goalCoreDataModel = GoalCoreDataModel(goalEntity: GoalEntity())
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     
     var body: some View {
         NavigationStack {
@@ -51,10 +53,7 @@ struct GoalView: View {
             Spacer()
             
             CreateButton(isSheetPresented: $isSheetPresented,
-                           inputTextValues: $inputTextValues, type: "goal", goal: $goalCoreDataModel, goalListCoreDataViewModel: goalListCoreDataViewModel,
-                           planListCoreDataViewModel: planListCoreDataViewModel,
-                           subPlanListCoreDataViewModel: subPlanListCoreDataViewModel,
-                           goalIndex: 0)
+                         inputTextValues: $inputTextValues, type: "goal", goal: $goalCoreDataModel, goalIndex: 0)
         }
     }
     
@@ -65,10 +64,8 @@ struct GoalView: View {
             } else {
                 ForEach(Array(goalListCoreDataViewModel.goalEntities.enumerated()), id: \.0) { index, goal in
                     NavigationLink(destination: PlanView(inputTextValues: $inputTextValues,
-                                                         goal: goal, goalIndex: index, goalListCoreDataViewModel: goalListCoreDataViewModel,
-                                                         planListCoreDataViewModel: planListCoreDataViewModel,
-                                                         subPlanListCoreDataViewModel: subPlanListCoreDataViewModel)) {
-                        GoalRowView(goal: goal, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel)
+                                                         goal: goal, goalIndex: index)) {
+                        GoalRowView(goal: goal)
                     }
                 }
             }
@@ -78,8 +75,6 @@ struct GoalView: View {
 
 struct GoalView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalView(backgroundColor: Color("Lotion"), goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                 planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                 subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel())
+        GoalView(backgroundColor: Color("Lotion"))
     }
 }

@@ -13,6 +13,21 @@ class LoveListCoreDataViewModel: ObservableObject {
     
     init() {
         deleteLoveEntityAll()
+        createDummyData()
+    }
+    
+    func createDummyData() {
+        var index = 1
+        
+        saveLoveEntity(interests: ["interest A", "interest B", "interest C"], selectedCircles: [0, 1, 2])
+        getLoveEntities()
+        
+        for loveCoreDataModel in loveEntities {
+            setRank(loveCoreDataModel: loveCoreDataModel, rank: index)
+            index += 1
+        }
+        
+        getLoveEntities()
     }
     
     func deleteLoveEntityAll() {
@@ -75,7 +90,7 @@ class LoveListCoreDataViewModel: ObservableObject {
     }
 }
 
-struct LoveCoreDataModel {
+struct LoveCoreDataModel: Identifiable {
     let loveEntity: LoveEntity
     
     var id: NSManagedObjectID {

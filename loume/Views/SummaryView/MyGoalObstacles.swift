@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MyGoalObstacles: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -24,13 +27,13 @@ struct MyGoalObstacles: View {
                     VStack(alignment: .leading) {
                         Text("While persue your goal, you afraid of..")
                         
-                        SummaryResultCard(label: "Uncertainty future")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].obstacle1)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("Besides, you also need to develop yourself especially on the..")
                         
-                        SummaryResultCard(label: "My comfort zone")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].obstacle2)
                         
                         Text("because it is your biggest blocker.")
                     }

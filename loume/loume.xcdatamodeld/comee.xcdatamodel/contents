@@ -40,6 +40,8 @@
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="obstacle1" optional="YES" attributeType="String"/>
+        <attribute name="obstacle2" optional="YES" attributeType="String"/>
         <attribute name="role_model" optional="YES" attributeType="String"/>
         <attribute name="strength_similar" optional="YES" attributeType="String"/>
         <attribute name="strength1" optional="YES" attributeType="String"/>

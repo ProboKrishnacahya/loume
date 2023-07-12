@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MyStrengthsView: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -24,19 +27,19 @@ struct MyStrengthsView: View {
                     VStack(alignment: .leading) {
                         Text("I know that I'm good at..")
                         
-                        SummaryResultCard(label: "Drawing and illustrating")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].strength1)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("During the journey, I always try to improve and upgrade myself by..")
                         
-                        SummaryResultCard(label: "Joining workshops, and trying new drawing styles")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].strength2)
                     }
                     
                     VStack(alignment: .leading) {
                         Text("People around me often give me such as..")
                         
-                        SummaryResultCard(label: "I'm pretty good at drawing")
+                        SummaryResultCard(label: userListCoreDataViewModel.userEntities[0].strength3)
                     }
                 }
                 .padding()

@@ -27,22 +27,22 @@ struct ContentView: View {
     @Binding var instanceAppHeaderViewModel: AppHeaderViewModel
     @Binding var instanceContentViewModel: ContentViewModel
     
-    @StateObject var userListCoreDataViewModel = UserListCoreDataViewModel()
-    @StateObject var goalListCoreDataViewModel = GoalListCoreDataViewModel()
-    @StateObject var planListCoreDataViewModel = PlanListCoreDataViewModel()
-    @StateObject var subPlanListCoreDataViewModel = SubPlanListCoreDataViewModel()
-    @StateObject var loveListCoreDataViewModel = LoveListCoreDataViewModel()
-    @StateObject var roleModelStrengthListCoreDataViewModel = RoleModelStrengthListCoreDataViewModel()
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @EnvironmentObject private var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @EnvironmentObject private var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @EnvironmentObject private var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @EnvironmentObject private var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         VStack {
             //          AppHeader(instanceSoundManager: $instanceSoundManager, instanceAppHeaderViewModel: $instanceAppHeaderViewModel)
             
-            if userListCoreDataViewModel.userEntities.count == 0 {
+            if userListCoreDataViewModel.userEntities.count != 0 {
                 tabView
             } else {
                 SetupProject(moveUp: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1, userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel,
-                roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel)
+                             roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel)
             }
         }
         .preferredColorScheme(.light)
@@ -57,7 +57,7 @@ struct ContentView: View {
     
     var tabView: some View {
         TabView(selection: $selectedTab) {
-            GoalView(backgroundColor: Color("Lotion"), goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel)
+            GoalView(backgroundColor: Color("Lotion"))
                 .showTabItemStyle(selectedTab: selectedTab, type: "Goals", tag: 0,
                                   instanceContentViewModel: instanceContentViewModel)
             

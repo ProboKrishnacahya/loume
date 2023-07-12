@@ -28,11 +28,24 @@ struct loumeApp: App {
     @State var instanceAppHeaderViewModel: AppHeaderViewModel = AppHeaderViewModel()
     @State var instanceContentViewModel: ContentViewModel = ContentViewModel()
     
+    @StateObject var userListCoreDataViewModel = UserListCoreDataViewModel()
+    @StateObject var goalListCoreDataViewModel = GoalListCoreDataViewModel()
+    @StateObject var planListCoreDataViewModel = PlanListCoreDataViewModel()
+    @StateObject var subPlanListCoreDataViewModel = SubPlanListCoreDataViewModel()
+    @StateObject var loveListCoreDataViewModel = LoveListCoreDataViewModel()
+    @StateObject var roleModelStrengthListCoreDataViewModel = RoleModelStrengthListCoreDataViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView(instanceSoundManager: $instanceSoundManager,
                         instanceAppHeaderViewModel: $instanceAppHeaderViewModel,
                         instanceContentViewModel: $instanceContentViewModel)
+            .environmentObject(userListCoreDataViewModel)
+            .environmentObject(goalListCoreDataViewModel)
+            .environmentObject(planListCoreDataViewModel)
+            .environmentObject(subPlanListCoreDataViewModel)
+            .environmentObject(loveListCoreDataViewModel)
+            .environmentObject(roleModelStrengthListCoreDataViewModel)
         }
     }
 }
