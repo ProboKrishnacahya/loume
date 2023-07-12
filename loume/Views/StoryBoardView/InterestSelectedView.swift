@@ -16,7 +16,7 @@ struct InterestSelectedView: View {
     @State var visibleText5: Double = 0
     @State var hideButton: Double = 1
     @State private var isView2Active = false
-
+    
     
     
     @State var circle1 : Double = 0
@@ -26,15 +26,14 @@ struct InterestSelectedView: View {
     
     
     
-    
-//    @State var visible: Double
-//    @State var disable1: Bool
-//    @State var visibleText2: Double
-//    @State var visibleText3: Double
-//    @State var visibleText4: Double
-//    @State var visibleText5: Double
-//    @State var hideButton: Double
-//    @State var isView2Active: Bool
+    //    @State var visible: Double
+    //    @State var disable1: Bool
+    //    @State var visibleText2: Double
+    //    @State var visibleText3: Double
+    //    @State var visibleText4: Double
+    //    @State var visibleText5: Double
+    //    @State var hideButton: Double
+    //    @State var isView2Active: Bool
     
     // di bawah ini harus ada di setiap page story board dan cara lemparnya sama seperti sebelumnya ini
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
@@ -193,8 +192,8 @@ struct InterestSelectedView: View {
                                         EmptyView()
                                     }
                                 )
-                                    
-                                
+                            
+                            
                         }
                         .opacity(visible)
                         
@@ -217,10 +216,10 @@ struct InterestSelectedView_Previews: PreviewProvider {
     
     static var previews: some View {
         InterestSelectedView(
-                             userListCoreDataViewModel: UserListCoreDataViewModel(),
-                             goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                             planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                             subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                             loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+            userListCoreDataViewModel: UserListCoreDataViewModel(),
+            goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+            planListCoreDataViewModel: PlanListCoreDataViewModel(),
+            subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+            loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

@@ -41,7 +41,6 @@ struct InterestPromiseView: View {
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
     @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
 
     var body: some View {
         ZStack{
@@ -237,8 +236,11 @@ struct InterestPromiseView: View {
                     VStack{
                         HStack{
                             Text("Talking about")
-                            Text(loveListCoreDataViewModel.getMostInterest())
+                            Text("Dance")
                                 .fontWeight(.bold)
+                            
+                            //ganti "dance" pada Text baris di atas dengan
+                            //loveListCoreDataViewModel.getMostInterest()
                             Text("do you")
                         }
                         Text("have something that you want to achieve in this field?")
@@ -250,13 +252,15 @@ struct InterestPromiseView: View {
                         VStack{
                             TextEditor(text: $roleModel1)
                                 .frame(width: 260.0, height: 30.0)
-                                .navigationTitle("About you")
+                                
                                 .padding(.all)
                             
                         }.overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color("Axolotl"), lineWidth: 2)
-                            //goal blm
+                            
+                            //jika tombol oren diklik: tujuannya untuk memasukkan goal ke dalam data
+        //                    userListCoreDataViewModel.setRoleModel(userCoreDataModel: userListCoreDataViewModel.userEntities[0], roleModel: {{isikan disini nama role modelnya}})
                         )
                         
                     }
@@ -367,6 +371,6 @@ struct InterestPromiseView_Previews: PreviewProvider {
                             goalListCoreDataViewModel: GoalListCoreDataViewModel(),
                             planListCoreDataViewModel: PlanListCoreDataViewModel(),
                             subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                            loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+                            loveListCoreDataViewModel: LoveListCoreDataViewModel())
     }
 }

@@ -22,8 +22,19 @@ struct QuestionView1: View {
     @State var hideButton: Double = 1
     @State var visible: Double = 1
     
-    @State var roleModel1: String = ""
+    @State var chose1: Double =  0
+    @State var chose2: Double =  0
+    @State var chose3: Double =  0
     
+    @State var Quest1: Double = 1
+    @State var Quest2: Double = 0
+    @State var Quest3: Double = 0
+    
+    @State var nav1: Double = 1
+    @State var nav2: Double = 0
+    @State var nav3: Double = 0
+    
+    @State private var isView2Active = false
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
@@ -31,8 +42,10 @@ struct QuestionView1: View {
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
     @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
+    @State var roleModel1: String = ""
+    
     var body: some View {
-        NavigationView {
+        NavigationView{
             ZStack{
                 VStack{
                     ZStack{
@@ -63,7 +76,7 @@ struct QuestionView1: View {
                                                         .foregroundColor(Color.white)
                                                     TextEditor(text: $roleModel1)
                                                         .frame(width: 260.0, height: 350.0)
-                                                        .navigationTitle("About you")
+                                                    
                                                 }
                                             }.padding(.top ,10)
                                         }.padding(.top, 20)
@@ -71,9 +84,11 @@ struct QuestionView1: View {
                                         
                                         HStack{
                                             Button {
-                                                fadeOutQuestion1 = false
-                                                fadeOutQuestion2 = true
-                                                delayOut1 = 0.5
+                                                Quest1 = 0
+                                                Quest2 = 1
+                                                nav1 = 0
+                                                nav2 = 1
+                                                chose1 =  1
                                             }
                                         label: {
                                             Text("I don’t know")
@@ -99,13 +114,9 @@ struct QuestionView1: View {
                                     }
                                     
                                 }
-                            } .opacity(fadeOutQuestion1 ? 1 : 0)
-                                .animation(.easeIn(duration: delayOut1))
-                                .onAppear {
-                                    withAnimation {
-                                        fadeOutQuestion1 = true
-                                    }
-                                }
+                            } .opacity(Quest1)
+                            
+                            
                             
                             
                         }
@@ -138,7 +149,7 @@ struct QuestionView1: View {
                                                         .foregroundColor(Color.white)
                                                     TextEditor(text: $roleModel1)
                                                         .frame(width: 260.0, height: 350.0)
-                                                        .navigationTitle("About you")
+                                                    
                                                 }
                                             }.padding(.top ,10)
                                         }.padding(.top, 20)
@@ -146,9 +157,11 @@ struct QuestionView1: View {
                                         
                                         HStack{
                                             Button {
-                                                fadeOutQuestion2 = false
-                                                fadeOutQuestion3 = true
-                                                delayOut2 = 0.5
+                                                Quest2 = 0
+                                                Quest3 = 1
+                                                nav2 = 0
+                                                nav3 = 1
+                                                chose2 =  1
                                             }
                                         label: {
                                             Text("I don’t know")
@@ -175,8 +188,7 @@ struct QuestionView1: View {
                                     
                                 }
                             }
-                            .opacity(fadeOutQuestion2 ? 1 : 0)
-                            .animation(.easeIn(duration: delayOut2).delay(delayOut2))
+                            .opacity(Quest2)
                             
                         }
                         VStack{
@@ -215,6 +227,7 @@ struct QuestionView1: View {
                                     
                                     HStack{
                                         Button {
+                                            chose3 =  1
                                         }
                                     label: {
                                         Text("I don’t know")
@@ -241,8 +254,7 @@ struct QuestionView1: View {
                                 
                             }
                         }
-                        .opacity(fadeOutQuestion3 ? 1 : 0)
-                        .animation(.easeIn(duration: delayOut3).delay(1))
+                        .opacity(Quest3)
                         
                     }
                 }
@@ -260,6 +272,8 @@ struct QuestionView1: View {
                                         .padding(.leading)
                                         .foregroundColor(Color.white)
                                 }
+                            
+                            
                             
                             Spacer()
                             HStack{
@@ -281,17 +295,17 @@ struct QuestionView1: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    visible = 0
-                                    visibleText2 = 1
-                                    fadeOutQuestion1 = false
-                                    fadeOutQuestion2 = true
-                                    delayOut1 = 0.5
+                                    Quest1 = 0
+                                    Quest2 = 1
+                                    nav1 = 0
+                                    nav2 = 1
                                     
                                 }
                         }
-                        .opacity(visible)
+                        .opacity(nav1)
                         
                         HStack{ //2
+                            
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.leading)
@@ -302,9 +316,11 @@ struct QuestionView1: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    visible = 1
-                                    visibleText2 = 0
-                                    visibleText3 = 0
+                                    
+                                    Quest1 = 1
+                                    Quest2 = 0
+                                    nav1 = 1
+                                    nav2 = 0
                                     
                                     
                                     
@@ -330,18 +346,14 @@ struct QuestionView1: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    visible = 0
-                                    visibleText2 = 0
-                                    visibleText3 = 1
-                                    fadeOutQuestion2 = false
-                                    fadeOutQuestion3 = true
-                                    fadeOutQuestion2 = false
-                                    fadeOutQuestion3 = true
-                                    delayOut2 = 0.5
+                                    Quest2 = 0
+                                    Quest3 = 1
+                                    nav2 = 0
+                                    nav3 = 1
                                     
                                 }
                         }
-                        .opacity(visibleText2)
+                        .opacity(nav2)
                         HStack{ // 3
                             Circle()
                                 .frame(width: 80.0)
@@ -353,9 +365,10 @@ struct QuestionView1: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    visible = 0
-                                    visibleText2 = 1
-                                    visibleText3 = 0
+                                    Quest2 = 1
+                                    Quest3 = 0
+                                    nav2 = 1
+                                    nav3 = 0
                                 }
                             
                             Spacer()
@@ -379,10 +392,16 @@ struct QuestionView1: View {
                                 }
                                 .onTapGesture {
                                     
+                                    isView2Active = true
                                     
                                 }
+                                .overlay(
+                                    NavigationLink(destination: AfterQuestion1View(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                        EmptyView()
+                                    }
+                                )
                         }
-                        .opacity(visibleText3)
+                        .opacity(nav3)
                         
                     }
                     .opacity(hideButton)
@@ -394,6 +413,7 @@ struct QuestionView1: View {
         }
     }
 }
+
 
 struct QuestionView1_Previews: PreviewProvider {
     static var previews: some View {

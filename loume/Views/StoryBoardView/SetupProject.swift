@@ -7,18 +7,18 @@
 
 import SwiftUI
 struct SetupProject: View {
-//    @State var moveUp = true
-//    @State var moveUpCircle = true
-//    @State var moveUpText = true
-//    @State var isView2Active = false
-//    @State var moveUpTextField = true
-//    @State var fadeText1 = false
-//    @State var offset = CGSize.zero
-//    @State var fadeText2 = false
-//    @State var fadeOutCircle:Double = 1
-//    @State var text1:Double = 90
-//    @State var name:String = ""
-//    @State var scale2:Double = 1
+    //    @State var moveUp = true
+    //    @State var moveUpCircle = true
+    //    @State var moveUpText = true
+    //    @State var isView2Active = false
+    //    @State var moveUpTextField = true
+    //    @State var fadeText1 = false
+    //    @State var offset = CGSize.zero
+    //    @State var fadeText2 = false
+    //    @State var fadeOutCircle:Double = 1
+    //    @State var text1:Double = 90
+    //    @State var name:String = ""
+    //    @State var scale2:Double = 1
     
     @State var moveUp: Bool
     @State var moveUpCircle: Bool
@@ -40,10 +40,9 @@ struct SetupProject: View {
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
     @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
-    
-//    init() {
-//        UINavigationBar.setAnimationsEnabled(false)
-//    }
+    //    init() {
+    //        UINavigationBar.setAnimationsEnabled(false)
+    //    }
     
     var body: some View {
         NavigationView {
@@ -179,6 +178,6 @@ struct SetupProject_Previews: PreviewProvider {
                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
                      loveListCoreDataViewModel: LoveListCoreDataViewModel(),
-        roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+                     roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

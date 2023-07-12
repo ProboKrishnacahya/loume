@@ -16,6 +16,8 @@ struct StrengthOut: View {
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
     @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
+    @State private var isView2Active = false
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -33,7 +35,7 @@ struct StrengthOut: View {
                 
                 VStack{
                     Button {
-                        
+                        isView2Active = true
                     }
                 label: {
                     Text("Continue Now")
@@ -52,6 +54,15 @@ struct StrengthOut: View {
                             .stroke(Color("Axolotl"), lineWidth: 1)
                             
                         )
+                }
+                .onTapGesture {
+                    
+                }
+                .overlay{
+                    NavigationLink(destination: QuestionView1(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                        EmptyView()
+                        
+                    }
                 }
                     Button {
                         
