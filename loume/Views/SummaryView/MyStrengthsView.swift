@@ -21,7 +21,7 @@ struct MyStrengthsView: View {
                         
                         Spacer()
                         
-                        UpdateButton()
+//                        UpdateButton()
                     }
                     
                     VStack(alignment: .leading) {

@@ -35,6 +35,7 @@ struct QuestionView1: View {
     @State var nav3: Double = 0
     
     @State private var isView2Active = false
+    @State private var isView3Active = false
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
@@ -110,9 +111,8 @@ struct QuestionView1: View {
                                         }
                                             
                                             
-                                        }.padding(.top ,10)
-                                    }.padding(.top, 20)
-                                    
+                                        }.padding(.top,10)
+                                    }
                                     
                                 }
                             } .opacity(Quest1)
@@ -219,7 +219,7 @@ struct QuestionView1: View {
                                                     .cornerRadius(7)
                                                     .foregroundColor(Color.white)
                                                 TextEditor(text: $roleModel1)
-                                                    .frame(width: 260.0, height: 350.0)
+                                                    .frame(width: 260.0, height: 345.0)
                                                 
                                             }
                                         }.padding(.top ,10)
@@ -273,6 +273,16 @@ struct QuestionView1: View {
                                         .padding(.leading)
                                         .foregroundColor(Color.white)
                                 }
+                                .onTapGesture {
+                                    
+                                    isView3Active = true
+                                    
+                                }
+                                .overlay(
+                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                        EmptyView()
+                                    }
+                                )
                             
                             
                             
@@ -302,6 +312,7 @@ struct QuestionView1: View {
                                     nav2 = 1
                                     
                                 }
+                                
                         }
                         .opacity(nav1)
                         
@@ -322,10 +333,8 @@ struct QuestionView1: View {
                                     Quest2 = 0
                                     nav1 = 1
                                     nav2 = 0
-                                    
-                                    
-                                    
                                 }
+                                
                             
                             Spacer()
                             HStack{

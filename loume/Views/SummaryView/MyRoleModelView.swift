@@ -22,7 +22,7 @@ struct MyRoleModelView: View {
                         
                         Spacer()
                         
-                        UpdateButton()
+//                        UpdateButton()
                     }
                     
                     VStack(alignment: .leading) {

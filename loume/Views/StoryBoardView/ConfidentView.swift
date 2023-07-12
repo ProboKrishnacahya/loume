@@ -8,6 +8,13 @@
 import SwiftUI
 let width = UIScreen.main.bounds.width
 struct ConfidentView: View {
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     @State var maxWidth: CGFloat = width - 32
     @State var sliderProgress: CGFloat = 0
     @State var sliderWidth: CGFloat = 0
@@ -320,6 +327,10 @@ struct ConfidentView: View {
 
 struct ConfidentView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfidentView()
+        ConfidentView(userListCoreDataViewModel: UserListCoreDataViewModel(),
+                      goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                      loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

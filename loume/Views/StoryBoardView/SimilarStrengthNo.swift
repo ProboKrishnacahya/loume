@@ -1,4 +1,3 @@
-
 //
 //  similarStrenghtNo.swift
 //  loume
@@ -12,6 +11,7 @@ struct SimilarStrengthNo: View {
     @State var prev: Double = 1
     @State var next: Double = 1
     @State private var isView2Active = false
+    @State private var isView3Active = false
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
@@ -50,7 +50,7 @@ struct SimilarStrengthNo: View {
                             }
                             .overlay{
                                 NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                    EmptyView()
+                                    
                                     
                                 }
                             }
@@ -76,20 +76,20 @@ struct SimilarStrengthNo: View {
                                     .foregroundColor(Color.white)
                             }
                             .onTapGesture {
-                                isView2Active = true
+                                isView3Active = true
                             }
                             .overlay{
-                                NavigationLink(destination: StrengthOut(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                    EmptyView()
+                                NavigationLink(destination: StrengthOut(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                    
                                     
                                 }
                             }
                         
                     }
-                    .opacity(1)
+                    
                 }
             }
-        }
+        }.animation(nil)
     }
 }
 

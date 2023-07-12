@@ -11,7 +11,6 @@
 		0B0825102A57CEE400B87CC0 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B08250F2A57CEE400B87CC0 /* ContentViewModel.swift */; };
 		0B0825122A57D7B500B87CC0 /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825112A57D7B500B87CC0 /* ModalView.swift */; };
 		0B0825142A57DC5400B87CC0 /* CircularButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825132A57DC5400B87CC0 /* CircularButtonViewModel.swift */; };
-		0B0825162A57E26000B87CC0 /* ModalViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825152A57E26000B87CC0 /* ModalViewModal.swift */; };
 		0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825172A57E68C00B87CC0 /* GoalRowView.swift */; };
 		0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825192A57FAA500B87CC0 /* PlanRowView.swift */; };
 		0B43EC362A56A63100B84D7E /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43EC352A56A63100B84D7E /* EmptyStateView.swift */; };
@@ -58,6 +57,7 @@
 		827CD7012A40327300672B92 /* loumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD7002A40327300672B92 /* loumeTests.swift */; };
 		827CD70B2A40327300672B92 /* loumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70A2A40327300672B92 /* loumeUITests.swift */; };
 		827CD70D2A40327300672B92 /* loumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */; };
+		829FDABA2A5EFD24000A5CFD /* ModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829FDAB92A5EFD24000A5CFD /* ModalViewModel.swift */; };
 		82A5E36F2A5C1DA6005AF041 /* MyRoleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */; };
 		82A5E3712A5C1F8C005AF041 /* MyInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */; };
 		82A5E3732A5C1FA0005AF041 /* MyWeaknessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */; };
@@ -92,7 +92,6 @@
 		0B08250F2A57CEE400B87CC0 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		0B0825112A57D7B500B87CC0 /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		0B0825132A57DC5400B87CC0 /* CircularButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularButtonViewModel.swift; sourceTree = "<group>"; };
-		0B0825152A57E26000B87CC0 /* ModalViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewModal.swift; sourceTree = "<group>"; };
 		0B0825172A57E68C00B87CC0 /* GoalRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRowView.swift; sourceTree = "<group>"; };
 		0B0825192A57FAA500B87CC0 /* PlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanRowView.swift; sourceTree = "<group>"; };
 		0B43EC352A56A63100B84D7E /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		827CD7062A40327300672B92 /* loumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = loumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		827CD70A2A40327300672B92 /* loumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITests.swift; sourceTree = "<group>"; };
 		827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		829FDAB92A5EFD24000A5CFD /* ModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewModel.swift; sourceTree = "<group>"; };
 		82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoleModelView.swift; sourceTree = "<group>"; };
 		82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInterestView.swift; sourceTree = "<group>"; };
 		82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeaknessView.swift; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 				0B08250D2A57C05400B87CC0 /* AppHeaderViewModel.swift */,
 				0B08250F2A57CEE400B87CC0 /* ContentViewModel.swift */,
 				0B0825132A57DC5400B87CC0 /* CircularButtonViewModel.swift */,
-				0B0825152A57E26000B87CC0 /* ModalViewModal.swift */,
+				829FDAB92A5EFD24000A5CFD /* ModalViewModel.swift */,
 				0B474AE92A5D3B7700113E27 /* ViewModel.swift */,
 			);
 			path = ViewModels;
@@ -540,10 +540,10 @@
 				82441EE72A582B4E007EFD6E /* ConfidentView.swift in Sources */,
 				82A7548D2A52C3E0004501A3 /* IntroductionView.swift in Sources */,
 				82441EEE2A582B4E007EFD6E /* RoleModelView.swift in Sources */,
+				829FDABA2A5EFD24000A5CFD /* ModalViewModel.swift in Sources */,
 				826814F42A4EF3EC00B9F57A /* ContentView.swift in Sources */,
 				82441EED2A582B4E007EFD6E /* QuestionView1.swift in Sources */,
 				0B0825102A57CEE400B87CC0 /* ContentViewModel.swift in Sources */,
-				0B0825162A57E26000B87CC0 /* ModalViewModal.swift in Sources */,
 				826814E62A4EF3EC00B9F57A /* SoundManager.swift in Sources */,
 				82A5E3732A5C1FA0005AF041 /* MyWeaknessView.swift in Sources */,
 				82A7548B2A52C331004501A3 /* SummaryView.swift in Sources */,

@@ -17,6 +17,7 @@ struct RoleModelSimilarStrengthView: View {
     
     @State var roleModel1: String = ""
     @State private var isView2Active = false
+    @State private var isView3Active = false
     
     var body: some View {
         NavigationView {
@@ -56,10 +57,10 @@ struct RoleModelSimilarStrengthView: View {
                                 .foregroundColor(Color.white)
                         }
                         .onTapGesture {
-                            isView2Active = true
+                            isView3Active = true
                         }
                         .overlay (
-                            NavigationLink(destination: SimilarStrengthNo(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                            NavigationLink(destination: SimilarStrengthNo(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                 EmptyView()
                             }
                         )

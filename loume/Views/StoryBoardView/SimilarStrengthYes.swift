@@ -12,6 +12,7 @@ struct SimilarStrengthYes: View {
     @State var prev: Double = 1
     @State var next: Double = 1
     @State private var isView2Active = false
+    @State private var isView3Active = false
     
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
@@ -55,11 +56,11 @@ struct SimilarStrengthYes: View {
                                     .foregroundColor(Color.white)
                             }
                             .onTapGesture {
-                                isView2Active = true
+                                isView3Active = true
                             }
                             .overlay{
-                                NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                    EmptyView()
+                                NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                    
                                     
                                 }
                             }
@@ -89,17 +90,18 @@ struct SimilarStrengthYes: View {
                             }
                             .overlay{
                                 NavigationLink(destination: StrengthOut(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                    EmptyView()
+                                    
                                     
                                 }
                             }
                         
                     }
-                    .opacity(1)
+                    
                 }
             }
             
         }
+        .animation(nil)
     }
 }
 

@@ -16,7 +16,8 @@ struct InterestSelectedView: View {
     @State var visibleText5: Double = 0
     @State var hideButton: Double = 1
     @State private var isView2Active = false
-    
+    @State private var isView3Active = false
+
     
     
     @State var circle1 : Double = 0
@@ -24,24 +25,24 @@ struct InterestSelectedView: View {
     @State var circle3 : Double = 0
     
     
+  
     
-    
-    //    @State var visible: Double
-    //    @State var disable1: Bool
-    //    @State var visibleText2: Double
-    //    @State var visibleText3: Double
-    //    @State var visibleText4: Double
-    //    @State var visibleText5: Double
-    //    @State var hideButton: Double
-    //    @State var isView2Active: Bool
+//    @State var visible: Double
+//    @State var disable1: Bool
+//    @State var visibleText2: Double
+//    @State var visibleText3: Double
+//    @State var visibleText4: Double
+//    @State var visibleText5: Double
+//    @State var hideButton: Double
+//    @State var isView2Active: Bool
     
     // di bawah ini harus ada di setiap page story board dan cara lemparnya sama seperti sebelumnya ini
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+        @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+        @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+        @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+        @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+        @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         NavigationView{
@@ -161,6 +162,16 @@ struct InterestSelectedView: View {
                                         .padding(.leading)
                                         .foregroundColor(Color.white)
                                 }
+                                .onTapGesture {
+                                    
+                                    isView3Active = true
+                                    
+                                }
+                                .overlay(
+                                                                    NavigationLink(destination: InterestView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                                                        EmptyView()
+                                                                    }
+                                                                )
                             
                             
                             Spacer()
@@ -188,12 +199,12 @@ struct InterestSelectedView: View {
                                     
                                 }
                                 .overlay(
-                                    NavigationLink(destination: RoleModelView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                        EmptyView()
-                                    }
-                                )
-                            
-                            
+                                                                    NavigationLink(destination: RoleModelView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                                                        EmptyView()
+                                                                    }
+                                                                )
+                                    
+                                
                         }
                         .opacity(visible)
                         
@@ -222,4 +233,4 @@ struct InterestSelectedView_Previews: PreviewProvider {
             subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
             loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
-}
+    }

@@ -21,7 +21,7 @@ struct MyInterestView: View {
                         
                         Spacer()
                         
-                        UpdateButton()
+//                        UpdateButton()
                     }
                     
                     VStack {

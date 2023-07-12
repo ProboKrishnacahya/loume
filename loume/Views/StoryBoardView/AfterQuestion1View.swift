@@ -18,7 +18,7 @@ struct AfterQuestion1View: View {
     @State var next: Double = 0
     
     @State private var isView2Active = false
-    
+  
     
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
     @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
@@ -31,7 +31,7 @@ struct AfterQuestion1View: View {
         NavigationView{
             ZStack{
                 VStack{
-                    Text("Awesome!")
+                    Text("Awasome !")
                     Text("Some people don’t really know themselves that much yet, but you do! ")
                         .multilineTextAlignment(.center)
                         .frame(width: 234)

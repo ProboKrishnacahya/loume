@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct AfterObstacleView: View {
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     @State var visible: Double = 1
     @State private var disable1 = false
     @State var visibleText2: Double = 0
     @State var visibleText3: Double = 0
     @State var visibleText4: Double = 0
     @State var hideButton: Double = 1
+    
     var body: some View {
         VStack{
             Spacer()
@@ -248,6 +256,10 @@ struct AfterObstacleView: View {
 
 struct AfterObstacleView_Previews: PreviewProvider {
     static var previews: some View {
-        AfterObstacleView()
+        AfterObstacleView(userListCoreDataViewModel: UserListCoreDataViewModel(),
+                          goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                          planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                          subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                          loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

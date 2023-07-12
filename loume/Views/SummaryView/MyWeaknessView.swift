@@ -21,7 +21,7 @@ struct MyWeaknessView: View {
                         
                         Spacer()
                         
-                        UpdateButton()
+//                        UpdateButton()
                     }
                     
                     VStack(alignment: .leading) {

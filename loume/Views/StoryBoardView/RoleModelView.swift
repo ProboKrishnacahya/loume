@@ -45,7 +45,7 @@ struct RoleModelView: View {
                             HStack{
                                 Text("much potential in")
                                     .multilineTextAlignment(.center)
-                                Text("dance")
+                                Text(loveListCoreDataViewModel.getMostInterest())
                             }
                             Text("Now let’s get a little bit")
                             HStack{
@@ -217,7 +217,7 @@ struct RoleModelView: View {
                                             Text("3")
                                                 .foregroundColor(Color.white)
                                         }
-                                    TextField("Type here...", text: $roleModel3)
+                                    TextField("Type here...", text: $roleModel2)
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
                                     
                                         .frame(width:  250)
@@ -258,7 +258,7 @@ struct RoleModelView: View {
                                     movePage2 = 0
                                     visibleText2 = 0
                                     visible = 0
-                                    
+                                  
                                 }
                             
                             Spacer()
@@ -335,10 +335,10 @@ struct RoleModelView: View {
                                     
                                 }
                                 .overlay(
-                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                        EmptyView()
-                                    }
-                                )
+                                                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                                                        EmptyView()
+                                                                    }
+                                                                )
                         }
                         .opacity(visibleText2)
                         
