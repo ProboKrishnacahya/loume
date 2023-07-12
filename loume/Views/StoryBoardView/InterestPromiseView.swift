@@ -252,7 +252,7 @@ struct InterestPromiseView: View {
                         VStack{
                             TextEditor(text: $roleModel1)
                                 .frame(width: 260.0, height: 30.0)
-                                .navigationTitle("About you")
+                                
                                 .padding(.all)
                             
                         }.overlay(

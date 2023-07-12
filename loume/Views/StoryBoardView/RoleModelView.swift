@@ -31,6 +31,7 @@ struct RoleModelView: View {
     @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
     @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         NavigationView{
@@ -59,6 +60,7 @@ struct RoleModelView: View {
                                 movePage1 = 0
                                 movePage2 = 1
                                 hideButton = 1
+                                visible = 1
                             }
                         label: {
                             Text("Continue Now")
@@ -251,6 +253,13 @@ struct RoleModelView: View {
                                         .padding(.leading)
                                         .foregroundColor(Color.white)
                                 }
+                                .onTapGesture {
+                                    movePage1 = 1
+                                    movePage2 = 0
+                                    visibleText2 = 0
+                                    visible = 0
+                                  
+                                }
                             
                             Spacer()
                             HStack{
@@ -295,6 +304,10 @@ struct RoleModelView: View {
                                     visible = 1
                                     visibleText2 = 0
                                     visibleText3 = 0
+                                    movePage2 = 1
+                                    movePage3 = 0
+                                    
+                                    
                                 }
                             
                             Spacer()
@@ -322,10 +335,10 @@ struct RoleModelView: View {
                                     
                                 }
                                 .overlay(
-                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                        EmptyView()
-                                    }
-                                )
+                                                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                                                        EmptyView()
+                                                                    }
+                                                                )
                         }
                         .opacity(visibleText2)
                         
@@ -344,6 +357,8 @@ struct RoleModelView_Previews: PreviewProvider {
                       goalListCoreDataViewModel: GoalListCoreDataViewModel(),
                       planListCoreDataViewModel: PlanListCoreDataViewModel(),
                       subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                      loveListCoreDataViewModel: LoveListCoreDataViewModel())
+                      loveListCoreDataViewModel: LoveListCoreDataViewModel(),
+                      roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        
     }
 }

@@ -8,61 +8,82 @@
 import SwiftUI
 
 struct StrengthOut: View {
+    
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
+    @State private var isView2Active = false
+    
     var body: some View {
-        VStack{
+        NavigationView {
             VStack{
-                Text("To be honest, I’m sure you")
-                Text("have more strengths than just")
-                HStack{
-                    Text("Strength or speciality.")
-                        .fontWeight(.bold)
-                    Text("Let’s")
+                VStack{
+                    Text("To be honest, I’m sure you")
+                    Text("have more strengths than just")
+                    HStack{
+                        Text("Strength or speciality.")
+                            .fontWeight(.bold)
+                        Text("Let’s")
+                    }
+                    Text("figure out some more!")
                 }
-                Text("figure out some more!")
-            }
-            .padding(.top ,70)
-           
-            VStack{
-                Button {
+                .padding(.top ,70)
+                
+                VStack{
+                    Button {
+                        isView2Active = true
+                    }
+                label: {
+                    Text("Continue Now")
+                        .padding(.horizontal, 60)
+                        .padding(.vertical, 10)
+                        .background(Color("Chinese Orange"))
+                        .foregroundColor(Color.white)
+                        .buttonStyle(.bordered)
+                        .background(
+                            
+                            RoundedRectangle(
+                                
+                                cornerRadius: 5,
+                                style: .continuous
+                            )
+                            .stroke(Color("Axolotl"), lineWidth: 1)
+                            
+                        )
+                }
+                .onTapGesture {
                     
                 }
-            label: {
-                Text("Continue Now")
-                    .padding(.horizontal, 60)
-                    .padding(.vertical, 10)
-                    .background(Color("Chinese Orange"))
-                    .foregroundColor(Color.white)
-                    .buttonStyle(.bordered)
-                    .background(
+                .overlay{
+                    NavigationLink(destination: QuestionView1(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                        EmptyView()
                         
-                        RoundedRectangle(
-                            
-                            cornerRadius: 5,
-                            style: .continuous
-                        )
-                        .stroke(Color("Axolotl"), lineWidth: 1)
-                        
-                    )
-            }
-                Button {
-                    
+                    }
                 }
-            label: {
-                Text("Save for Later")
-                    .padding(.horizontal, 60)
-                    .padding(.vertical, 10)
-                    .foregroundColor(Color("Chinese Orange"))
-                    .buttonStyle(.bordered)
-                    .background(
+                    Button {
                         
-                        RoundedRectangle(
+                    }
+                label: {
+                    Text("Save for Later")
+                        .padding(.horizontal, 60)
+                        .padding(.vertical, 10)
+                        .foregroundColor(Color("Chinese Orange"))
+                        .buttonStyle(.bordered)
+                        .background(
                             
-                            cornerRadius: 5,
-                            style: .continuous
+                            RoundedRectangle(
+                                
+                                cornerRadius: 5,
+                                style: .continuous
+                            )
+                            .stroke(Color("Chinese Orange"), lineWidth: 1)
+                            
                         )
-                        .stroke(Color("Chinese Orange"), lineWidth: 1)
-                        
-                    )
+                }
                 }
             }
         }
@@ -71,6 +92,10 @@ struct StrengthOut: View {
 
 struct StrengthOut_Previews: PreviewProvider {
     static var previews: some View {
-        StrengthOut()
+        StrengthOut(userListCoreDataViewModel: UserListCoreDataViewModel(),
+                    goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                    planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                    subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                    loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

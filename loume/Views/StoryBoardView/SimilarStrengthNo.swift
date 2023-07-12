@@ -1,3 +1,4 @@
+
 //
 //  similarStrenghtNo.swift
 //  loume
@@ -8,27 +9,37 @@
 import SwiftUI
 
 struct SimilarStrengthNo: View {
+    
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     var body: some View {
-        VStack {
-            Text("It’s okay! I’m sure you can")
-            HStack {
-                Text("attain some of")
-                Text("Mark Lee")
-                    .fontWeight(.bold)
-                
-                //ganti "Mark Lee" pada Text baris di atas dengan
-                //userListCoreDataViewModel.userEntities[0].roleModel
+        NavigationView {
+            VStack {
+                Text("It’s okay! I’m sure you can")
+                HStack {
+                    Text("attain some of")
+                    Text(userListCoreDataViewModel.userEntities[0].roleModel)
+                        .fontWeight(.bold)
+                }
+                Text("positive traits one day soon!")
+                Text("For now, let’s try discovering")
+                Text("your strengths.")
             }
-            Text("positive traits one day soon!")
-            Text("For now, let’s try discovering")
-            Text("your strengths.")
         }
-        
     }
 }
 
 struct SimilarStrengthNo_Previews: PreviewProvider {
     static var previews: some View {
-        SimilarStrengthNo()
+        SimilarStrengthNo(userListCoreDataViewModel: UserListCoreDataViewModel(),
+                          goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                          planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                          subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                          loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

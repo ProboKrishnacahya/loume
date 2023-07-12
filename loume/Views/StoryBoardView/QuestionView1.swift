@@ -22,6 +22,13 @@ struct QuestionView1: View {
     @State var hideButton: Double = 1
     @State var visible: Double = 1
     
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+        @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+        @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+        @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+        @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+        @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     @State var roleModel1: String = ""
     
     var body: some View {
@@ -55,7 +62,7 @@ struct QuestionView1: View {
                                                     .foregroundColor(Color.white)
                                                 TextEditor(text: $roleModel1)
                                                     .frame(width: 260.0, height: 350.0)
-                                                    .navigationTitle("About you")
+                                                    
                                             }
                                         }.padding(.top ,10)
                                     }.padding(.top, 20)
@@ -130,7 +137,7 @@ struct QuestionView1: View {
                                                     .foregroundColor(Color.white)
                                                 TextEditor(text: $roleModel1)
                                                     .frame(width: 260.0, height: 350.0)
-                                                    .navigationTitle("About you")
+                                                    
                                             }
                                         }.padding(.top ,10)
                                     }.padding(.top, 20)
@@ -388,6 +395,10 @@ struct QuestionView1: View {
 
 struct QuestionView1_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView1()
-    }
+            QuestionView1(userListCoreDataViewModel: UserListCoreDataViewModel(),
+                          goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                          planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                          subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                          loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        }
 }

@@ -24,8 +24,7 @@ struct InterestSelectedView: View {
     @State var circle3 : Double = 0
     
     
-    
-    
+  
     
 //    @State var visible: Double
 //    @State var disable1: Bool
@@ -38,10 +37,11 @@ struct InterestSelectedView: View {
     
     // di bawah ini harus ada di setiap page story board dan cara lemparnya sama seperti sebelumnya ini
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+        @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+        @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+        @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+        @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+        @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         NavigationView{
@@ -188,10 +188,10 @@ struct InterestSelectedView: View {
                                     
                                 }
                                 .overlay(
-                                    NavigationLink(destination: RoleModelView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                        EmptyView()
-                                    }
-                                )
+                                                                    NavigationLink(destination: RoleModelView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                                                        EmptyView()
+                                                                    }
+                                                                )
                                     
                                 
                         }
@@ -216,10 +216,10 @@ struct InterestSelectedView_Previews: PreviewProvider {
     
     static var previews: some View {
         InterestSelectedView(
-                             userListCoreDataViewModel: UserListCoreDataViewModel(),
-                             goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                             planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                             subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                             loveListCoreDataViewModel: LoveListCoreDataViewModel())
+            userListCoreDataViewModel: UserListCoreDataViewModel(),
+            goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+            planListCoreDataViewModel: PlanListCoreDataViewModel(),
+            subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+            loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
-}
+    }

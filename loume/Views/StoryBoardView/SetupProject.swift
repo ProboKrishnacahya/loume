@@ -34,10 +34,11 @@ struct SetupProject: View {
     @State var scale2:Double
     
     @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+        @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+        @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+        @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+        @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+        @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
 //    init() {
 //        UINavigationBar.setAnimationsEnabled(false)
@@ -117,10 +118,10 @@ struct SetupProject: View {
                             }
                             .opacity(fadeOutCircle)
                             .overlay(
-                                NavigationLink(destination: IntroView(  userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                    EmptyView()
-                                }
-                            )
+                                                            NavigationLink(destination: IntroView(  userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                                                EmptyView()
+                                                            }
+                                                        )
                             .offset(y: offset.height)
                             .gesture(
                                 DragGesture()
@@ -176,6 +177,7 @@ struct SetupProject_Previews: PreviewProvider {
                      goalListCoreDataViewModel: GoalListCoreDataViewModel(),
                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                     loveListCoreDataViewModel: LoveListCoreDataViewModel())
+                     loveListCoreDataViewModel: LoveListCoreDataViewModel(),
+        roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }
