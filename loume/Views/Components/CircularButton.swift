@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct CircularButton: View {
-    @ObservedObject var userData: User
     @Binding var isSheetPresented: Bool
     @Binding var inputTextValues: [[[String]]]
     @State var name = ""
     @State var dueDate = Date()
     @State var type: String
-    @State var goal: Goal
+    @Binding var goal: GoalCoreDataModel
+    
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     
     let goalIndex: Int
     
@@ -30,17 +33,22 @@ struct CircularButton: View {
         }
         .sheet(isPresented: $isSheetPresented) {
             ModalView(name: $name, dueDate: $dueDate, type: $type, goal: $goal,
-                      isSheetPresented: $isSheetPresented, inputTextValues: $inputTextValues, userData: userData, goalIndex: goalIndex)
+                      isSheetPresented: $isSheetPresented, inputTextValues: $inputTextValues, goalIndex: goalIndex,
+                      planListCoreDataViewModel: planListCoreDataViewModel,
+                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                      goalListCoreDataViewModel: goalListCoreDataViewModel)
         }
     }
 }
 
 struct CircularButton_Previews: PreviewProvider {
     static var previews: some View {
-        CircularButton(userData: User(name: "", goals: [Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date())]),
-                       isSheetPresented: .constant(false),
+        CircularButton(isSheetPresented: .constant(false),
                        inputTextValues: .constant([[[""]]]), type: "goal",
-                       goal: Goal(name: "Goal 1", plans: [Plan(name: "Plan 1", subPlans: [SubPlan(name: "Sub Plan 1", is_done: false)], dueDate: Date())], dueDate: Date()),
+                       goal: .constant(GoalCoreDataModel(goalEntity: GoalEntity())),
+                       goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                       planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                       subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
                        goalIndex: 0)
     }
 }

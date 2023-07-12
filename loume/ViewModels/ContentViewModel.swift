@@ -15,6 +15,7 @@ struct ContentViewModel {
             } else {
                 return "chart.bar.doc.horizontal"
             }
+            
         } else {
             if selectedTab == tag {
                 return "heart.circle.fill"

@@ -7,22 +7,43 @@
 
 import SwiftUI
 struct SetupProject: View {
-    @State private var moveUp = true
-    @State private var moveUpCircle = true
-    @State private var moveUpText = true
-    @State private var isView2Active = false
-    @State private var moveUpTextField = true
-    @State private var fadeText1 = false
-    @State private var offset = CGSize.zero
-    @State private var fadeText2 = false
-    @State private var fadeOutCircle:Double = 1
-    @State var text1:Double = 90
-    @State var username: String = ""
-    @State private var scale2:Double = 1
+//    @State var moveUp = true
+//    @State var moveUpCircle = true
+//    @State var moveUpText = true
+//    @State var isView2Active = false
+//    @State var moveUpTextField = true
+//    @State var fadeText1 = false
+//    @State var offset = CGSize.zero
+//    @State var fadeText2 = false
+//    @State var fadeOutCircle:Double = 1
+//    @State var text1:Double = 90
+//    @State var name:String = ""
+//    @State var scale2:Double = 1
     
-    init() {
-        UINavigationBar.setAnimationsEnabled(false)
-    }
+    @State var moveUp: Bool
+    @State var moveUpCircle: Bool
+    @State var moveUpText: Bool
+    @State var isView2Active: Bool
+    @State var moveUpTextField: Bool
+    @State var fadeText1: Bool
+    @State var offset: CGSize
+    @State var fadeText2: Bool
+    @State var fadeOutCircle:Double
+    @State var text1:Double
+    @State var name:String
+    @State var scale2:Double
+    
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
+    
+//    init() {
+//        UINavigationBar.setAnimationsEnabled(false)
+//    }
     
     var body: some View {
         NavigationView {
@@ -77,7 +98,7 @@ struct SetupProject: View {
                             }
                             .padding(.top, 140.0)
                         
-                        TextField("Enter username...", text: $username)
+                        TextField("Enter username...", text: $name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width:  300)
                             .offset(x: 0, y: moveUpTextField ? 610 : -50)
@@ -98,7 +119,7 @@ struct SetupProject: View {
                             }
                             .opacity(fadeOutCircle)
                             .overlay(
-                                NavigationLink(destination: IntroView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: IntroView(  userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -106,6 +127,7 @@ struct SetupProject: View {
                             .gesture(
                                 DragGesture()
                                     .onChanged { gesture in
+                                        userListCoreDataViewModel.saveUserEntity(name: name)
                                         if gesture.translation.height < 0 {
                                             self.offset = gesture.translation
                                         }
@@ -132,11 +154,31 @@ struct SetupProject: View {
             }
         }
         .animation(nil)
+        .onAppear(perform: {
+            UINavigationBar.setAnimationsEnabled(false)
+        })
     }
 }
 
 struct SetupProject_Previews: PreviewProvider {
     static var previews: some View {
-        SetupProject()
+        SetupProject(moveUp: true,
+                     moveUpCircle: true,
+                     moveUpText: true,
+                     isView2Active: false,
+                     moveUpTextField: true,
+                     fadeText1: false,
+                     offset: CGSize.zero,
+                     fadeText2: false,
+                     fadeOutCircle: 1,
+                     text1: 90,
+                     name: "",
+                     scale2: 1,
+                     userListCoreDataViewModel: UserListCoreDataViewModel(),
+                     goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                     planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                     subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                     loveListCoreDataViewModel: LoveListCoreDataViewModel(),
+        roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

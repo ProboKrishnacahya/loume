@@ -8,19 +8,40 @@
 import SwiftUI
 
 struct InterestPromiseView: View {
-    @State var roleModel1: String = ""
-    @State var test0: Double = 1
-    @State var test1: Double = 0
-    @State var test2: Double = 0
-    @State var test3: Double = 0
-    @State var visible: Double = 0
-    @State private var disable1 = false
-    @State var firstPage: Double = 1
-    @State var visibleText1: Double = 0
-    @State var visibleText2: Double = 0
-    @State var visibleText3: Double = 0
-    @State var visibleText4: Double = 0
-    @State var hideButton: Double = 0
+//    @State var roleModel1: String = ""
+//    @State var test0: Double = 1
+//    @State var test1: Double = 0
+//    @State var test2: Double = 0
+//    @State var test3: Double = 0
+//    @State var visible: Double = 0
+//    @State private var disable1 = false
+//    @State var firstPage: Double = 1
+//    @State var visibleText1: Double = 0
+//    @State var visibleText2: Double = 0
+//    @State var visibleText3: Double = 0
+//    @State var visibleText4: Double = 0
+//    @State var hideButton: Double = 0
+    
+    @State var roleModel1: String
+    @State var test0: Double
+    @State var test1: Double
+    @State var test2: Double
+    @State var test3: Double
+    @State var visible: Double
+    @State var disable1: Bool
+    @State var firstPage: Double
+    @State var visibleText1: Double
+    @State var visibleText2: Double
+    @State var visibleText3: Double
+    @State var visibleText4: Double
+    @State var hideButton: Double
+    
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
 
     var body: some View {
         ZStack{
@@ -153,7 +174,7 @@ struct InterestPromiseView: View {
                                 
                             }
                     }
-                    .opacity(visibleText3)
+                    .opacity(visibleText3) //end
                     
                 }
                 .opacity(hideButton)
@@ -216,7 +237,7 @@ struct InterestPromiseView: View {
                     VStack{
                         HStack{
                             Text("Talking about")
-                            Text("Dance")
+                            Text(loveListCoreDataViewModel.getMostInterest())
                                 .fontWeight(.bold)
                             Text("do you")
                         }
@@ -235,6 +256,7 @@ struct InterestPromiseView: View {
                         }.overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color("Axolotl"), lineWidth: 2)
+                            //goal blm
                         )
                         
                     }
@@ -246,8 +268,7 @@ struct InterestPromiseView: View {
                         .frame(width: 300.0)
                     Spacer()
                 }.onAppear{
-                    
-                }
+                                   }
                 .padding(.top, 130)
                 .opacity(visibleText1)
                 
@@ -329,6 +350,23 @@ struct InterestPromiseView: View {
 
 struct InterestPromiseView_Previews: PreviewProvider {
     static var previews: some View {
-        InterestPromiseView()
+        InterestPromiseView(roleModel1: "",
+                            test0: 1,
+                            test1: 0,
+                            test2: 0,
+                            test3: 0,
+                            visible: 0,
+                            disable1: false,
+                            firstPage: 1,
+                            visibleText1: 0,
+                            visibleText2: 0,
+                            visibleText3: 0,
+                            visibleText4: 0,
+                            hideButton: 0,
+                            userListCoreDataViewModel: UserListCoreDataViewModel(),
+                            goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                            planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                            subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                            loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

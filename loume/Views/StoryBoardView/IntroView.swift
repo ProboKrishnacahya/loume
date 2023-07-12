@@ -24,10 +24,29 @@ struct IntroView: View {
     @State private var scale2:Double = 1
     @State private var durationHold: Double = 1
     
-    init(){
-        UINavigationBar.setAnimationsEnabled(false)
-    }
-    
+//    @State var fadeText1: Bool
+//    @State var fadeText2: Bool
+//    @State var isView2Active: Bool
+//    @State var stopRepeat: Bool
+//    @State var fadeTextSecond1: Bool
+//    @State var fadeTextSecond2: Bool
+//    @State var fadeTextThird1: Bool
+//    @State var fadeTextThird2: Bool
+//    @State var disable1: Bool
+//    @State var disable2: Bool
+//    @State var disable3: Bool
+//    @State var scale:Double
+//    @State var scaleCircleSmall:Double
+//    @State var scale2:Double
+//    @State var durationHold: Double
+//
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+ 
     var body: some View {
         NavigationView{
             ZStack{
@@ -38,7 +57,7 @@ struct IntroView: View {
                         Text("Welcome")
                             .fontWeight(.bold)
                         
-                        Text("Yohan!")
+                        Text(userListCoreDataViewModel.userEntities[0].name)
                             .fontWeight(.bold)
                             .padding(.leading, -3.0)
                         
@@ -140,7 +159,7 @@ struct IntroView: View {
                                 
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView( userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -159,13 +178,14 @@ struct IntroView: View {
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                     isView2Active = true
+                                    isView2Active = true
                                     
                                 }
                                 scale2 = 0
                                 
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView( userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -190,7 +210,7 @@ struct IntroView: View {
                                 
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView( userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -206,11 +226,19 @@ struct IntroView: View {
             }
         }
         .animation(nil)
+        .onAppear(perform: {
+            UINavigationBar.setAnimationsEnabled(false)
+        })
     }
 }
 
 struct IntroView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroView()
+        IntroView(
+                  userListCoreDataViewModel: UserListCoreDataViewModel(),
+                  goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                  planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                  subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                  loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

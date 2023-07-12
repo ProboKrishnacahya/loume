@@ -15,6 +15,14 @@
 		0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825172A57E68C00B87CC0 /* GoalRowView.swift */; };
 		0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0825192A57FAA500B87CC0 /* PlanRowView.swift */; };
 		0B43EC362A56A63100B84D7E /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B43EC352A56A63100B84D7E /* EmptyStateView.swift */; };
+		0B474ADF2A5D3A7D00113E27 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474ADE2A5D3A7D00113E27 /* CoreDataManager.swift */; };
+		0B474AE22A5D3B0900113E27 /* GoalListCoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474AE12A5D3B0900113E27 /* GoalListCoreDataViewModel.swift */; };
+		0B474AE42A5D3B3100113E27 /* UserListCoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474AE32A5D3B3100113E27 /* UserListCoreDataViewModel.swift */; };
+		0B474AE62A5D3B4A00113E27 /* PlanListCoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474AE52A5D3B4A00113E27 /* PlanListCoreDataViewModel.swift */; };
+		0B474AE82A5D3B5F00113E27 /* SubPlanListCoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474AE72A5D3B5F00113E27 /* SubPlanListCoreDataViewModel.swift */; };
+		0B474AEA2A5D3B7700113E27 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474AE92A5D3B7700113E27 /* ViewModel.swift */; };
+		0B474AEC2A5D48E700113E27 /* LoveListCoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474AEB2A5D48E700113E27 /* LoveListCoreDataViewModel.swift */; };
+		0B474AEE2A5D7B8300113E27 /* RoleModelStrengthListCoreDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B474AED2A5D7B8300113E27 /* RoleModelStrengthListCoreDataViewModel.swift */; };
 		82441EE42A582B4E007EFD6E /* SimilarStrengthNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED12A582B4D007EFD6E /* SimilarStrengthNo.swift */; };
 		82441EE52A582B4E007EFD6E /* SimilarStrengthYes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED22A582B4D007EFD6E /* SimilarStrengthYes.swift */; };
 		82441EE62A582B4E007EFD6E /* StrengthOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441ED32A582B4D007EFD6E /* StrengthOut.swift */; };
@@ -36,13 +44,8 @@
 		8247BDDB2A5DCF3D000C8FCB /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247BDDA2A5DCF3D000C8FCB /* SecondaryButton.swift */; };
 		826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */; };
 		826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */; };
-		826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C62A4EF3EC00B9F57A /* Persistence.swift */; };
 		826814E42A4EF3EC00B9F57A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826814C72A4EF3EC00B9F57A /* Assets.xcassets */; };
-		826814E52A4EF3EC00B9F57A /* SubPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C92A4EF3EC00B9F57A /* SubPlan.swift */; };
 		826814E62A4EF3EC00B9F57A /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814CA2A4EF3EC00B9F57A /* SoundManager.swift */; };
-		826814E72A4EF3EC00B9F57A /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814CB2A4EF3EC00B9F57A /* Goal.swift */; };
-		826814E82A4EF3EC00B9F57A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814CC2A4EF3EC00B9F57A /* User.swift */; };
-		826814E92A4EF3EC00B9F57A /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814CD2A4EF3EC00B9F57A /* Plan.swift */; };
 		826814EA2A4EF3EC00B9F57A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826814CF2A4EF3EC00B9F57A /* Preview Assets.xcassets */; };
 		826814EB2A4EF3EC00B9F57A /* loumeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814D02A4EF3EC00B9F57A /* loumeApp.swift */; };
 		826814EC2A4EF3EC00B9F57A /* AppHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814D22A4EF3EC00B9F57A /* AppHeader.swift */; };
@@ -93,6 +96,14 @@
 		0B0825172A57E68C00B87CC0 /* GoalRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRowView.swift; sourceTree = "<group>"; };
 		0B0825192A57FAA500B87CC0 /* PlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanRowView.swift; sourceTree = "<group>"; };
 		0B43EC352A56A63100B84D7E /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		0B474ADE2A5D3A7D00113E27 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		0B474AE12A5D3B0900113E27 /* GoalListCoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalListCoreDataViewModel.swift; sourceTree = "<group>"; };
+		0B474AE32A5D3B3100113E27 /* UserListCoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCoreDataViewModel.swift; sourceTree = "<group>"; };
+		0B474AE52A5D3B4A00113E27 /* PlanListCoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanListCoreDataViewModel.swift; sourceTree = "<group>"; };
+		0B474AE72A5D3B5F00113E27 /* SubPlanListCoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubPlanListCoreDataViewModel.swift; sourceTree = "<group>"; };
+		0B474AE92A5D3B7700113E27 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0B474AEB2A5D48E700113E27 /* LoveListCoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoveListCoreDataViewModel.swift; sourceTree = "<group>"; };
+		0B474AED2A5D7B8300113E27 /* RoleModelStrengthListCoreDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleModelStrengthListCoreDataViewModel.swift; sourceTree = "<group>"; };
 		82441ED12A582B4D007EFD6E /* SimilarStrengthNo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarStrengthNo.swift; sourceTree = "<group>"; };
 		82441ED22A582B4D007EFD6E /* SimilarStrengthYes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimilarStrengthYes.swift; sourceTree = "<group>"; };
 		82441ED32A582B4D007EFD6E /* StrengthOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrengthOut.swift; sourceTree = "<group>"; };
@@ -114,13 +125,8 @@
 		8247BDDA2A5DCF3D000C8FCB /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		826814C32A4EF3EC00B9F57A /* comee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = comee.xcdatamodel; sourceTree = "<group>"; };
 		826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardViewModel.swift; sourceTree = "<group>"; };
-		826814C62A4EF3EC00B9F57A /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		826814C72A4EF3EC00B9F57A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		826814C92A4EF3EC00B9F57A /* SubPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubPlan.swift; sourceTree = "<group>"; };
 		826814CA2A4EF3EC00B9F57A /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		826814CB2A4EF3EC00B9F57A /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		826814CC2A4EF3EC00B9F57A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		826814CD2A4EF3EC00B9F57A /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		826814CF2A4EF3EC00B9F57A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		826814D02A4EF3EC00B9F57A /* loumeApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loumeApp.swift; sourceTree = "<group>"; };
 		826814D22A4EF3EC00B9F57A /* AppHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppHeader.swift; sourceTree = "<group>"; };
@@ -173,12 +179,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B474AE02A5D3AF200113E27 /* CoreDataViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0B474AE12A5D3B0900113E27 /* GoalListCoreDataViewModel.swift */,
+				0B474AE32A5D3B3100113E27 /* UserListCoreDataViewModel.swift */,
+				0B474AE52A5D3B4A00113E27 /* PlanListCoreDataViewModel.swift */,
+				0B474AE72A5D3B5F00113E27 /* SubPlanListCoreDataViewModel.swift */,
+				0B474AEB2A5D48E700113E27 /* LoveListCoreDataViewModel.swift */,
+				0B474AED2A5D7B8300113E27 /* RoleModelStrengthListCoreDataViewModel.swift */,
+			);
+			path = CoreDataViewModels;
+			sourceTree = "<group>";
+		};
 		826814C12A4EF3EC00B9F57A /* loume */ = {
 			isa = PBXGroup;
 			children = (
 				826814DE2A4EF3EC00B9F57A /* ContentView.swift */,
 				826814D02A4EF3EC00B9F57A /* loumeApp.swift */,
-				826814C62A4EF3EC00B9F57A /* Persistence.swift */,
 				826814C72A4EF3EC00B9F57A /* Assets.xcassets */,
 				826814DF2A4EF3EC00B9F57A /* Helpers */,
 				826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */,
@@ -193,11 +211,13 @@
 		826814C42A4EF3EC00B9F57A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0B474AE02A5D3AF200113E27 /* CoreDataViewModels */,
 				826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */,
 				0B08250D2A57C05400B87CC0 /* AppHeaderViewModel.swift */,
 				0B08250F2A57CEE400B87CC0 /* ContentViewModel.swift */,
 				0B0825132A57DC5400B87CC0 /* CircularButtonViewModel.swift */,
 				0B0825152A57E26000B87CC0 /* ModalViewModal.swift */,
+				0B474AE92A5D3B7700113E27 /* ViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -205,11 +225,7 @@
 		826814C82A4EF3EC00B9F57A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				826814C92A4EF3EC00B9F57A /* SubPlan.swift */,
 				826814CA2A4EF3EC00B9F57A /* SoundManager.swift */,
-				826814CB2A4EF3EC00B9F57A /* Goal.swift */,
-				826814CC2A4EF3EC00B9F57A /* User.swift */,
-				826814CD2A4EF3EC00B9F57A /* Plan.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,24 +269,24 @@
 		826814DA2A4EF3EC00B9F57A /* StoryBoardView */ = {
 			isa = PBXGroup;
 			children = (
+				82441EE22A582B4E007EFD6E /* SetupProject.swift */,
+				82441EDD2A582B4E007EFD6E /* IntroView.swift */,
+				82441ED72A582B4D007EFD6E /* InterestView.swift */,
+				82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */,
+				82441EDB2A582B4E007EFD6E /* RoleModelView.swift */,
+				82441EE02A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift */,
+				82441ED22A582B4D007EFD6E /* SimilarStrengthYes.swift */,
+				82441ED12A582B4D007EFD6E /* SimilarStrengthNo.swift */,
+				82441ED32A582B4D007EFD6E /* StrengthOut.swift */,
+				82441EDA2A582B4E007EFD6E /* QuestionView1.swift */,
+				82441EDC2A582B4E007EFD6E /* AfterQuestion1View.swift */,
+				82441ED82A582B4D007EFD6E /* QuestionView2.swift */,
+				82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */,
 				82441ED92A582B4E007EFD6E /* AfterObstacle2View.swift */,
 				82441ED62A582B4D007EFD6E /* AfterObstacleView.swift */,
-				82441EDC2A582B4E007EFD6E /* AfterQuestion1View.swift */,
 				82441ED42A582B4D007EFD6E /* ConfidentView.swift */,
-				82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */,
-				82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */,
-				82441ED72A582B4D007EFD6E /* InterestView.swift */,
-				82441EDD2A582B4E007EFD6E /* IntroView.swift */,
 				82441EDE2A582B4E007EFD6E /* MyStrengthView.swift */,
 				82441ED52A582B4D007EFD6E /* ObstaclesView.swift */,
-				82441EDA2A582B4E007EFD6E /* QuestionView1.swift */,
-				82441ED82A582B4D007EFD6E /* QuestionView2.swift */,
-				82441EE02A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift */,
-				82441EDB2A582B4E007EFD6E /* RoleModelView.swift */,
-				82441EE22A582B4E007EFD6E /* SetupProject.swift */,
-				82441ED12A582B4D007EFD6E /* SimilarStrengthNo.swift */,
-				82441ED22A582B4D007EFD6E /* SimilarStrengthYes.swift */,
-				82441ED32A582B4D007EFD6E /* StrengthOut.swift */,
 				82A7548C2A52C3E0004501A3 /* IntroductionView.swift */,
 				82A7548E2A52C419004501A3 /* RolePromptView.swift */,
 			);
@@ -281,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				826814E02A4EF3EC00B9F57A /* soundBackground.mp3 */,
+				0B474ADE2A5D3A7D00113E27 /* CoreDataManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -479,13 +496,12 @@
 				8247BDDB2A5DCF3D000C8FCB /* SecondaryButton.swift in Sources */,
 				82441EF32A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift in Sources */,
 				82441EEF2A582B4E007EFD6E /* AfterQuestion1View.swift in Sources */,
-				826814E92A4EF3EC00B9F57A /* Plan.swift in Sources */,
 				82441EEA2A582B4E007EFD6E /* InterestView.swift in Sources */,
 				826814ED2A4EF3EC00B9F57A /* PrimaryButton.swift in Sources */,
 				826814EB2A4EF3EC00B9F57A /* loumeApp.swift in Sources */,
 				826814EC2A4EF3EC00B9F57A /* AppHeader.swift in Sources */,
+				0B474AEE2A5D7B8300113E27 /* RoleModelStrengthListCoreDataViewModel.swift in Sources */,
 				82441EF12A582B4E007EFD6E /* MyStrengthView.swift in Sources */,
-				826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */,
 				0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */,
 				0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */,
 				82A5E3712A5C1F8C005AF041 /* MyInterestView.swift in Sources */,
@@ -499,25 +515,30 @@
 				82A7548F2A52C419004501A3 /* RolePromptView.swift in Sources */,
 				82441EF02A582B4E007EFD6E /* IntroView.swift in Sources */,
 				82441EF42A582B4E007EFD6E /* InterestPromiseView.swift in Sources */,
-				826814E52A4EF3EC00B9F57A /* SubPlan.swift in Sources */,
+				0B474AE82A5D3B5F00113E27 /* SubPlanListCoreDataViewModel.swift in Sources */,
+				0B474AE42A5D3B3100113E27 /* UserListCoreDataViewModel.swift in Sources */,
 				82A5E36F2A5C1DA6005AF041 /* MyRoleModelView.swift in Sources */,
 				82441EF62A582B4E007EFD6E /* InterestSelectedView.swift in Sources */,
 				82441EE52A582B4E007EFD6E /* SimilarStrengthYes.swift in Sources */,
 				826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */,
 				826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */,
+				0B474AE22A5D3B0900113E27 /* GoalListCoreDataViewModel.swift in Sources */,
 				826814F02A4EF3EC00B9F57A /* GoalView.swift in Sources */,
 				82A5E3752A5C1FB8005AF041 /* MyGoalObstacles.swift in Sources */,
+				0B474AEA2A5D3B7700113E27 /* ViewModel.swift in Sources */,
 				0B0825142A57DC5400B87CC0 /* CircularButtonViewModel.swift in Sources */,
 				82441EE42A582B4E007EFD6E /* SimilarStrengthNo.swift in Sources */,
 				82A5E3772A5C1FC4005AF041 /* MyStrengthsView.swift in Sources */,
 				82A5E3792A5C5F98005AF041 /* SummaryResultCard.swift in Sources */,
 				82441EF52A582B4E007EFD6E /* SetupProject.swift in Sources */,
+				0B474AE62A5D3B4A00113E27 /* PlanListCoreDataViewModel.swift in Sources */,
 				826814EE2A4EF3EC00B9F57A /* CircularButton.swift in Sources */,
 				82441EEB2A582B4E007EFD6E /* QuestionView2.swift in Sources */,
 				0B08250E2A57C05400B87CC0 /* AppHeaderViewModel.swift in Sources */,
+				0B474AEC2A5D48E700113E27 /* LoveListCoreDataViewModel.swift in Sources */,
+				0B474ADF2A5D3A7D00113E27 /* CoreDataManager.swift in Sources */,
 				82441EE72A582B4E007EFD6E /* ConfidentView.swift in Sources */,
 				82A7548D2A52C3E0004501A3 /* IntroductionView.swift in Sources */,
-				826814E72A4EF3EC00B9F57A /* Goal.swift in Sources */,
 				82441EEE2A582B4E007EFD6E /* RoleModelView.swift in Sources */,
 				826814F42A4EF3EC00B9F57A /* ContentView.swift in Sources */,
 				82441EED2A582B4E007EFD6E /* QuestionView1.swift in Sources */,
@@ -526,7 +547,6 @@
 				826814E62A4EF3EC00B9F57A /* SoundManager.swift in Sources */,
 				82A5E3732A5C1FA0005AF041 /* MyWeaknessView.swift in Sources */,
 				82A7548B2A52C331004501A3 /* SummaryView.swift in Sources */,
-				826814E82A4EF3EC00B9F57A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,8 +13,11 @@ struct InterestView: View {
     @State var visibleText3: Double = 0
     @State var visibleText4: Double = 0
     @State var visibleText5: Double = 0
+    
+    
     @State var hideButton: Double = 1
     @State private var fadeText1 = false
+    @State private var fadeText2 = false
     @State private var disable1 = false
     @State private var disable2 = false
     @State private var isView2Active = false
@@ -31,6 +34,31 @@ struct InterestView: View {
     @State private var flip = false
     @State private var selectedCircles: Set<Int> = []
     @State private var rotate1: Set<Int> = []
+    
+//    @State var visible: Double
+//    @State var visibleText2: Double
+//    @State var visibleText3: Double
+//    @State var visibleText4: Double
+//    @State var visibleText5: Double
+//    @State var hideButton: Double
+//    @State var fadeText1: Bool
+//    @State var disable1: Bool
+//    @State var disable2: Bool
+//    @State var isView2Active: Bool
+//    private static let size: CGFloat = 120
+//    private static let spacingBetweenColumns: CGFloat = 18
+//    private static let spacingBetweenRows: CGFloat = 1
+//    private static let totalcolumns: Int = 10
+//    @State var isVisible: Bool
+//    @State var angle: Double
+//    @State var scalefade: Double
+//    @State var scale: Double
+//    @State var rotation: Double
+//    @State var rotationIntro: Bool
+//    @State var flip: Bool
+//    @State var selectedCircles: Set<Int>
+//    @State var rotate1: Set<Int>
+    
     let interest: [String] = ["Animal", "Animation", "Art", "Acting", "Astronomy", "Automotive", "Business", "Beauty", "Baking", "Board Game", "Books", "Cooking", "Crafts", "Culture", "Cosplay", "Content Creating", "Design", "Dance", "Drawing", "Engineering", "Entrepreneurship", "Exercising", "Entertainment", "Education", "Fashion", "Fishing", "Film", "Gardening", "Game", "History", "Investing", "Outdoor Activities", "Sports", "Journaling", "Music", "Marketing", "Language", "Photography", "Videography", "Public Speaking", "Painting", "Reading", "Science", "Swimming", "Singing", "Technology", "Traveling", "Trading", "Writing", "Politics"]
     let grid =  Array(
         repeating: GridItem(
@@ -38,6 +66,14 @@ struct InterestView: View {
         ),
         count: totalcolumns
     )
+    
+    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
+    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
+    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
+    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     var body: some View {
         ZStack{
             NavigationView{
@@ -55,7 +91,7 @@ struct InterestView: View {
                             }
                     }
                     .opacity(disable1 ? 0 : 1)
-                    .animation(.easeIn(duration: 0.5).delay(5))
+                    .animation(.easeIn(duration: 0.5).delay(9))
                     .onAppear {
                         withAnimation {
                             disable1 = true
@@ -87,6 +123,7 @@ struct InterestView: View {
                                                 .font(.caption)
                                                 .fontWeight(.bold)
                                                 .foregroundColor(selectedCircles.contains(index) ? .white: Color("Axolotl"))
+                                                .multilineTextAlignment(.center)
                                                 .offset(
                                                     x: offsetX(value),
                                                     y: 0
@@ -106,7 +143,7 @@ struct InterestView: View {
                                         .animation(.easeIn, value: scalefade)
                                 }
                                 .opacity(isVisible ? 1 : 0)
-                                .animation(.easeIn(duration: 0.5).delay(7))
+                                .animation(.easeIn(duration: 0.5).delay(9))
                                 .onAppear {
                                     withAnimation {
                                         isVisible = true
@@ -132,6 +169,7 @@ struct InterestView: View {
                                     .onAppear {
                                         withAnimation {
                                             isVisible = true
+                                            
                                         }
                                     }
                                     .rotation3DEffect(.degrees(45), axis: (x: 0, y: 0, z: 0))
@@ -141,7 +179,7 @@ struct InterestView: View {
                                     .padding(.trailing)
                                     .foregroundColor(Color("Axolotl"))
                                     .opacity(isVisible ? 1 : 0)
-                                    .animation(.easeIn(duration: 0.5).delay(10))
+                                    .animation(.easeIn(duration: 0.5).delay(0))
                                     .onAppear {
                                         withAnimation {
                                             isVisible = true
@@ -151,176 +189,120 @@ struct InterestView: View {
                                             .foregroundColor(Color.white)
                                             .padding(.trailing)
                                             .font(.system(size: 25))
-                                        
-                                        
                                     }
                                     .onTapGesture {
                                         isView2Active = true
-                                        
                                     }
-                                    .overlay(
-                                        NavigationLink(destination: SetupProject().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                            EmptyView()
-                                        }
-                                    )
                             }
-                            
-                            
                         }
                         .padding(.bottom, 30)
                         .opacity(0)
                     }
                     .opacity(fadeText1 ? 1 : 0)
-                    .animation(.easeIn(duration: 1).delay(6))
+                    .animation(.easeIn(duration: 1).delay(1))
                     .onAppear {
                         withAnimation {
                             fadeText1 = true
                         }
                     }
                     .animation(nil)
+                    
+                   
+                    VStack{
+                        
+                        Spacer()
+                        HStack{
+                            
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.leading)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.left")
+                                        .padding(.leading)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    disable1 = false
+                                    
+                                }
+                                .opacity(0)
+                            
+                            Spacer()
+                            HStack{
+                                Text("1")
+                                    .font(.callout)
+                                Text("of")
+                                    .font(.callout)
+                                Text("2")
+                                    .font(.callout)
+                            }
+                            .opacity(0)
+                            Spacer()
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.trailing)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.right")
+                                        .padding(.trailing)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                   
+                                    isView2Active = true
+                                    loveListCoreDataViewModel.saveLoveEntity(interests: interest, selectedCircles: selectedCircles)
+                                    
+                                }
+                                .overlay(
+                                    NavigationLink(destination: InterestSelectedView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                        EmptyView()
+                                    }
+                                )
+                                .opacity(fadeText2 ? 1 : 0)
+                                .animation(.easeIn(duration: 1).delay(10))
+                                .onAppear {
+                                    withAnimation {
+                                        fadeText2 = true
+                                    }
+                                }
+                                
+
+                            
+                            
+                        }
+                        .opacity(visible)
+                    }.padding()
+                    
                 }
                 
             }
             .animation(nil)
-            VStack{
-                Spacer()
-                ZStack{ // button untuk next
-                    HStack{ // 1
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.leading)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.left")
-                                    .padding(.leading)
-                                    .foregroundColor(Color.white)
-                            }
-                        
-                        Spacer()
-                        HStack{
-                            Text("1")
-                                .font(.callout)
-                            Text("of")
-                                .font(.callout)
-                            Text("3")
-                                .font(.callout)
-                        }
-                        Spacer()
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.right")
-                                    .padding(.trailing)
-                                    .foregroundColor(Color.white)
-                            }
-                            .onTapGesture {
-                                visible = 0
-                                visibleText2 = 1
-                                
-                            }
-                    }
-                    .opacity(visible)
+            
+//            VStack{
+//                Spacer()
+//                ZStack{ // button untuk next
                     
-                    HStack{ //2
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.leading)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.left")
-                                    .padding(.leading)
-                                    .foregroundColor(Color.white)
-                            }
-                            .onTapGesture {
-                                visible = 1
-                                visibleText2 = 0
-                                visibleText3 = 0
-                            }
-                        
-                        Spacer()
-                        HStack{
-                            Text("2")
-                                .font(.callout)
-                            Text("of")
-                                .font(.callout)
-                            Text("3")
-                                .font(.callout)
-                        }
-                        Spacer()
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.right")
-                                    .padding(.trailing)
-                                    .foregroundColor(Color.white)
-                            }
-                            .onTapGesture {
-                                visible = 0
-                                visibleText2 = 0
-                                visibleText3 = 1
-                            }
-                    }
-                    .opacity(visibleText2)
-                    HStack{ // 3
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.leading)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.left")
-                                    .padding(.leading)
-                                    .foregroundColor(Color.white)
-                            }
-                            .onTapGesture {
-                                visible = 0
-                                visibleText2 = 1
-                                visibleText3 = 0
-                            }
-                        
-                        Spacer()
-                        HStack{
-                            Text("3")
-                                .font(.callout)
-                            Text("of")
-                                .font(.callout)
-                            Text("3")
-                                .font(.callout)
-                        }
-                        Spacer()
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.right")
-                                    .padding(.trailing)
-                                    .foregroundColor(Color.white)
-                            }
-                            .onTapGesture {
-                                
-                                visibleText3 = 0
-                                visibleText4 = 1
-                            }
-                    }
-                    .opacity(visibleText3)
-                    
-                }
-                .opacity(hideButton)
-            }
-            .opacity(isVisible ? 1 : 0)
-            .animation(.easeIn(duration: 0.5).delay(7))
-            .onAppear {
-                withAnimation {
-                    isVisible = true
-                }
-                
-            }
+
+
+//                }
+//                .opacity(hideButton)
+//            }
+//            .opacity(isVisible ? 1 : 0)
+//            .animation(.easeIn(duration: 0.5).delay(11))
+//            .onAppear {
+//                withAnimation {
+//                    isVisible = true
+//                }
+//
+//            }
+           
+            
             
         }
+        
+        // ketika setelah pilih 3 bola hijau, maka klik button oren untuk nyimpan 3 interest yang sudah dipilih
+        
         
     }
     func offsetX(_ value: String) -> CGFloat {
@@ -336,8 +318,6 @@ struct InterestView: View {
     func choseColor(_ index: Int) {
         if selectedCircles.contains(index) {
             selectedCircles.remove(index)
-            
-            
         } else {
             selectedCircles.insert(index)
         }
@@ -347,6 +327,11 @@ struct InterestView: View {
 
 struct InterestView_Previews: PreviewProvider {
     static var previews: some View {
-        InterestView()
+        InterestView(
+                     userListCoreDataViewModel: UserListCoreDataViewModel(),
+                     goalListCoreDataViewModel: GoalListCoreDataViewModel(),
+                     planListCoreDataViewModel: PlanListCoreDataViewModel(),
+                     subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
+                     loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
     }
 }

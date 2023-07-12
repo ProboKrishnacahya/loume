@@ -22,35 +22,42 @@ extension View {
 }
 
 struct ContentView: View {
-    @ObservedObject var userData: User
     @State var selectedTab = 0
     @Binding var instanceSoundManager: SoundManager
     @Binding var instanceAppHeaderViewModel: AppHeaderViewModel
     @Binding var instanceContentViewModel: ContentViewModel
     
+    @StateObject var userListCoreDataViewModel = UserListCoreDataViewModel()
+    @StateObject var goalListCoreDataViewModel = GoalListCoreDataViewModel()
+    @StateObject var planListCoreDataViewModel = PlanListCoreDataViewModel()
+    @StateObject var subPlanListCoreDataViewModel = SubPlanListCoreDataViewModel()
+    @StateObject var loveListCoreDataViewModel = LoveListCoreDataViewModel()
+    @StateObject var roleModelStrengthListCoreDataViewModel = RoleModelStrengthListCoreDataViewModel()
+    
     var body: some View {
         VStack {
             //          AppHeader(instanceSoundManager: $instanceSoundManager, instanceAppHeaderViewModel: $instanceAppHeaderViewModel)
             
-            if userData.getName().isEmpty {
+            if userListCoreDataViewModel.userEntities.count == 0 {
                 tabView
             } else {
-                IntroductionView(userData: userData,
-                                 name: "")
+                SetupProject(moveUp: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1, userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel,
+                    roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel)
             }
         }
         .preferredColorScheme(.light)
-        .onAppear {
+        .onAppear(perform: {
+            userListCoreDataViewModel.getUserEntities()
             //instanceSoundManager.playBackgroundSound()
-        }
-        .onDisappear {
+        })
+        .onDisappear(perform: {
             instanceSoundManager.resumeBackgroundSound()
-        }
+        })
     }
     
     var tabView: some View {
         TabView(selection: $selectedTab) {
-            GoalView(userData: userData, backgroundColor: Color("Lotion"))
+            GoalView(backgroundColor: Color("Lotion"), goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel)
                 .showTabItemStyle(selectedTab: selectedTab, type: "Goals", tag: 0,
                                   instanceContentViewModel: instanceContentViewModel)
             
@@ -64,8 +71,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(userData: User(name: "", goals: []),
-                    instanceSoundManager: .constant(SoundManager()),
+        ContentView(instanceSoundManager: .constant(SoundManager()),
                     instanceAppHeaderViewModel: .constant(AppHeaderViewModel()),
                     instanceContentViewModel: .constant(ContentViewModel()))
     }
