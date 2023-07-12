@@ -194,6 +194,9 @@ struct PlanView_Previews: PreviewProvider {
                  goal: GoalCoreDataModel(goalEntity: GoalEntity()),
                  goalIndex: 0
         )
+        .environmentObject(GoalListCoreDataViewModel())
+        .environmentObject(PlanListCoreDataViewModel())
+        .environmentObject(SubPlanListCoreDataViewModel())
     }
 }
 

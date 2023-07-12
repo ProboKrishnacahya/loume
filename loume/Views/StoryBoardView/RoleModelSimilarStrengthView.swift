@@ -8,12 +8,8 @@ import SwiftUI
 
 
 struct RoleModelSimilarStrengthView: View {
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     
     @State var roleModel1: String = ""
     @State private var isView2Active = false
@@ -30,6 +26,7 @@ struct RoleModelSimilarStrengthView: View {
                             .fontWeight(.bold)
                         
                     }
+                    
                     Rectangle()
                         .frame(width: 270.0, height: 40.0)
                         .cornerRadius(6)
@@ -43,10 +40,11 @@ struct RoleModelSimilarStrengthView: View {
                             isView2Active = true
                         }
                         .overlay (
-                            NavigationLink(destination: SimilarStrengthYes(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                            NavigationLink(destination: SimilarStrengthYes().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                 EmptyView()
                             }
                         )
+                    
                     Rectangle()
                         .frame(width: 270.0, height: 40.0)
                         .cornerRadius(6)
@@ -60,12 +58,11 @@ struct RoleModelSimilarStrengthView: View {
                             isView3Active = true
                         }
                         .overlay (
-                            NavigationLink(destination: SimilarStrengthNo(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                            NavigationLink(destination: SimilarStrengthNo().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                 EmptyView()
                             }
                         )
                 }
-                
             }
         }
     }
@@ -73,10 +70,7 @@ struct RoleModelSimilarStrengthView: View {
 
 struct RoleModelSimilarStrengthView_Previews: PreviewProvider {
     static var previews: some View {
-        RoleModelSimilarStrengthView(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                                     goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                                     planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                                     subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                                     loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        RoleModelSimilarStrengthView()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

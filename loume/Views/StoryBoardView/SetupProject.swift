@@ -20,6 +20,8 @@ struct SetupProject: View {
     //    @State var name:String = ""
     //    @State var scale2:Double = 1
     
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     @State var moveUp: Bool
     @State var moveUpCircle: Bool
     @State var moveUpText: Bool
@@ -32,17 +34,6 @@ struct SetupProject: View {
     @State var text1:Double
     @State var name:String
     @State var scale2:Double
-    
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
-    
-    //    init() {
-    //        UINavigationBar.setAnimationsEnabled(false)
-    //    }
     
     var body: some View {
         NavigationView {
@@ -86,6 +77,7 @@ struct SetupProject: View {
                     .onAppear {
                         moveUp.toggle()
                     }
+                    
                     VStack {
                         Text("Let's get to know you better..")
                             .font(.title3)
@@ -97,7 +89,7 @@ struct SetupProject: View {
                             }
                             .padding(.top, 140.0)
                         
-                        TextField("Enter username...", text: $name)
+                        TextField("Enter your name...", text: $name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width:  300)
                             .offset(x: 0, y: moveUpTextField ? 610 : -50)
@@ -119,7 +111,7 @@ struct SetupProject: View {
                             }
                             .opacity(fadeOutCircle)
                             .overlay(
-                                NavigationLink(destination: IntroView(  userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: IntroView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -173,12 +165,7 @@ struct SetupProject_Previews: PreviewProvider {
                      fadeOutCircle: 1,
                      text1: 90,
                      name: "",
-                     scale2: 1,
-                     userListCoreDataViewModel: UserListCoreDataViewModel(),
-                     goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                     planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                     subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                     loveListCoreDataViewModel: LoveListCoreDataViewModel(),
-                     roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+                     scale2: 1)
+        .environmentObject(UserListCoreDataViewModel())
     }
 }

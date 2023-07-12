@@ -8,36 +8,29 @@
 import SwiftUI
 
 struct AfterQuestion1View: View {
-    @State var fadeText1: Double = 1
-    @State var condition1: Double = 1
-    @State var condition2: Double = 0
-    @State var condition3: Double = 0
-    @State var fadeText2: Double = 0
     
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     
+    @State var fadeText: Double = 0
     @State var next: Double = 0
-    
     @State private var isView2Active = false
-  
     
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    @Binding var condition1: Double
+    @Binding var condition2: Double
+    @Binding var condition3: Double
+    @Binding var isStrengthFulled: Bool
     
     var body: some View {
         NavigationView{
             ZStack{
                 VStack{
-                    Text("Awasome !")
-                    Text("Some people don’t really know themselves that much yet, but you do! ")
+                    Text("Awesome !")
+                    Text("Some people don’t really know themselves that much yet, but you do!")
                         .multilineTextAlignment(.center)
                         .frame(width: 234)
                     Button {
                         condition1 = 0
-                        fadeText2 = 1
+                        fadeText = 1
                         next = 1
                     }
                 label: {
@@ -50,7 +43,6 @@ struct AfterQuestion1View: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -70,7 +62,6 @@ struct AfterQuestion1View: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -78,17 +69,17 @@ struct AfterQuestion1View: View {
                             
                         )
                 }
-                    
                 }
                 .opacity(condition1)
+                
                 VStack{
-                    
                     Text("Cool! You still have plenty of time to explore more about your strengths, take your time!")
                         .multilineTextAlignment(.center)
                         .frame(width: 234)
                     Button {
-                        condition1 = 0
-                        fadeText2 = 1
+                        condition2 = 0
+                        fadeText = 1
+                        next = 1
                     }
                 label: {
                     Text("Continue Now")
@@ -100,7 +91,6 @@ struct AfterQuestion1View: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -120,7 +110,6 @@ struct AfterQuestion1View: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -128,17 +117,17 @@ struct AfterQuestion1View: View {
                             
                         )
                 }
-                    
                 }
                 .opacity(condition2)
+                
                 VStack{
-                    
                     Text("Hmm… having trouble thinking of any? It’s okay! Sometimes it takes some time to realize where our strength lies.")
                         .multilineTextAlignment(.center)
                         .frame(width: 234)
                     Button {
-                        condition1 = 0
-                        fadeText2 = 1
+                        condition3 = 0
+                        fadeText = 1
+                        next = 1
                     }
                 label: {
                     Text("Continue Now")
@@ -150,7 +139,6 @@ struct AfterQuestion1View: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -170,7 +158,6 @@ struct AfterQuestion1View: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -178,15 +165,15 @@ struct AfterQuestion1View: View {
                             
                         )
                 }
-                    
                 }
                 .opacity(condition3)
+                
                 VStack{
-                    Text("Now that we know your strengths, we also need to be mindful of the opposite; your weaknesses. ")
+                    Text(isStrengthFulled ? "Now that we know your strengths, we also need to be mindful of the opposite; your weaknesses." : "For now, let’s move forward and try to think about the opposite; your weaknesses.")
                         .multilineTextAlignment(.center)
                         .frame(width: 270.0)
                 }
-                .opacity(fadeText2)
+                .opacity(fadeText)
                 
                 VStack{
                     Spacer()
@@ -201,12 +188,39 @@ struct AfterQuestion1View: View {
                                     .foregroundColor(Color.white)
                             }
                             .onTapGesture {
-                                condition1 = 1
                                 next = 0
-                                fadeText2 = 0
+                                fadeText = 0
+                                
+                                var sumNullStrength = 0
+                                if userListCoreDataViewModel.userEntities[0].strength1.isEmpty {
+                                    sumNullStrength += 1
+                                }
+                                
+                                if userListCoreDataViewModel.userEntities[0].strength2.isEmpty {
+                                    sumNullStrength += 1
+                                }
+                                
+                                if userListCoreDataViewModel.userEntities[0].strength3.isEmpty {
+                                    sumNullStrength += 1
+                                }
+                                
+                                if sumNullStrength == 0 {
+                                    condition1 = 1
+                                    condition2 = 0
+                                    condition3 = 0
+                                    isStrengthFulled = true
+                                } else if sumNullStrength == 3 {
+                                    condition1 = 0
+                                    condition2 = 0
+                                    condition3 = 1
+                                    isStrengthFulled = false
+                                } else {
+                                    condition1 = 0
+                                    condition2 = 1
+                                    condition3 = 0
+                                    isStrengthFulled = false
+                                }
                             }
-                        
-                        
                         
                         Spacer()
                         
@@ -218,7 +232,9 @@ struct AfterQuestion1View: View {
                             Text("3")
                                 .font(.callout)
                         }
+                        
                         Spacer()
+                        
                         Circle()
                             .frame(width: 80.0)
                             .padding(.trailing)
@@ -229,19 +245,16 @@ struct AfterQuestion1View: View {
                                     .foregroundColor(Color.white)
                             }
                             .onTapGesture {
-                                
                                 isView2Active = true
-                                
                             }
                             .overlay(
-                                NavigationLink(destination: QuestionView2(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: QuestionView2().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
                     }
                     .opacity(next)
                 }
-                
             }
         }
     }
@@ -249,10 +262,7 @@ struct AfterQuestion1View: View {
 
 struct AfterQuestion1View_Previews: PreviewProvider {
     static var previews: some View {
-        AfterQuestion1View(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                           goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                           planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                           subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                           loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        AfterQuestion1View(condition1: .constant(1), condition2: .constant(0), condition3: .constant(0), isStrengthFulled: .constant(true))
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

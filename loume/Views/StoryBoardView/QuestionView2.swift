@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct QuestionView2: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     @State private var delayOut1: Double = 1
     @State private var delayOut2: Double = 1
     @State private var delayOut3: Double = 1
@@ -21,27 +24,19 @@ struct QuestionView2: View {
     @State var hideButton: Double = 1
     @State var visible: Double = 1
     @State var roleModel1: String = ""
-    
-    @State var chose1: Double =  0
-    @State var chose2: Double =  0
-    @State var chose3: Double =  0
-    
     @State var Quest1: Double = 1
     @State var Quest2: Double = 0
     @State var Quest3: Double = 0
-    
     @State var nav1: Double = 1
     @State var nav2: Double = 0
     @State var nav3: Double = 0
-    
     @State private var isView2Active = false
     @State private var isView3Active = false
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    @State var weakness1: String = ""
+    @State var weakness2: String = ""
+    @State var weakness3: String = ""
+    @State var sumNullWeakness: Int = 0
+    
     var body: some View {
         NavigationView{
             ZStack{
@@ -49,7 +44,6 @@ struct QuestionView2: View {
                     ZStack{
                         VStack{
                             VStack{
-                                
                                 Text("Let’s take a step back for a while and think about the one moment you feel disappointed with yourself. ")
                                     .multilineTextAlignment(.center)
                                     .padding(.horizontal, 50.0)
@@ -60,8 +54,8 @@ struct QuestionView2: View {
                                                 .frame(width: 320.0, height: 450.0)
                                                 .cornerRadius(7)
                                                 .foregroundColor(Color("Light Moss Green"))
+                                            
                                             VStack{
-                                                
                                                 Text("What habit makes you feel like you’re only wasting time?")
                                                     .font(.subheadline)
                                                     .fontWeight(.medium)
@@ -73,13 +67,11 @@ struct QuestionView2: View {
                                                         .frame(width: 290.0, height: 360.0)
                                                         .cornerRadius(7)
                                                         .foregroundColor(Color.white)
-                                                    TextEditor(text: $roleModel1)
+                                                    TextEditor(text: $weakness1)
                                                         .frame(width: 260.0, height: 350.0)
-                                                    
                                                 }
                                             }.padding(.top ,10)
                                         }.padding(.top, 20)
-                                        
                                         
                                         HStack{
                                             Button {
@@ -87,7 +79,6 @@ struct QuestionView2: View {
                                                 Quest2 = 1
                                                 nav1 = 0
                                                 nav2 = 1
-                                                chose1 =  1
                                             }
                                         label: {
                                             Text("I don’t know")
@@ -99,7 +90,6 @@ struct QuestionView2: View {
                                                 .background(
                                                     
                                                     RoundedRectangle(
-                                                        
                                                         cornerRadius: 5,
                                                         style: .continuous
                                                     )
@@ -107,20 +97,15 @@ struct QuestionView2: View {
                                                     
                                                 )
                                         }
-                                            
                                         }.padding(.top,10)
                                     }
-                                    
                                 }
                             }.opacity(Quest1)
-                            
-                            
                         }
+                        
                         VStack{
                             VStack{
-                                Text("What makes you proud of being you?")
-                                    .fontWeight(.medium)
-                                Text("Here’s some guidance to help you figure it out.")
+                                Text("Let’s take a step back for a while and think about the one moment you feel disappointed with yourself. ")
                                     .multilineTextAlignment(.center)
                                     .padding(.horizontal, 50.0)
                                 ZStack{
@@ -130,8 +115,8 @@ struct QuestionView2: View {
                                                 .frame(width: 320.0, height: 450.0)
                                                 .cornerRadius(7)
                                                 .foregroundColor(Color("Light Moss Green"))
+                                            
                                             VStack{
-                                                
                                                 Text("What situations can lead to stress when you’re working?")
                                                     .font(.subheadline)
                                                     .fontWeight(.medium)
@@ -143,13 +128,11 @@ struct QuestionView2: View {
                                                         .frame(width: 290.0, height: 350.0)
                                                         .cornerRadius(7)
                                                         .foregroundColor(Color.white)
-                                                    TextEditor(text: $roleModel1)
+                                                    TextEditor(text: $weakness2)
                                                         .frame(width: 260.0, height: 350.0)
-                                                    
                                                 }
                                             }.padding(.top ,10)
                                         }.padding(.top, 20)
-                                        
                                         
                                         HStack{
                                             Button {
@@ -157,7 +140,6 @@ struct QuestionView2: View {
                                                 Quest3 = 1
                                                 nav2 = 0
                                                 nav3 = 1
-                                                chose2 =  1
                                             }
                                         label: {
                                             Text("I don’t know")
@@ -169,7 +151,6 @@ struct QuestionView2: View {
                                                 .background(
                                                     
                                                     RoundedRectangle(
-                                                        
                                                         cornerRadius: 5,
                                                         style: .continuous
                                                     )
@@ -177,81 +158,93 @@ struct QuestionView2: View {
                                                     
                                                 )
                                         }
-                                            
-                                            
                                         }.padding(.top,10)
                                     }
-                                    
                                 }
                             }
                             .opacity(Quest2)
-                            
                         }
+                        
                         VStack{
-                            Text("What makes you proud of being you?")
-                                .fontWeight(.medium)
-                            Text("Here’s some guidance to help you figure it out.")
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 50.0)
-                            ZStack{
-                                VStack{
-                                    ZStack{
-                                        Rectangle()
-                                            .frame(width: 320.0, height: 450.0)
-                                            .cornerRadius(7)
-                                            .foregroundColor(Color("Light Moss Green"))
-                                        VStack{
+                            VStack{
+                                Text("Let’s take a step back for a while and think about the one moment you feel disappointed with yourself. ")
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 50.0)
+                                ZStack{
+                                    VStack{
+                                        ZStack{
+                                            Rectangle()
+                                                .frame(width: 320.0, height: 450.0)
+                                                .cornerRadius(7)
+                                                .foregroundColor(Color("Light Moss Green"))
                                             
-                                            Text("Imagine a time when you need to do something important. What might make you lose focus?")
-                                                .fontWeight(.medium)
-                                                .font(.subheadline)
-                                                .multilineTextAlignment(.center)
-                                                .frame(width: 300.0)
-                                            
-                                            ZStack{
-                                                Rectangle()
-                                                    .frame(width: 290.0, height: 345.0)
-                                                    .cornerRadius(7)
-                                                    .foregroundColor(Color.white)
-                                                TextEditor(text: $roleModel1)
-                                                    .frame(width: 260.0, height: 345.0)
+                                            VStack{
+                                                Text("Imagine a time when you need to do something important. What might make you lose focus?")
+                                                    .fontWeight(.medium)
+                                                    .font(.subheadline)
+                                                    .multilineTextAlignment(.center)
+                                                    .frame(width: 300.0)
                                                 
+                                                ZStack{
+                                                    Rectangle()
+                                                        .frame(width: 290.0, height: 345.0)
+                                                        .cornerRadius(7)
+                                                        .foregroundColor(Color.white)
+                                                    TextEditor(text: $weakness3)
+                                                        .frame(width: 260.0, height: 345.0)
+                                                }
+                                            }.padding(.top ,10)
+                                        }.padding(.top, 20)
+                                        
+                                        HStack{
+                                            Button {
+                                                
+                                                sumNullWeakness = 0
+                                                if userListCoreDataViewModel.userEntities[0].weakness1.isEmpty {
+                                                    sumNullWeakness += 1
+                                                }
+                                                
+                                                if userListCoreDataViewModel.userEntities[0].weakness2.isEmpty {
+                                                    sumNullWeakness += 1
+                                                }
+                                                
+                                                if userListCoreDataViewModel.userEntities[0].weakness3.isEmpty {
+                                                    sumNullWeakness += 1
+                                                }
+                                                
+                                                isView2Active = true
                                             }
-                                        }.padding(.top ,10)
-                                    }.padding(.top, 20)
-                                    
-                                    
-                                    HStack{
-                                        Button {
-                                        }
-                                    label: {
-                                        Text("I don’t know")
-                                            .padding(.horizontal, 115)
-                                            .padding(.vertical, 10)
-                                            .foregroundColor(Color("Axolotl"))
-                                            .tint(Color.red)
-                                            .buttonStyle(.bordered)
-                                            .background(
-                                                
-                                                RoundedRectangle(
+                                        label: {
+                                            Text("I don’t know")
+                                                .padding(.horizontal, 115)
+                                                .padding(.vertical, 10)
+                                                .foregroundColor(Color("Axolotl"))
+                                                .tint(Color.red)
+                                                .buttonStyle(.bordered)
+                                                .background(
                                                     
-                                                    cornerRadius: 5,
-                                                    style: .continuous
+                                                    RoundedRectangle(
+                                                        cornerRadius: 5,
+                                                        style: .continuous
+                                                    )
+                                                    .stroke(Color("Axolotl"), lineWidth: 1)
+                                                    
                                                 )
-                                                .stroke(Color("Axolotl"), lineWidth: 1)
-                                                
-                                            )
+                                                .overlay(
+                                                    NavigationLink(destination: InterestPromiseView(sumNullWeakness: $sumNullWeakness).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                                        EmptyView()
+                                                    }
+                                                )
+                                        }
+                                        }.padding(.top,10)
                                     }
-                                        
-                                        
-                                    }.padding(.top,10)
                                 }
-                                
                             }
+                            .opacity(Quest3)
                         }
-                        .opacity(Quest3)
                     }
-                }.padding(.bottom,50)
+                }.padding(.bottom, 50)
+                
                 VStack{
                     Spacer()
                     ZStack{ // button untuk next
@@ -266,16 +259,13 @@ struct QuestionView2: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    
                                     isView3Active = true
-                                    
                                 }
-                                .overlay(
-                                    NavigationLink(destination: InterestPromiseView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
-                                        EmptyView()
-                                    }
-                                )
-                            
+                            //                                .overlay(
+                            //                                    NavigationLink(destination: InterestPromiseView().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                            //                                        EmptyView()
+                            //                                    }
+                            //                                )
                             Spacer()
                             HStack{
                                 Text("1")
@@ -301,6 +291,7 @@ struct QuestionView2: View {
                                     nav1 = 0
                                     nav2 = 1
                                     
+                                    userListCoreDataViewModel.setWeakness1(weakness: weakness1)
                                 }
                         }
                         .opacity(nav1)
@@ -320,12 +311,7 @@ struct QuestionView2: View {
                                     Quest2 = 0
                                     nav1 = 1
                                     nav2 = 0
-                                    
-                                    
-                                    
-                                    
                                 }
-                            
                             Spacer()
                             HStack{
                                 Text("2")
@@ -351,9 +337,11 @@ struct QuestionView2: View {
                                     nav2 = 0
                                     nav3 = 1
                                     
+                                    userListCoreDataViewModel.setWeakness2(weakness: weakness2)
                                 }
                         }
                         .opacity(nav2)
+                        
                         HStack{ // 3
                             Circle()
                                 .frame(width: 80.0)
@@ -370,7 +358,6 @@ struct QuestionView2: View {
                                     nav2 = 1
                                     nav3 = 0
                                 }
-                            
                             Spacer()
                             HStack{
                                 Text("3")
@@ -392,35 +379,41 @@ struct QuestionView2: View {
                                 }
                                 .onTapGesture {
                                     
-                                    isView2Active = true
+                                    userListCoreDataViewModel.setWeakness3(weakness: weakness3)
                                     
+                                    sumNullWeakness = 0
+                                    if userListCoreDataViewModel.userEntities[0].weakness1.isEmpty {
+                                        sumNullWeakness += 1
+                                    }
+                                    
+                                    if userListCoreDataViewModel.userEntities[0].weakness2.isEmpty {
+                                        sumNullWeakness += 1
+                                    }
+                                    
+                                    if userListCoreDataViewModel.userEntities[0].weakness3.isEmpty {
+                                        sumNullWeakness += 1
+                                    }
+                                    
+                                    isView2Active = true
                                 }
                                 .overlay(
-                                    NavigationLink(destination: InterestPromiseView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                    NavigationLink(destination: InterestPromiseView(sumNullWeakness: $sumNullWeakness).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                         EmptyView()
                                     }
                                 )
                         }
                         .opacity(nav3)
-                        
                     }
                     .opacity(hideButton)
-                    
                 }
-                //jika tombol oren diklik: tujuannya untuk memasukkan value weakness ke dalam data disetiap page yang muncul 1 kali. action dibawah untuk menyimpan 1 weakness SAJA. function di bawah normalnya dijalankan 3 kali (sesuai dengan jumlah weaknessnya yaitu ada 3)
-                //                    userListCoreDataViewModel.setWeakness(userCoreDataModel: userListCoreDataViewModel.userEntities[0], weakness: {{isikan disini weaknessnya berupa String}})
             }
         }
-        }
     }
-
+}
 
 struct QuestionView2_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView2(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                      goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                      loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        QuestionView2()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

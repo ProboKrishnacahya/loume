@@ -64,5 +64,7 @@ struct MyRoleModelView: View {
 struct MyRoleModelView_Previews: PreviewProvider {
     static var previews: some View {
         MyRoleModelView()
+            .environmentObject(UserListCoreDataViewModel())
+            .environmentObject(RoleModelStrengthListCoreDataViewModel())
     }
 }

@@ -59,5 +59,6 @@ struct MyStrengthsView: View {
 struct MyStrengthsView_Previews: PreviewProvider {
     static var previews: some View {
         MyStrengthsView()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

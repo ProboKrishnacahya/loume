@@ -66,8 +66,6 @@
 		82A5E3792A5C5F98005AF041 /* SummaryResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3782A5C5F98005AF041 /* SummaryResultCard.swift */; };
 		82A5E37B2A5C7DFD005AF041 /* UpdateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E37A2A5C7DFD005AF041 /* UpdateButton.swift */; };
 		82A7548B2A52C331004501A3 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7548A2A52C331004501A3 /* SummaryView.swift */; };
-		82A7548D2A52C3E0004501A3 /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7548C2A52C3E0004501A3 /* IntroductionView.swift */; };
-		82A7548F2A52C419004501A3 /* RolePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7548E2A52C419004501A3 /* RolePromptView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,8 +148,6 @@
 		82A5E3782A5C5F98005AF041 /* SummaryResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryResultCard.swift; sourceTree = "<group>"; };
 		82A5E37A2A5C7DFD005AF041 /* UpdateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateButton.swift; sourceTree = "<group>"; };
 		82A7548A2A52C331004501A3 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
-		82A7548C2A52C3E0004501A3 /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
-		82A7548E2A52C419004501A3 /* RolePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolePromptView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,13 +278,11 @@
 				82441EDC2A582B4E007EFD6E /* AfterQuestion1View.swift */,
 				82441ED82A582B4D007EFD6E /* QuestionView2.swift */,
 				82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */,
-				82441ED92A582B4E007EFD6E /* AfterObstacle2View.swift */,
-				82441ED62A582B4D007EFD6E /* AfterObstacleView.swift */,
-				82441ED42A582B4D007EFD6E /* ConfidentView.swift */,
-				82441EDE2A582B4E007EFD6E /* MyStrengthView.swift */,
 				82441ED52A582B4D007EFD6E /* ObstaclesView.swift */,
-				82A7548C2A52C3E0004501A3 /* IntroductionView.swift */,
-				82A7548E2A52C419004501A3 /* RolePromptView.swift */,
+				82441ED62A582B4D007EFD6E /* AfterObstacleView.swift */,
+				82441ED92A582B4E007EFD6E /* AfterObstacle2View.swift */,
+				82441EDE2A582B4E007EFD6E /* MyStrengthView.swift */,
+				82441ED42A582B4D007EFD6E /* ConfidentView.swift */,
 			);
 			path = StoryBoardView;
 			sourceTree = "<group>";
@@ -512,7 +506,6 @@
 				82441EEC2A582B4E007EFD6E /* AfterObstacle2View.swift in Sources */,
 				826814F12A4EF3EC00B9F57A /* PlanView.swift in Sources */,
 				82441EE92A582B4E007EFD6E /* AfterObstacleView.swift in Sources */,
-				82A7548F2A52C419004501A3 /* RolePromptView.swift in Sources */,
 				82441EF02A582B4E007EFD6E /* IntroView.swift in Sources */,
 				82441EF42A582B4E007EFD6E /* InterestPromiseView.swift in Sources */,
 				0B474AE82A5D3B5F00113E27 /* SubPlanListCoreDataViewModel.swift in Sources */,
@@ -538,7 +531,6 @@
 				0B474AEC2A5D48E700113E27 /* LoveListCoreDataViewModel.swift in Sources */,
 				0B474ADF2A5D3A7D00113E27 /* CoreDataManager.swift in Sources */,
 				82441EE72A582B4E007EFD6E /* ConfidentView.swift in Sources */,
-				82A7548D2A52C3E0004501A3 /* IntroductionView.swift in Sources */,
 				82441EEE2A582B4E007EFD6E /* RoleModelView.swift in Sources */,
 				829FDABA2A5EFD24000A5CFD /* ModalViewModel.swift in Sources */,
 				826814F42A4EF3EC00B9F57A /* ContentView.swift in Sources */,

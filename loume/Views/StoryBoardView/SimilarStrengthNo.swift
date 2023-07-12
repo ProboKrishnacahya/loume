@@ -8,31 +8,32 @@
 import SwiftUI
 
 struct SimilarStrengthNo: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     @State var prev: Double = 1
     @State var next: Double = 1
     @State private var isView2Active = false
     @State private var isView3Active = false
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         NavigationView {
             ZStack{
                 VStack {
                     Text("It’s okay! I’m sure you can")
+                    
                     HStack {
                         Text("attain some of")
+                        
                         Text(userListCoreDataViewModel.userEntities[0].roleModel)
                             .fontWeight(.bold)
                     }
+                    
                     Text("positive traits one day soon!")
                     Text("For now, let’s try discovering")
                     Text("your strengths.")
                 }
+                
                 VStack{
                     Spacer()
                     HStack{ // 1
@@ -49,13 +50,9 @@ struct SimilarStrengthNo: View {
                                 isView2Active = true
                             }
                             .overlay{
-                                NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                    
-                                    
+                                NavigationLink(destination: RoleModelSimilarStrengthView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                 }
                             }
-                        
-                        
                         Spacer()
                         HStack{
                             Text("1")
@@ -79,14 +76,10 @@ struct SimilarStrengthNo: View {
                                 isView3Active = true
                             }
                             .overlay{
-                                NavigationLink(destination: StrengthOut(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
-                                    
-                                    
+                                NavigationLink(destination: StrengthOut().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                 }
                             }
-                        
                     }
-                    
                 }
             }
         }.animation(nil)
@@ -95,10 +88,7 @@ struct SimilarStrengthNo: View {
 
 struct SimilarStrengthNo_Previews: PreviewProvider {
     static var previews: some View {
-        SimilarStrengthNo(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                          goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                          planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                          subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                          loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        SimilarStrengthNo()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

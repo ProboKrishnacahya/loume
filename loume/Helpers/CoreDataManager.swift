@@ -28,6 +28,7 @@ class CoreDataManager {
         let newUserEntity = UserEntity(context: context)
         newUserEntity.id = UUID()
         newUserEntity.name = name
+        newUserEntity.is_journaling = true
         newUserEntity.created_at = Date()
         save()
     }
@@ -108,6 +109,11 @@ class CoreDataManager {
     
     func setObstacle2UserEntity(userEntity: UserEntity, obstacle: String) {
         userEntity.obstacle2 = obstacle
+        save()
+    }
+    
+    func setIsJournalingUserEntity(userEntity: UserEntity) {
+        userEntity.is_journaling = true
         save()
     }
     

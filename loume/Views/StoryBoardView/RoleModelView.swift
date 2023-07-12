@@ -8,30 +8,27 @@
 import SwiftUI
 
 struct RoleModelView: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    @EnvironmentObject private var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @EnvironmentObject private var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     @State private var movePage1: Double  = 1
     @State private var movePage2: Double  = 0
     @State private var movePage3: Double  = 0
-    @State var roleModel1: String = ""
-    @State var roleModel2: String = ""
-    @State var roleModel3: String = ""
+    @State var roleModelStrength1: String = ""
+    @State var roleModelStrength2: String = ""
+    @State var roleModelStrength3: String = ""
     @State private var fadeText1 = false
     @State private var disable1 = false
     @State var roleModel: String = ""
     @State private var isView2Active = false
     @State var visible: Double = 1
-    
     @State var visibleText2: Double = 0
     @State var visibleText3: Double = 0
     @State var visibleText4: Double = 0
     @State var visibleText5: Double = 0
     @State var hideButton: Double = 0
-    
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         NavigationView{
@@ -39,22 +36,25 @@ struct RoleModelView: View {
                 ZStack{
                     Color.white
                         .edgesIgnoringSafeArea([.all])
+                    
                     VStack{
                         VStack{
                             Text("Wow, that's cool! You have so")
+                            
                             HStack{
                                 Text("much potential in")
                                     .multilineTextAlignment(.center)
+                                
                                 Text(loveListCoreDataViewModel.getMostInterest())
                             }
+                            
                             Text("Now let’s get a little bit")
+                            
                             HStack{
                                 Text("Deeper about")
                                 
                                 Text(loveListCoreDataViewModel.getMostInterest())
                                     .fontWeight(.bold)
-                                //ganti "dance" pada Text baris di atas dengan
-                                //loveListCoreDataViewModel.getMostInterest()
                             }
                             Button {
                                 movePage1 = 0
@@ -72,7 +72,6 @@ struct RoleModelView: View {
                                 .background(
                                     
                                     RoundedRectangle(
-                                        
                                         cornerRadius: 5,
                                         style: .continuous
                                     )
@@ -81,7 +80,6 @@ struct RoleModelView: View {
                                 )
                         }
                             Button {
-                                
                             }
                         label: {
                             Text("Save for Later")
@@ -93,7 +91,6 @@ struct RoleModelView: View {
                                 .background(
                                     
                                     RoundedRectangle(
-                                        
                                         cornerRadius: 5,
                                         style: .continuous
                                     )
@@ -109,7 +106,6 @@ struct RoleModelView: View {
                                 fadeText1 = true
                             }
                         }
-                        
                     }
                     .opacity(movePage1)
                     
@@ -119,11 +115,9 @@ struct RoleModelView: View {
                                 Text("Can you name someone ")
                                 HStack{
                                     Text("specifically in the")
-                                    Text(loveListCoreDataViewModel.getMostInterest()) // Di isi data
-                                        .fontWeight(.bold)
                                     
-                                    //ganti "dance" pada Text baris di atas dengan
-                                    //loveListCoreDataViewModel.getMostInterest()
+                                    Text(loveListCoreDataViewModel.getMostInterest())
+                                        .fontWeight(.bold)
                                     
                                     Text("field")
                                 }
@@ -131,23 +125,19 @@ struct RoleModelView: View {
                                 Text(" ")
                                 Text("It could be a famous person,")
                                 Text("professionals, or people you")
+                                
                                 HStack{
                                     Text("know who is expert in")
-                                    Text(loveListCoreDataViewModel.getMostInterest()) // Di isi data
+                                    Text(loveListCoreDataViewModel.getMostInterest())
                                         .fontWeight(.bold)
-                                    
-                                    //ganti "dance" pada Text baris di atas dengan
-                                    //loveListCoreDataViewModel.getMostInterest()
                                 }
                             }
+                            
                             TextField("Type Here ...", text: $roleModel)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .frame(width:  250)
                                 .animation(Animation.easeInOut(duration: 1.5))
                                 .padding(.top, 10.0)
-                            
-                            //jika tombol oren diklik: tujuannya untuk memasukkan nama role model ke dalam data
-                            //                    userListCoreDataViewModel.setRoleModel(userCoreDataModel: userListCoreDataViewModel.userEntities[0], roleModel: {{isikan disini nama role modelnya}})
                         }
                         .opacity(fadeText1 ? 1 : 0)
                         .animation(.easeIn(duration: 1))
@@ -158,24 +148,26 @@ struct RoleModelView: View {
                         }
                     }
                     .opacity(movePage2)
+                    
                     VStack{
                         VStack{
                             HStack{
-                                Text("Mark Lee")
+                                Text(userListCoreDataViewModel.userEntities[0].roleModel)
                                     .fontWeight(.bold)
-                                //ganti "Mark Lee" pada Text baris di atas dengan
-                                //userListCoreDataViewModel.userEntities[0].roleModel
+                                
                                 Text("huh? Seems like a very")
                             }
+                            
                             Text("cool person!")
+                            
                             HStack{
                                 Text("Why are you inspired by")
-                                Text("Mark Lee?")
+                                
+                                Text("\(userListCoreDataViewModel.userEntities[0].roleModel)?")
                                     .fontWeight(.bold)
-                                //ganti "Mark Lee" pada Text baris di atas dengan
-                                //userListCoreDataViewModel.userEntities[0].roleModel
                             }
                         }
+                        
                         VStack{
                             VStack{
                                 Text("Can you mention some of their strengths or expertise?")
@@ -188,12 +180,13 @@ struct RoleModelView: View {
                                             Text("1")
                                                 .foregroundColor(Color.white)
                                         }
-                                    TextField("Type here...", text: $roleModel1)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                                     
+                                    TextField("Type here...", text: $roleModelStrength1)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                                         .frame(width:  250)
                                         .animation(Animation.easeInOut(duration: 1.5))
                                 }.padding(.top)
+                                
                                 HStack{
                                     Circle()
                                         .frame(width: 30.0)
@@ -202,13 +195,14 @@ struct RoleModelView: View {
                                             Text("2")
                                                 .foregroundColor(Color.white)
                                         }
-                                    TextField("Type here...", text: $roleModel2)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                                     
+                                    TextField("Type here...", text: $roleModelStrength2)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                                         .frame(width:  250)
                                         .animation(Animation.easeInOut(duration: 1.5))
                                 }
                                 .padding(.top, 5)
+                                
                                 HStack{
                                     Circle()
                                         .frame(width: 30.0)
@@ -217,29 +211,22 @@ struct RoleModelView: View {
                                             Text("3")
                                                 .foregroundColor(Color.white)
                                         }
-                                    TextField("Type here...", text: $roleModel2)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                                     
+                                    TextField("Type here...", text: $roleModelStrength3)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
                                         .frame(width:  250)
                                         .animation(Animation.easeInOut(duration: 1.5))
                                 }
                                 .padding(.top, 5)
-                                
-                                //jika tombol oren diklik: tujuannya untuk memasukkan 3 daftar strength or expertise ke dalam data. (intro Copy 13)
-                                //                    roleModelStrengthListCoreDataViewModel.addRoleModelStrengthEntities(value1: {{value1}}, value2: {{value2}}, value3: {{value3}})
-                                
                             }
-                            
                             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 20)
-                            
                         }
                         .background(Color("Light Moss Green"))
                         .cornerRadius(20)
-                        
                     }
                     .opacity(movePage3)
-                    
                 }
+                
                 VStack{
                     Spacer()
                     ZStack{ // button untuk next
@@ -258,10 +245,10 @@ struct RoleModelView: View {
                                     movePage2 = 0
                                     visibleText2 = 0
                                     visible = 0
-                                  
                                 }
                             
                             Spacer()
+                            
                             HStack{
                                 Text("1")
                                     .font(.callout)
@@ -270,6 +257,7 @@ struct RoleModelView: View {
                                 Text("2")
                                     .font(.callout)
                             }
+                            
                             Spacer()
                             Circle()
                                 .frame(width: 80.0)
@@ -286,6 +274,7 @@ struct RoleModelView: View {
                                     movePage2 = 0
                                     movePage3 = 1
                                     
+                                    userListCoreDataViewModel.setRoleModel(roleModel: roleModel)
                                 }
                         }
                         .opacity(visible)
@@ -306,11 +295,10 @@ struct RoleModelView: View {
                                     visibleText3 = 0
                                     movePage2 = 1
                                     movePage3 = 0
-                                    
-                                    
                                 }
                             
                             Spacer()
+                            
                             HStack{
                                 Text("2")
                                     .font(.callout)
@@ -330,19 +318,17 @@ struct RoleModelView: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    
                                     isView2Active = true
                                     
+                                    roleModelStrengthListCoreDataViewModel.saveRoleModelStrengthEntities(value1: roleModelStrength1, value2: roleModelStrength2, value3: roleModelStrength3)
                                 }
                                 .overlay(
-                                                                    NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                                                        EmptyView()
-                                                                    }
-                                                                )
+                                    NavigationLink(destination: RoleModelSimilarStrengthView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                        EmptyView()
+                                    }
+                                )
                         }
                         .opacity(visibleText2)
-                        
-                        
                     }
                     .opacity(hideButton)
                 }
@@ -353,12 +339,9 @@ struct RoleModelView: View {
 
 struct RoleModelView_Previews: PreviewProvider {
     static var previews: some View {
-        RoleModelView(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                      goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                      loveListCoreDataViewModel: LoveListCoreDataViewModel(),
-                      roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
-        
+        RoleModelView()
+            .environmentObject(UserListCoreDataViewModel())
+            .environmentObject(LoveListCoreDataViewModel())
+            .environmentObject(RoleModelStrengthListCoreDataViewModel())
     }
 }

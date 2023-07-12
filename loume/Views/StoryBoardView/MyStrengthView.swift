@@ -8,31 +8,35 @@
 import SwiftUI
 
 struct MyStrengthView: View {
-    @State var roleModel1: String = ""
-    @State var roleModel2: String = ""
-    @State var roleModel3: String = ""
     
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @EnvironmentObject private var planListCoreDataViewModel: PlanListCoreDataViewModel
+    
+    @State var plan1: String = ""
+    @State var plan2: String = ""
+    @State var plan3: String = ""
+    @State var dueDate1: Date = Date()
+    @State var dueDate2: Date = Date()
+    @State var dueDate3: Date = Date()
     @State private var isView2Active = false
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
-    
     
     var body: some View {
         NavigationView{
             ZStack{
                 VStack{
                     Spacer()
+                    
                     Text("Steps I need to take to")
                         .font(.title3)
                         .multilineTextAlignment(.center)
-                    Text("be a choreograper")
-                        .font(.title3)
-                        .multilineTextAlignment(.center)
-                        .fontWeight(.bold)
+                    
+                    if goalListCoreDataViewModel.goalEntities.count > 0 {
+                        Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                            .font(.title3)
+                            .multilineTextAlignment(.center)
+                            .fontWeight(.bold)
+                    }
+                    
                     HStack{
                         Circle()
                             .frame(width: 30.0)
@@ -41,12 +45,14 @@ struct MyStrengthView: View {
                                 Text("1")
                                     .foregroundColor(Color.white)
                             }
-                        TextField("Enter username...", text: $roleModel1)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
                         
+                        TextField("Enter your step...", text: $plan1)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width:  250)
                             .animation(Animation.easeInOut(duration: 1.5))
-                    }.padding(.top)
+                    }
+                    .padding(.top)
+                    
                     HStack{
                         Circle()
                             .frame(width: 30.0)
@@ -55,13 +61,15 @@ struct MyStrengthView: View {
                                 Text("2")
                                     .foregroundColor(Color.white)
                             }
-                        TextField("Enter username...", text: $roleModel2)
+                        
+                        TextField("Enter your step...", text: $plan2)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
                             .frame(width:  250)
                             .animation(Animation.easeInOut(duration: 1.5))
                     }
                     .padding(.top, 5)
+                    
                     HStack{
                         Circle()
                             .frame(width: 30.0)
@@ -70,9 +78,8 @@ struct MyStrengthView: View {
                                 Text("3")
                                     .foregroundColor(Color.white)
                             }
-                        TextField("Enter username...", text: $roleModel2)
+                        TextField("Enter your step...", text: $plan3)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
                             .frame(width:  250)
                             .animation(Animation.easeInOut(duration: 1.5))
                     }
@@ -80,6 +87,7 @@ struct MyStrengthView: View {
                     
                     Spacer()
                 }
+                
                 VStack{
                     Spacer()
                     HStack{
@@ -93,16 +101,13 @@ struct MyStrengthView: View {
                                     .foregroundColor(Color.white)
                             }
                             .onTapGesture {
-                                
                                 isView2Active = true
-                                
                             }
                             .overlay(
-                                NavigationLink(destination: AfterObstacle2View(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: AfterObstacle2View().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
-                        
                         Spacer()
                         HStack{
                             Text("1")
@@ -124,16 +129,22 @@ struct MyStrengthView: View {
                             }
                             .onTapGesture {
                                 
-                                isView2Active = true
+                                if goalListCoreDataViewModel.goalEntities.count > 0 {
+                                    planListCoreDataViewModel.addPlanEntity(name: plan1, dueDate: dueDate1, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[0])
+                                    
+                                    planListCoreDataViewModel.addPlanEntity(name: plan2, dueDate: dueDate2, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[0])
+                                    
+                                    planListCoreDataViewModel.addPlanEntity(name: plan3, dueDate: dueDate3, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[0])
+                                }
                                 
+                                isView2Active = true
                             }
                             .overlay(
-                                NavigationLink(destination: ConfidentView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: ConfidentView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
                     }
-                    
                 }
             }
         }
@@ -142,10 +153,8 @@ struct MyStrengthView: View {
 
 struct MyStrengthView_Previews: PreviewProvider {
     static var previews: some View {
-        MyStrengthView(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                       goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                       planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                       subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                       loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        MyStrengthView()
+            .environmentObject(GoalListCoreDataViewModel())
+            .environmentObject(PlanListCoreDataViewModel())
     }
 }

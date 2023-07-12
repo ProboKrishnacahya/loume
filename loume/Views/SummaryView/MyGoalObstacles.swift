@@ -55,5 +55,6 @@ struct MyGoalObstacles: View {
 struct MyGoalObstacles_Previews: PreviewProvider {
     static var previews: some View {
         MyGoalObstacles()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

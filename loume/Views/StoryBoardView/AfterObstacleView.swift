@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct AfterObstacleView: View {
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
     
     @State var visible: Double = 1
     @State private var disable1 = false
@@ -31,8 +27,10 @@ struct AfterObstacleView: View {
                         .font(.title2)
                         .multilineTextAlignment(.center)
                         .frame(width: 300.0)
+                    
                     Text("But, why should you plan your goals?")
                         .padding(.top ,40)
+                    
                     Button {
                         visible = 0
                         visibleText2 = 1
@@ -47,7 +45,6 @@ struct AfterObstacleView: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -55,6 +52,7 @@ struct AfterObstacleView: View {
                             
                         )
                 }
+                    
                     Button {
                         visible = 0
                         visibleText2 = 1
@@ -68,7 +66,6 @@ struct AfterObstacleView: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -76,35 +73,50 @@ struct AfterObstacleView: View {
                             
                         )
                 }
-                }.opacity(visible)
+                }
+                .opacity(visible)
+                
                 VStack{
                     Text("By planning the things you need")
+                    
                     HStack{
                         Text("to do to")
-                        Text("be a choreographer")
-                            .fontWeight(.bold)
+                        
+                        if goalListCoreDataViewModel.goalEntities.count > 0 {
+                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                                .fontWeight(.bold)
+                        }
                     }
+                    
                     Text("you will be much more motivated to pursue it and all your action steps can be more intentional.")
                         .multilineTextAlignment(.center)
                         .frame(width: 270.0)
-                    
                 }
                 .opacity(visibleText2)
+                
                 VStack{
                     Text("Did you know?")
+                    
                     Text("Based on the study by Dr. Gail Matthews, a psychology professor at Dominican University in California, you are 42% more likely to be able to ")
                         .multilineTextAlignment(.center)
                         .padding(.top)
                         .frame(width: 300.0)
+                    
                     HStack{
-                        Text("be a choreographer")
-                            .fontWeight(.bold)
+                        
+                        if goalListCoreDataViewModel.goalEntities.count > 0 {
+                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                                .fontWeight(.bold)
+                        }
+                        
                         Text("by writing it")
                     }
+                    
                     Text("down and coming up with a plan.")
                     
                 }
                 .opacity(visibleText3)
+                
                 VStack{
                     VStack{
                         Text("Here’s how:")
@@ -117,8 +129,6 @@ struct AfterObstacleView: View {
                                 .frame(width: 270.0)
                                 .padding(.top, 10)
                                 .multilineTextAlignment(.center)
-                            
-                            
                         }
                         .padding(.top, 50)
                         
@@ -131,7 +141,6 @@ struct AfterObstacleView: View {
                             Text("Browse and find anything that")
                                 .frame(width: 270.0)
                                 .multilineTextAlignment(.center)
-                            
                         }
                         .padding(.top, 40)
                         
@@ -147,22 +156,31 @@ struct AfterObstacleView: View {
                     }
                     .opacity(visibleText4)
                     
-                    Text("How to get ready to be a choreographer?")
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 50.0)
-                        .frame(width: 270.0)
-                        .opacity(visibleText4)
-                        .foregroundColor(Color("Axolotl"))
+                    Button(action: {
+                        if goalListCoreDataViewModel.goalEntities.count > 0 {
+                            StoryBoardViewModel().openSafari(goal: goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
+                        }
+                        
+                    }, label: {
+                        
+                        if goalListCoreDataViewModel.goalEntities.count > 0 {
+                            Text("How to get ready to be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)?")
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.center)
+                                .padding(.top, 50.0)
+                                .frame(width: 270.0)
+                                .opacity(visibleText4)
+                                .foregroundColor(Color("Axolotl"))
+                        }
+                        Text("mmmmmmm")
+                    })
                 }
-                
             }
+            
             Spacer()
+            
             ZStack{ // button untuk next
-                
-                
-                
-                HStack{ //2
+                HStack{ //1
                     Circle()
                         .frame(width: 80.0)
                         .padding(.leading)
@@ -177,7 +195,6 @@ struct AfterObstacleView: View {
                             visibleText2 = 0
                             visibleText3 = 0
                         }
-                    
                     Spacer()
                     HStack{
                         Text("1")
@@ -204,7 +221,8 @@ struct AfterObstacleView: View {
                         }
                 }
                 .opacity(visibleText2)
-                HStack{ // 3
+                
+                HStack{ // 2
                     Circle()
                         .frame(width: 80.0)
                         .padding(.leading)
@@ -221,6 +239,7 @@ struct AfterObstacleView: View {
                         }
                     
                     Spacer()
+                    
                     HStack{
                         Text("2")
                             .font(.callout)
@@ -229,7 +248,9 @@ struct AfterObstacleView: View {
                         Text("2")
                             .font(.callout)
                     }
+                    
                     Spacer()
+                    
                     Circle()
                         .frame(width: 80.0)
                         .padding(.trailing)
@@ -246,7 +267,6 @@ struct AfterObstacleView: View {
                         }
                 }
                 .opacity(visibleText3)
-                
             }
             .opacity(hideButton)
         }
@@ -254,12 +274,9 @@ struct AfterObstacleView: View {
     }
 }
 
+
 struct AfterObstacleView_Previews: PreviewProvider {
     static var previews: some View {
-        AfterObstacleView(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                          goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                          planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                          subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                          loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        AfterObstacleView().environmentObject(GoalListCoreDataViewModel())
     }
 }

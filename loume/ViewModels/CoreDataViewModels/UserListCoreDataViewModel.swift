@@ -13,7 +13,7 @@ class UserListCoreDataViewModel: ObservableObject {
     
     init() {
         deleteUserEntityAll()
-        createDummyData()
+//        createDummyData()
     }
     
     func createDummyData() {
@@ -200,6 +200,19 @@ class UserListCoreDataViewModel: ObservableObject {
         
         getUserEntities()
     }
+    
+    func setIsJournaling() {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setIsJournalingUserEntity(userEntity: existingUserEntity)
+        }
+        
+        getUserEntities()
+    }
 }
 
 struct UserCoreDataModel {
@@ -251,5 +264,9 @@ struct UserCoreDataModel {
     
     var obstacle2: String {
         return userEntity.obstacle2 ?? ""
+    }
+    
+    var isJournaling: Bool {
+        return userEntity.is_journaling ?? false
     }
 }

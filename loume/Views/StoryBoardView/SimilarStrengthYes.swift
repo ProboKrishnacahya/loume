@@ -8,23 +8,20 @@
 import SwiftUI
 
 struct SimilarStrengthYes: View {
-    @State var roleModel1: String = ""
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
+    @State var roleModelStrengthSimilar: String = ""
     @State var prev: Double = 1
     @State var next: Double = 1
     @State private var isView2Active = false
     @State private var isView3Active = false
     
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
-    
     var body: some View {
         NavigationView {
             ZStack{
                 VStack{
+                    
                     VStack{
                         Text("Cool! Please mention one")
                             .font(.title2)
@@ -35,14 +32,13 @@ struct SimilarStrengthYes: View {
                             .font(.title2)
                     }
                     
-                    TextField("Strength or speciality...", text: $roleModel1)
+                    TextField("Strength or speciality...", text: $roleModelStrengthSimilar)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .frame(width:  290)
                         .animation(Animation.easeInOut(duration: 1.5))
                         .padding(.top, 20)
-                    
-                    //                    userListCoreDataViewModel.setStrengthSimilar(userCoreDataModel: userListCoreDataViewModel.userEntities[0], strengthSimilar: {{isikan disini strength similarnya}})
                 }
+                
                 VStack{
                     Spacer()
                     HStack{ // 1
@@ -59,13 +55,9 @@ struct SimilarStrengthYes: View {
                                 isView3Active = true
                             }
                             .overlay{
-                                NavigationLink(destination: RoleModelSimilarStrengthView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
-                                    
-                                    
+                                NavigationLink(destination: RoleModelSimilarStrengthView().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                 }
                             }
-                        
-                        
                         Spacer()
                         HStack{
                             Text("1")
@@ -87,19 +79,16 @@ struct SimilarStrengthYes: View {
                             }
                             .onTapGesture {
                                 isView2Active = true
+                                
+                                userListCoreDataViewModel.setStrengthSimilar(strengthSimilar: roleModelStrengthSimilar)
                             }
                             .overlay{
-                                NavigationLink(destination: StrengthOut(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                    
-                                    
+                                NavigationLink(destination: StrengthOut().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                 }
                             }
-                        
                     }
-                    
                 }
             }
-            
         }
         .animation(nil)
     }
@@ -107,10 +96,7 @@ struct SimilarStrengthYes: View {
 
 struct SimilarStrengthYes_Previews: PreviewProvider {
     static var previews: some View {
-        SimilarStrengthYes(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                           goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                           planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                           subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                           loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        SimilarStrengthYes()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

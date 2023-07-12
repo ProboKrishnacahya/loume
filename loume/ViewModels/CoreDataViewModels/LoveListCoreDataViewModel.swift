@@ -13,7 +13,7 @@ class LoveListCoreDataViewModel: ObservableObject {
     
     init() {
         deleteLoveEntityAll()
-        createDummyData()
+//        createDummyData()
     }
     
     func createDummyData() {

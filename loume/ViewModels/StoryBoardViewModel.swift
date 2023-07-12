@@ -10,10 +10,9 @@ import SafariServices
 
 class StoryBoardViewModel {
     
-    func openSafari() {
+    func openSafari(goal: String) {
         let urlString = "https://www.google.com/search?q="
-        //let query = textField.text ?? ""
-        let query = "How to be good mother"
+        let query = "How to be " + goal
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let fullURLString = urlString + encodedQuery + "&btnI"
         
@@ -22,9 +21,7 @@ class StoryBoardViewModel {
                 let safariViewController = SFSafariViewController(url: url)
                 windowScene.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
             }
-            
             //self.present(safariViewController, animated: true, completion: nil)
-            
         }
     }
 }

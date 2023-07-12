@@ -13,7 +13,7 @@ class RoleModelStrengthListCoreDataViewModel: ObservableObject {
     
     init() {
         deleteRoleModelStrengthEntityAll()
-        createDummyData()
+//        createDummyData()
     }
     
     func createDummyData() {

@@ -9,13 +9,6 @@ import SwiftUI
 
 struct StrengthOut: View {
     
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
-    
     @State private var isView2Active = false
     
     var body: some View {
@@ -24,12 +17,15 @@ struct StrengthOut: View {
                 VStack{
                     Text("To be honest, I’m sure you")
                     Text("have more strengths than just")
+                    
                     HStack{
                         Text("Strength or speciality.")
                             .fontWeight(.bold)
                         Text("Let’s")
                     }
+                    
                     Text("figure out some more!")
+                    
                 }
                 .padding(.top ,70)
                 
@@ -47,7 +43,6 @@ struct StrengthOut: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -59,9 +54,8 @@ struct StrengthOut: View {
                     
                 }
                 .overlay{
-                    NavigationLink(destination: QuestionView1(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                    NavigationLink(destination: QuestionView1().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                         EmptyView()
-                        
                     }
                 }
                     Button {
@@ -76,7 +70,6 @@ struct StrengthOut: View {
                         .background(
                             
                             RoundedRectangle(
-                                
                                 cornerRadius: 5,
                                 style: .continuous
                             )
@@ -92,10 +85,6 @@ struct StrengthOut: View {
 
 struct StrengthOut_Previews: PreviewProvider {
     static var previews: some View {
-        StrengthOut(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                    goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                    planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                    subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                    loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        StrengthOut()
     }
 }

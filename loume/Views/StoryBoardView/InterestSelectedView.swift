@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct InterestSelectedView: View {
+    
+    @EnvironmentObject private var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    
     @State var visible: Double = 1
     @State private var disable1 = false
     @State var visibleText2: Double = 0
@@ -17,32 +20,9 @@ struct InterestSelectedView: View {
     @State var hideButton: Double = 1
     @State private var isView2Active = false
     @State private var isView3Active = false
-
-    
-    
     @State var circle1 : Double = 0
     @State var circle2 : Double = 0
     @State var circle3 : Double = 0
-    
-    
-  
-    
-//    @State var visible: Double
-//    @State var disable1: Bool
-//    @State var visibleText2: Double
-//    @State var visibleText3: Double
-//    @State var visibleText4: Double
-//    @State var visibleText5: Double
-//    @State var hideButton: Double
-//    @State var isView2Active: Bool
-    
-    // di bawah ini harus ada di setiap page story board dan cara lemparnya sama seperti sebelumnya ini
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-        @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-        @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-        @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-        @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-        @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     
     var body: some View {
         NavigationView{
@@ -60,7 +40,6 @@ struct InterestSelectedView: View {
                             .frame(width: 165.0, height: 165.0)
                             .opacity(circle1)
                         
-                        
                         Circle()
                             .frame(width: 140.0)
                             .foregroundColor(Color("Axolotl"))
@@ -70,31 +49,23 @@ struct InterestSelectedView: View {
                                     .foregroundColor(Color.white)
                                     .multilineTextAlignment(.center)
                             }
-                        
-                        
-                        //code di bawah ini harus ada di dalam foreach
-                        //                    loveListCoreDataViewModel.setRank(loveCoreDataModel: interest, rank: rank)
-                        
-                        //code untuk dapat label rank untuk masing2 3 interest
-                        //                    interest.rank
                     }
                     .onTapGesture {
                         circle1 = 1
                         circle2 = 0
                         circle3 = 0
+                        
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[0], rank: 1)
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[1], rank: 2)
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[2], rank: 3)
                     }
                     
-                    //code di bawah ini ga dipakai karena data diambil dari core data dan sudah dilopping di atas
                     ZStack{
                         Circle()
                             .inset(by: 8)
                             .stroke(Color("Light Moss Green"), lineWidth: 3)
                             .frame(width: 165.0, height: 165.0)
                             .opacity(circle2)
-                        
                         
                         Circle()
                             .frame(width: 140.0)
@@ -104,15 +75,12 @@ struct InterestSelectedView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(Color.white)
                             }
-                        
-                        
-                        
-                        
                     }
                     .onTapGesture {
                         circle1 = 0
                         circle2 = 1
                         circle3 = 0
+                        
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[1], rank: 1)
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[0], rank: 2)
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[2], rank: 3)
@@ -124,7 +92,6 @@ struct InterestSelectedView: View {
                             .stroke(Color("Light Moss Green"), lineWidth: 3)
                             .frame(width: 165.0, height: 165.0)
                             .opacity(circle3)
-                        
                         
                         Circle()
                             .frame(width: 140.0)
@@ -139,9 +106,10 @@ struct InterestSelectedView: View {
                         circle1 = 0
                         circle2 = 0
                         circle3 = 1
+                        
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[2], rank: 1)
-                        loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[1], rank: 2)
-                        loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[0], rank: 3)
+                        loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[0], rank: 2)
+                        loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[1], rank: 3)
                     }
                     
                     Text("Order the interests based on its impact.")
@@ -149,6 +117,7 @@ struct InterestSelectedView: View {
                         .frame(height: 30.0)
                 }
                 .padding(.bottom, 50)
+                
                 VStack{
                     Spacer()
                     ZStack{ // button untuk next
@@ -163,17 +132,13 @@ struct InterestSelectedView: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    
                                     isView3Active = true
-                                    
                                 }
                                 .overlay(
-                                                                    NavigationLink(destination: InterestView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
-                                                                        EmptyView()
-                                                                    }
-                                                                )
-                            
-                            
+                                    NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                        EmptyView()
+                                    }
+                                )
                             Spacer()
                             HStack{
                                 Text("2")
@@ -194,20 +159,15 @@ struct InterestSelectedView: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    
                                     isView2Active = true
-                                    
                                 }
                                 .overlay(
-                                                                    NavigationLink(destination: RoleModelView(userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                                                                        EmptyView()
-                                                                    }
-                                                                )
-                                    
-                                
+                                    NavigationLink(destination: RoleModelView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                        EmptyView()
+                                    }
+                                )
                         }
                         .opacity(visible)
-                        
                         
                         //                            .overlay(
                         //                                NavigationLink(destination: InterestView(visible: 1, visibleText2: 0, visibleText3: 0, visibleText4: 0, visibleText5: 0, hideButton: 1, fadeText1: false, disable1: false, disable2: false, isView2Active: false, isVisible: false, angle: 0.0, scalefade: 1.0, scale: 1.0, rotation: 0.0, rotationIntro: false, flip: false, selectedCircles: [], rotate1: [], userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
@@ -224,13 +184,8 @@ struct InterestSelectedView: View {
 }
 
 struct InterestSelectedView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        InterestSelectedView(
-            userListCoreDataViewModel: UserListCoreDataViewModel(),
-            goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-            planListCoreDataViewModel: PlanListCoreDataViewModel(),
-            subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-            loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        InterestSelectedView()
+            .environmentObject(LoveListCoreDataViewModel())
     }
-    }
+}

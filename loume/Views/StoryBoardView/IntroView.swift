@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct IntroView: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     @State private var fadeText1 = false
     @State private var fadeText2 = false
     @State private var isView2Active = false
@@ -24,34 +27,12 @@ struct IntroView: View {
     @State private var scale2:Double = 1
     @State private var durationHold: Double = 1
     
-    //    @State var fadeText1: Bool
-    //    @State var fadeText2: Bool
-    //    @State var isView2Active: Bool
-    //    @State var stopRepeat: Bool
-    //    @State var fadeTextSecond1: Bool
-    //    @State var fadeTextSecond2: Bool
-    //    @State var fadeTextThird1: Bool
-    //    @State var fadeTextThird2: Bool
-    //    @State var disable1: Bool
-    //    @State var disable2: Bool
-    //    @State var disable3: Bool
-    //    @State var scale:Double
-    //    @State var scaleCircleSmall:Double
-    //    @State var scale2:Double
-    //    @State var durationHold: Double
-    //
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
-    
     var body: some View {
         NavigationView{
             ZStack{
                 Color("Light Moss Green")
                     .edgesIgnoringSafeArea([.all])
+                
                 VStack{
                     HStack{
                         Text("Welcome")
@@ -69,6 +50,7 @@ struct IntroView: View {
                             fadeText1 = true
                         }
                     }
+                    
                     VStack{
                         Text("Through this app, you will be guided to do a little journey about yourself. The most important thing in this journey is how ")
                             .multilineTextAlignment(.center)
@@ -84,8 +66,6 @@ struct IntroView: View {
                             fadeText2 = true
                         }
                     }
-                    
-                    
                 }
                 .opacity(disable1 ? 0 : 1)
                 .animation(.easeIn(duration: 0.5).delay(10))
@@ -94,6 +74,7 @@ struct IntroView: View {
                         disable1 = true
                     }
                 }
+                
                 VStack{
                     VStack {
                         Text("This journey will take approximately around")
@@ -123,6 +104,7 @@ struct IntroView: View {
                         disable2 = true
                     }
                 }
+                
                 VStack{
                     Text("Are you ready to discover yourself?")
                         .font(.title3)
@@ -135,8 +117,6 @@ struct IntroView: View {
                             }
                         }
                     
-                    
-                    
                     ZStack{
                         Circle()
                             .frame(width: 100.0)
@@ -148,18 +128,15 @@ struct IntroView: View {
                                 scale = 1.0
                             }
                             .onTapGesture {
-                                
                                 scale = 30
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                     isView2Active = true
-                                    
                                 }
                                 scale2 = 0
-                                
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView( userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -173,19 +150,16 @@ struct IntroView: View {
                                 scale = 1.0
                             }
                             .onTapGesture {
-                                
                                 scale = 30
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                     isView2Active = true
                                     isView2Active = true
-                                    
                                 }
                                 scale2 = 0
-                                
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView( userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -199,18 +173,15 @@ struct IntroView: View {
                                 scale = 1.0
                             }
                             .onTapGesture {
-                                
                                 scale = 30
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                     isView2Active = true
-                                    
                                 }
                                 scale2 = 0
-                                
                             }
                             .overlay(
-                                NavigationLink(destination: InterestView( userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel, roleModelStrengthListCoreDataViewModel: roleModelStrengthListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: InterestView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )
@@ -234,11 +205,7 @@ struct IntroView: View {
 
 struct IntroView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroView(
-            userListCoreDataViewModel: UserListCoreDataViewModel(),
-            goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-            planListCoreDataViewModel: PlanListCoreDataViewModel(),
-            subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-            loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        IntroView()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

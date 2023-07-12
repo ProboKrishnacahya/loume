@@ -7,13 +7,11 @@
 
 import SwiftUI
 let width = UIScreen.main.bounds.width
+
 struct ConfidentView: View {
-    @ObservedObject var userListCoreDataViewModel: UserListCoreDataViewModel
-    @ObservedObject var goalListCoreDataViewModel: GoalListCoreDataViewModel
-    @ObservedObject var planListCoreDataViewModel: PlanListCoreDataViewModel
-    @ObservedObject var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
-    @ObservedObject var loveListCoreDataViewModel: LoveListCoreDataViewModel
-    @ObservedObject var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
     
     @State var maxWidth: CGFloat = width - 32
     @State var sliderProgress: CGFloat = 0
@@ -26,26 +24,37 @@ struct ConfidentView: View {
     @State var visibleText4: Double = 0
     @State var visibleText5: Double = 0
     @State var hideButton: Double = 1
+    
     var body: some View {
         VStack{
             ZStack{
                 VStack{
+                    
                     Spacer()
+                    
                     VStack{
                         Text("How confident are you to be")
                             .font(.title3)
+                        
                         HStack{
                             Text("able to")
                                 .font(.title3)
-                            Text("be a choreograper")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                            
+                            if goalListCoreDataViewModel.goalEntities.count > 0 {
+                                
+                                Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                                
+                            }
                         }
+                        
                         Text("after doing this reflection journey?")
                             .font(.title3)
                             .multilineTextAlignment(.center)
                             .frame(width: 330)
                     }
+                    
                     VStack {
                         ZStack(alignment: .leading, content: {
                             Rectangle()
@@ -57,7 +66,6 @@ struct ConfidentView: View {
                         })
                         .frame(width: maxWidth, height: 150)
                         .cornerRadius(5)
-                        
                         
                         .gesture(DragGesture(minimumDistance: 0).onChanged({ (value) in
                             
@@ -83,57 +91,72 @@ struct ConfidentView: View {
                             lastDragValue = sliderWidth
                             
                         }))
-                        
                     }
                     .rotationEffect(.degrees(-90))
                     .frame(width: 200.0, height: 450.0)
                     
                     Text("Fill the confidance bar")
+                    
                     Text("\(Int(sliderProgress * 100))%")
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
                 }.padding(.bottom ,30)
-                 .opacity(visible)
+                    .opacity(visible)
+                
                 VStack{
                     Text("Actually, you should be more")
                         .font(.title3)
+                    
                     HStack{
                         Text("confident")
                             .font(.title3)
-                        Text("Audrey")
+                        
+                        Text(userListCoreDataViewModel.userEntities[0].name)
                             .font(.title2)
                             .fontWeight(.bold)
                     }
-                    
                 }
                 .opacity(visibleText2)
                 
                 VStack{
                     Text("Fun fact!")
                         .font(.title3)
+                    
                     Text("You can increase your success ")
                         .font(.title3)
+                    
                     HStack{
                         Text("to")
                             .font(.title3)
-                        Text("be a choreographer")
-                            .font(.title3)
-                            .fontWeight(.bold)
+                        
+                        if goalListCoreDataViewModel.goalEntities.count > 0 {
+                            
+                            Text("be a choreographer")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                            
+                        }
+                        
                         Text("by a")
                             .font(.title3)
                     }
+                    
                     Text("whopping 1.150% because")
                         .font(.title3)
+                    
                     Text("you have listed an intentional")
                         .font(.title3)
+                    
                     HStack{
                         Text("set of action steps")
                             .font(.title3)
                             .fontWeight(.bold)
+                        
                         Text("to achieve")
                             .font(.title3)
                     }
+                    
                     Text("your goals.")
                         .font(.title3)
                 }
@@ -141,18 +164,26 @@ struct ConfidentView: View {
                 
                 VStack{
                     Spacer()
+                    
                     Text("So… are you done? Not yet, Audrey. Don’t forget, this is the beginning of an exciting journey towards your dream!")
                         .font(.title3)
                         .multilineTextAlignment(.center)
                         .frame(width: 270.0)
+                    
                     VStack{
                         Text("Are you ready")
                             .font(.title3)
-                        Text("be a choreographer?")
-                            .font(.title3)
-                            .fontWeight(.bold)
+                        
+                        if goalListCoreDataViewModel.goalEntities.count > 0 {
+                            
+                            Text("be a choreographer?")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                            
+                        }
                     }
                     .padding(.top, 50)
+                    
                     VStack{
                         Button {
                             hideButton = 0
@@ -169,7 +200,6 @@ struct ConfidentView: View {
                             .background(
                                 
                                 RoundedRectangle(
-                                    
                                     cornerRadius: 5,
                                     style: .continuous
                                 )
@@ -178,8 +208,6 @@ struct ConfidentView: View {
                             )
                     }
                     }
-                    
-                    
                     Spacer()
                 }
                 .opacity(visibleText4)
@@ -190,7 +218,9 @@ struct ConfidentView: View {
                 }
                 .opacity(visibleText5)
             }
+            
             Spacer()
+            
             ZStack{ // button untuk next
                 HStack{ // 1
                     Circle()
@@ -202,7 +232,6 @@ struct ConfidentView: View {
                                 .padding(.leading)
                                 .foregroundColor(Color.white)
                         }
-                    
                     Spacer()
                     HStack{
                         Text("1")
@@ -225,7 +254,6 @@ struct ConfidentView: View {
                         .onTapGesture {
                             visible = 0
                             visibleText2 = 1
-                            
                         }
                 }
                 .opacity(visible)
@@ -245,7 +273,6 @@ struct ConfidentView: View {
                             visibleText2 = 0
                             visibleText3 = 0
                         }
-                    
                     Spacer()
                     HStack{
                         Text("2")
@@ -272,6 +299,7 @@ struct ConfidentView: View {
                         }
                 }
                 .opacity(visibleText2)
+                
                 HStack{ // 3
                     Circle()
                         .frame(width: 80.0)
@@ -287,7 +315,6 @@ struct ConfidentView: View {
                             visibleText2 = 1
                             visibleText3 = 0
                         }
-                    
                     Spacer()
                     HStack{
                         Text("3")
@@ -308,29 +335,21 @@ struct ConfidentView: View {
                                 .foregroundColor(Color.white)
                         }
                         .onTapGesture {
-                            
                             visibleText3 = 0
                             visibleText4 = 1
                         }
                 }
                 .opacity(visibleText3)
-                
             }
             .opacity(hideButton)
-            
-            
         }
-        
-        
     }
 }
 
 struct ConfidentView_Previews: PreviewProvider {
     static var previews: some View {
-        ConfidentView(userListCoreDataViewModel: UserListCoreDataViewModel(),
-                      goalListCoreDataViewModel: GoalListCoreDataViewModel(),
-                      planListCoreDataViewModel: PlanListCoreDataViewModel(),
-                      subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel(),
-                      loveListCoreDataViewModel: LoveListCoreDataViewModel(), roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel())
+        ConfidentView()
+            .environmentObject(UserListCoreDataViewModel())
+            .environmentObject(GoalListCoreDataViewModel())
     }
 }

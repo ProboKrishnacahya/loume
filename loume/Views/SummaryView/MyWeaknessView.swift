@@ -59,5 +59,6 @@ struct MyWeaknessView: View {
 struct MyWeaknessView_Previews: PreviewProvider {
     static var previews: some View {
         MyWeaknessView()
+            .environmentObject(UserListCoreDataViewModel())
     }
 }

@@ -71,5 +71,6 @@ struct MyInterestView: View {
 struct MyInterestView_Previews: PreviewProvider {
     static var previews: some View {
         MyInterestView()
+            .environmentObject(LoveListCoreDataViewModel())
     }
 }

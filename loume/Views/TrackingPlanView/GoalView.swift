@@ -76,5 +76,8 @@ struct GoalView: View {
 struct GoalView_Previews: PreviewProvider {
     static var previews: some View {
         GoalView(backgroundColor: Color("Lotion"))
+            .environmentObject(GoalListCoreDataViewModel())
+            .environmentObject(PlanListCoreDataViewModel())
+            .environmentObject(SubPlanListCoreDataViewModel())
     }
 }
