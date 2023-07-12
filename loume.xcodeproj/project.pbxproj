@@ -33,6 +33,7 @@
 		82441EF42A582B4E007EFD6E /* InterestPromiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */; };
 		82441EF52A582B4E007EFD6E /* SetupProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE22A582B4E007EFD6E /* SetupProject.swift */; };
 		82441EF62A582B4E007EFD6E /* InterestSelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */; };
+		8247BDDB2A5DCF3D000C8FCB /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247BDDA2A5DCF3D000C8FCB /* SecondaryButton.swift */; };
 		826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 826814C22A4EF3EC00B9F57A /* loume.xcdatamodeld */; };
 		826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */; };
 		826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826814C62A4EF3EC00B9F57A /* Persistence.swift */; };
@@ -54,6 +55,13 @@
 		827CD7012A40327300672B92 /* loumeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD7002A40327300672B92 /* loumeTests.swift */; };
 		827CD70B2A40327300672B92 /* loumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70A2A40327300672B92 /* loumeUITests.swift */; };
 		827CD70D2A40327300672B92 /* loumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */; };
+		82A5E36F2A5C1DA6005AF041 /* MyRoleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */; };
+		82A5E3712A5C1F8C005AF041 /* MyInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */; };
+		82A5E3732A5C1FA0005AF041 /* MyWeaknessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */; };
+		82A5E3752A5C1FB8005AF041 /* MyGoalObstacles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3742A5C1FB8005AF041 /* MyGoalObstacles.swift */; };
+		82A5E3772A5C1FC4005AF041 /* MyStrengthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3762A5C1FC4005AF041 /* MyStrengthsView.swift */; };
+		82A5E3792A5C5F98005AF041 /* SummaryResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3782A5C5F98005AF041 /* SummaryResultCard.swift */; };
+		82A5E37B2A5C7DFD005AF041 /* UpdateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E37A2A5C7DFD005AF041 /* UpdateButton.swift */; };
 		82A7548B2A52C331004501A3 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7548A2A52C331004501A3 /* SummaryView.swift */; };
 		82A7548D2A52C3E0004501A3 /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7548C2A52C3E0004501A3 /* IntroductionView.swift */; };
 		82A7548F2A52C419004501A3 /* RolePromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7548E2A52C419004501A3 /* RolePromptView.swift */; };
@@ -103,6 +111,7 @@
 		82441EE12A582B4E007EFD6E /* InterestPromiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestPromiseView.swift; sourceTree = "<group>"; };
 		82441EE22A582B4E007EFD6E /* SetupProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupProject.swift; sourceTree = "<group>"; };
 		82441EE32A582B4E007EFD6E /* InterestSelectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestSelectedView.swift; sourceTree = "<group>"; };
+		8247BDDA2A5DCF3D000C8FCB /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
 		826814C32A4EF3EC00B9F57A /* comee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = comee.xcdatamodel; sourceTree = "<group>"; };
 		826814C52A4EF3EC00B9F57A /* StoryBoardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardViewModel.swift; sourceTree = "<group>"; };
 		826814C62A4EF3EC00B9F57A /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -127,6 +136,13 @@
 		827CD7062A40327300672B92 /* loumeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = loumeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		827CD70A2A40327300672B92 /* loumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITests.swift; sourceTree = "<group>"; };
 		827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoleModelView.swift; sourceTree = "<group>"; };
+		82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInterestView.swift; sourceTree = "<group>"; };
+		82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeaknessView.swift; sourceTree = "<group>"; };
+		82A5E3742A5C1FB8005AF041 /* MyGoalObstacles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGoalObstacles.swift; sourceTree = "<group>"; };
+		82A5E3762A5C1FC4005AF041 /* MyStrengthsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStrengthsView.swift; sourceTree = "<group>"; };
+		82A5E3782A5C5F98005AF041 /* SummaryResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryResultCard.swift; sourceTree = "<group>"; };
+		82A5E37A2A5C7DFD005AF041 /* UpdateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateButton.swift; sourceTree = "<group>"; };
 		82A7548A2A52C331004501A3 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		82A7548C2A52C3E0004501A3 /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
 		82A7548E2A52C419004501A3 /* RolePromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RolePromptView.swift; sourceTree = "<group>"; };
@@ -227,6 +243,9 @@
 				0B0825112A57D7B500B87CC0 /* ModalView.swift */,
 				0B0825172A57E68C00B87CC0 /* GoalRowView.swift */,
 				0B0825192A57FAA500B87CC0 /* PlanRowView.swift */,
+				82A5E3782A5C5F98005AF041 /* SummaryResultCard.swift */,
+				82A5E37A2A5C7DFD005AF041 /* UpdateButton.swift */,
+				8247BDDA2A5DCF3D000C8FCB /* SecondaryButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -307,6 +326,11 @@
 			isa = PBXGroup;
 			children = (
 				82A7548A2A52C331004501A3 /* SummaryView.swift */,
+				82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */,
+				82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */,
+				82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */,
+				82A5E3742A5C1FB8005AF041 /* MyGoalObstacles.swift */,
+				82A5E3762A5C1FC4005AF041 /* MyStrengthsView.swift */,
 			);
 			path = SummaryView;
 			sourceTree = "<group>";
@@ -452,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B0825122A57D7B500B87CC0 /* ModalView.swift in Sources */,
+				8247BDDB2A5DCF3D000C8FCB /* SecondaryButton.swift in Sources */,
 				82441EF32A582B4E007EFD6E /* RoleModelSimilarStrengthView.swift in Sources */,
 				82441EEF2A582B4E007EFD6E /* AfterQuestion1View.swift in Sources */,
 				826814E92A4EF3EC00B9F57A /* Plan.swift in Sources */,
@@ -463,8 +488,10 @@
 				826814E32A4EF3EC00B9F57A /* Persistence.swift in Sources */,
 				0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */,
 				0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */,
+				82A5E3712A5C1F8C005AF041 /* MyInterestView.swift in Sources */,
 				0B43EC362A56A63100B84D7E /* EmptyStateView.swift in Sources */,
 				82441EE82A582B4E007EFD6E /* ObstaclesView.swift in Sources */,
+				82A5E37B2A5C7DFD005AF041 /* UpdateButton.swift in Sources */,
 				82441EE62A582B4E007EFD6E /* StrengthOut.swift in Sources */,
 				82441EEC2A582B4E007EFD6E /* AfterObstacle2View.swift in Sources */,
 				826814F12A4EF3EC00B9F57A /* PlanView.swift in Sources */,
@@ -473,13 +500,17 @@
 				82441EF02A582B4E007EFD6E /* IntroView.swift in Sources */,
 				82441EF42A582B4E007EFD6E /* InterestPromiseView.swift in Sources */,
 				826814E52A4EF3EC00B9F57A /* SubPlan.swift in Sources */,
+				82A5E36F2A5C1DA6005AF041 /* MyRoleModelView.swift in Sources */,
 				82441EF62A582B4E007EFD6E /* InterestSelectedView.swift in Sources */,
 				82441EE52A582B4E007EFD6E /* SimilarStrengthYes.swift in Sources */,
 				826814E12A4EF3EC00B9F57A /* loume.xcdatamodeld in Sources */,
 				826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */,
 				826814F02A4EF3EC00B9F57A /* GoalView.swift in Sources */,
+				82A5E3752A5C1FB8005AF041 /* MyGoalObstacles.swift in Sources */,
 				0B0825142A57DC5400B87CC0 /* CircularButtonViewModel.swift in Sources */,
 				82441EE42A582B4E007EFD6E /* SimilarStrengthNo.swift in Sources */,
+				82A5E3772A5C1FC4005AF041 /* MyStrengthsView.swift in Sources */,
+				82A5E3792A5C5F98005AF041 /* SummaryResultCard.swift in Sources */,
 				82441EF52A582B4E007EFD6E /* SetupProject.swift in Sources */,
 				826814EE2A4EF3EC00B9F57A /* CircularButton.swift in Sources */,
 				82441EEB2A582B4E007EFD6E /* QuestionView2.swift in Sources */,
@@ -493,6 +524,7 @@
 				0B0825102A57CEE400B87CC0 /* ContentViewModel.swift in Sources */,
 				0B0825162A57E26000B87CC0 /* ModalViewModal.swift in Sources */,
 				826814E62A4EF3EC00B9F57A /* SoundManager.swift in Sources */,
+				82A5E3732A5C1FA0005AF041 /* MyWeaknessView.swift in Sources */,
 				82A7548B2A52C331004501A3 /* SummaryView.swift in Sources */,
 				826814E82A4EF3EC00B9F57A /* User.swift in Sources */,
 			);

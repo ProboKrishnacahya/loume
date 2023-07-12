@@ -14,7 +14,7 @@ struct PrimaryButton: View {
         Text(label)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color("Axolotl"))
+            .background(Color("Chinese Orange"))
             .foregroundColor(.white)
             .cornerRadius(8)
     }
