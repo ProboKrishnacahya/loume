@@ -53,7 +53,7 @@ struct InterestView: View {
     
     var body: some View {
         ZStack{
-            NavigationView{
+            NavigationStack{
                 ZStack{
                     VStack{
                         Text("Before going further, let’s help you pick *your top 3 interests* so that we know how to guide you better personally.")

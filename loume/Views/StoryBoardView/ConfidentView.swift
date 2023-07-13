@@ -132,7 +132,7 @@ struct ConfidentView: View {
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
                             
-                            Text("be a choreographer")
+                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
                                 .font(.title3)
                                 .fontWeight(.bold)
                             
@@ -176,7 +176,7 @@ struct ConfidentView: View {
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
                             
-                            Text("be a choreographer?")
+                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
                                 .font(.title3)
                                 .fontWeight(.bold)
                             

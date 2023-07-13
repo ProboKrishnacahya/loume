@@ -18,7 +18,7 @@ struct SimilarStrengthYes: View {
     @State private var isView3Active = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack{
                 VStack{
                     

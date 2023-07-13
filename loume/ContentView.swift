@@ -38,24 +38,16 @@ struct ContentView: View {
         VStack {
             //          AppHeader(instanceSoundManager: $instanceSoundManager, instanceAppHeaderViewModel: $instanceAppHeaderViewModel)
             
-//            if !userListCoreDataViewModel.userEntities.isEmpty {
-//
-//                if !userListCoreDataViewModel.userEntities[0].isJournaling {
-//                    tabView
-//                } else {
-//                    SetupProject(moveUp: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1)
-//                }
-//
-//            } else {
-//                SetupProject(moveUp: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1)
-//            }
-            
-            if userListCoreDataViewModel.userEntities.count == 0 {
+            if !userListCoreDataViewModel.userEntities.isEmpty {
                 
-                SetupProject(moveUp: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1)
+                if !userListCoreDataViewModel.userEntities[0].isJournaling {
+                    tabView
+                } else {
+                    IntroView()
+                }
                 
             } else {
-                tabView
+                SetupProject(moveUp: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1)
             }
         }
         .preferredColorScheme(.light)

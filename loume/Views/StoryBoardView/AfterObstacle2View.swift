@@ -13,7 +13,7 @@ struct AfterObstacle2View: View {
     @State private var isView3Active = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 VStack{
                     Text("So, did you find what you wanted to find? Let’s get ready to write them down!")
@@ -65,7 +65,7 @@ struct AfterObstacle2View: View {
                                 isView2Active = true
                             }
                             .overlay(
-                                NavigationLink(destination: ConfidentView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: MyStrengthView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                     EmptyView()
                                 }
                             )

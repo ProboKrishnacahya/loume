@@ -16,7 +16,7 @@ struct RoleModelSimilarStrengthView: View {
     @State private var isView3Active = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
                 VStack{
                     Text("Do you have any similar")

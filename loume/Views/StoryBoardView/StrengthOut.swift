@@ -9,10 +9,12 @@ import SwiftUI
 
 struct StrengthOut: View {
     
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    
     @State private var isView2Active = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
                 VStack{
                     Text("To be honest, I’m sure you")
@@ -59,7 +61,7 @@ struct StrengthOut: View {
                     }
                 }
                     Button {
-                        
+                        userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
                     Text("Save for Later")
