@@ -18,7 +18,7 @@ struct StrengthOut: View {
             VStack{
                 VStack{
                     Text("To be honest, I’m sure you")
-                    Text("have more strengths than just")
+                    Text(userListCoreDataViewModel.userEntities[0].strengthSimilar.isEmpty ? "have more strengths." : "have more strengths than just")
                     
                     HStack{
                         Text(userListCoreDataViewModel.userEntities[0].strengthSimilar)
