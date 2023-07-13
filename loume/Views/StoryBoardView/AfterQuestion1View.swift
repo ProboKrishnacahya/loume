@@ -21,7 +21,7 @@ struct AfterQuestion1View: View {
     @Binding var isStrengthFulled: Bool
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 VStack{
                     Text("Awesome !")
@@ -51,7 +51,7 @@ struct AfterQuestion1View: View {
                         )
                 }
                     Button {
-                        
+                        userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
                     Text("Save for Later")
@@ -99,7 +99,7 @@ struct AfterQuestion1View: View {
                         )
                 }
                     Button {
-                        
+                        userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
                     Text("Save for Later")
@@ -147,7 +147,7 @@ struct AfterQuestion1View: View {
                         )
                 }
                     Button {
-                        
+                        userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
                     Text("Save for Later")

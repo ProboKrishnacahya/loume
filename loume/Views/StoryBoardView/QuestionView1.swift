@@ -44,7 +44,7 @@ struct QuestionView1: View {
         @State var question13: String = ""
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 VStack{
                     ZStack{
@@ -361,6 +361,8 @@ struct QuestionView1: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
+                                    print("Back to Strength 2/3")
+
                                     Quest2 = 0
                                     Quest3 = 1
                                     nav2 = 0

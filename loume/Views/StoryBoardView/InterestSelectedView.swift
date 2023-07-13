@@ -25,7 +25,7 @@ struct InterestSelectedView: View {
     @State var circle3 : Double = 0
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 VStack{
                     Text("Which interests do you think will ")

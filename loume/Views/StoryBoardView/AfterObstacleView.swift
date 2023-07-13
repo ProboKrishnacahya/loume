@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AfterObstacleView: View {
     
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
     
     @State var visible: Double = 1
@@ -56,6 +57,8 @@ struct AfterObstacleView: View {
                     Button {
                         visible = 0
                         visibleText2 = 1
+                        
+                        userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
                     Text("Save for later")
@@ -172,7 +175,6 @@ struct AfterObstacleView: View {
                                 .opacity(visibleText4)
                                 .foregroundColor(Color("Axolotl"))
                         }
-                        Text("mmmmmmm")
                     })
                 }
             }
@@ -277,6 +279,8 @@ struct AfterObstacleView: View {
 
 struct AfterObstacleView_Previews: PreviewProvider {
     static var previews: some View {
-        AfterObstacleView().environmentObject(GoalListCoreDataViewModel())
+        AfterObstacleView()
+            .environmentObject(UserListCoreDataViewModel())
+            .environmentObject(GoalListCoreDataViewModel())
     }
 }

@@ -21,7 +21,7 @@ struct MyStrengthView: View {
     @State private var isView2Active = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 VStack{
                     Spacer()

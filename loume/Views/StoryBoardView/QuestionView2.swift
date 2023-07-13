@@ -36,9 +36,13 @@ struct QuestionView2: View {
     @State var weakness2: String = ""
     @State var weakness3: String = ""
     @State var sumNullWeakness: Int = 0
+    @State var condition1: Double = 0
+    @State var condition2: Double = 0
+    @State var condition3: Double = 0
+    @State var isStrengthFulled: Bool = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 VStack{
                     ZStack{
@@ -260,13 +264,44 @@ struct QuestionView2: View {
                                 }
                                 .onTapGesture {
                                     isView3Active = true
+                                    
+                                    var sumNullStrength = 0
+                                    if userListCoreDataViewModel.userEntities[0].strength1.isEmpty {
+                                        sumNullStrength += 1
+                                    }
+                                    
+                                    if userListCoreDataViewModel.userEntities[0].strength2.isEmpty {
+                                        sumNullStrength += 1
+                                    }
+                                    
+                                    if userListCoreDataViewModel.userEntities[0].strength3.isEmpty {
+                                        sumNullStrength += 1
+                                    }
+                                    
+                                    if sumNullStrength == 0 {
+                                        condition1 = 1
+                                        condition2 = 0
+                                        condition3 = 0
+                                        isStrengthFulled = true
+                                    } else if sumNullStrength == 3 {
+                                        condition1 = 0
+                                        condition2 = 0
+                                        condition3 = 1
+                                        isStrengthFulled = false
+                                    } else {
+                                        condition1 = 0
+                                        condition2 = 1
+                                        condition3 = 0
+                                        isStrengthFulled = false
+                                    }
+                                    
+                                    
                                 }
-                            //                                .overlay(
-                            //                                    NavigationLink(destination: InterestPromiseView().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
-                            //                                        EmptyView()
-                            //                                    }
-                            //                                )
-                            Spacer()
+                                .overlay(
+                                    NavigationLink(destination: AfterQuestion1View(condition1: $condition1, condition2: $condition2, condition3: $condition3, isStrengthFulled: $isStrengthFulled).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                    }
+                                )
+                            
                             HStack{
                                 Text("1")
                                     .font(.callout)
@@ -353,6 +388,7 @@ struct QuestionView2: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
+                                    print("Weakness 2/3")
                                     Quest2 = 1
                                     Quest3 = 0
                                     nav2 = 1

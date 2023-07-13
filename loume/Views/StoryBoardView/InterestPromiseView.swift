@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InterestPromiseView: View {
     
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
     @EnvironmentObject private var loveListCoreDataViewModel: LoveListCoreDataViewModel
     
@@ -34,7 +35,6 @@ struct InterestPromiseView: View {
     @State var nav2: Double = 0
     @State var nav3: Double = 0
     @State private var isView2Active = false
-    
     @Binding var sumNullWeakness: Int
     
     var body: some View {
@@ -214,7 +214,7 @@ struct InterestPromiseView: View {
                             )
                     }
                         Button {
-                            
+                            userListCoreDataViewModel.setIsJournaling()
                         }
                     label: {
                         Text("Save for Later")
@@ -299,7 +299,66 @@ struct InterestPromiseView: View {
                     }
                     .opacity(page3)
                     
-                  
+                    VStack{
+                        Text("Sometimes achieving our goals is not that easy because there are challenges we may face.")
+                            .multilineTextAlignment(.center)
+                            .frame(width: 270.0)
+                        
+                        Text("But that's okay, because challenges help us grow stronger than before.")
+                            .multilineTextAlignment(.center)
+                            .padding(.top)
+                            .frame(width: 270.0)
+                        
+                        VStack{
+                            Button {
+                                isView2Active = true
+                            }
+                        label: {
+                            Text("Continue Now")
+                                .padding(.horizontal, 80)
+                                .padding(.vertical, 10)
+                                .background(Color("Chinese Orange"))
+                                .foregroundColor(Color.white)
+                                .buttonStyle(.bordered)
+                                .background(
+                                    
+                                    RoundedRectangle(
+                                        cornerRadius: 5,
+                                        style: .continuous
+                                    )
+                                    .stroke(Color("Axolotl"), lineWidth: 1)
+                                    
+                                )
+                                .overlay{
+                                    NavigationLink(destination: ObstaclesView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                        EmptyView()
+                                    }
+                                }
+                        }
+                            Button {
+                                userListCoreDataViewModel.setIsJournaling()
+                            }
+                        label: {
+                            Text("Save for Later")
+                                .padding(.horizontal, 80)
+                                .padding(.vertical, 10)
+                                .background(Color("Chinese Orange"))
+                                .foregroundColor(Color.white)
+                                .buttonStyle(.bordered)
+                                .background(
+                                    
+                                    RoundedRectangle(
+                                        cornerRadius: 5,
+                                        style: .continuous
+                                    )
+                                    .stroke(Color("Axolotl"), lineWidth: 1)
+                                    
+                                )
+                        }
+                        }
+                        .padding(.top, 40.0)
+                    }
+                    .opacity(page4)
                 }
             }
         }
@@ -309,6 +368,7 @@ struct InterestPromiseView: View {
 struct InterestPromiseView_Previews: PreviewProvider {
     static var previews: some View {
         InterestPromiseView(sumNullWeakness: .constant(0))
+            .environmentObject(UserListCoreDataViewModel())
             .environmentObject(GoalListCoreDataViewModel())
             .environmentObject(LoveListCoreDataViewModel())
     }

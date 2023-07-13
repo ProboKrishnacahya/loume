@@ -17,7 +17,7 @@ struct SimilarStrengthNo: View {
     @State private var isView3Active = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack{
                 VStack {
                     Text("It’s okay! I’m sure you can")

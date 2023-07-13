@@ -36,7 +36,7 @@ struct SetupProject: View {
     @State var scale2:Double
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             //-------------- Tulisan Atas -------------- //
             VStack {
                 VStack {

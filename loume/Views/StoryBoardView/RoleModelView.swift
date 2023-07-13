@@ -31,7 +31,7 @@ struct RoleModelView: View {
     @State var hideButton: Double = 0
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 ZStack{
                     Color.white
@@ -80,6 +80,7 @@ struct RoleModelView: View {
                                 )
                         }
                             Button {
+                                userListCoreDataViewModel.setIsJournaling()
                             }
                         label: {
                             Text("Save for Later")

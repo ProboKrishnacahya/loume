@@ -23,9 +23,10 @@ struct ObstaclesView: View {
     @State var hideButton: Double = 1
     @State private var isView3Active = false
     @State private var isView2Active = false
+    @State var sumNullWeakness: Int = 0
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 ScrollView{
                     VStack{
@@ -142,9 +143,23 @@ struct ObstaclesView: View {
                                     }
                                     .onTapGesture {
                                         isView3Active = true
+                                        
+                                        sumNullWeakness = 0
+                                        if userListCoreDataViewModel.userEntities[0].weakness1.isEmpty {
+                                            sumNullWeakness += 1
+                                        }
+                                        
+                                        if userListCoreDataViewModel.userEntities[0].weakness2.isEmpty {
+                                            sumNullWeakness += 1
+                                        }
+                                        
+                                        if userListCoreDataViewModel.userEntities[0].weakness3.isEmpty {
+                                            sumNullWeakness += 1
+                                        }
                                     }
                                     .overlay(
-                                        NavigationLink(destination: InterestPromiseView(sumNullWeakness: .constant(0)).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                        //yohan
+                                        NavigationLink(destination: InterestPromiseView(sumNullWeakness: $sumNullWeakness).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                             EmptyView()
                                         }
                                     )
@@ -171,10 +186,12 @@ struct ObstaclesView: View {
                                             .foregroundColor(Color.white)
                                     }
                                     .onTapGesture {
+                                        isView2Active = true
+                                        
                                         userListCoreDataViewModel.setObstacle1(obstacle: obstacle1)
                                         userListCoreDataViewModel.setObstacle2(obstacle: obstacle2)
                                         
-                                        isView2Active = true
+                                        
                                     }
                                     .overlay(
                                         NavigationLink(destination: AfterObstacleView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
