@@ -55,45 +55,51 @@ struct ConfidentView: View {
                             .frame(width: 330)
                     }
                     
-                    VStack {
-                        ZStack(alignment: .leading, content: {
-                            Rectangle()
-                                .fill(Color("Axolotl").opacity(0.1))
+                    HStack {
+                        VStack {
+                            ZStack(alignment: .leading, content: {
+                                Rectangle()
+                                    .fill(Color("Axolotl").opacity(0.1))
+                                
+                                Rectangle()
+                                    .fill(Color("Axolotl"))
+                                    .frame(width: sliderWidth)
+                            })
+                            .frame(width: maxWidth, height: 150)
+                            .cornerRadius(5)
                             
-                            Rectangle()
-                                .fill(Color("Axolotl"))
-                                .frame(width: sliderWidth)
-                        })
-                        .frame(width: maxWidth, height: 150)
-                        .cornerRadius(5)
+                            .gesture(DragGesture(minimumDistance: 0).onChanged({ (value) in
+                                
+                                let translation = value.translation
+                                
+                                sliderWidth = translation.width + lastDragValue
+                                
+                                sliderWidth = sliderWidth > maxWidth ? maxWidth : sliderWidth
+                                
+                                sliderWidth = sliderWidth >= 0 ? sliderWidth : 0
+                                
+                                let progress = sliderWidth / maxWidth
+                                
+                                sliderProgress = progress <= 1.0 ? progress : 1
+                                
+                            }).onEnded({ (value) in
+                                
+                                sliderWidth = sliderWidth > maxWidth ? maxWidth : sliderWidth
+                                
+                                // Negative Height....
+                                sliderWidth = sliderWidth >= 0 ? sliderWidth : 0
+                                
+                                lastDragValue = sliderWidth
+                                
+                            }))
+                        }
+                        .rotationEffect(.degrees(-90))
+                        .frame(width: 200.0, height: 450.0)
                         
-                        .gesture(DragGesture(minimumDistance: 0).onChanged({ (value) in
-                            
-                            let translation = value.translation
-                            
-                            sliderWidth = translation.width + lastDragValue
-                            
-                            sliderWidth = sliderWidth > maxWidth ? maxWidth : sliderWidth
-                            
-                            sliderWidth = sliderWidth >= 0 ? sliderWidth : 0
-                            
-                            let progress = sliderWidth / maxWidth
-                            
-                            sliderProgress = progress <= 1.0 ? progress : 1
-                            
-                        }).onEnded({ (value) in
-                            
-                            sliderWidth = sliderWidth > maxWidth ? maxWidth : sliderWidth
-                            
-                            // Negative Height....
-                            sliderWidth = sliderWidth >= 0 ? sliderWidth : 0
-                            
-                            lastDragValue = sliderWidth
-                            
-                        }))
+                        Image("ConfidentView-1")
+                            .resizable()
+                            .scaledToFit()
                     }
-                    .rotationEffect(.degrees(-90))
-                    .frame(width: 200.0, height: 450.0)
                     
                     Text("Fill the confidance bar")
                     
@@ -215,6 +221,8 @@ struct ConfidentView: View {
                 
                 VStack{
                     Text("Oh don’t worry, we’re in this together!")
+                    
+                    Image("ConfidentView-2")
                 }
                 .opacity(visibleText5)
             }

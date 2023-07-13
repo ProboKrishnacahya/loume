@@ -58,6 +58,7 @@
 		827CD70B2A40327300672B92 /* loumeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70A2A40327300672B92 /* loumeUITests.swift */; };
 		827CD70D2A40327300672B92 /* loumeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */; };
 		829FDABA2A5EFD24000A5CFD /* ModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829FDAB92A5EFD24000A5CFD /* ModalViewModel.swift */; };
+		82A0C5F02A5FF4A000831A91 /* AfterGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A0C5EF2A5FF4A000831A91 /* AfterGoalView.swift */; };
 		82A5E36F2A5C1DA6005AF041 /* MyRoleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */; };
 		82A5E3712A5C1F8C005AF041 /* MyInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */; };
 		82A5E3732A5C1FA0005AF041 /* MyWeaknessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */; };
@@ -140,6 +141,7 @@
 		827CD70A2A40327300672B92 /* loumeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITests.swift; sourceTree = "<group>"; };
 		827CD70C2A40327300672B92 /* loumeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loumeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		829FDAB92A5EFD24000A5CFD /* ModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewModel.swift; sourceTree = "<group>"; };
+		82A0C5EF2A5FF4A000831A91 /* AfterGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterGoalView.swift; sourceTree = "<group>"; };
 		82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoleModelView.swift; sourceTree = "<group>"; };
 		82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInterestView.swift; sourceTree = "<group>"; };
 		82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeaknessView.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 		826814DA2A4EF3EC00B9F57A /* StoryBoardView */ = {
 			isa = PBXGroup;
 			children = (
+				82A0C5EF2A5FF4A000831A91 /* AfterGoalView.swift */,
 				82441EE22A582B4E007EFD6E /* SetupProject.swift */,
 				82441EDD2A582B4E007EFD6E /* IntroView.swift */,
 				82441ED72A582B4D007EFD6E /* InterestView.swift */,
@@ -499,6 +502,7 @@
 				0B08251A2A57FAA500B87CC0 /* PlanRowView.swift in Sources */,
 				0B0825182A57E68C00B87CC0 /* GoalRowView.swift in Sources */,
 				82A5E3712A5C1F8C005AF041 /* MyInterestView.swift in Sources */,
+				82A0C5F02A5FF4A000831A91 /* AfterGoalView.swift in Sources */,
 				0B43EC362A56A63100B84D7E /* EmptyStateView.swift in Sources */,
 				82441EE82A582B4E007EFD6E /* ObstaclesView.swift in Sources */,
 				82A5E37B2A5C7DFD005AF041 /* UpdateButton.swift in Sources */,

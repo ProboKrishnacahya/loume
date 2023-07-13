@@ -62,6 +62,10 @@ struct RoleModelSimilarStrengthView: View {
                                 EmptyView()
                             }
                         )
+                    
+                    Image("RoleModelSimilarStrengthView")
+                        .resizable()
+                        .scaledToFit()
                 }
             }
         }

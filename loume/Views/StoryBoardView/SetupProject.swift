@@ -21,8 +21,8 @@ struct SetupProject: View {
     //    @State var scale2:Double = 1
     
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
-    
     @State var moveUp: Bool
+    @State var moveUp2: Bool
     @State var moveUpCircle: Bool
     @State var moveUpText: Bool
     @State var isView2Active: Bool
@@ -60,10 +60,20 @@ struct SetupProject: View {
                             }
                         }
                 }
-                .padding(.top,100)
+                .padding(.top, 100)
                 
                 //-------------- Card Bawah -------------- //
                 ZStack {
+                    Image("SetupProject")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 280)
+                        .offset(x: 0, y: moveUp2 ? 610 : -100)
+                        .animation(Animation.easeInOut(duration: 1.5))
+                        .onAppear {
+                            moveUp2.toggle()
+                        }
+                    
                     Path { path in
                         path.move(to: CGPoint(x: 430, y: 300))
                         path.addQuadCurve(to: CGPoint(x:0, y:300 ), control: CGPoint(x: 190, y: 210))
@@ -72,7 +82,7 @@ struct SetupProject: View {
                         path.closeSubpath()
                     }
                     .fill(Color("Light Moss Green"))
-                    .offset(x: 0, y: moveUp ? 610 : -100)
+                    .offset(x: 0, y: moveUp ? 610 : 50)
                     .animation(Animation.easeInOut(duration: 1.5))
                     .onAppear {
                         moveUp.toggle()
@@ -82,7 +92,7 @@ struct SetupProject: View {
                         Text("Let's get to know you better..")
                             .font(.title3)
                             .fontWeight(.bold)
-                            .offset(x: 0, y: moveUpText ? 610 : -50)
+                            .offset(x: 0, y: moveUpText ? 610 : 50)
                             .animation(Animation.easeInOut(duration: 1.5))
                             .onAppear {
                                 moveUpText.toggle()
@@ -92,7 +102,7 @@ struct SetupProject: View {
                         TextField("Enter your name...", text: $name)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width:  300)
-                            .offset(x: 0, y: moveUpTextField ? 610 : -50)
+                            .offset(x: 0, y: moveUpTextField ? 610 : 50)
                             .animation(Animation.easeInOut(duration: 1.5))
                             .onAppear {
                                 moveUpTextField.toggle()
@@ -104,7 +114,7 @@ struct SetupProject: View {
                             .foregroundColor(Color("Axolotl"))
                             .padding(.top, 160.0)
                             .frame(width: 70.0)
-                            .offset(x: 0, y: moveUpCircle ? 610 : -100)
+                            .offset(x: 0, y: moveUpCircle ? 610 : -10)
                             .animation(Animation.easeInOut(duration: 1.5))
                             .onAppear {
                                 moveUpCircle.toggle()
@@ -155,6 +165,7 @@ struct SetupProject: View {
 struct SetupProject_Previews: PreviewProvider {
     static var previews: some View {
         SetupProject(moveUp: true,
+                     moveUp2: true,
                      moveUpCircle: true,
                      moveUpText: true,
                      isView2Active: false,

@@ -56,7 +56,7 @@ struct InterestView: View {
             NavigationView{
                 ZStack{
                     VStack{
-                        Text("Before going further, let’s help you pick *your top 3 interests* so that we know how to guide you better personally.")
+                        Text("Before going further, let’s help you pick **your top 3 interests** so that we know how to guide you better personally.")
                             .multilineTextAlignment(.center)
                             .frame(width: 250.0)
                             .opacity(fadeText1 ? 1 : 0)

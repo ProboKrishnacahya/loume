@@ -113,7 +113,7 @@ class CoreDataManager {
     }
     
     func setIsJournalingUserEntity(userEntity: UserEntity) {
-        userEntity.is_journaling = true
+        userEntity.is_journaling.toggle()
         save()
     }
     
@@ -331,4 +331,3 @@ class CoreDataManager {
         }
     }
 }
-

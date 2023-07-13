@@ -39,6 +39,9 @@ struct QuestionView1: View {
     @State var strength2: String = ""
     @State var strength3: String = ""
     @State var isStrengthFulled: Bool = false
+    @State var question11: String = ""
+        @State var question12: String = ""
+        @State var question13: String = ""
     
     var body: some View {
         NavigationView{
@@ -70,7 +73,7 @@ struct QuestionView1: View {
                                                         .frame(width: 290.0, height: 360.0)
                                                         .cornerRadius(7)
                                                         .foregroundColor(Color.white)
-                                                    TextEditor(text: $strength1)
+                                                    TextEditor(text: $question11)
                                                         .frame(width: 260.0, height: 350.0)
                                                     
                                                 }
@@ -134,7 +137,7 @@ struct QuestionView1: View {
                                                         .frame(width: 290.0, height: 350.0)
                                                         .cornerRadius(7)
                                                         .foregroundColor(Color.white)
-                                                    TextEditor(text: $strength2)
+                                                    TextEditor(text: $question12)
                                                         .frame(width: 260.0, height: 350.0)
                                                     
                                                 }
@@ -198,7 +201,7 @@ struct QuestionView1: View {
                                                     .frame(width: 290.0, height: 345.0)
                                                     .cornerRadius(7)
                                                     .foregroundColor(Color.white)
-                                                TextEditor(text: $strength3)
+                                                TextEditor(text: $question13)
                                                     .frame(width: 260.0, height: 345.0)
                                                 
                                             }

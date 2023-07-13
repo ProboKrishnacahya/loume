@@ -123,8 +123,9 @@ struct AfterObstacleView: View {
                             .font(.title2)
                         
                         VStack{
-                            Image(systemName: "magnifyingglass")
-                                .font(.system(size: 45))
+                            Image("AfterObstacleView-1")
+                                .resizable()
+                                .scaledToFit()
                             Text("1. Tap on the prompt below")
                                 .frame(width: 270.0)
                                 .padding(.top, 10)
@@ -133,20 +134,19 @@ struct AfterObstacleView: View {
                         .padding(.top, 50)
                         
                         VStack{
-                            Image(systemName: "cursorarrow.click")
-                                .font(.system(size: 45))
-                            Text("2. you need to achieve your goals")
-                                .padding(.top, 10)
-                                .multilineTextAlignment(.center)
-                            Text("Browse and find anything that")
+                            Image("AfterObstacleView-2")
+                                .resizable()
+                                .scaledToFit()
+                            Text("2. Browse and find anything that\nyou need to achieve your goals")
                                 .frame(width: 270.0)
                                 .multilineTextAlignment(.center)
                         }
                         .padding(.top, 40)
                         
                         VStack{
-                            Image(systemName: "pencil.line")
-                                .font(.system(size: 45))
+                            Image("AfterObstacleView-3")
+                                .resizable()
+                                .scaledToFit()
                             Text("3. Come back here and you are ready for your journey!")
                                 .frame(width: 200.0)
                                 .multilineTextAlignment(.center)
