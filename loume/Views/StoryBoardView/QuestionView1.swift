@@ -40,8 +40,8 @@ struct QuestionView1: View {
     @State var strength3: String = ""
     @State var isStrengthFulled: Bool = false
     @State var question11: String = ""
-        @State var question12: String = ""
-        @State var question13: String = ""
+    @State var question12: String = ""
+    @State var question13: String = ""
     
     var body: some View {
         NavigationStack{
@@ -362,7 +362,7 @@ struct QuestionView1: View {
                                 }
                                 .onTapGesture {
                                     print("Back to Strength 2/3")
-
+                                    
                                     Quest2 = 0
                                     Quest3 = 1
                                     nav2 = 0

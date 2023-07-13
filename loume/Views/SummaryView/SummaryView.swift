@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct SummaryView: View {
+    
+    @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
+    @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
+    @EnvironmentObject private var loveListCoreDataViewModel: LoveListCoreDataViewModel
+    @EnvironmentObject private var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
     let backgroundColor: Color
     let summariesData = [
         SummaryData(title: "My\nInterest", background: Image("My Interest"), destination: AnyView(MyInterestView())),
         SummaryData(title: "My\nRole Model", background: Image("My Role Model"), destination: AnyView(MyRoleModelView())),
         SummaryData(title: "My\nWeakness", background: Image("My Weakness"), destination: AnyView(MyWeaknessView())),
-        SummaryData(title: "Obstacles\nto My Goal", background: Image("Obstacles to My Goal"), destination: AnyView(MyGoalObstacles())),
+        SummaryData(title: "Obstacles\nto My Goal", background: Image("Obstacles to My Goal"), destination: AnyView(MyGoalObstaclesView())),
         SummaryData(title: "My\nStrengths", background: Image("My Strengths"), destination: AnyView(MyStrengthsView()))
     ]
+    
+    @State var isReflectActive = false
     
     var body: some View {
         NavigationStack {
@@ -28,15 +36,32 @@ struct SummaryView: View {
                         Text("About Me")
                             .font(.largeTitle.bold())
                         
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
-                            ForEach(summariesData) { summary in
-                                NavigationLink(destination: summary.destination) {
-                                    SummaryContent(summariesData: summary)
+                        if userListCoreDataViewModel.userEntities.count == 0 || !userListCoreDataViewModel.userEntities[0].isJournaling {
+                            EmptyStateView(type: "Summary")
+                        } else {
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                                ForEach(summariesData) { summary in
+                                    NavigationLink(destination: summary.destination) {
+                                        SummaryContent(summariesData: summary)
+                                    }
                                 }
                             }
+                            
+                            PrimaryButton(label: "Reflect Again")
+                                .onTapGesture {
+                                    isReflectActive = true
+                                    
+                                    userListCoreDataViewModel.deleteUserEntityAll()
+                                    goalListCoreDataViewModel.deleteGoalEntityAll()
+                                    loveListCoreDataViewModel.deleteLoveEntityAll()
+                                    roleModelStrengthListCoreDataViewModel.deleteRoleModelStrengthEntityAll()
+                                    userListCoreDataViewModel.saveUserEntity(name: "")
+                                }
+                                .overlay {
+                                    NavigationLink(destination: SetupProject(moveUp: true, moveUp2: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1).navigationBarBackButtonHidden(true), isActive: $isReflectActive) {
+                                    }
+                                }
                         }
-                        
-                        PrimaryButton(label: "Reflect Again")
                     }
                     .padding()
                 }
@@ -46,6 +71,9 @@ struct SummaryView: View {
             }
             .tint(Color("Axolotl"))
         }
+        .onAppear(perform: {
+            UINavigationBar.setAnimationsEnabled(false)
+        })
     }
 }
 

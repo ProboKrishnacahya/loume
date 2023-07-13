@@ -82,7 +82,7 @@ struct SetupProject: View {
                         path.closeSubpath()
                     }
                     .fill(Color("Light Moss Green"))
-                    .offset(x: 0, y: moveUp ? 610 : 50)
+                    .offset(x: 0, y: moveUp ? 610 : 10)
                     .animation(Animation.easeInOut(duration: 1.5))
                     .onAppear {
                         moveUp.toggle()

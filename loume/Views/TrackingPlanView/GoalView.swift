@@ -63,8 +63,7 @@ struct GoalView: View {
                 EmptyStateView(type: "Goal")
             } else {
                 ForEach(Array(goalListCoreDataViewModel.goalEntities.enumerated()), id: \.0) { index, goal in
-                    NavigationLink(destination: PlanView(inputTextValues: $inputTextValues,
-                                                         goal: goal, goalIndex: index)) {
+                    NavigationLink(destination: PlanView(inputTextValues: $inputTextValues, goal: goal, goalIndex: index)) {
                         GoalRowView(goal: goal)
                     }
                 }

@@ -12,11 +12,13 @@ struct AfterObstacleView: View {
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
     
+    @State private var isView2Active = false
     @State var visible: Double = 1
     @State private var disable1 = false
     @State var visibleText2: Double = 0
     @State var visibleText3: Double = 0
     @State var visibleText4: Double = 0
+    @State var visibleText5: Double = 0
     @State var hideButton: Double = 1
     
     var body: some View {
@@ -140,7 +142,10 @@ struct AfterObstacleView: View {
                             Image("AfterObstacleView-2")
                                 .resizable()
                                 .scaledToFit()
-                            Text("2. Browse and find anything that\nyou need to achieve your goals")
+                            Text("2. you need to achieve your goals")
+                                .padding(.top, 10)
+                                .multilineTextAlignment(.center)
+                            Text("Browse and find anything that")
                                 .frame(width: 270.0)
                                 .multilineTextAlignment(.center)
                         }
@@ -263,12 +268,61 @@ struct AfterObstacleView: View {
                                 .foregroundColor(Color.white)
                         }
                         .onTapGesture {
-                            hideButton = 0
                             visibleText3 = 0
                             visibleText4 = 1
+                            visibleText5 = 1
                         }
                 }
                 .opacity(visibleText3)
+                
+                HStack{ // 2
+                    Circle()
+                        .frame(width: 80.0)
+                        .padding(.leading)
+                        .foregroundColor(Color("Chinese Orange"))
+                        .overlay{
+                            Image(systemName: "arrow.left")
+                                .padding(.leading)
+                                .foregroundColor(Color.white)
+                        }
+                        .onTapGesture {
+                            visible = 0
+                            visibleText3 = 1
+                            visibleText4 = 0
+                        }
+                    
+                    Spacer()
+                    
+                    HStack{
+                        Text("2")
+                            .font(.callout)
+                        Text("of")
+                            .font(.callout)
+                        Text("3")
+                            .font(.callout)
+                    }
+                    
+                    Spacer()
+                    
+                    Circle()
+                        .frame(width: 80.0)
+                        .padding(.trailing)
+                        .foregroundColor(Color("Chinese Orange"))
+                        .overlay{
+                            Image(systemName: "arrow.right")
+                                .padding(.trailing)
+                                .foregroundColor(Color.white)
+                        }
+                        .onTapGesture {
+                            isView2Active = true
+                        }
+                        .overlay(
+                            NavigationLink(destination: AfterObstacle2View().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                EmptyView()
+                            }
+                        )
+                }
+                .opacity(visibleText5)
             }
             .opacity(hideButton)
         }

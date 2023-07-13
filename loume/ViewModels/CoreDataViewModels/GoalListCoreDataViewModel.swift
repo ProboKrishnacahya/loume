@@ -12,10 +12,14 @@ class GoalListCoreDataViewModel: ObservableObject {
     @Published var goalEntities: [GoalCoreDataModel] = []
     
     init() {
+        deleteGoalEntityAll()
+    }
+    
+    func deleteGoalEntityAll() {
         getGoalEntities()
         
-        for goalCoreDataModel in goalEntities {
-            deleteGoal(goalCoreDataModel: goalCoreDataModel)
+        for goalEntity in goalEntities {
+            deleteGoal(goalCoreDataModel: goalEntity)
         }
     }
     

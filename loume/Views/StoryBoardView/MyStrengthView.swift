@@ -19,6 +19,7 @@ struct MyStrengthView: View {
     @State var dueDate2: Date = Date()
     @State var dueDate3: Date = Date()
     @State private var isView2Active = false
+    @State private var isView3Active = false
     
     var body: some View {
         NavigationStack{
@@ -137,10 +138,10 @@ struct MyStrengthView: View {
                                     planListCoreDataViewModel.addPlanEntity(name: plan3, dueDate: dueDate3, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[0])
                                 }
                                 
-                                isView2Active = true
+                                isView3Active = true
                             }
                             .overlay(
-                                NavigationLink(destination: ConfidentView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
+                                NavigationLink(destination: ConfidentView().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                     EmptyView()
                                 }
                             )

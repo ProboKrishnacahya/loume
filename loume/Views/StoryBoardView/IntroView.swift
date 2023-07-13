@@ -68,7 +68,7 @@ struct IntroView: View {
                     }
                 }
                 .opacity(disable1 ? 0 : 1)
-                .animation(.easeIn(duration: 0.5).delay(0))
+                .animation(.easeIn(duration: 0.5).delay(10))
                 .onAppear {
                     withAnimation {
                         disable1 = true
@@ -89,7 +89,7 @@ struct IntroView: View {
                             .multilineTextAlignment(.center)
                     }
                     .opacity(fadeText1 ? 1 : 0)
-                    .animation(.easeIn(duration: 1).delay(0))
+                    .animation(.easeIn(duration: 1).delay(11))
                     .onAppear {
                         withAnimation {
                             fadeText1 = true
@@ -98,7 +98,7 @@ struct IntroView: View {
                     .padding()
                 }
                 .opacity(disable2 ? 0 : 1)
-                .animation(.easeIn(duration: 1).delay(0))
+                .animation(.easeIn(duration: 1).delay(20))
                 .onAppear {
                     withAnimation {
                         disable2 = true
@@ -110,7 +110,7 @@ struct IntroView: View {
                         .font(.title3)
                         .fontWeight(.bold)
                         .opacity(fadeText1 ? 1 : 0)
-                        .animation(.easeIn(duration: 1).delay(0))
+                        .animation(.easeIn(duration: 1).delay(21))
                         .onAppear {
                             withAnimation {
                                 fadeText1 = true
@@ -185,7 +185,7 @@ struct IntroView: View {
                             )
                     }
                     .opacity(fadeText1 ? 1 : 0)
-                    .animation(.easeIn(duration: 1).delay(0))
+                    .animation(.easeIn(duration: 1).delay(22))
                     .onAppear {
                         withAnimation {
                             fadeText1 = true

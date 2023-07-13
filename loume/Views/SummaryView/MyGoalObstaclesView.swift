@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct MyGoalObstacles: View {
-    
+struct MyGoalObstaclesView: View {
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     
     var body: some View {
@@ -52,9 +51,9 @@ struct MyGoalObstacles: View {
     }
 }
 
-struct MyGoalObstacles_Previews: PreviewProvider {
+struct MyGoalObstaclesView_Previews: PreviewProvider {
     static var previews: some View {
-        MyGoalObstacles()
+        MyGoalObstaclesView()
             .environmentObject(UserListCoreDataViewModel())
     }
 }

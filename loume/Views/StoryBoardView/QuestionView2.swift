@@ -301,7 +301,7 @@ struct QuestionView2: View {
                                     NavigationLink(destination: AfterQuestion1View(condition1: $condition1, condition2: $condition2, condition3: $condition3, isStrengthFulled: $isStrengthFulled).navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                     }
                                 )
-                            
+                            Spacer()
                             HStack{
                                 Text("1")
                                     .font(.callout)

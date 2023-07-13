@@ -62,7 +62,7 @@
 		82A5E36F2A5C1DA6005AF041 /* MyRoleModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */; };
 		82A5E3712A5C1F8C005AF041 /* MyInterestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */; };
 		82A5E3732A5C1FA0005AF041 /* MyWeaknessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */; };
-		82A5E3752A5C1FB8005AF041 /* MyGoalObstacles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3742A5C1FB8005AF041 /* MyGoalObstacles.swift */; };
+		82A5E3752A5C1FB8005AF041 /* MyGoalObstaclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3742A5C1FB8005AF041 /* MyGoalObstaclesView.swift */; };
 		82A5E3772A5C1FC4005AF041 /* MyStrengthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3762A5C1FC4005AF041 /* MyStrengthsView.swift */; };
 		82A5E3792A5C5F98005AF041 /* SummaryResultCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E3782A5C5F98005AF041 /* SummaryResultCard.swift */; };
 		82A5E37B2A5C7DFD005AF041 /* UpdateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5E37A2A5C7DFD005AF041 /* UpdateButton.swift */; };
@@ -145,7 +145,7 @@
 		82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoleModelView.swift; sourceTree = "<group>"; };
 		82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInterestView.swift; sourceTree = "<group>"; };
 		82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeaknessView.swift; sourceTree = "<group>"; };
-		82A5E3742A5C1FB8005AF041 /* MyGoalObstacles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGoalObstacles.swift; sourceTree = "<group>"; };
+		82A5E3742A5C1FB8005AF041 /* MyGoalObstaclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGoalObstaclesView.swift; sourceTree = "<group>"; };
 		82A5E3762A5C1FC4005AF041 /* MyStrengthsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStrengthsView.swift; sourceTree = "<group>"; };
 		82A5E3782A5C5F98005AF041 /* SummaryResultCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryResultCard.swift; sourceTree = "<group>"; };
 		82A5E37A2A5C7DFD005AF041 /* UpdateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateButton.swift; sourceTree = "<group>"; };
@@ -343,7 +343,7 @@
 				82A5E36E2A5C1DA6005AF041 /* MyRoleModelView.swift */,
 				82A5E3702A5C1F8C005AF041 /* MyInterestView.swift */,
 				82A5E3722A5C1FA0005AF041 /* MyWeaknessView.swift */,
-				82A5E3742A5C1FB8005AF041 /* MyGoalObstacles.swift */,
+				82A5E3742A5C1FB8005AF041 /* MyGoalObstaclesView.swift */,
 				82A5E3762A5C1FC4005AF041 /* MyStrengthsView.swift */,
 			);
 			path = SummaryView;
@@ -521,7 +521,7 @@
 				826814E22A4EF3EC00B9F57A /* StoryBoardViewModel.swift in Sources */,
 				0B474AE22A5D3B0900113E27 /* GoalListCoreDataViewModel.swift in Sources */,
 				826814F02A4EF3EC00B9F57A /* GoalView.swift in Sources */,
-				82A5E3752A5C1FB8005AF041 /* MyGoalObstacles.swift in Sources */,
+				82A5E3752A5C1FB8005AF041 /* MyGoalObstaclesView.swift in Sources */,
 				0B474AEA2A5D3B7700113E27 /* ViewModel.swift in Sources */,
 				0B0825142A57DC5400B87CC0 /* CircularButtonViewModel.swift in Sources */,
 				82441EE42A582B4E007EFD6E /* SimilarStrengthNo.swift in Sources */,

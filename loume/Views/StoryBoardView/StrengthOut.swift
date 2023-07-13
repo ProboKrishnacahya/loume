@@ -21,7 +21,7 @@ struct StrengthOut: View {
                     Text("have more strengths than just")
                     
                     HStack{
-                        Text("Strength or speciality.")
+                        Text(userListCoreDataViewModel.userEntities[0].strengthSimilar)
                             .fontWeight(.bold)
                         Text("Let’s")
                     }
