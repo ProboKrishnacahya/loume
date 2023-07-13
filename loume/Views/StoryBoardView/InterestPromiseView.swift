@@ -71,7 +71,7 @@ struct InterestPromiseView: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(goal.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -82,7 +82,10 @@ struct InterestPromiseView: View {
                                     page2 = 0
                                     nav1 = 0
                                     nav2 = 1
+                                    
+                                    goalListCoreDataViewModel.addGoalEntity(name: goal, dueDate: dueDate)
                                 }
+                                .disabled(goal.isEmpty)
                         }
                         .opacity(nav1)
                         
@@ -126,8 +129,6 @@ struct InterestPromiseView: View {
                                     page3 = 0
                                     nav2 = 0
                                     nav3 = 0
-                                    
-                                    goalListCoreDataViewModel.addGoalEntity(name: goal, dueDate: dueDate)
                                 }
                         }
                         .opacity(nav2)
@@ -271,11 +272,15 @@ struct InterestPromiseView: View {
                             DatePicker("On", selection: $dueDate, in: Date.now..., displayedComponents: .date)
                                 .tint(Color("Axolotl"))
                             
+                            Spacer()
+                            
                             Text("Ex: I want to be a singer / I want to work as an accountant  / I want to open a business ( Please be as specific as you can)")
                                 .font(.footnote)
                                 .multilineTextAlignment(.center)
+                            
+                            Spacer()
                         }
-                        .padding(.top, 5.0)
+                        .padding(.top, 20.0)
                         .frame(width: 300.0)
                         
                         Spacer()
@@ -286,7 +291,7 @@ struct InterestPromiseView: View {
                     .opacity(page2)
                     
                     VStack{
-                        Text("Great one! You want to be a")
+                        Text("Great one! You want to ")
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
                             Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)

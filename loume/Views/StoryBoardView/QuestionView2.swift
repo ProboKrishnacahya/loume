@@ -314,7 +314,7 @@ struct QuestionView2: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(weakness1.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -328,6 +328,7 @@ struct QuestionView2: View {
                                     
                                     userListCoreDataViewModel.setWeakness1(weakness: weakness1)
                                 }
+                                .disabled(weakness1.isEmpty)
                         }
                         .opacity(nav1)
                         
@@ -360,7 +361,7 @@ struct QuestionView2: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(weakness2.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -374,6 +375,7 @@ struct QuestionView2: View {
                                     
                                     userListCoreDataViewModel.setWeakness2(weakness: weakness2)
                                 }
+                                .disabled(weakness2.isEmpty)
                         }
                         .opacity(nav2)
                         
@@ -388,7 +390,7 @@ struct QuestionView2: View {
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    print("Weakness 2/3")
+                                    
                                     Quest2 = 1
                                     Quest3 = 0
                                     nav2 = 1
@@ -407,7 +409,7 @@ struct QuestionView2: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(weakness3.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -437,6 +439,7 @@ struct QuestionView2: View {
                                         EmptyView()
                                     }
                                 )
+                                .disabled(weakness3.isEmpty)
                         }
                         .opacity(nav3)
                     }

@@ -111,10 +111,6 @@ struct InterestSelectedView: View {
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[0], rank: 2)
                         loveListCoreDataViewModel.setRank(loveCoreDataModel: loveListCoreDataViewModel.loveEntities[1], rank: 3)
                     }
-                    
-                    Text("Order the interests based on its impact.")
-                        .padding(.top, 20)
-                        .frame(height: 30.0)
                 }
                 .padding(.bottom, 50)
                 
@@ -152,7 +148,7 @@ struct InterestSelectedView: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(circle1 == 0 && circle2 == 0 && circle3 == 0 ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -166,15 +162,9 @@ struct InterestSelectedView: View {
                                         EmptyView()
                                     }
                                 )
+                                .disabled(circle1 == 0 && circle2 == 0 && circle3 == 0)
                         }
                         .opacity(visible)
-                        
-                        //                            .overlay(
-                        //                                NavigationLink(destination: InterestView(visible: 1, visibleText2: 0, visibleText3: 0, visibleText4: 0, visibleText5: 0, hideButton: 1, fadeText1: false, disable1: false, disable2: false, isView2Active: false, isVisible: false, angle: 0.0, scalefade: 1.0, scale: 1.0, rotation: 0.0, rotationIntro: false, flip: false, selectedCircles: [], rotate1: [], userListCoreDataViewModel: userListCoreDataViewModel, goalListCoreDataViewModel: goalListCoreDataViewModel, planListCoreDataViewModel: planListCoreDataViewModel, subPlanListCoreDataViewModel: subPlanListCoreDataViewModel, loveListCoreDataViewModel: loveListCoreDataViewModel).navigationBarBackButtonHidden(true), isActive: $isView2Active) {
-                        //                                    EmptyView()
-                        //                                }
-                        //                            )
-                        
                     }
                     .opacity(hideButton)
                 }

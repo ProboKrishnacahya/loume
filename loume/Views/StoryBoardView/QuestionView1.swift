@@ -39,9 +39,6 @@ struct QuestionView1: View {
     @State var strength2: String = ""
     @State var strength3: String = ""
     @State var isStrengthFulled: Bool = false
-    @State var question11: String = ""
-    @State var question12: String = ""
-    @State var question13: String = ""
     
     var body: some View {
         NavigationStack{
@@ -73,7 +70,7 @@ struct QuestionView1: View {
                                                         .frame(width: 290.0, height: 360.0)
                                                         .cornerRadius(7)
                                                         .foregroundColor(Color.white)
-                                                    TextEditor(text: $question11)
+                                                    TextEditor(text: $strength1)
                                                         .frame(width: 260.0, height: 350.0)
                                                     
                                                 }
@@ -137,7 +134,7 @@ struct QuestionView1: View {
                                                         .frame(width: 290.0, height: 350.0)
                                                         .cornerRadius(7)
                                                         .foregroundColor(Color.white)
-                                                    TextEditor(text: $question12)
+                                                    TextEditor(text: $strength2)
                                                         .frame(width: 260.0, height: 350.0)
                                                     
                                                 }
@@ -201,7 +198,7 @@ struct QuestionView1: View {
                                                     .frame(width: 290.0, height: 345.0)
                                                     .cornerRadius(7)
                                                     .foregroundColor(Color.white)
-                                                TextEditor(text: $question13)
+                                                TextEditor(text: $strength3)
                                                     .frame(width: 260.0, height: 345.0)
                                                 
                                             }
@@ -308,7 +305,7 @@ struct QuestionView1: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(strength1.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -322,6 +319,7 @@ struct QuestionView1: View {
                                     
                                     userListCoreDataViewModel.setStrength1(strength: strength1)
                                 }
+                                .disabled(strength1.isEmpty)
                         }
                         .opacity(nav1)
                         
@@ -354,14 +352,13 @@ struct QuestionView1: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(strength2.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
                                         .foregroundColor(Color.white)
                                 }
                                 .onTapGesture {
-                                    print("Back to Strength 2/3")
                                     
                                     Quest2 = 0
                                     Quest3 = 1
@@ -370,6 +367,7 @@ struct QuestionView1: View {
                                     
                                     userListCoreDataViewModel.setStrength2(strength: strength2)
                                 }
+                                .disabled(strength2.isEmpty)
                         }
                         .opacity(nav2)
                         
@@ -402,7 +400,7 @@ struct QuestionView1: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(strength3.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -449,6 +447,7 @@ struct QuestionView1: View {
                                         EmptyView()
                                     }
                                 )
+                                .disabled(strength3.isEmpty)
                         }
                         .opacity(nav3)
                     }

@@ -7,18 +7,6 @@
 
 import SwiftUI
 struct SetupProject: View {
-    //    @State var moveUp = true
-    //    @State var moveUpCircle = true
-    //    @State var moveUpText = true
-    //    @State var isView2Active = false
-    //    @State var moveUpTextField = true
-    //    @State var fadeText1 = false
-    //    @State var offset = CGSize.zero
-    //    @State var fadeText2 = false
-    //    @State var fadeOutCircle:Double = 1
-    //    @State var text1:Double = 90
-    //    @State var name:String = ""
-    //    @State var scale2:Double = 1
     
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     @State var moveUp: Bool
@@ -111,7 +99,7 @@ struct SetupProject: View {
                         
                         Image(systemName: "arrow.up")
                             .font(.system(size: 48))
-                            .foregroundColor(Color("Axolotl"))
+                            .foregroundColor(name.isEmpty ? .gray : Color("Axolotl"))
                             .padding(.top, 160.0)
                             .frame(width: 70.0)
                             .offset(x: 0, y: moveUpCircle ? 610 : -10)
@@ -149,6 +137,7 @@ struct SetupProject: View {
                                     }
                             )
                             .animation(.spring())
+                            .disabled(name.isEmpty)
                     }
                     .padding(.top, text1)
                 }

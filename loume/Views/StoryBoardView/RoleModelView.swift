@@ -263,7 +263,7 @@ struct RoleModelView: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(roleModel.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -277,6 +277,7 @@ struct RoleModelView: View {
                                     
                                     userListCoreDataViewModel.setRoleModel(roleModel: roleModel)
                                 }
+                                .disabled(roleModel.isEmpty)
                         }
                         .opacity(visible)
                         
@@ -312,7 +313,7 @@ struct RoleModelView: View {
                             Circle()
                                 .frame(width: 80.0)
                                 .padding(.trailing)
-                                .foregroundColor(Color("Chinese Orange"))
+                                .foregroundColor(roleModelStrength1.isEmpty && roleModelStrength2.isEmpty && roleModelStrength3.isEmpty ? .gray : Color("Chinese Orange"))
                                 .overlay{
                                     Image(systemName: "arrow.right")
                                         .padding(.trailing)
@@ -328,6 +329,7 @@ struct RoleModelView: View {
                                         EmptyView()
                                     }
                                 )
+                                .disabled(roleModelStrength1.isEmpty && roleModelStrength2.isEmpty && roleModelStrength3.isEmpty)
                         }
                         .opacity(visibleText2)
                     }

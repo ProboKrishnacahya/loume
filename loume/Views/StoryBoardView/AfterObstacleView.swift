@@ -88,7 +88,7 @@ struct AfterObstacleView: View {
                         Text("to do to")
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
-                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                            Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                 .fontWeight(.bold)
                         }
                     }
@@ -110,7 +110,7 @@ struct AfterObstacleView: View {
                     HStack{
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
-                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                            Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                 .fontWeight(.bold)
                         }
                         
@@ -172,7 +172,7 @@ struct AfterObstacleView: View {
                     }, label: {
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
-                            Text("How to get ready to be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)?")
+                            Text("How to get ready to \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)?")
                                 .fontWeight(.bold)
                                 .multilineTextAlignment(.center)
                                 .padding(.top, 50.0)

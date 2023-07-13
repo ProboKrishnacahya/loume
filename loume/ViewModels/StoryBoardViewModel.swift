@@ -12,7 +12,7 @@ class StoryBoardViewModel {
     
     func openSafari(goal: String) {
         let urlString = "https://www.google.com/search?q="
-        let query = "How to be " + goal
+        let query = "How to " + goal
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let fullURLString = urlString + encodedQuery + "&btnI"
         

@@ -21,6 +21,10 @@ struct MyStrengthView: View {
     @State private var isView2Active = false
     @State private var isView3Active = false
     
+    var maximumDateGoal: Date{
+        return max(Date(), goalListCoreDataViewModel.goalEntities[0].dueDate)
+    }
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -32,13 +36,14 @@ struct MyStrengthView: View {
                         .multilineTextAlignment(.center)
                     
                     if goalListCoreDataViewModel.goalEntities.count > 0 {
-                        Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                        Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                             .font(.title3)
                             .multilineTextAlignment(.center)
                             .fontWeight(.bold)
                     }
                     
                     HStack{
+                        Spacer()
                         Circle()
                             .frame(width: 30.0)
                             .foregroundColor(Color("Axolotl"))
@@ -51,10 +56,18 @@ struct MyStrengthView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width:  250)
                             .animation(Animation.easeInOut(duration: 1.5))
+                        
+                        Spacer()
+                        
+                        DatePicker("", selection: $dueDate1, in: Date.now...maximumDateGoal, displayedComponents: .date)
+                            .tint(Color("Axolotl"))
+                            .labelsHidden()
+                        Spacer()
                     }
                     .padding(.top)
                     
                     HStack{
+                        Spacer()
                         Circle()
                             .frame(width: 30.0)
                             .foregroundColor(Color("Axolotl"))
@@ -65,13 +78,20 @@ struct MyStrengthView: View {
                         
                         TextField("Enter your step...", text: $plan2)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
                             .frame(width:  250)
                             .animation(Animation.easeInOut(duration: 1.5))
+                        
+                        Spacer()
+                        
+                        DatePicker("", selection: $dueDate2, in: Date.now...maximumDateGoal, displayedComponents: .date)
+                            .tint(Color("Axolotl"))
+                            .labelsHidden()
+                        Spacer()
                     }
                     .padding(.top, 5)
                     
                     HStack{
+                        Spacer()
                         Circle()
                             .frame(width: 30.0)
                             .foregroundColor(Color("Axolotl"))
@@ -79,10 +99,18 @@ struct MyStrengthView: View {
                                 Text("3")
                                     .foregroundColor(Color.white)
                             }
+                        
                         TextField("Enter your step...", text: $plan3)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .frame(width:  250)
                             .animation(Animation.easeInOut(duration: 1.5))
+                        
+                        Spacer()
+                        
+                        DatePicker("", selection: $dueDate3, in: Date.now...maximumDateGoal, displayedComponents: .date)
+                            .tint(Color("Axolotl"))
+                            .labelsHidden()
+                        Spacer()
                     }
                     .padding(.top, 5)
                     
@@ -122,7 +150,7 @@ struct MyStrengthView: View {
                         Circle()
                             .frame(width: 80.0)
                             .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
+                            .foregroundColor(plan1.isEmpty || plan2.isEmpty || plan3.isEmpty ? .gray : Color("Chinese Orange"))
                             .overlay{
                                 Image(systemName: "arrow.right")
                                     .padding(.trailing)
@@ -145,6 +173,7 @@ struct MyStrengthView: View {
                                     EmptyView()
                                 }
                             )
+                            .disabled(plan1.isEmpty || plan2.isEmpty || plan3.isEmpty)
                     }
                 }
             }

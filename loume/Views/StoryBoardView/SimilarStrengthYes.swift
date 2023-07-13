@@ -71,7 +71,7 @@ struct SimilarStrengthYes: View {
                         Circle()
                             .frame(width: 80.0)
                             .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
+                            .foregroundColor(roleModelStrengthSimilar.isEmpty ? .gray : Color("Chinese Orange"))
                             .overlay{
                                 Image(systemName: "arrow.right")
                                     .padding(.trailing)
@@ -86,6 +86,7 @@ struct SimilarStrengthYes: View {
                                 NavigationLink(destination: StrengthOut().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                 }
                             }
+                            .disabled(roleModelStrengthSimilar.isEmpty)
                     }
                 }
             }

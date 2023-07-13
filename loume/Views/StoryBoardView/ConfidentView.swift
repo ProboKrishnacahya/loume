@@ -42,7 +42,7 @@ struct ConfidentView: View {
                             
                             if goalListCoreDataViewModel.goalEntities.count > 0 {
                                 
-                                Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                                Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                     .font(.title3)
                                     .fontWeight(.bold)
                                 
@@ -137,7 +137,7 @@ struct ConfidentView: View {
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
                             
-                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                            Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                 .font(.title3)
                                 .fontWeight(.bold)
                             
@@ -181,7 +181,7 @@ struct ConfidentView: View {
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
                             
-                            Text("be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)")
+                            Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                 .font(.title3)
                                 .fontWeight(.bold)
                             
@@ -230,6 +230,7 @@ struct ConfidentView: View {
                     }
                     .onTapGesture {
                         userListCoreDataViewModel.setIsJournaling()
+                        userListCoreDataViewModel.setIsJournalingFinished()
                     }
                 }
                 
@@ -259,7 +260,7 @@ struct ConfidentView: View {
                         Circle()
                             .frame(width: 80.0)
                             .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
+                            .foregroundColor(sliderProgress == 0 ? .gray : Color("Chinese Orange"))
                             .overlay{
                                 Image(systemName: "arrow.right")
                                     .padding(.trailing)
@@ -269,6 +270,7 @@ struct ConfidentView: View {
                                 visible = 0
                                 visibleText2 = 1
                             }
+                            .disabled(sliderProgress == 0)
                     }
                     .opacity(visible)
                     

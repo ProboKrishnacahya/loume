@@ -68,8 +68,6 @@ class RoleModelStrengthListCoreDataViewModel: ObservableObject {
         }
         
         getRoleModelStrengthEntities()
-        
-        print(roleModelStrengthEntities)
     }
     
     func deleteRoleModelStrength(roleModelStrengthCoreDataModel: RoleModelStrengthCoreDataModel) {

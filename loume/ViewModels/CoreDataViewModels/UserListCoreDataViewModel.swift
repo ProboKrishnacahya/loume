@@ -213,6 +213,19 @@ class UserListCoreDataViewModel: ObservableObject {
         
         getUserEntities()
     }
+    
+    func setIsJournalingFinished() {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setIsJournalingFinishedUserEntity(userEntity: existingUserEntity)
+        }
+        
+        getUserEntities()
+    }
 }
 
 struct UserCoreDataModel {
@@ -268,5 +281,9 @@ struct UserCoreDataModel {
     
     var isJournaling: Bool {
         return userEntity.is_journaling ?? false
+    }
+    
+    var isJournalingFinished: Bool {
+        return userEntity.is_journaling_finished ?? false
     }
 }

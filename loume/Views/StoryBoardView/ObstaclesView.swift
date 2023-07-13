@@ -60,7 +60,7 @@ struct ObstaclesView: View {
                             HStack{
                                 Spacer()
                                 VStack{
-                                    Text("What's your biggest fear when you want to be a \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)?")
+                                    Text("What's your biggest fear when you want to \(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)?")
                                         .font(.footnote)
                                         .multilineTextAlignment(.center)
                                         .padding(.trailing, 29.0)
@@ -179,7 +179,7 @@ struct ObstaclesView: View {
                                 Circle()
                                     .frame(width: 80.0)
                                     .padding(.trailing)
-                                    .foregroundColor(Color("Chinese Orange"))
+                                    .foregroundColor(obstacle1.isEmpty && obstacle2.isEmpty ? .gray : Color("Chinese Orange"))
                                     .overlay{
                                         Image(systemName: "arrow.right")
                                             .padding(.trailing)
@@ -190,14 +190,13 @@ struct ObstaclesView: View {
                                         
                                         userListCoreDataViewModel.setObstacle1(obstacle: obstacle1)
                                         userListCoreDataViewModel.setObstacle2(obstacle: obstacle2)
-                                        
-                                        
                                     }
                                     .overlay(
                                         NavigationLink(destination: AfterObstacleView().navigationBarBackButtonHidden(true), isActive: $isView2Active) {
                                             EmptyView()
                                         }
                                     )
+                                    .disabled(obstacle1.isEmpty && obstacle2.isEmpty)
                             }
                             .opacity(visible)
                         }

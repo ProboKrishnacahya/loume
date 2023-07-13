@@ -29,6 +29,7 @@ class CoreDataManager {
         newUserEntity.id = UUID()
         newUserEntity.name = name
         newUserEntity.is_journaling = true
+        newUserEntity.is_journaling_finished = false
         newUserEntity.created_at = Date()
         save()
     }
@@ -114,6 +115,11 @@ class CoreDataManager {
     
     func setIsJournalingUserEntity(userEntity: UserEntity) {
         userEntity.is_journaling.toggle()
+        save()
+    }
+    
+    func setIsJournalingFinishedUserEntity(userEntity: UserEntity) {
+        userEntity.is_journaling_finished.toggle()
         save()
     }
     

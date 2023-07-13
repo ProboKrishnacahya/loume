@@ -219,7 +219,7 @@ struct InterestView: View {
                                 Circle()
                                     .frame(width: 80.0)
                                     .padding(.trailing)
-                                    .foregroundColor(Color("Chinese Orange"))
+                                    .foregroundColor(selectedCircles.count != 3 ? .gray : Color("Chinese Orange"))
                                     .overlay{
                                         Image(systemName: "arrow.right")
                                             .padding(.trailing)
@@ -234,6 +234,7 @@ struct InterestView: View {
                                             EmptyView()
                                         }
                                     )
+                                    .disabled(selectedCircles.count != 3)
                             }
                             .opacity(visibleTextNext0)
                         }.padding()
@@ -241,24 +242,6 @@ struct InterestView: View {
                 }
             }
             .animation(nil)
-            
-            //                        VStack{
-            //                            Spacer()
-            //                            ZStack{ // button untuk next
-            //
-            //
-            //
-            //                            }
-            //                            .opacity(hideButton)
-            //                        }
-            //                        .opacity(isVisible ? 1 : 0)
-            //                        .animation(.easeIn(duration: 0.5).delay(11))
-            //                        .onAppear {
-            //                            withAnimation {
-            //                                isVisible = true
-            //                            }
-            //
-            //                        }
         }
     }
     

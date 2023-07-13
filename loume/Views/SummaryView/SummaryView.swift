@@ -36,8 +36,10 @@ struct SummaryView: View {
                         Text("About Me")
                             .font(.largeTitle.bold())
                         
-                        if userListCoreDataViewModel.userEntities.count == 0 || !userListCoreDataViewModel.userEntities[0].isJournaling {
+                        if userListCoreDataViewModel.userEntities.count == 0 || !userListCoreDataViewModel.userEntities[0].isJournalingFinished {
+                            
                             EmptyStateView(type: "Summary")
+                            
                         } else {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
                                 ForEach(summariesData) { summary in
