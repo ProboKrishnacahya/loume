@@ -80,16 +80,6 @@ class RoleModelStrengthListCoreDataViewModel: ObservableObject {
         getRoleModelStrengthEntities()
     }
     
-    //    func setRoleModel(userCoreDataModel: UserCoreDataModel, roleModel: String) {
-    //        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
-    //
-    //        if let existingUserEntity = existingUserEntity {
-    //            CoreDataManager.instance.setRoleModelUserEntity(userEntity: existingUserEntity, roleModel: roleModel)
-    //        }
-    //
-    //        getRoleModelStrengthEntities()
-    //    }
-    
     func delete(_ roleModelStrengthCoreDataModel: RoleModelStrengthCoreDataModel) {
         let existingRoleModelStrengthEntity = CoreDataManager.instance.getRoleModelStrengthEntityById(id: roleModelStrengthCoreDataModel.id)
         
