@@ -72,7 +72,7 @@ struct InterestSelectedView: View {
                             .foregroundColor(Color("Axolotl"))
                             .overlay{
                                 Text(loveListCoreDataViewModel.loveEntities[1].name)
-                                    .fontWeight(.bold)
+                                    .bold()
                                     .foregroundColor(Color.white)
                             }
                     }
@@ -98,7 +98,7 @@ struct InterestSelectedView: View {
                             .foregroundColor(Color("Axolotl"))
                             .overlay{
                                 Text(loveListCoreDataViewModel.loveEntities[2].name)
-                                    .fontWeight(.bold)
+                                    .bold()
                                     .foregroundColor(Color.white)
                             }
                     }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MyWeaknessView: View {
-    
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     
     var body: some View {
@@ -47,7 +46,7 @@ struct MyWeaknessView: View {
             }
         }
         .background {
-            Image("MyRoleModelView")
+            Image("MyWeaknessView")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)

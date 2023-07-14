@@ -36,10 +36,10 @@ struct IntroView: View {
                 VStack{
                     HStack{
                         Text("Welcome")
-                            .fontWeight(.bold)
+                            .bold()
                         
                         Text(userListCoreDataViewModel.userEntities[0].name)
-                            .fontWeight(.bold)
+                            .bold()
                             .padding(.leading, -3.0)
                         
                     }
@@ -57,7 +57,7 @@ struct IntroView: View {
                             .padding(.top, 5.0)
                             .frame(width: 350.0)
                         Text("you can know yourself better.")
-                            .fontWeight(.bold)
+                            .bold()
                     }
                     .opacity(fadeText2 ? 1 : 0)
                     .animation(.easeIn(duration: 1))
@@ -108,7 +108,7 @@ struct IntroView: View {
                 VStack{
                     Text("Are you ready to discover yourself?")
                         .font(.title3)
-                        .fontWeight(.bold)
+                        .bold()
                         .opacity(fadeText1 ? 1 : 0)
                         .animation(.easeIn(duration: 1).delay(21))
                         .onAppear {

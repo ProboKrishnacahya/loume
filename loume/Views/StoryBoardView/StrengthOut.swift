@@ -22,7 +22,7 @@ struct StrengthOut: View {
                     
                     HStack{
                         Text(userListCoreDataViewModel.userEntities[0].strengthSimilar)
-                            .fontWeight(.bold)
+                            .bold()
                         Text("Let’s")
                     }
                     

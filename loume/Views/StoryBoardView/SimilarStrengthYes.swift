@@ -28,7 +28,7 @@ struct SimilarStrengthYes: View {
                         Text("similarity between you and")
                             .font(.title2)
                         Text(userListCoreDataViewModel.userEntities[0].roleModel)
-                            .fontWeight(.bold)
+                            .bold()
                             .font(.title2)
                     }
                     

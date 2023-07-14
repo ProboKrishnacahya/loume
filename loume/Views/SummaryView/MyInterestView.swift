@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MyInterestView: View {
-    
     @EnvironmentObject private var loveListCoreDataViewModel: LoveListCoreDataViewModel
     
     var body: some View {
@@ -21,7 +20,7 @@ struct MyInterestView: View {
                         
                         Spacer()
                         
-//                        UpdateButton()
+                        //                        UpdateButton()
                     }
                     
                     VStack {
@@ -30,25 +29,38 @@ struct MyInterestView: View {
                         ForEach(Array(loveListCoreDataViewModel.loveEntities.enumerated()), id: \.0) { index, loveEntity in
                             
                             ZStack {
-                                Circle()
-                                    .inset(by: 8)
-                                    .stroke(Color("Light Moss Green"), lineWidth: 3)
-                                    .frame(width: 165, height: 165)
-                                
-                                Circle()
-                                    .frame(width: 140)
-                                    .foregroundColor(Color("Lotion"))
-                                    .overlay{
-                                        HStack {
-                                            Text("\(loveEntity.rank)")
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color("Axolotl"))
-                                            
+                                ZStack {
+                                    Circle()
+                                        .inset(by: 8)
+                                        .stroke(Color("Light Moss Green"), lineWidth: 3)
+                                        .frame(width: 165, height: 165)
+                                    
+                                    Circle()
+                                        .frame(width: 140)
+                                        .foregroundColor(Color("Lotion"))
+                                        .overlay {
                                             Text(loveEntity.name)
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color("Axolotl"))
+                                                .bold()
+                                                .foregroundColor(.black)
                                         }
+                                    
+                                    ZStack {
+                                        Circle()
+                                            .inset(by: 8)
+                                            .stroke(Color("Light Moss Green"), lineWidth: 3)
+                                            .frame(width: 48, height: 48)
+                                        
+                                        Circle()
+                                            .frame(width: 24)
+                                            .foregroundColor(Color("Lotion"))
+                                            .overlay {
+                                                Text("\(loveEntity.rank)")
+                                                    .bold()
+                                                    .foregroundColor(.black)
+                                            }
                                     }
+                                    .offset(x: 50, y: -64)
+                                }
                             }
                         }
                     }
@@ -59,7 +71,7 @@ struct MyInterestView: View {
             }
         }
         .background {
-            Image("MyRoleModelView")
+            Image("MyInterestView")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)

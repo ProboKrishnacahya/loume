@@ -42,7 +42,7 @@ struct MyGoalObstaclesView: View {
             }
         }
         .background {
-            Image("MyRoleModelView")
+            Image("MyGoalObstaclesView")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)

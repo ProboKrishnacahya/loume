@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MyRoleModelView: View {
-    
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     @EnvironmentObject private var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
     

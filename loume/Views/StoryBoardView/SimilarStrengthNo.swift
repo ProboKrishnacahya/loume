@@ -26,7 +26,7 @@ struct SimilarStrengthNo: View {
                         Text("attain some of")
                         
                         Text(userListCoreDataViewModel.userEntities[0].roleModel)
-                            .fontWeight(.bold)
+                            .bold()
                     }
                     
                     Text("positive traits one day soon!")

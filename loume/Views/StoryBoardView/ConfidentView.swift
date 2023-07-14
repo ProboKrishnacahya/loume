@@ -4,12 +4,11 @@
 //
 //  Created by Yohan Wijaya on 06/07/23.
 //
-
 import SwiftUI
+
 let width = UIScreen.main.bounds.width
 
 struct ConfidentView: View {
-    
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
     
@@ -29,9 +28,6 @@ struct ConfidentView: View {
         VStack{
             ZStack{
                 VStack{
-                    
-                    Spacer()
-                    
                     VStack{
                         Text("How confident are you to be")
                             .font(.title3)
@@ -44,7 +40,7 @@ struct ConfidentView: View {
                                 
                                 Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                     .font(.title3)
-                                    .fontWeight(.bold)
+                                    .bold()
                                 
                             }
                         }
@@ -65,7 +61,7 @@ struct ConfidentView: View {
                                     .frame(width: sliderWidth)
                             })
                             .frame(width: maxWidth, height: 150)
-                            .cornerRadius(5)
+                            .cornerRadius(8)
                             
                             .gesture(DragGesture(minimumDistance: 0).onChanged({ (value) in
                                 
@@ -95,19 +91,25 @@ struct ConfidentView: View {
                         .rotationEffect(.degrees(-90))
                         .frame(width: 200.0, height: 450.0)
                         
-                        Image("ConfidentView-1")
-                            .resizable()
-                            .scaledToFit()
+                        
+                        VStack{
+                            Image("ConfidentView-1")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 96)
+                        }
                     }
                     
-                    Text("Fill the confidence bar")
-                    
-                    Text("\(Int(sliderProgress * 100))%")
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.black)
-                }.padding(.bottom ,30)
-                    .opacity(visible)
+                    VStack{
+                        Text("Fill the confidence bar")
+                        
+                        Text("\(Int(sliderProgress * 100))%")
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.black)
+                    }
+                }
+                .opacity(visible)
                 
                 VStack{
                     Text("Actually, you should be more")
@@ -119,7 +121,7 @@ struct ConfidentView: View {
                         
                         Text(userListCoreDataViewModel.userEntities[0].name)
                             .font(.title2)
-                            .fontWeight(.bold)
+                            .bold()
                     }
                 }
                 .opacity(visibleText2)
@@ -136,11 +138,9 @@ struct ConfidentView: View {
                             .font(.title3)
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
-                            
                             Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                 .font(.title3)
-                                .fontWeight(.bold)
-                            
+                                .bold()
                         }
                         
                         Text("by a")
@@ -156,7 +156,7 @@ struct ConfidentView: View {
                     HStack{
                         Text("set of action steps")
                             .font(.title3)
-                            .fontWeight(.bold)
+                            .bold()
                         
                         Text("to achieve")
                             .font(.title3)
@@ -180,11 +180,9 @@ struct ConfidentView: View {
                             .font(.title3)
                         
                         if goalListCoreDataViewModel.goalEntities.count > 0 {
-                            
                             Text(goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name)
                                 .font(.title3)
-                                .fontWeight(.bold)
-                            
+                                .bold()
                         }
                     }
                     .padding(.top, 50)
@@ -203,15 +201,13 @@ struct ConfidentView: View {
                             .foregroundColor(Color.white)
                             .buttonStyle(.bordered)
                             .background(
-                                
                                 RoundedRectangle(
                                     cornerRadius: 5,
                                     style: .continuous
                                 )
                                 .stroke(Color("Axolotl"), lineWidth: 1)
-                                
                             )
-                    }
+                        }
                     }
                     Spacer()
                 }
@@ -222,143 +218,148 @@ struct ConfidentView: View {
                     Text("Oh don’t worry, we’re in this together!")
                     
                     VStack{
-                        Image("ConfidentView-2")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 72)
-                            .opacity(visibleText5)
+                        ZStack{
+                            Image("ConfidentView-2")
+                                .resizable()
+                                .scaledToFit()
+                            
+                            Text("Tap me")
+                                .bold()
+                                .foregroundColor(Color("Chinese Orange"))
+                        }
                     }
                     .onTapGesture {
                         userListCoreDataViewModel.setIsJournaling()
-                        
                         userListCoreDataViewModel.setIsJournalingFinished()
                     }
                 }
+                .opacity(visibleText5)
                 
-                Spacer()
-                
-                ZStack{ // button untuk next
-                    HStack{ // 1
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.leading)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.left")
-                                    .padding(.leading)
-                                    .foregroundColor(Color.white)
-                            }
-                        Spacer()
-                        HStack{
-                            Text("1")
-                                .font(.callout)
-                            Text("of")
-                                .font(.callout)
-                            Text("3")
-                                .font(.callout)
-                        }
-                        Spacer()
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.trailing)
-                            .foregroundColor(sliderProgress == 0 ? .gray : Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.right")
-                                    .padding(.trailing)
-                                    .foregroundColor(Color.white)
-                            }
-                            .onTapGesture {
-                                visible = 0
-                                visibleText2 = 1
-                            }
-                            .disabled(sliderProgress == 0)
-                    }
-                    .opacity(visible)
+                VStack{
+                    Spacer()
                     
-                    HStack{ //2
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.leading)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.left")
-                                    .padding(.leading)
-                                    .foregroundColor(Color.white)
+                    ZStack{ // button untuk next
+                        HStack{ // 1
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.leading)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.left")
+                                        .padding(.leading)
+                                        .foregroundColor(Color.white)
+                                }
+                            Spacer()
+                            HStack{
+                                Text("1")
+                                    .font(.callout)
+                                Text("of")
+                                    .font(.callout)
+                                Text("3")
+                                    .font(.callout)
                             }
-                            .onTapGesture {
-                                visible = 1
-                                visibleText2 = 0
-                                visibleText3 = 0
-                            }
-                        Spacer()
-                        HStack{
-                            Text("2")
-                                .font(.callout)
-                            Text("of")
-                                .font(.callout)
-                            Text("3")
-                                .font(.callout)
+                            Spacer()
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.trailing)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.right")
+                                        .padding(.trailing)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    visible = 0
+                                    visibleText2 = 1
+                                }
                         }
-                        Spacer()
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.right")
-                                    .padding(.trailing)
-                                    .foregroundColor(Color.white)
+                        .opacity(visible)
+                        
+                        HStack{ //2
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.leading)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.left")
+                                        .padding(.leading)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    visible = 1
+                                    visibleText2 = 0
+                                    visibleText3 = 0
+                                }
+                            Spacer()
+                            HStack{
+                                Text("2")
+                                    .font(.callout)
+                                Text("of")
+                                    .font(.callout)
+                                Text("3")
+                                    .font(.callout)
                             }
-                            .onTapGesture {
-                                visible = 0
-                                visibleText2 = 0
-                                visibleText3 = 1
-                            }
-                    }
-                    .opacity(visibleText2)
-                    
-                    HStack{ // 3
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.leading)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.left")
-                                    .padding(.leading)
-                                    .foregroundColor(Color.white)
-                            }
-                            .onTapGesture {
-                                visible = 0
-                                visibleText2 = 1
-                                visibleText3 = 0
-                            }
-                        Spacer()
-                        HStack{
-                            Text("3")
-                                .font(.callout)
-                            Text("of")
-                                .font(.callout)
-                            Text("3")
-                                .font(.callout)
+                            Spacer()
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.trailing)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.right")
+                                        .padding(.trailing)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    visible = 0
+                                    visibleText2 = 0
+                                    visibleText3 = 1
+                                }
                         }
-                        Spacer()
-                        Circle()
-                            .frame(width: 80.0)
-                            .padding(.trailing)
-                            .foregroundColor(Color("Chinese Orange"))
-                            .overlay{
-                                Image(systemName: "arrow.right")
-                                    .padding(.trailing)
-                                    .foregroundColor(Color.white)
+                        .opacity(visibleText2)
+                        
+                        HStack{ // 3
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.leading)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.left")
+                                        .padding(.leading)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    visible = 0
+                                    visibleText2 = 1
+                                    visibleText3 = 0
+                                }
+                            Spacer()
+                            HStack{
+                                Text("3")
+                                    .font(.callout)
+                                Text("of")
+                                    .font(.callout)
+                                Text("3")
+                                    .font(.callout)
                             }
-                            .onTapGesture {
-                                visibleText3 = 0
-                                visibleText4 = 1
-                            }
+                            Spacer()
+                            Circle()
+                                .frame(width: 80.0)
+                                .padding(.trailing)
+                                .foregroundColor(Color("Chinese Orange"))
+                                .overlay{
+                                    Image(systemName: "arrow.right")
+                                        .padding(.trailing)
+                                        .foregroundColor(Color.white)
+                                }
+                                .onTapGesture {
+                                    visibleText3 = 0
+                                    visibleText4 = 1
+                                }
+                        }
+                        .opacity(visibleText3)
                     }
-                    .opacity(visibleText3)
+                    .opacity(hideButton)
                 }
-                .opacity(hideButton)
             }
         }
     }

@@ -29,7 +29,7 @@ struct SetupProject: View {
             VStack {
                 VStack {
                     Text("Hi there!")
-                        .fontWeight(.bold)
+                        .bold()
                         .opacity(fadeText1 ? 1 : 0)
                         .animation(.easeIn(duration: 1))
                         .onAppear {
@@ -39,7 +39,7 @@ struct SetupProject: View {
                         }
                     
                     Text("It’s a good day to see you here!")
-                        .fontWeight(.bold)
+                        .bold()
                         .opacity(fadeText2 ? 1 : 0)
                         .animation(.easeIn(duration: 1))
                         .onAppear {
@@ -79,7 +79,7 @@ struct SetupProject: View {
                     VStack {
                         Text("Let's get to know you better..")
                             .font(.title3)
-                            .fontWeight(.bold)
+                            .bold()
                             .offset(x: 0, y: moveUpText ? 610 : 50)
                             .animation(Animation.easeInOut(duration: 1.5))
                             .onAppear {
