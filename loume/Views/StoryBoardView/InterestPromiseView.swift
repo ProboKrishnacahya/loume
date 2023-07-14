@@ -372,6 +372,7 @@ struct InterestPromiseView: View {
             }
         }
         .onAppear(perform: {
+            goalListCoreDataViewModel.getGoalEntities()
             
             sumNullWeakness = 0
             if userListCoreDataViewModel.userEntities[0].weakness1.isEmpty {
@@ -386,6 +387,11 @@ struct InterestPromiseView: View {
                 sumNullWeakness += 1
             }
             
+            if goalListCoreDataViewModel.goalEntities.count > 0 {
+                goal = goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].name
+                
+                dueDate = goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].dueDate
+            }
         })
     }
 }

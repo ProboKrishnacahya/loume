@@ -242,6 +242,16 @@ struct InterestView: View {
                 }
             }
             .animation(nil)
+            .onAppear(perform: {
+                
+                if loveListCoreDataViewModel.loveEntities.count > 0 {
+                    for loveEntity in loveListCoreDataViewModel.loveEntities {
+                        if let item = interest.firstIndex(of: loveEntity.name) {
+                            selectedCircles.insert(item)
+                        }
+                    }
+                }
+            })
         }
     }
     
