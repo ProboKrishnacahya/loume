@@ -116,6 +116,7 @@ struct MyStrengthView: View {
                     
                     Spacer()
                 }
+                .padding()
                 
                 VStack{
                     Spacer()
