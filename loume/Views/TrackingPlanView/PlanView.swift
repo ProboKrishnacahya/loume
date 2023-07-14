@@ -73,7 +73,7 @@ struct PlanView: View {
                                                 .buttonStyle(PlainButtonStyle())
                                                 .disabled(subPlan.name.isEmpty)
                                                 
-                                                TextField("New Subplan",
+                                                TextField(subPlan.name.isEmpty ? "New Subplan" : subPlan.name,
                                                           text: self.bindingForTextField(groupIndex: groupIndex, textFieldIndex: index),
                                                           onCommit: {
                                                     subPlanListCoreDataViewModel.setNameSubPlanEntity(subPlanCoreDataModel: subPlan, name: inputTextValues[goalIndex][groupIndex][index], planCoreDataModel: plan)
@@ -88,6 +88,7 @@ struct PlanView: View {
                                     
                                     Button(action: {
                                         subPlanListCoreDataViewModel.addSubPlanEntity(name: "", planCoreDataModel: plan)
+                                        
                                         inputTextValues[goalIndex][groupIndex].append("")
                                         
                                     }, label: {
@@ -137,16 +138,32 @@ struct PlanView: View {
     }
     
     func bindingForTextField(groupIndex: Int, textFieldIndex: Int) -> Binding<String> {
+        
         return Binding<String>(
             get: {
-                if groupIndex >= planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex]).count {
+                
+                if !planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex]).indices.contains(groupIndex) {
+                    
                     return inputTextValues[goalIndex][0][0]
                 }
+                
+                if  !planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex])[groupIndex].subPlans.indices.contains(textFieldIndex) {
+                    
+                    return inputTextValues[goalIndex][0][0]
+                }
+                
                 return inputTextValues[goalIndex][groupIndex][textFieldIndex]
             },
             set: {
-                if groupIndex >= planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex]).count {
+                
+                if !planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex]).indices.contains(groupIndex) {
+                    
                     inputTextValues[goalIndex][0][0] = $0
+                    
+                } else if  !planListCoreDataViewModel.getPlanEntitiesArray(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalIndex])[groupIndex].subPlans.indices.contains(textFieldIndex) {
+                    
+                    inputTextValues[goalIndex][0][0] = $0
+                    
                 } else {
                     inputTextValues[goalIndex][groupIndex][textFieldIndex] = $0
                 }

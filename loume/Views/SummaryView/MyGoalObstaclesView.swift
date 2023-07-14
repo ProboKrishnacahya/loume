@@ -20,7 +20,7 @@ struct MyGoalObstaclesView: View {
                         
                         Spacer()
                         
-//                        UpdateButton()
+                        //                        UpdateButton()
                     }
                     
                     VStack(alignment: .leading) {

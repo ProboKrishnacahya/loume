@@ -13,7 +13,7 @@ struct GoalView: View {
     @EnvironmentObject private var planListCoreDataViewModel: PlanListCoreDataViewModel
     @EnvironmentObject private var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     
-    @State var inputTextValues: [[[String]]] = [[[""]]]
+    @Binding var inputTextValues: [[[String]]]
     @State var isSheetPresented: Bool = false
     
     let backgroundColor: Color
@@ -42,6 +42,35 @@ struct GoalView: View {
         }
         .onAppear(perform: {
             goalListCoreDataViewModel.getGoalEntities()
+            
+            inputTextValues = [[[""]]]
+            
+            for index in goalListCoreDataViewModel.goalEntities.indices {
+                
+                planListCoreDataViewModel.getPlanEntities(goalCoreDataModel: goalListCoreDataViewModel.goalEntities[index])
+                
+                if index > 0 {
+                    inputTextValues.append([[""]])
+                }
+                
+                for planIndex in goalListCoreDataViewModel.goalEntities[index].plans.indices {
+                    
+                    if planIndex > 0 {
+                        inputTextValues[index].append([""])
+                    }
+                    
+                    subPlanListCoreDataViewModel.getSubPlanEntities(planCoreDataModel: planListCoreDataViewModel.planEntities[planIndex])
+                    
+                    for subPlanIndex in subPlanListCoreDataViewModel.subPlanEntities.indices {
+                        
+                        if subPlanIndex > 0 {
+                            inputTextValues[index][planIndex].append(subPlanListCoreDataViewModel.subPlanEntities[subPlanIndex].name)
+                        } else {
+                            inputTextValues[index][planIndex][0] = subPlanListCoreDataViewModel.subPlanEntities[subPlanIndex].name
+                        }
+                    }
+                }
+            }
         })
     }
     
@@ -74,7 +103,7 @@ struct GoalView: View {
 
 struct GoalView_Previews: PreviewProvider {
     static var previews: some View {
-        GoalView(backgroundColor: Color("Lotion"))
+        GoalView(inputTextValues: .constant([[[""]]]), backgroundColor: Color("Lotion"))
             .environmentObject(GoalListCoreDataViewModel())
             .environmentObject(PlanListCoreDataViewModel())
             .environmentObject(SubPlanListCoreDataViewModel())

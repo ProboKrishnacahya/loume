@@ -22,7 +22,7 @@ struct MyStrengthView: View {
     @State private var isView3Active = false
     
     var maximumDateGoal: Date{
-        return max(Date(), goalListCoreDataViewModel.goalEntities[0].dueDate)
+        return max(Date(), goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1].dueDate)
     }
     
     var body: some View {
@@ -159,11 +159,11 @@ struct MyStrengthView: View {
                             .onTapGesture {
                                 
                                 if goalListCoreDataViewModel.goalEntities.count > 0 {
-                                    planListCoreDataViewModel.addPlanEntity(name: plan1, dueDate: dueDate1, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[0])
+                                    planListCoreDataViewModel.addPlanEntity(name: plan1, dueDate: dueDate1, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1])
                                     
-                                    planListCoreDataViewModel.addPlanEntity(name: plan2, dueDate: dueDate2, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[0])
+                                    planListCoreDataViewModel.addPlanEntity(name: plan2, dueDate: dueDate2, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1])
                                     
-                                    planListCoreDataViewModel.addPlanEntity(name: plan3, dueDate: dueDate3, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[0])
+                                    planListCoreDataViewModel.addPlanEntity(name: plan3, dueDate: dueDate3, goalCoreDataModel: goalListCoreDataViewModel.goalEntities[goalListCoreDataViewModel.goalEntities.count-1])
                                 }
                                 
                                 isView3Active = true

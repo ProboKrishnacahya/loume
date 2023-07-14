@@ -26,7 +26,7 @@ class SoundManager {
             player?.play()
             
         } catch let error {
-            print("Error playing soung. \(error.localizedDescription)")
+            print("Error playing sound. \(error.localizedDescription)")
         }
         
     }

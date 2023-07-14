@@ -215,6 +215,8 @@ struct InterestPromiseView: View {
                             )
                     }
                         Button {
+                            userListCoreDataViewModel.setPageTag(pageTag: "3")
+                            
                             userListCoreDataViewModel.setIsJournaling()
                         }
                     label: {
@@ -341,6 +343,8 @@ struct InterestPromiseView: View {
                                 }
                         }
                             Button {
+                                userListCoreDataViewModel.setPageTag(pageTag: "3")
+                                
                                 userListCoreDataViewModel.setIsJournaling()
                             }
                         label: {
@@ -367,6 +371,22 @@ struct InterestPromiseView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            
+            sumNullWeakness = 0
+            if userListCoreDataViewModel.userEntities[0].weakness1.isEmpty {
+                sumNullWeakness += 1
+            }
+            
+            if userListCoreDataViewModel.userEntities[0].weakness2.isEmpty {
+                sumNullWeakness += 1
+            }
+            
+            if userListCoreDataViewModel.userEntities[0].weakness3.isEmpty {
+                sumNullWeakness += 1
+            }
+            
+        })
     }
 }
 

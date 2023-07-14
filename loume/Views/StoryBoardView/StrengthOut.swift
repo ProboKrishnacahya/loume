@@ -61,6 +61,8 @@ struct StrengthOut: View {
                     }
                 }
                     Button {
+                        userListCoreDataViewModel.setPageTag(pageTag: "1")
+                        
                         userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {

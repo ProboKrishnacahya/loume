@@ -80,6 +80,8 @@ struct RoleModelView: View {
                                 )
                         }
                             Button {
+                                userListCoreDataViewModel.setPageTag(pageTag: "0")
+                                
                                 userListCoreDataViewModel.setIsJournaling()
                             }
                         label: {

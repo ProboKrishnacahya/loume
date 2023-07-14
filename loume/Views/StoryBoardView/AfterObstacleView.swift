@@ -60,6 +60,8 @@ struct AfterObstacleView: View {
                         visible = 0
                         visibleText2 = 1
                         
+                        userListCoreDataViewModel.setPageTag(pageTag: "5")
+                        
                         userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {

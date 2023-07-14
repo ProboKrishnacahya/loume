@@ -51,6 +51,8 @@ struct AfterQuestion1View: View {
                         )
                 }
                     Button {
+                        userListCoreDataViewModel.setPageTag(pageTag: "2")
+                        
                         userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
@@ -99,6 +101,8 @@ struct AfterQuestion1View: View {
                         )
                 }
                     Button {
+                        userListCoreDataViewModel.setPageTag(pageTag: "2")
+                        
                         userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
@@ -147,6 +151,8 @@ struct AfterQuestion1View: View {
                         )
                 }
                     Button {
+                        userListCoreDataViewModel.setPageTag(pageTag: "2")
+                        
                         userListCoreDataViewModel.setIsJournaling()
                     }
                 label: {
@@ -257,6 +263,39 @@ struct AfterQuestion1View: View {
                 }
             }
         }
+        .onAppear(perform: {
+            
+            var sumNullStrength = 0
+            if userListCoreDataViewModel.userEntities[0].strength1.isEmpty {
+                sumNullStrength += 1
+            }
+            
+            if userListCoreDataViewModel.userEntities[0].strength2.isEmpty {
+                sumNullStrength += 1
+            }
+            
+            if userListCoreDataViewModel.userEntities[0].strength3.isEmpty {
+                sumNullStrength += 1
+            }
+            
+            if sumNullStrength == 0 {
+                condition1 = 1
+                condition2 = 0
+                condition3 = 0
+                isStrengthFulled = true
+            } else if sumNullStrength == 3 {
+                condition1 = 0
+                condition2 = 0
+                condition3 = 1
+                isStrengthFulled = false
+            } else {
+                condition1 = 0
+                condition2 = 1
+                condition3 = 0
+                isStrengthFulled = false
+            }
+            
+        })
     }
 }
 

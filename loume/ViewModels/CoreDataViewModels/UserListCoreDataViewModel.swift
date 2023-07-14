@@ -226,6 +226,19 @@ class UserListCoreDataViewModel: ObservableObject {
         
         getUserEntities()
     }
+    
+    func setPageTag(pageTag: String) {
+        getUserEntities()
+        
+        let userCoreDataModel = userEntities[0]
+        let existingUserEntity = CoreDataManager.instance.getUserEntityById(id: userCoreDataModel.id)
+        
+        if let existingUserEntity = existingUserEntity {
+            CoreDataManager.instance.setPageTagUserEntity(userEntity: existingUserEntity, pageTag: pageTag)
+        }
+        
+        getUserEntities()
+    }
 }
 
 struct UserCoreDataModel {
@@ -285,5 +298,9 @@ struct UserCoreDataModel {
     
     var isJournalingFinished: Bool {
         return userEntity.is_journaling_finished ?? false
+    }
+    
+    var pageTag: String {
+        return userEntity.page_tag ?? ""
     }
 }

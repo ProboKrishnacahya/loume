@@ -22,10 +22,6 @@ extension View {
 }
 
 struct ContentView: View {
-    @State var selectedTab = 0
-    @Binding var instanceSoundManager: SoundManager
-    @Binding var instanceAppHeaderViewModel: AppHeaderViewModel
-    @Binding var instanceContentViewModel: ContentViewModel
     
     @EnvironmentObject private var userListCoreDataViewModel: UserListCoreDataViewModel
     @EnvironmentObject private var goalListCoreDataViewModel: GoalListCoreDataViewModel
@@ -33,6 +29,18 @@ struct ContentView: View {
     @EnvironmentObject private var subPlanListCoreDataViewModel: SubPlanListCoreDataViewModel
     @EnvironmentObject private var loveListCoreDataViewModel: LoveListCoreDataViewModel
     @EnvironmentObject private var roleModelStrengthListCoreDataViewModel: RoleModelStrengthListCoreDataViewModel
+    
+    @State var selectedTab = 0
+    @State var inputTextValues: [[[String]]] = [[[""]]]
+    @State var condition1: Double = 0
+    @State var condition2: Double = 0
+    @State var condition3: Double = 0
+    @State var isStrengthFulled: Bool = false
+    @State var sumNullWeakness: Int = 0
+    
+    @Binding var instanceSoundManager: SoundManager
+    @Binding var instanceAppHeaderViewModel: AppHeaderViewModel
+    @Binding var instanceContentViewModel: ContentViewModel
     
     var body: some View {
         VStack {
@@ -45,11 +53,42 @@ struct ContentView: View {
             } else {
                 
                 if userListCoreDataViewModel.userEntities[0].isJournaling {
-                    SetupProject(moveUp: true, moveUp2: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1)
+                    
+                    if !userListCoreDataViewModel.userEntities[0].pageTag.isEmpty {
+                        
+                        if userListCoreDataViewModel.userEntities[0].pageTag == "0" {
+                            
+                            RoleModelView()
+                            
+                        } else if userListCoreDataViewModel.userEntities[0].pageTag == "1" {
+                            
+                            StrengthOut()
+                            
+                        } else if userListCoreDataViewModel.userEntities[0].pageTag == "2" {
+                            
+                            AfterQuestion1View(condition1: $condition1, condition2: $condition2, condition3: $condition3, isStrengthFulled: $isStrengthFulled)
+                            
+                        } else if userListCoreDataViewModel.userEntities[0].pageTag == "3" {
+                            
+                            InterestPromiseView(sumNullWeakness: $sumNullWeakness)
+                            
+                        } else if
+                            userListCoreDataViewModel.userEntities[0].pageTag == "4" {
+                            //                                yohan
+                            
+                        } else if userListCoreDataViewModel.userEntities[0].pageTag == "5" {
+                            
+                            AfterObstacleView()
+                            
+                        }
+                        
+                    } else {
+                        SetupProject(moveUp: true, moveUp2: true, moveUpCircle: true, moveUpText: true, isView2Active: false, moveUpTextField: true, fadeText1: false, offset: CGSize.zero, fadeText2: false, fadeOutCircle: 1, text1: 90, name: "", scale2: 1)
+                    }
+                    
                 } else {
                     tabView
                 }
-                
             }
         }
         .preferredColorScheme(.light)
@@ -64,7 +103,7 @@ struct ContentView: View {
     
     var tabView: some View {
         TabView(selection: $selectedTab) {
-            GoalView(backgroundColor: Color("Lotion"))
+            GoalView(inputTextValues: $inputTextValues, backgroundColor: Color("Lotion"))
                 .showTabItemStyle(selectedTab: selectedTab, type: "Goals", tag: 0,
                                   instanceContentViewModel: instanceContentViewModel)
             

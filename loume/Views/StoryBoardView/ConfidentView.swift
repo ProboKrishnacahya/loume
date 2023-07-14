@@ -230,6 +230,7 @@ struct ConfidentView: View {
                     }
                     .onTapGesture {
                         userListCoreDataViewModel.setIsJournaling()
+                        
                         userListCoreDataViewModel.setIsJournalingFinished()
                     }
                 }

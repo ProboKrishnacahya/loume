@@ -123,6 +123,11 @@ class CoreDataManager {
         save()
     }
     
+    func setPageTagUserEntity(userEntity: UserEntity, pageTag: String) {
+        userEntity.page_tag = pageTag
+        save()
+    }
+    
     //** GOAL **\\
     func addGoalEntity(name: String, dueDate: Date) {
         let newGoalEntity = GoalEntity(context: context)
