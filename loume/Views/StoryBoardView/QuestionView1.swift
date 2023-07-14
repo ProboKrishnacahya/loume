@@ -288,7 +288,7 @@ struct QuestionView1: View {
                                     isView3Active = true
                                 }
                                 .overlay(
-                                    NavigationLink(destination: RoleModelSimilarStrengthView().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
+                                    NavigationLink(destination: StrengthOut().navigationBarBackButtonHidden(true), isActive: $isView3Active) {
                                         EmptyView()
                                     }
                                 )
@@ -455,6 +455,21 @@ struct QuestionView1: View {
                 }
             }
         }
+        .onAppear(perform: {
+            userListCoreDataViewModel.getUserEntities()
+            
+            if !userListCoreDataViewModel.userEntities[0].strength1.isEmpty {
+                strength1 = userListCoreDataViewModel.userEntities[0].strength1
+            }
+            
+            if !userListCoreDataViewModel.userEntities[0].strength2.isEmpty {
+                strength2 = userListCoreDataViewModel.userEntities[0].strength2
+            }
+            
+            if !userListCoreDataViewModel.userEntities[0].strength3.isEmpty {
+                strength3 = userListCoreDataViewModel.userEntities[0].strength3
+            }
+        })
     }
 }
 

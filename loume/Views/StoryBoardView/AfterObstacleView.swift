@@ -18,7 +18,6 @@ struct AfterObstacleView: View {
     @State var visibleText2: Double = 0
     @State var visibleText3: Double = 0
     @State var visibleText4: Double = 0
-    @State var visibleText5: Double = 0
     @State var hideButton: Double = 1
     
     var body: some View {
@@ -269,7 +268,6 @@ struct AfterObstacleView: View {
                             .onTapGesture {
                                 visibleText3 = 0
                                 visibleText4 = 1
-                                visibleText5 = 1
                             }
                     }
                     .opacity(visibleText3)
@@ -321,7 +319,7 @@ struct AfterObstacleView: View {
                                 }
                             )
                     }
-                    .opacity(visibleText5)
+                    .opacity(visibleText4)
                 }
                 .opacity(hideButton)
             }

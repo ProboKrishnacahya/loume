@@ -48,7 +48,7 @@ struct AfterObstacle2View: View {
                                 .font(.callout)
                             Text("of")
                                 .font(.callout)
-                            Text("1")
+                            Text("2")
                                 .font(.callout)
                         }
                         Spacer()

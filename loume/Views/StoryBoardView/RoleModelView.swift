@@ -339,6 +339,13 @@ struct RoleModelView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            userListCoreDataViewModel.getUserEntities()
+            
+            if !userListCoreDataViewModel.userEntities[0].roleModel.isEmpty {
+                roleModel = userListCoreDataViewModel.userEntities[0].roleModel
+            }
+        })
     }
 }
 

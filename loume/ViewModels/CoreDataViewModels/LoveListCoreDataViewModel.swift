@@ -56,16 +56,13 @@ class LoveListCoreDataViewModel: ObservableObject {
     }
     
     func saveLoveEntity(interests: [String], selectedCircles: Set<Int>) {
-        if loveEntities.isEmpty {
-            CoreDataManager.instance.addLoveEntity(interests: interests, selectedCircles: selectedCircles)
-        } else {
-            let existingLoveEntity = CoreDataManager.instance.getLoveEntityById(id: loveEntities[0].id)
-            
-            if let existingLoveEntity = existingLoveEntity {
-                CoreDataManager.instance.updateLoveEntity(loveEntity: existingLoveEntity, interests: interests, selectedCircles: selectedCircles)
-            }
+        getLoveEntities()
+        
+        if !loveEntities.isEmpty {
+            deleteLoveEntityAll()
         }
         
+        CoreDataManager.instance.addLoveEntity(interests: interests, selectedCircles: selectedCircles)
         getLoveEntities()
     }
     

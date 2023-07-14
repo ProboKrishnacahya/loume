@@ -447,6 +447,21 @@ struct QuestionView2: View {
                 }
             }
         }
+        .onAppear(perform: {
+            userListCoreDataViewModel.getUserEntities()
+            
+            if !userListCoreDataViewModel.userEntities[0].weakness1.isEmpty {
+                weakness1 = userListCoreDataViewModel.userEntities[0].weakness1
+            }
+            
+            if !userListCoreDataViewModel.userEntities[0].weakness2.isEmpty {
+                weakness2 = userListCoreDataViewModel.userEntities[0].weakness2
+            }
+            
+            if !userListCoreDataViewModel.userEntities[0].weakness3.isEmpty {
+                weakness3 = userListCoreDataViewModel.userEntities[0].weakness3
+            }
+        })
     }
 }
 
